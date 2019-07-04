@@ -133,21 +133,38 @@ O C é uma linguagem estruturada em funções, isto quer dizer que todo o códig
 
 ### Variáveis
 
-> Imagine um armário, com diversos espaços para guardar coisas, alguns só dá para guardar bolas (pois são circulares), outras só dá pra guardar bonecas (pois são do formato de bonecas), outros só podem guardar caixas (pois são do formato de caixas) e cada espaço desses tem o nome das coisas que estão no armário.
+> Imagine um armário, com diversos espaços para guardar coisas, alguns só dá para guardar esferas, outros só podem pra guardar bonecas, outros só podem guardar cubos, e cada espaço desses tem um nome.
 >
-> toda vez que alguém quer um espaço no armário tem que pedir para o dono do armário reservar o espaço e diz que quer um espaço:
+> Toda vez que alguém quer um espaço no armário tem que pedir para o dono, mas o dono só reserva o espaço se pedir da maneira certa, que é:
 >
+>`<tipo do espaço> <nome do espaço> com <coisa que queremos no espaço> dentro`
+>
+> Exemplos:
+>
+> `esfera bola_de_futbol recebe `:soccer:`;`
+>
+> `boneca pepita recebe `:dolls:`;`
+>
+> `cubo dado recebe `:game_die:`;`
 
-`circular bola_de_praia = `<img src="bola_de_praia.png" height="30px"/>`;`
-
-
-O armário é a memória do seu computador, os espaços são as variáveis e o nome em cada espaço é o nome da variável, e só conseguem armazenar tipos expecíficos de dados (no exemplo são bolas ou bonecas), e a situação descrita para a reserva de um espaço é a declaração, se ainda assim ficou confuso olhe o esquema abaixo e tire suas conlusões:
+O armário é a memória do seu computador, os espaços são as variáveis e o nome em cada espaço é o nome da variável, que só conseguem armazenar tipos expecíficos de dados, no exemplo são `esfera`, `cubo` ou `boneca`, e a situação descrita para a reserva de um espaço é a declaração:
 
 ```C
-// tipo do espaço   nome do espaço  =  coisa que queremos no espaço
-   int              numero          =  80;
+// <tipo do espaço>  <nome do espaço>  com  <coisa que queremos no espaço> dentro
+   int               numero            =    80                                  ;
 ```
 
 No exemplo acima eu reservei um espaço que só guarda numeros inteiros (`int`) com o nome `numero` e com o valor `80` dentro.
 
-E no C existem 4 tipos primitivos, ou seja 4 tipos de dados básicos, e eles são o `int`, o `float`, o `char` e o `boolean`
+E no C existem 3 tipos primitivos, ou seja 3 tipos de dados básicos, e eles são o `int`, o `float` e o `char`:
+
+```C
+// <tipo do espaço>  <nome do espaço>  com  <coisa que queremos no espaço> dentro
+   int               numero            =    80                                  ;
+   float             numero_real       =    99.9                                ;
+   char              caractere         =    'A'                                 ;
+```
+
+#### Inteiros
+
+
