@@ -139,7 +139,7 @@ O C é uma linguagem estruturada em funções, isto quer dizer que todo o códig
 >
 
 `circular bola_de_praia = `
-![](bola_de_praia.png | height=50)
+![](bola_de_praia.png | width=50)
 `;`
 
 
