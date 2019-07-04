@@ -138,11 +138,7 @@ O C é uma linguagem estruturada em funções, isto quer dizer que todo o códig
 > toda vez que alguém quer um espaço no armário tem que pedir para o dono do armário reservar o espaço e diz que quer um espaço:
 >
 
-`circular bola_de_praia = `
-
-<img src="bola_de_praia.png" height="50px"/>
-
-`;`
+`circular bola_de_praia = `<img src="bola_de_praia.png" height="50px"/>`;`
 
 
 O armário é a memória do seu computador, os espaços são as variáveis e o nome em cada espaço é o nome da variável, e só conseguem armazenar tipos expecíficos de dados (no exemplo são bolas ou bonecas), e a situação descrita para a reserva de um espaço é a declaração, se ainda assim ficou confuso olhe o esquema abaixo e tire suas conlusões:
