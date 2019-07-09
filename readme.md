@@ -249,11 +249,11 @@ Comentários são "comentários" escritos no código para descrever a função d
 >
 > Exemplos:
 >
-> `esfera bola_de_futbol com `:soccer:`;`
+> `esfera bola_de_futbol com `:soccer:` dentro`
 >
-> `boneca pepita         com `:dolls:`;`
+> `boneca pepita         com `:dolls:` dentro`
 >
-> `cubo   dado           com `:game_die:`;`
+> `cubo   dado           com `:game_die:` dentro`
 
 O armário é a memória do seu computador, os espaços são as variáveis e o nome em cada espaço é o nome da variável, que só conseguem armazenar tipos expecíficos de dados, no exemplo são `esfera`, `cubo` ou `boneca`, e a situação descrita para a reserva de um espaço é a declaração:
 
@@ -262,7 +262,7 @@ O armário é a memória do seu computador, os espaços são as variáveis e o n
    int               numero            =    80                                  ;
 ```
 
-No exemplo acima eu reservei um espaço que só guarda numeros inteiros (`int`) com o nome `numero` e com o valor `80` dentro.E no C existem 3 tipos primitivos, ou seja 3 tipos de dados básicos, e eles são o `int`, o `float` e o `char`:
+No exemplo acima eu reservei um espaço que só guarda numeros inteiros (`int`) com o nome `numero` e com o valor `80` dentro. E no C existem 3 tipos primitivos, ou seja 3 tipos de dados básicos, e eles são o `int`, o `float` e o `char`:
 
 ```C
 // <tipo do espaço>  <nome do espaço>  com  <coisa que queremos no espaço> dentro
@@ -271,18 +271,17 @@ No exemplo acima eu reservei um espaço que só guarda numeros inteiros (`int`) 
    float             numero_real       =    99.9                                ;
 ```
 
-Variáveis do tipo `int` recebem números sem ponto, como 2, 8 ou 234 enquanto as do tipo `float` recebem a números com ponto como 2.5, 8.3 ou 23.4, já variáveis do tipo `char` recebem um caractere, **apenas um** , logo se tentar colocar um `"hello"` ou até mesmo um `"h"` ele vai retornar um erro, pois todo e qualquer caractere entre `"` é uma string enquanto um `char` é um único caractere entre `'`, não se preocupe com as strings por enquanto...
+Variáveis do tipo `int` recebem números sem ponto, como 2, 8 ou 234 enquanto as do tipo `float` recebem números com ponto como 2.5, 8.3 ou 23.0, já variáveis do tipo `char` recebem um caractere, **apenas um** , logo se tentar colocar um `"hello"` ou até mesmo um `"h"` ele vai retornar um erro, pois todo e qualquer caractere entre `"` é uma string enquanto um `char` é um único caractere entre `'`, não se preocupe com as strings por enquanto...
 
-E caso você deseja alterar o valor da variável, você só precisa colocar o nome da variável recebendo o valor:
+E se você deseja alterar o valor da variável, você só precisa colocar o nome da variável recebendo o valor:
 
 ```C
-int i = 5; // declaração da variável
+int i = 5; // declaração da variável "i" valendo "5"
 
 i = 92;    // agora a variável vale 92
-
 ```
 
-Esse exemplo acima serve para todos os tipos primitivos, mas lembre-se de colocar valores do tipo certo a variável, se você declarou uma variável inteira, na hora de alterar o valor você tem que trocar por um inteiro.
+Esse exemplo acima serve para todos os tipos primitivos, mas lembre-se de colocar valores do tipo certo na variável, se você declarou uma variável inteira, na hora de alterar o valor você tem que trocar por um inteiro.
 
 Além disso também existe o tipo `double` que é descendente do tipo `float`, mas com mais capacidade de espaço... _"Mas como assim espaço? Números não são infinitos?"_ ... Os números são infinitos sim, mas a memória ram do computador não é, e mesmo que fosse, seria um desperdício liberar um espaço infinito para uma única variável, então todas as variáveis dentro do C tem um espaço limitado.
 
@@ -493,7 +492,10 @@ O scanf é semelhante ao printf, mas serve para ler dados:
 ```C
 int numero;
 
-   m
+scanf("%i", &numero);
+```
+
+Ta, agora eu sei que você está se perguntando _"e esse_`&` _serve pra que?"_
 
 # Operadores 
 
@@ -528,17 +530,28 @@ n >= N // maior ou igual   -> testa se n é maior ou igual a N
 
 Eles serão usados por vocês nas estruturas condicionais, laços de repetição e com o operador ternário.
 
-## Ternário
+## Ternário ou condicional
 
 ```C
 int  numero = 80;
-char imparOuPar = (  numero % 2 == 0  ) ? 'p'           : 'i'     ;
-//                ( <expreção logica> ) ? <Verdadeiro>  : <falso>
+char imparOuPar = (  numero % 2 == 0  ) ? 'p'               : 'i'              ;
+//                ( <expreção logica> ) ? <se for Verdade>  : <se for Mentira>
 ```
 
-O código acima representa dois usos simples do operador ternário, e eu sei que você deve estar um pouco confuso com isso, mas eu explico:
+O código acima representa um uso simples do operador ternário, e eu sei que você deve estar um pouco confuso com isso, mas eu explico:
 
-> Antes de mais nada, saiba que **todo numero par tem o resto da divisão por 2 igual 0** , então no exemplo acima, caso `( numero % 2 == 0 )` for verdadeiro o operador vai retornar `'p'` de par, e caso seja falso ele vai retornar `'i'` de impar, por tanto tudo o que o C vai testar a expressão lógica entre `(` e `)` se essa expressão for verdadeira o valor da operação vai ser o que está entre `?` e `:` caso contrário o valor será o que está após `:`
+> Antes de mais nada, saiba que **todo numero par tem o resto da divisão por 2 igual 0** , então no exemplo acima, caso `( numero % 2 == 0 )` for verdadeiro o operador vai retornar `'p'` de par, e caso seja falso ele vai retornar `'i'` de impar, por tanto o C vai testar a expressão lógica entre `(` e `)` se essa expressão for verdadeira o valor da operação vai ser o que está entre `?` e `:` caso contrário o valor será o que está após `:`
+
+Outro exemplo do uso seria:
+
+```C
+int nota = 6;
+char status = ( nota >= 7 ) ? 'p' : 'r';
+
+printf("João %s de ano", (status=='p')? "passou" : "reprovou" );
+```
+
+No código acima se a nota do João for maior ou igual a 7 o programa escreve `"João passou de ano"` na tela se não ele escreve `"João reprovou de ano"`.
 
 # Chegou a hora de praticar!
 
