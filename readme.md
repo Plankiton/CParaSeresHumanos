@@ -13,7 +13,7 @@
 ███████████████████████████████████████████████████████████████████████████████████████████████████████
 ███████████████████████████████████████████████████████████████████████████████████████████████████████
 ███████████████████████████████████████████████████████████████████████████████████████████████████████
-███████                                          ██████████████████████████████████████████████████████
+██████                                           ██████████████████████████████████████████████████████
 ███                                                  ██████████████████████████████████████████████████
 ███        █████████████████████████████████████     ██████████████████████████████████████████████████
 ██       ████        ██████████████████████████████████████████████████████████████████████████████████
@@ -75,7 +75,10 @@
 
 Antes de começar, este livro está sendo destinado a iniciantes no mundo da programação, por isso todos os termos apresentados aqui estão sendo explicados da forma mais simples possível, mas os conhecimentos aqui apresentados iram atender qualquer um que seja iniciante em linguagem C (mesmo que você já saiba programar em outra linguagem).
 
-Por favor, se você encontrar qualquer erro de ortografia ou em relação aos conhecimentos apresentados me envie um email avisando, ou faça um pull-request no [repositório do livro](http://github.com/RoboCopGay/c_para_seres_humanos.book) no github
+Por favor, se você encontrar qualquer erro de ortografia ou em relação aos conhecimentos apresentados me envie um email avisando, ou faça um pull-request no repositório do livro no github
+
+
+repositório do livro no github: http://github.com/RoboCopGay/c_para_seres_humanos.book
 
 # O que é "C"?
 
@@ -207,6 +210,19 @@ O exemplo acima descreve como o nosso programa funciona, suponha que o médico s
 
 O C é uma linguagem estruturada em funções, isto quer dizer que todo o código tem que estar dentro de funções, mas a declaração de variáveis e comandos do pré-processador (que será melhor abordado mais tarde no livro) são opcionais, logo podem ser usados fora de funções.
 
+A partir daqui você vai se deparar com diversos códigos soltos (para economizar espaço), mas quando for testá-los na sua máquina, coloque os dentro da função `main`.
+
+```C
+#include <stdio.h>
+
+int main(){
+   <comandos apresentados>
+   return 0;
+}
+```
+
+Caso for necessário a importação de outras bibliotecas ou algo que modifique a estrutura acima será incluído o código inteiro.
+
 # Comentários
 
 Comentários são "comentários" escritos no código para descrever a função de algo, geralmente são úteis quando você quer analisar algum código antigo seu ou o código de outra pessoa. Os comentários sempre são ignorados pelo compilador, eles são apenas para auxiliar o programador.
@@ -246,22 +262,31 @@ O armário é a memória do seu computador, os espaços são as variáveis e o n
    int               numero            =    80                                  ;
 ```
 
-No exemplo acima eu reservei um espaço que só guarda numeros inteiros (`int`) com o nome `numero` e com o valor `80` dentro.
-
-E no C existem 3 tipos primitivos, ou seja 3 tipos de dados básicos, e eles são o `int`, o `float` e o `char`:
+No exemplo acima eu reservei um espaço que só guarda numeros inteiros (`int`) com o nome `numero` e com o valor `80` dentro.E no C existem 3 tipos primitivos, ou seja 3 tipos de dados básicos, e eles são o `int`, o `float` e o `char`:
 
 ```C
 // <tipo do espaço>  <nome do espaço>  com  <coisa que queremos no espaço> dentro
    int               numero            =    80                                  ;
-   float             numero_real       =    99.9                                ;
    char              caractere         =    'A'                                 ;
+   float             numero_real       =    99.9                                ;
 ```
 
 Variáveis do tipo `int` recebem números sem ponto, como 2, 8 ou 234 enquanto as do tipo `float` recebem a números com ponto como 2.5, 8.3 ou 23.4, já variáveis do tipo `char` recebem um caractere, **apenas um** , logo se tentar colocar um `"hello"` ou até mesmo um `"h"` ele vai retornar um erro, pois todo e qualquer caractere entre `"` é uma string enquanto um `char` é um único caractere entre `'`, não se preocupe com as strings por enquanto...
 
+E caso você deseja alterar o valor da variável, você só precisa colocar o nome da variável recebendo o valor:
+
+```C
+int i = 5; // declaração da variável
+
+i = 92;    // agora a variável vale 92
+
+```
+
+Esse exemplo acima serve para todos os tipos primitivos, mas lembre-se de colocar valores do tipo certo a variável, se você declarou uma variável inteira, na hora de alterar o valor você tem que trocar por um inteiro.
+
 Além disso também existe o tipo `double` que é descendente do tipo `float`, mas com mais capacidade de espaço... _"Mas como assim espaço? Números não são infinitos?"_ ... Os números são infinitos sim, mas a memória ram do computador não é, e mesmo que fosse, seria um desperdício liberar um espaço infinito para uma única variável, então todas as variáveis dentro do C tem um espaço limitado.
 
-Cada variável ocupa uma certa quantidade de bytes na memória ram, e caso você não saiba o que é byte, é uma unidade de espaço dos computadores e um byte tem 8 bits que são os tão temidos zeros e ums.
+Cada variável ocupa uma certa quantidade de bytes na memória ram:
 
 ```C
 /*
@@ -315,6 +340,161 @@ sizeof static struct  switch  typedef union unsigned volatile while
 
 Sendo assim, variáveis com nomes como `2letras`, `char`, `jo%ao` ou `peso da pedra` estão erradas, mas variáveis como `_2letras`, `Char`, `joao` ou `peso_da_pedra` estão certas, e tome muito cuidado com o uso de maiúsculas e minúsculas, pois o C as diferencia, portanto `char` é uma palavra reservada, mas `Char` não é.
 
+# Entrada e saída de dados
+
+Você já viu anteriormente uma forma de saída de dados, o `printf`:
+
+```C
+printf("Hello mundo!!\n");
+```
+
+## Caractere de scape ( "\" )
+
+O caractere de scape, no C é o `\` e ele dá "poderes" ao seu texto, pode ser usado em variáveis do tipo `char` e em strings.
+
+### \n
+
+```C
+printf("\n1ª linha\n2ª linha\n3ª linha\n");   // \n: quebra de linha.
+```
+
+Esse `\n` é uma quebra de linha, ou seja, sempre que tiver um `\n` o printf vai pular uma linha e escrever o que estiver na frente.
+
+> saída:
+```
+1ª linha
+2ª linha
+3ª linha
+```
+
+### \t
+
+```C
+printf("\tjoao"); // \t: espaçamento ou tabulação (efeito da tecla "tab").
+```
+
+Esse `\t` é uma tabulação, o que estiver a frente dele irá se deslocar para a direita (->).
+
+> saída:
+```
+   joao
+```
+
+### \b
+
+```C
+prinft("joao\b");  // \b: apagua um caractere da linha (efeito da tecla "backspace").
+```
+
+Esse `\b` é um backspace, o caractere anterior a ele será apagado.
+
+> saída:
+```
+joa
+```
+
+### \r
+
+```C
+printf("coisas mais coisas\r outras coisas"); // \r: elimina tudo o que está antes dele na linha.
+```
+
+Esse `\r` vem de "remove", todos os caracteres da mesma linha e anteriores a ele seram apagados.
+
+> saída:
+```
+ outras coisas
+```
+
+### \v
+
+```C
+printf("coisas\voutrascoisas\vjoao\v."); // \v: quebra de linha formando "escada".
+```
+
+O `\v` vai quebrar a linha assim como o `\n`, mas ao invés de iniciar a nova no inicio da linha ele iniciar no "final" da anterior, formando uma "escadinha".
+
+> saída:
+```
+coisas
+      outrascoisas
+                  joao
+                      .
+```
+
+### \"
+
+```C
+printf("\"joao\" é um nome feio); // \": exibe as aspas duplas.
+```
+
+Exibe as aspas duplas ( `"` ), pois se você escrever simplesmente `"` o C vai achar que aquele é o fim da string.
+
+> saída:
+```C
+"joao" é um nome feio
+```
+
+### \'
+
+```C
+printf("it\'s estranho"); // \': exibe as aspas simples ou apótrofos.
+```
+
+Exibe a aspa simples (que alguns chamam de apóstrofo).
+
+> saída:
+```
+it's estranho
+```
+
+### \\
+
+```C
+printf("isso é uma contra-barra: \\");     // \\: exibe a contra-barra
+```
+
+> saída:
+```
+isso é uma contra-barra: \
+```
+
+## printf
+
+_"Mas e se eu quiser imprimir uma variável?"_ ... é só usar a formatação de texto do `printf` ... _"Mas como se usa isso?"_ ... para imprimir uma variável `int` é só escrever um `%i` ou `%d` dentro da string, se for um `char` escreva `%c` na string, se for `float` escreva `%f`, se for uma notação científica (geralmente usada no tipo `double`) escreva `%E`( se estiver usando o "e" maiúsculo) e `%e` para o "e" minúsculo, após escrever a formatação desejada, é só listar as variáveis separando por vírgula ligo após a string... _"Eu não entendi nada do que tu disse!"_ ...Relaxa... Olhe o exemplo e suas dúvidas em relação a isso irão desaparecer.
+
+```C
+int numero = 90;
+char caractere = 'A';
+float real = 9.23;
+double real_em_dobro_E = 9.4E13;
+double real_em_dobro_e = 9.4e13;
+
+printf("numero inteiro: %i", numero);
+printf("numero real: %f", real);
+printf("numero real notação cientifica com \"E\": %E", real_em_dobro_E);
+printf("numero real notação cientifica com \"e\": %e", real_em_dobro_e);
+printf("caractere: %c", caractere);
+```
+
+> saída:
+```
+numero inteiro: 90
+numero real: 9.23
+numero real notação cientifica com "E": 9.4E13
+numero real notação cientifica com "e": 9.4e13
+caractere: A
+```
+
+## scanf
+
+O scanf é semelhante ao printf, mas serve para ler dados:
+
+```C
+int numero;
+
+   m
+
 # Operadores 
 
 ## Aritméticos
@@ -336,12 +516,14 @@ Mas lembre-se sempre, esses operadores só fazem operações com tipos compatív
 Os operadores lógicos são todos aqueles que testam uma expressão e disem se ela é verdadeira ou falsa, exemplo:
 
 ```C
-n <  N // menor que        -> testa se n é menor que N
-n >  N // maior que        -> testa se n é maior que N
-n <= N // menor ou igual   -> testa se n é menor ou igual a N
-n >= N // maior ou igual   -> testa se n é maior ou igual a N
 n == N // igual            -> testa se n é igual a N
 n != N // diferente        -> testa se n é diferente de N
+
+n <  N // menor que        -> testa se n é menor que N
+n >  N // maior que        -> testa se n é maior que N
+
+n <= N // menor ou igual   -> testa se n é menor ou igual a N
+n >= N // maior ou igual   -> testa se n é maior ou igual a N
 ```
 
 Eles serão usados por vocês nas estruturas condicionais, laços de repetição e com o operador ternário.
@@ -372,10 +554,48 @@ Agora chegou a hora de praticar, e não pule essa parte, pois o seu aprendizado 
 
 Todos os desafios serão resolvidos e explicados linha a linha, exeto o último de cada rodada, pois esse você vai ter que resolver sozinho obrigatóriamente, para tentar provar para si mesmo que aprendeu, e se você não conseguir, leia de novo os conteúdos anteriores e tente novamente. Caso você passe para a próxima parte sem resolvê-lo você terá dificuldades posteriores em outros assuntos.
 
+## Desafio 1
+
+Faça uma calculadora onde o usuário digite dois números e no final ele exiba todas as operações matemáticas com esses números:
+
+> saída:
+
+```
+digite um número: 3
+digite outro número: 4
+
+3 + 4 = 5
+3 - 4 = 5
+3 * 4 = 12
+3 / 4 = 0.75
+
+A divisão inteira entre 3 e 4 é 0 e o resto dessa divisão é 3
+```
+
+### Resposta
+
+# Strings
+
+Uma string é uma cadeia de caracteres, ou um `array` de caracteres ou um "vetor" de caracteres, estudaremos a estrutura `array` mais tarde no livro, mas as strings não podem esperar já que são essenciais para a saída e entrada de dados.
+
+```C
+char Char = 'A';         // isso é um caractere
+char String [] = "joao"; // isso é uma cadeia de caracteres
+```
+
+Caso você não dê um valor para a String você deverá dizer qual o seu tamanho, exemplo:
+
+```C
+char String [10];
+```
+
+_"Ta! Mas como eu dou um valor para ela?"_ ... Você pode fazer isso de suas maneiras, mas eu vou mostrar só a mais fácil aqui.
+
+Primeiro você tem que importar a biblioteca `String.h`, e depois usar a função `strcpy` para atribuir o valor, dessa maneira:
 
 
-
-
+<br>
+<br>
 <br>
 <br>
 <br>
