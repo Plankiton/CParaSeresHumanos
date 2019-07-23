@@ -727,7 +727,7 @@ Primeiro você tem que importar a biblioteca `String.h`, e depois usar a funçã
 
 ```C
 #include <stdio.h>
-#include <String.h>
+#include <string.h>
 
 int main (){
    char str[13];
