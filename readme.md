@@ -138,15 +138,10 @@ brew install gcc
 
 # Windows
 
-Se você não tem o chocolatey:
+Se você não tem o chocolatey rode no cmd em modo adm:
 
-> Instalando pelo cmd:
 ```bat
 @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
-```
-> Instalando pelo PowerShell:
-```bat
-Set-ExecutionPolicy Bypass -Scope Process -Force; iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 ```
 
 > Instalando gcc
@@ -181,7 +176,7 @@ gcc Hello_mundo.c -o hello
 gcc Hello_mundo.c -o hello.exe
 ```
 
-Executando o arquivo
+Executando o arquivo (lembre-se de estar no mesmo diretório do arquivo compilado)
 
 > linux/BSD/Mac OSX
 ```sh
@@ -339,6 +334,19 @@ sizeof static struct  switch  typedef union unsigned volatile while
 
 Sendo assim, variáveis com nomes como `2letras`, `char`, `jo%ao` ou `peso da pedra` estão erradas, mas variáveis como `_2letras`, `Char`, `joao` ou `peso_da_pedra` estão certas, e tome muito cuidado com o uso de maiúsculas e minúsculas, pois o C as diferencia, portanto `char` é uma palavra reservada, mas `Char` não é.
 
+## Conflito entre tipos
+
+Um problema (na minha opinião) do C é a forte tipagem, que significa que os tipos tem que ser respeitados a todo o custo, logo se queremos que um dado seja transformado em outro precisamos fazer conversões de tipos.
+
+```C
+int Um = (int) 1.5; // apenas o 1 será atribuído
+float Dois = (float) 9 / 2.45; /* divisão só acontece entre tipos 
+                                  iguais por isso temos que 
+                                  converter o 9 para float antes 
+                                  de dividir 
+                              */
+```
+
 # Entrada e saída de dados
 
 Você já viu anteriormente uma forma de saída de dados, o `printf`:
@@ -408,7 +416,7 @@ Esse `\r` vem de "remove", todos os caracteres da mesma linha e anteriores a ele
 ### \v
 
 ```C
-printf("coisas\voutrascoisas\vjoao\v."); // \v: quebra de linha formando "escada".
+printf("coisas\voutrascoisas\vjoao\v."); // \v: tabulação vertical.
 ```
 
 O `\v` vai quebrar a linha assim como o `\n`, mas ao invés de iniciar a nova no inicio da linha ele iniciar no "final" da anterior, formando uma "escadinha".
@@ -447,7 +455,7 @@ Exibe a aspa simples (que alguns chamam de apóstrofo).
 it's estranho
 ```
 
-### \\
+### \\\\
 
 ```C
 printf("isso é uma contra-barra: \\");     // \\: exibe a contra-barra
@@ -495,7 +503,39 @@ int numero;
 scanf("%i", &numero);
 ```
 
-Ta, agora eu sei que você está se perguntando _"e esse_`&` _serve pra que?"_
+Ta, eu sei que você está se perguntando _"e esse_ `&` _serve pra que?"_, esse `&` diz para o printf colocar o valor no lugar da memória onde está o número, o `&` simbolisa um endereçamento de memória, o `scanf` coloca o valor direto no local da memória onde está a variável.
+
+E como você pode perceber o `%i` se refere a um numero inteiro, todos os tipos de variáveis são simbolizados pelos simbolos (`%i`, `%c`, `%f`...) do `printf`.
+
+Também é possível ler várias variáveis com um único comando:
+
+```C
+int numero;
+char caractere;
+float real;
+
+printf("digite um numero um caractere e um numero real: \n");
+scanf("%i %c %f", &numero, &caractere, &real);
+
+printf("\nnumero inteiro: %i", numero);
+printf("numero real: %f", real);
+printf("caractere: %c", caractere);
+```
+
+> Saída:
+>
+```
+digite um numero, um caractere e um numero real:
+3458
+J
+5.8769
+>
+numero inteiro: 3458
+numero real: 5.8769
+caractere: J
+```
+
+Esses não são os únicos métodos de entrada e saída de dados, mas veremos outros em outros capítulos, esses são o bastante para proceguirmos nossos estudos.
 
 # Operadores 
 
@@ -513,7 +553,7 @@ n % N // resto da divisão  -> retorna o resto da divivão entre dois números
 
 Mas lembre-se sempre, esses operadores só fazem operações com tipos compatíveis, isso quer dizer que eles não irão funcionar com strings e caracteres, e sempre que houver um `float` ou `/` ou `%` na operação matemática o resutado deve ser `float`, caso seja `int` os números depois do ponto seram ignorados (e é assim que fazemos divisão inteira no C, coloque o resultado da divisão em uma variável do tipo `int`).
 
-## Lógicos
+## Relacionais
 
 Os operadores lógicos são todos aqueles que testam uma expressão e disem se ela é verdadeira ou falsa, exemplo:
 
@@ -528,7 +568,7 @@ n <= N // menor ou igual   -> testa se n é menor ou igual a N
 n >= N // maior ou igual   -> testa se n é maior ou igual a N
 ```
 
-Eles serão usados por vocês nas estruturas condicionais, laços de repetição e com o operador ternário.
+Eles serão usados por vocês nas estruturas condicionais, laços de repetição e com o **operador ternário**.
 
 ## Ternário ou condicional
 
@@ -569,7 +609,7 @@ Todos os desafios serão resolvidos e explicados linha a linha, exeto o último 
 
 ## Desafio 1
 
-Faça uma calculadora onde o usuário digite dois números e no final ele exiba todas as operações matemáticas com esses números:
+Faça uma calculadora onde o usuário digite dois números (reais) e no final ele exiba todas as operações matemáticas com esses números:
 
 > saída:
 
@@ -587,6 +627,83 @@ A divisão inteira entre 3 e 4 é 0 e o resto dessa divisão é 3
 
 ### Resposta
 
+Antes de mais nada nós temos que digitar nossa estrutura padrão:
+
+```C
+#include <stdio.h>
+int main (){
+
+return 0;
+}
+```
+
+Depois nós temos que pedir dois números para o usuário.
+
+```C
+printf("digite um número: ");
+printf("digite outro número: ");
+```
+
+Agora iremos ler os dois números, mas antes de ler os dois números temos que criar as variáveis que vão guardar esses números.
+
+```C
+float numero, outro_numero; // dessa forma criamos várias variáveis do mesmo tipo de uma vez
+```
+
+Agora nós podemos ler os números.
+
+```C
+printf("digite um número: ");
+scanf("%f", &numero);
+
+printf("digite outro número: ");
+scanf("%f", &numero);
+```
+
+Finalmente iremos exibir os resultados.
+
+```C
+printf("\n");
+printf("%f + %f = %f\n", numero, outro_numero, numero + outro_numero);
+printf("%f - %f = %f\n", numero, outro_numero, numero - outro_numero);
+printf("%f * %f = %f\n", numero, outro_numero, numero * outro_numero);
+printf("%f / %f = %f\n", numero, outro_numero, (float) numero / (float) outro_numero);
+printf("\n");
+printf("A divisão inteira entre %f e %f é %i e o resto dessa divisão é %i\n", 
+   numero, outro_numero, numero / outro_numero, numero % outro_numero);
+
+```
+
+E o código final ficou assim:
+
+```C
+#include <stdio.h>
+int main (){
+
+   // criando variáveis que serão usadas
+   int numero, outro_numero; // dessa forma criamos várias variáveis do mesmo tipo de uma vez
+
+   // lendo variáveis
+   printf("digite um número: ");
+   scanf("%i", &numero);
+
+   printf("digite outro número: ");
+   scanf("%i", &outro_numero);
+
+   // exibindo variáveis
+   printf("\n");
+   printf("%i + %i = %i\n", numero, outro_numero, numero + outro_numero);
+   printf("%i - %i = %i\n", numero, outro_numero, numero - outro_numero);
+   printf("%i * %i = %i\n", numero, outro_numero, numero * outro_numero);
+   printf("%i / %i = %.2f\n", numero, outro_numero, (float) numero / (float) outro_numero);
+   printf("\n");
+   printf("A divisão inteira entre %i e %i é %i e o resto dessa divisão é %i\n",
+   numero, outro_numero, numero / outro_numero, numero % outro_numero);
+
+return 0;
+}
+```
+
 # Strings
 
 Uma string é uma cadeia de caracteres, ou um `array` de caracteres ou um "vetor" de caracteres, estudaremos a estrutura `array` mais tarde no livro, mas as strings não podem esperar já que são essenciais para a saída e entrada de dados.
@@ -602,10 +719,42 @@ Caso você não dê um valor para a String você deverá dizer qual o seu tamanh
 char String [10];
 ```
 
+> Caso você necessite usar a forma acima, lembre-se de colocar um numero a mais no comprimento da string, pois o último caractere é reservado para simbolizar o fim de uma string, por isso esta string só tem 9 caracteres válidos.
+
 _"Ta! Mas como eu dou um valor para ela?"_ ... Você pode fazer isso de suas maneiras, mas eu vou mostrar só a mais fácil aqui.
 
 Primeiro você tem que importar a biblioteca `String.h`, e depois usar a função `strcpy` para atribuir o valor, dessa maneira:
 
+```C
+#include <stdio.h>
+#include <String.h>
+
+int main (){
+   char str[13];
+   strcpy(str, "coisas");
+   return 0;
+}
+```
+
+Note que você não é obrigado a colocar a quantidade exata de caracteres na string.
+
+_"legal, mas e se eu quiser ler uma string? ou imprimir uma string?"_ ... Muito simples é só usar o `%s` no `scanf`, e no `printf`, mas em relação ao `scanf` temos uma leve diferença:
+
+```C
+char str [20];
+scanf("%s", str)
+```
+
+E se você é observador deve estar se perguntando _"mas e o `&` antes da variável?"_ , aqui não é necessário, por que a string não oculpa apenas um espaço na memória, imagine que a tabela abaixo seja a memória do seu computador com o primeiro código apresentado sobre strings:
+
+| nome da variável |       |     |     |      |      |
+|------------------|-------|-----|-----|------|------|
+| char Char        |  'A'  |     |     |      |      |
+| char String []   |  'j'  | 'o' | 'a' | 'o'  | '\0' |
+
+> O `\0` é um caractere especial que simboliza o fim de uma string.
+
+Na tabela acima vemos que uma variável `char` oculpa apenas um espaço na memória, enquanto uma string oculpa vários..
 
 <br>
 <br>
