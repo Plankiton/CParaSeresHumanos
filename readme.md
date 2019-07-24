@@ -745,7 +745,14 @@ char str [20];
 scanf("%s", str)
 ```
 
-E se você é observador deve estar se perguntando _"mas e o `&` antes da variável?"_ , aqui não é necessário, por que a string não oculpa apenas um espaço na memória, imagine que a tabela abaixo seja a memória do seu computador com o primeiro código apresentado sobre strings:
+E se você é observador deve estar se perguntando _"mas e o `&` antes da variável?"_ , aqui não é necessário, por que a string não oculpa apenas um espaço na memória, mas vários, por isso não tem apenas um endereço. Para uma melhor compreenção observe:
+
+```C
+char Char = 'A';
+char String = "joao";
+```
+
+Imagine que a tabela a seguir seja a memória durante a execução do código anterior:
 
 |                |  [0]  | [1] | [2] | [4]  | [5]  |
 |----------------|-------|-----|-----|------|------|
@@ -754,7 +761,15 @@ E se você é observador deve estar se perguntando _"mas e o `&` antes da variá
 
 > O `\0` é um caractere especial que simboliza o fim de uma string.
 
-Na tabela acima vemos que uma variável `char` oculpa apenas um espaço na memória, enquanto uma string oculpa vários, e por isso é possível acessar um caractere isolado de uma string:
+Na tabela acima vemos que uma variável `char` oculpa apenas um espaço na memória, enquanto uma string oculpa vários.
+> isso também confirma o por quê de 'A' ser diferente de "A", pois eles seriam registrados assim na memória:
+>
+| [0] |  [1] |
+|-----|------|
+| 'A' |      |
+| 'A' | '\0' |
+
+E por isso é possível acessar um caractere isolado de uma string:
 
 ```C
 char str [] = "joao";
@@ -768,13 +783,9 @@ printf("%c\n", j);
 j
 ```
 
-Notem que na hora de imprimir eu imprimi um `%c`, pois a string é um conjunto de `char` assim como você pôde perceber na tabela.
-> isso também confirma o por quê de 'A' ser diferente de "A" pois eles seriam registrados assim na memória:
+Notem que foi selecionado o primeiro caractere da string ( no C o a contagem começa do `0`), e isso foi possível por causa do `[0]` que simboliza a posição do caractere na string
+> percebam que eu imprimi um `%c`, pois a string é um conjunto de `char` assim como você pôde perceber nas tabelas anteriores, caso focê use o `%s` o j teria que ser uma string, mas isso nós iremos ver nos capítulos avançados.
 >
-|            | [0] |  [1] |
-|------------|-----|------|
-|  char C    | 'A' |      |
-|  char S [] | 'A' | '\0' |
 
 <br>
 <br>

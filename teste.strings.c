@@ -18,5 +18,14 @@ int main(){
 
    printf("%c\n", j);
    */
+   char str [] = "joao";
+   char j[2];
+   char * lj = &j[0];
+
+   *lj = str[0];
+   lj ++;
+   *lj = '\0';
+
+   printf("%s\n", j);
 return 0;
 }
