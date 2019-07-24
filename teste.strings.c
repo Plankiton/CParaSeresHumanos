@@ -12,20 +12,22 @@ int main(){
    * str = '\0';
    printf("%s", j);
 
+   // ...
 
    char str [] = "joao";
    char j = str[0];
 
    printf("%c\n", j);
    */
-   char str [] = "joao";
+
+   // ... ++
+
+   char str [] = "jnjnj";
+   char k[] = "o joao maria eu";
    char j[2];
-   char * lj = &j[0];
-
-   *lj = str[0];
-   lj ++;
-   *lj = '\0';
-
-   printf("%s\n", j);
+   j[0] = 'j';
+   printf("%s\n"
+         "%s\n"
+         "%s", j, k, str);
 return 0;
 }

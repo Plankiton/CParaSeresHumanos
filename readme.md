@@ -80,11 +80,30 @@ Por favor, se você encontrar qualquer erro de ortografia ou em relação aos co
 
 repositório do livro no github: http://github.com/RoboCopGay/c_para_seres_humanos.book
 
-# O que é "C"?
+# Índice
+
+1. Noções básicas
+   - O que é "C"?
+   - Como o C funciona
+   - Qual é a história do C?
+   - Como se instala o tal "compilador" C?
+   - Introdução a sintaxe do C
+   - Comentários
+   - Variáveis
+   - Entrada e saída de dados
+   - Operadores
+   - Chegou a hora de praticar!
+2. Noções avançadas
+   - Strings
+   - Arrays
+
+# Noções básicas
+
+## O que é "C"?
 
 C é uma linguagem de programação... _"mas o que é linguagem de programação?"_ ...eu sei que é quase impossível você ter chegado até este livro sem saber o que é linguagem de programação, mas caso você não saiba, é "a forma de falar com o computador", você escreve o que quer que ele faça em um arquivo e ele vai fazer, e o C é só uma forma de fazer isso, existe uma infinidade de linguagens por aí, mas eu estou aqui para lhes mostrar essa que é considerada por muitos uma das melhores linguagens de todos os tempos, e eu estou sendo inserido nesse "muitos".
 
-# Como o C funciona?
+## Como o C funciona?
 
 O C é uma linguagem compilada... _"mas o que é isso?"_ ...para explicar isso de forma simples preste atenção no exemplo:
 
@@ -105,15 +124,15 @@ Só para ter uma idéia do poder do C vou listar alguns _softwares_ feitos em C:
 
 Existe uma infinidade de aplicativos feitos em C, mas como o foco aqui é ensinar C (e não citar aplicativos feitos em C), eu vou proceguir...
 
-# Qual é a história do C?
+## Qual é a história do C?
 
 Resumidamente o C foi criado da década de 1970 por [Ken Thompson](https://pt.wikipedia.org/wiki/Ken_Thompson) e [Dennis Ritchie](https://pt.wikipedia.org/wiki/Dennis_Ritchie) para reprogramar o [UNIX](https://pt.wikipedia.org/wiki/Unix), que era escrito em [assembly](https://pt.wikipedia.org/wiki/Linguagem_assembly).
 
 O C é uma evolução da linguagem [B](https://pt.wikipedia.org/wiki/B_(linguagem_de_programa%C3%A7%C3%A3o)) que foi influenciada pela linguagem [BCPL](https://pt.wikipedia.org/wiki/BCPL), a linguagem C no início era despadronizada, isso significa que cada compilador de C usava uma _"versão"_ diferente do C, então em 1983 a [ANSI](https://pt.wikipedia.org/wiki/American_National_Standards_Institute) resolveu padronizar o C para que ele funcionasse mais coerentemente em compiladores diferentes, e não foi só a ANSI que padronizou o C, a [ISO](https://pt.wikipedia.org/wiki/ISO) também já fez isso.
 
-# Como se instala o tal "compilador" C?
+## Como se instala o tal "compilador" C?
 
-# Linux/BSD
+### Linux/BSD
 
 Se você usa uma distribuição Linux ou BSD, provavelmente já está instalado, mas caso não esteja (o que eu duvido muito) é só usar o gerenciador de pacotes para instalar.
 
@@ -122,7 +141,7 @@ exemplo (debian/ubuntu):
 sudo apt install gcc
 ```
 
-# Mac OSX
+### Mac OSX
 
 Se você não tem homebrew rode:
 
@@ -136,7 +155,7 @@ Se você não tem homebrew rode:
 brew install gcc
 ```
 
-# Windows
+### Windows
 
 Se você não tem o chocolatey rode no cmd em modo adm:
 
@@ -149,10 +168,10 @@ Se você não tem o chocolatey rode no cmd em modo adm:
 choco install mingw
 ```
 
-# Introdução a sintaxe do C
+## Introdução a sintaxe do C
 
 
-# Hello mundo em C
+### Hello mundo em C
 
 > Hello_mundo.c
 
@@ -216,9 +235,7 @@ int main(){
 }
 ```
 
-Caso for necessário a importação de outras bibliotecas ou algo que modifique a estrutura acima será incluído o código inteiro.
-
-# Comentários
+## Comentários
 
 Comentários são "comentários" escritos no código para descrever a função de algo, geralmente são úteis quando você quer analisar algum código antigo seu ou o código de outra pessoa. Os comentários sempre são ignorados pelo compilador, eles são apenas para auxiliar o programador.
 
@@ -234,7 +251,7 @@ Comentários são "comentários" escritos no código para descrever a função d
 
 É sempre aconselhável o uso de comentários, principalmente se você pretende fazer um projeto open source (como já dito, projetos de código aberto).
 
-# Variáveis
+## Variáveis
 
 > Imagine um armário, com diversos espaços para guardar coisas, alguns só dá para guardar esferas, outros só podem pra guardar bonecas, outros só podem guardar cubos, e cada espaço desses tem um nome.
 >
@@ -334,7 +351,7 @@ sizeof static struct  switch  typedef union unsigned volatile while
 
 Sendo assim, variáveis com nomes como `2letras`, `char`, `jo%ao` ou `peso da pedra` estão erradas, mas variáveis como `_2letras`, `Char`, `joao` ou `peso_da_pedra` estão certas, e tome muito cuidado com o uso de maiúsculas e minúsculas, pois o C as diferencia, portanto `char` é uma palavra reservada, mas `Char` não é.
 
-## Conflito entre tipos
+### Conflito entre tipos
 
 Um problema (na minha opinião) do C é a forte tipagem, que significa que os tipos tem que ser respeitados a todo o custo, logo se queremos que um dado seja transformado em outro precisamos fazer conversões de tipos.
 
@@ -347,7 +364,7 @@ float Dois = (float) 9 / 2.45; /* divisão só acontece entre tipos
                               */
 ```
 
-# Entrada e saída de dados
+## Entrada e saída de dados
 
 Você já viu anteriormente uma forma de saída de dados, o `printf`:
 
@@ -355,11 +372,11 @@ Você já viu anteriormente uma forma de saída de dados, o `printf`:
 printf("Hello mundo!!\n");
 ```
 
-## Caractere de scape ( "\" )
+### Caractere de scape ( "\" )
 
 O caractere de scape, no C é o `\` e ele dá "poderes" ao seu texto, pode ser usado em variáveis do tipo `char` e em strings.
 
-### \n
+#### \n
 
 ```C
 printf("\n1ª linha\n2ª linha\n3ª linha\n");   // \n: quebra de linha.
@@ -374,7 +391,7 @@ Esse `\n` é uma quebra de linha, ou seja, sempre que tiver um `\n` o printf vai
 3ª linha
 ```
 
-### \t
+#### \t
 
 ```C
 printf("\tjoao"); // \t: espaçamento ou tabulação (efeito da tecla "tab").
@@ -387,7 +404,7 @@ Esse `\t` é uma tabulação, o que estiver a frente dele irá se deslocar para 
    joao
 ```
 
-### \b
+#### \b
 
 ```C
 prinft("joao\b");  // \b: apagua um caractere da linha (efeito da tecla "backspace").
@@ -400,7 +417,7 @@ Esse `\b` é um backspace, o caractere anterior a ele será apagado.
 joa
 ```
 
-### \r
+#### \r
 
 ```C
 printf("coisas mais coisas\r outras coisas"); // \r: elimina tudo o que está antes dele na linha.
@@ -413,7 +430,7 @@ Esse `\r` vem de "remove", todos os caracteres da mesma linha e anteriores a ele
  outras coisas
 ```
 
-### \v
+#### \v
 
 ```C
 printf("coisas\voutrascoisas\vjoao\v."); // \v: tabulação vertical.
@@ -429,7 +446,7 @@ coisas
                       .
 ```
 
-### \"
+#### \"
 
 ```C
 printf("\"joao\" é um nome feio); // \": exibe as aspas duplas.
@@ -442,7 +459,7 @@ Exibe as aspas duplas ( `"` ), pois se você escrever simplesmente `"` o C vai a
 "joao" é um nome feio
 ```
 
-### \'
+#### \'
 
 ```C
 printf("it\'s estranho"); // \': exibe as aspas simples ou apótrofos.
@@ -455,7 +472,7 @@ Exibe a aspa simples (que alguns chamam de apóstrofo).
 it's estranho
 ```
 
-### \\\\
+#### \\\\
 
 ```C
 printf("isso é uma contra-barra: \\");     // \\: exibe a contra-barra
@@ -466,7 +483,7 @@ printf("isso é uma contra-barra: \\");     // \\: exibe a contra-barra
 isso é uma contra-barra: \
 ```
 
-## printf
+### printf
 
 _"Mas e se eu quiser imprimir uma variável?"_ ... é só usar a formatação de texto do `printf` ... _"Mas como se usa isso?"_ ... para imprimir uma variável `int` é só escrever um `%i` ou `%d` dentro da string, se for um `char` escreva `%c` na string, se for `float` escreva `%f`, se for uma notação científica (geralmente usada no tipo `double`) escreva `%E`( se estiver usando o "e" maiúsculo) e `%e` para o "e" minúsculo, após escrever a formatação desejada, é só listar as variáveis separando por vírgula ligo após a string... _"Eu não entendi nada do que tu disse!"_ ...Relaxa... Olhe o exemplo e suas dúvidas em relação a isso irão desaparecer.
 
@@ -493,7 +510,7 @@ numero real notação cientifica com "e": 9.4e13
 caractere: A
 ```
 
-## scanf
+### scanf
 
 O scanf é semelhante ao printf, mas serve para ler dados:
 
@@ -537,9 +554,9 @@ caractere: J
 
 Esses não são os únicos métodos de entrada e saída de dados, mas veremos outros em outros capítulos, esses são o bastante para proceguirmos nossos estudos.
 
-# Operadores 
+## Operadores 
 
-## Aritméticos
+### Aritméticos
 
 Os operadores aritméticos são os operadores matemáticos, eles são expressos da seguinte maneira em C:
 
@@ -553,7 +570,7 @@ n % N // resto da divisão  -> retorna o resto da divivão entre dois números
 
 Mas lembre-se sempre, esses operadores só fazem operações com tipos compatíveis, isso quer dizer que eles não irão funcionar com strings e caracteres, e sempre que houver um `float` ou `/` ou `%` na operação matemática o resutado deve ser `float`, caso seja `int` os números depois do ponto seram ignorados (e é assim que fazemos divisão inteira no C, coloque o resultado da divisão em uma variável do tipo `int`).
 
-## Relacionais
+### Relacionais
 
 Os operadores lógicos são todos aqueles que testam uma expressão e disem se ela é verdadeira ou falsa, exemplo:
 
@@ -570,7 +587,7 @@ n >= N // maior ou igual   -> testa se n é maior ou igual a N
 
 Eles serão usados por vocês nas estruturas condicionais, laços de repetição e com o **operador ternário**.
 
-## Ternário ou condicional
+### Ternário ou condicional
 
 ```C
 int  numero = 80;
@@ -593,7 +610,7 @@ printf("João %s de ano", (status=='p')? "passou" : "reprovou" );
 
 No código acima se a nota do João for maior ou igual a 7 o programa escreve `"João passou de ano"` na tela se não ele escreve `"João reprovou de ano"`.
 
-# Chegou a hora de praticar!
+## Chegou a hora de praticar!
 
 Agora chegou a hora de praticar, e não pule essa parte, pois o seu aprendizado só é absoluto se você praticar, então para potencializar o seu aprendizado em C e em qualquer linguagem de programação:
 
@@ -607,7 +624,7 @@ Agora chegou a hora de praticar, e não pule essa parte, pois o seu aprendizado 
 
 Todos os desafios serão resolvidos e explicados linha a linha, exeto o último de cada rodada, pois esse você vai ter que resolver sozinho obrigatóriamente, para tentar provar para si mesmo que aprendeu, e se você não conseguir, leia de novo os conteúdos anteriores e tente novamente. Caso você passe para a próxima parte sem resolvê-lo você terá dificuldades posteriores em outros assuntos.
 
-## Desafio 1
+### Desafio 1
 
 Faça uma calculadora onde o usuário digite dois números (reais) e no final ele exiba todas as operações matemáticas com esses números:
 
@@ -625,7 +642,7 @@ digite outro número: 4
 A divisão inteira entre 3 e 4 é 0 e o resto dessa divisão é 3
 ```
 
-### Resposta
+#### Resposta
 
 Antes de mais nada nós temos que digitar nossa estrutura padrão:
 
@@ -704,16 +721,94 @@ return 0;
 }
 ```
 
-# Strings
+# Noções avançadas
 
-Uma string é uma cadeia de caracteres, ou um `array` de caracteres ou um "vetor" de caracteres, estudaremos a estrutura `array` mais tarde no livro, mas as strings não podem esperar já que são essenciais para a saída e entrada de dados.
+## Arrays
+
+Arrays são uma variável com vários espaços... _"Como assim?"_ ... lembra do armário das variáveis? no caso do array você ao invés de reservar um espaço você pede vários espaços de uma vez, tipo:
+> `cubo dado extendido com  ` :game\_die:`,`:game\_die:`,`:game\_die:` dentro`
 
 ```C
-char Char = 'A';         // isso é um caractere
-char String [] = "joao"; // isso é uma cadeia de caracteres
+int algarismos [] = {  1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 0};
 ```
 
-Caso você não dê um valor para a String você deverá dizer qual o seu tamanho, exemplo:
+E também é possível acessar um ítem específico do array adicionando a posição entre `[` e `]`.
+
+```C
+int algarismos [] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+
+int tres = algarismos[2]
+```
+
+Agora a variável `tres` está com o item `3`, _"Mas o 3 está da 3º posição!"_ , eu entendo, esse é um erro que todo iniciante comete, a questão é que a contagem começa do `0`:
+
+```C
+//                    [0] [1] [2] [3] [4] [5] [6] [7] [8] [9]
+int algarismos [] = {  1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 0};
+```
+
+E desta forma é possível modificar um valor do array:
+
+```C
+algarismos[9] = 9;
+```
+
+Mas para modificar o array inteiro é necessário modificar item por item, portanto a seguinte forma não funcionará:
+
+```C
+int algarismos [] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+
+algarismos [] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+```
+
+Os arrays não podem ser impressos ou atribuídos, isso significa que todos os ítens tem que ser imprimidos um por um:
+
+```C
+algarismos [] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+printf (
+   "%i\n"
+   "%i\n"
+   "%i\n"
+   "%i\n"
+   "%i\n"
+   "%i\n"
+   "%i\n"
+   "%i\n"
+   "%i\n"
+   "%i\n",
+   algarismos[1],
+   algarismos[2],
+   algarismos[3],
+   algarismos[4],
+   algarismos[5],
+   algarismos[6],
+   algarismos[7],
+   algarismos[8],
+   algarismos[9],
+   algarismos[0]
+);
+```
+
+E antes que alguém pergunte _"Só existe array inteiro?"_, não, você pode fazer arrays com qualquer tipo primitivo.
+
+## Strings
+
+Uma string é uma cadeia de caracteres, ou um array de caracteres ou um "vetor" de caracteres.
+
+_"Mas se é um array, por que eu preciso ler essa parte se você já explicou os arrays?"_ ... Muito simples, as strings são arrays e possuem todas as características de arrays, mas elas tem algumas particularidades.
+
+```C
+char Char = 'A';          // isso é um caractere
+char String [] = "coisa"; // isso é uma cadeia de caracteres
+
+// essa é a maneira de tradicional de escrever a string
+char other_str [] = {'c', 'o', 'i', 's', 'a', '\0'};
+```
+
+> tanto a variável `String` quanto a `other_str` são strings, mas caso você use a segunda forma, não se esqueça do `\0` no fim, pois este caractere é o que delimita o fim de uma string.
+
+Caso você não queira dar valor para a String você deverá dizer qual o seu tamanho, exemplo (assim como em qualquer outro tipo de array):
 
 ```C
 char String [10];
@@ -721,47 +816,54 @@ char String [10];
 
 > Caso você necessite usar a forma acima, lembre-se de colocar um numero a mais no comprimento da string, pois o último caractere é reservado para simbolizar o fim de uma string, por isso esta string só tem 9 caracteres válidos.
 
-_"Ta! Mas como eu dou um valor para ela?"_ ... Você pode fazer isso de suas maneiras, mas eu vou mostrar só a mais fácil aqui.
+_"Ta! Mas como eu dou um valor para ela?"_ ... Você pode fazer isso de duas maneiras.
 
-Primeiro você tem que importar a biblioteca `String.h`, e depois usar a função `strcpy` para atribuir o valor, dessa maneira:
+A primeira forma é a tradicional para dar valores a um array:
 
 ```C
-#include <stdio.h>
+char s [13];
+
+s[0] = 'c';
+s[1] = 'o';
+s[2] = 'i';
+s[3] = 's';
+s[4] = 'a';
+s[5] = 's';
+s[6] = '\0';
+```
+> E só pra relembrar, NÂO SE ESQUEÇA DO `\0`... to parecendo até flashback de naruto com esse caractere ...
+
+Na segunda você tem que importar a biblioteca `String.h`, e depois usar a função `strcpy` para atribuir o valor, dessa maneira:
+
+```C
 #include <string.h>
 
-int main (){
-   char str[13];
-   strcpy(str, "coisas");
-   return 0;
-}
+char str[13];
+strcpy(str, "coisas");
 ```
 
-Note que você não é obrigado a colocar a quantidade exata de caracteres na string.
+> O `include` acima pode ficar tanto dentro da função `main` quanto fora, só é importante colocar antes do uso da função `strcpy`.
+
+Note que você não é obrigado a colocar a quantidade exata de caracteres na string, mas não coloque uma string maior que o tamanho tamanho estipulado.
 
 _"legal, mas e se eu quiser ler uma string? ou imprimir uma string?"_ ... Muito simples é só usar o `%s` no `scanf`, e no `printf`, mas em relação ao `scanf` temos uma leve diferença:
 
 ```C
 char str [20];
-scanf("%s", str)
+scanf("%s", str);
+
+printf("a string lida foi: %s\n", str);
 ```
 
-E se você é observador deve estar se perguntando _"mas e o `&` antes da variável?"_ , aqui não é necessário, por que a string não oculpa apenas um espaço na memória, mas vários, por isso não tem apenas um endereço. Para uma melhor compreenção observe:
+E se você é observador deve estar se perguntando _"mas e o `&` antes da variável no scanf?"_ , aqui não é necessário, por que a string não oculpa apenas um espaço na memória, mas vários, por isso não tem apenas um endereço. Para uma melhor compreenção observe:
+
 
 ```C
 char Char = 'A';
-char String = "joao";
+char String = "A";
 ```
 
-Imagine que a tabela a seguir seja a memória durante a execução do código anterior:
-
-|                |  [0]  | [1] | [2] | [4]  | [5]  |
-|----------------|-------|-----|-----|------|------|
-| char Char      |  'A'  |     |     |      |      |
-| char String [] |  'j'  | 'o' | 'a' | 'o'  | '\0' |
-
-> O `\0` é um caractere especial que simboliza o fim de uma string.
-
-Na tabela acima vemos que uma variável `char` oculpa apenas um espaço na memória, enquanto uma string oculpa vários.
+Uma variável `char` oculpa apenas um espaço na memória, enquanto uma string oculpa vários, pois a string é um array de caractere.
 > isso também confirma o por quê de 'A' ser diferente de "A", pois eles seriam registrados assim na memória:
 >
 | [0] |  [1] |
@@ -769,7 +871,6 @@ Na tabela acima vemos que uma variável `char` oculpa apenas um espaço na memó
 | 'A' |      |
 | 'A' | '\0' |
 
-E por isso é possível acessar um caractere isolado de uma string:
 
 ```C
 char str [] = "joao";
@@ -783,9 +884,10 @@ printf("%c\n", j);
 j
 ```
 
-Notem que foi selecionado o primeiro caractere da string ( no C o a contagem começa do `0`), e isso foi possível por causa do `[0]` que simboliza a posição do caractere na string
-> percebam que eu imprimi um `%c`, pois a string é um conjunto de `char` assim como você pôde perceber nas tabelas anteriores, caso focê use o `%s` o j teria que ser uma string, mas isso nós iremos ver nos capítulos avançados.
->
+Notem que foi selecionado o primeiro caractere da string ( no C o a contagem começa do `0`), e isso foi possível por causa do `[0]` que simboliza a posição do caractere na string.
+> percebam que eu imprimi um `%c`, pois a string é um conjunto de `char` assim como você pôde perceber nas tabelas anteriores, caso focê use o `%s` o j teria que ser uma string, mas isso nós iremos ver posteriormente.
+
+
 
 <br>
 <br>
