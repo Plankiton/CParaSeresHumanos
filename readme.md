@@ -82,20 +82,20 @@ repositório do livro no github: http://github.com/RoboCopGay/c_para_seres_human
 
 # Índice
 
-1. Noções básicas
-   - O que é "C"?
-   - Como o C funciona
-   - Qual é a história do C?
-   - Como se instala o tal "compilador" C?
-   - Introdução a sintaxe do C
-   - Comentários
-   - Variáveis
-   - Entrada e saída de dados
-   - Operadores
-   - Chegou a hora de praticar!
-2. Noções avançadas
-   - Strings
-   - Arrays
+1. [Noções básicas](#noções-básicas)
+   - [O que é C?](#o-que-é-c)
+   - [Como o C funciona](#como-o-c-funciona)
+   - [Qual é a história do C?](#qual-é-a-história-do-c)
+   - [Como se instala o tal compilador C?](#como-se-instala-o-tal-compilador-c)
+   - [Introdução a sintaxe do C](#introdução-a-sintaxe-do-c)
+   - [Comentários](#comentários)
+   - [Variáveis](#variáveis)
+   - [Entrada e saída de dados](#entrada-e-saída-de-dados)
+   - [Operadores](#operadores)
+   - [Chegou a hora de praticar!](#chegou-a-hora-de-praticar)
+2. [Noções avançadas](#noções-avançadas)
+   - [Arrays](#arrays)
+   - [Strings](#strings)
 
 # Noções básicas
 
