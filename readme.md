@@ -747,14 +747,34 @@ scanf("%s", str)
 
 E se você é observador deve estar se perguntando _"mas e o `&` antes da variável?"_ , aqui não é necessário, por que a string não oculpa apenas um espaço na memória, imagine que a tabela abaixo seja a memória do seu computador com o primeiro código apresentado sobre strings:
 
-| nome da variável |       |     |     |      |      |
-|------------------|-------|-----|-----|------|------|
-| char Char        |  'A'  |     |     |      |      |
-| char String []   |  'j'  | 'o' | 'a' | 'o'  | '\0' |
+|                |  [0]  | [1] | [2] | [4]  | [5]  |
+|----------------|-------|-----|-----|------|------|
+| char Char      |  'A'  |     |     |      |      |
+| char String [] |  'j'  | 'o' | 'a' | 'o'  | '\0' |
 
 > O `\0` é um caractere especial que simboliza o fim de uma string.
 
-Na tabela acima vemos que uma variável `char` oculpa apenas um espaço na memória, enquanto uma string oculpa vários..
+Na tabela acima vemos que uma variável `char` oculpa apenas um espaço na memória, enquanto uma string oculpa vários, e por isso é possível acessar um caractere isolado de uma string:
+
+```C
+char str [] = "joao";
+char j = str[0];
+
+printf("%c\n", j);
+```
+
+> saída:
+```
+j
+```
+
+Notem que na hora de imprimir eu imprimi um `%c`, pois a string é um conjunto de `char` assim como você pôde perceber na tabela.
+> isso também confirma o por quê de 'A' ser diferente de "A" pois eles seriam registrados assim na memória:
+>
+|            | [0] |  [1] |
+|------------|-----|------|
+|  char C    | 'A' |      |
+|  char S [] | 'A' | '\0' |
 
 <br>
 <br>
