@@ -224,7 +224,7 @@ A função `main` é essencial para o funcionamento de programas escritos em C, 
 
 Mas, caso você ainda não tenha entendido, eu vou explicar de uma maneira mais simples.
 
-> Imagine que terezinha, uma cozinheira muito habilidosa, vai preparar um ovo frito. A primeira coisa que ela faz é pegar uma frigideira com óleo e colocar no fogo. Depois, ela vai quebrar o ovo dentro da frigideira e jogar sal e depois de todos os passos feitos ela dá uma olhada para saber se o ovo queimou, ou se tudo ocorreu como desejado.
+> Imagine que Terezinha, uma cozinheira muito habilidosa, vai preparar um ovo frito. A primeira coisa que ela faz é pegar uma frigideira com óleo e colocar no fogo. Depois, ela vai quebrar o ovo dentro da frigideira e jogar sal e depois de todos os passos feitos ela dá uma olhada para saber se o ovo queimou, ou se tudo ocorreu como desejado.
 
 Terezinha simboliza o sistema operacional executando um programa feito em C:  a frigideira é a função `main`, os ovos, o óleo, o sal e a fritura do ovo são todos os comandos executados pela função. 
 Terezinha sabe se o ovo está queimado ou não porque a frigideira dá um retorno (quando o ovo está mais escuro, ela sabe que queimou): esse é o papel do comando `return` da função `main`.
