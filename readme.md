@@ -73,9 +73,9 @@
 
 # Sobre o livro
 
-Antes de começar, este livro está sendo destinado a iniciantes no mundo da programação, por isso todos os termos apresentados aqui estão sendo explicados da forma mais simples possível, mas os conhecimentos aqui apresentados iram atender qualquer um que seja iniciante em linguagem C (mesmo que você já saiba programar em outra linguagem).
+Antes de começar, este livro é destinado a iniciantes no mundo da programação, por isso todos os termos apresentados aqui estão sendo explicados da forma mais simples possível, mas os conhecimentos aqui apresentados irão atender qualquer iniciante em linguagem C (mesmo que você já saiba programar em outra linguagem).
 
-Por favor, se você encontrar qualquer erro de ortografia ou em relação aos conhecimentos apresentados me envie um email avisando, ou faça um pull-request no repositório do livro no github
+Por favor, se você encontrar qualquer erro ortográfico ou em relação aos conhecimentos apresentados, envie-me um email avisando, ou faça um pull-request no repositório do livro no github.
 
 
 repositório do livro no github: http://github.com/RoboCopGay/c\_para\_seres\_humanos.book
@@ -87,7 +87,7 @@ repositório do livro no github: http://github.com/RoboCopGay/c\_para\_seres\_hu
    - [Como o C funciona](#como-o-c-funciona)
    - [Qual é a história do C?](#qual-é-a-história-do-c)
    - [Como se instala o tal compilador C?](#como-se-instala-o-tal-compilador-c)
-   - [Introdução a sintaxe do C](#introdução-a-sintaxe-do-c)
+   - [Introdução à sintaxe do C](#introdução-a-sintaxe-do-c)
    - [Comentários](#comentários)
    - [Variáveis](#variáveis)
    - [Entrada e saída de dados](#entrada-e-saída-de-dados)
@@ -101,13 +101,13 @@ repositório do livro no github: http://github.com/RoboCopGay/c\_para\_seres\_hu
 
 ## O que é "C"?
 
-C é uma linguagem de programação... _"mas o que é linguagem de programação?"_ ...eu sei que é quase impossível você ter chegado até este livro sem saber o que é linguagem de programação, mas caso você não saiba, é "a forma de falar com o computador", você escreve o que quer que ele faça em um arquivo e ele vai fazer, e o C é só uma forma de fazer isso, existe uma infinidade de linguagens por aí, mas eu estou aqui para lhes mostrar essa que é considerada por muitos uma das melhores linguagens de todos os tempos, e eu estou sendo inserido nesse "muitos".
+C é uma linguagem de programação... _"mas o que é linguagem de programação?"_ ...eu sei que é quase impossível você ter chegado até este livro sem saber o que é linguagem de programação, mas caso você não saiba, é "a forma de falar com o computador", você escreve o que quer que ele faça em um arquivo e ele vai fazer, e o C é só uma forma de se fazer isso. Existe uma infinidade de linguagens por aí, mas eu estou aqui para lhes mostrar essa que é considerada por muitos uma das melhores linguagens de todos os tempos, e eu estou sendo inserido nesse "muitos".
 
 ## Como o C funciona?
 
 O C é uma linguagem compilada... _"mas o que é isso?"_ ...para explicar isso de forma simples preste atenção no exemplo:
 
-> João precisa mandar um robô limpar o seu quarto, mas o robô só recebe comandos em *binário* (que é a "linguagem" dos computadores), e pra isso ele diz "limpe meu quarto" e o **interpretador** do robô transformaria em "01101100 01101001 01101101 01110000 01100101 00100000 01101101 01100101 01110101 00100000 01110001 01110101 01100001 01110010 01110100 01101111", no outro dia João manda o robô ir de novo limpar seu quarto, e ele manda "limpe meu quarto" de novo e o robô tem que traduzir de para binário, e no outro dia de novo, então João usa ao invés do interpretador usa um **compilador** e essa frase fica lá no robô, agora sempre que ele quiser que o robô limpe o quarto ele diz, mas o robô não precisa mais traduzir para binário, pois o binário que corresponde a esse comando já está lá.
+> João precisa mandar um robô limpar o seu quarto, mas o robô só recebe comandos em *binário* (que é a "linguagem" dos computadores), e para isso ele diz "limpe meu quarto" e o **interpretador** do robô transforma em "01101100 01101001 01101101 01110000 01100101 00100000 01101101 01100101 01110101 00100000 01110001 01110101 01100001 01110010 01110100 01101111", no outro dia João manda o robô ir de novo limpar seu quarto: "limpe meu quarto" de novo e o robô tem que traduzir de para binário, e no outro dia de novo, então João usa ao invés do interpretador usa um **compilador** e essa frase fica lá no robô, agora sempre que ele quiser que o robô limpe o quarto ele diz, mas o robô não precisa mais traduzir para binário, pois o binário que corresponde a esse comando já está lá.
 
 Em termos técnicos, um **interpretador** traduz o código do seu programa e executa toda vez que é executado, enquanto o **compilador** traduz uma vez e gera um **binário**(linguagem do computador), e sempre que você quiser executar, o **binário** será executado, e isso vai reduzir o tempo de execução do código, já que o texto está na linguagem do computador.
 
