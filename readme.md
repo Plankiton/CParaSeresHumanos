@@ -940,7 +940,7 @@ char other_str [] = {'c', 'o', 'i', 's', 'a', '\0'};
 
 > tanto a variável `String` quanto a `other_str` são strings, mas caso você use a segunda forma, não se esqueça do `\0` no fim, pois este caractere é o que delimita o fim de uma string.
 
-Caso você não queira dar valor para a String você deverá dizer qual o seu tamanho, exemplo (assim como em qualquer outro tipo de array):
+Caso você não queira dar valor para a String você deverá dizer qual o seu tamanho (assim como em qualquer outro tipo de array), exemplo:
 
 ```C
 char String [10];
