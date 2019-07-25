@@ -196,7 +196,7 @@ gcc Hello_mundo.c -o hello
 ```bat
 gcc Hello_mundo.c -o hello.exe
 ```
-> todos os exemplos e desafios são compilados da mesma forma: `gcc <arquivo.c> -o <nome do binário>`
+> Todos os exemplos e desafios são compilados da mesma forma: `gcc <arquivo.c> -o <nome do binário>`
 
 Executando o arquivo (lembre-se de estar no mesmo diretório do arquivo compilado)
 
@@ -215,20 +215,21 @@ Hello mundo!!
 ```
 >
 
-> todos os exemplos e desafios são executados da mesma forma mostrada acima, apenas troque o `hello` pelo nome do binário gerado.
+> Todos os exemplos e desafios são executados da mesma forma mostrada acima, apenas troque o `hello` pelo nome do binário gerado.
 
 No programa apresentado, nós vimos a estrutura básica de todo programa em C, no qual temos a importação do módulo `stdio.h` (conjunto de funções para saída e entrada de dados), a função `main`(função que é chamada na execução do programa), e os comandos da função que serão executados (tudo o que está entre `{` e `}`), que no nosso caso é o `printf`(função de saída de dados que escreve texto na tela), e por fim o `return` que diz para o sistema operacional se ocorreu tudo como o planejado na execução da função `main`.
-> notem que todos os comandos dentro do bloco (tudo o que está entre `{` e `}`) da função `main`, estão separados por `;`, e caso você se esqueça desse caractere o seu programa não será compilado.
+> Notem que todos os comandos dentro do bloco (tudo o que está entre `{` e `}`) da função `main` estão separados por `;`, caso você se esqueça desse caractere, o seu programa não será compilado.
 
 A função `main` é essencial para o funcionamento de programas escritos em C, pois ela é a função que é chamada na execução do programa.
 
-Mas caso você ainda não tenha entendido eu vou explicar de uma maneira mais simples.
+Mas, caso você ainda não tenha entendido, eu vou explicar de uma maneira mais simples.
 
-> Imagine que terezinha, uma cozinheira muito habilidosa, vai preparar um ovo frito, a primeira coisa que ela faz é pegar uma frigideira com óleo e colocar no fogo. Depois ela vai quebrar o ovo dentro da frigideira e jogar sal, depois de todos os passos feitos ela dá uma olhada para saber se o ovo queimou, ou tudo ocorreu como desejado.
+> Imagine que terezinha, uma cozinheira muito habilidosa, vai preparar um ovo frito. A primeira coisa que ela faz é pegar uma frigideira com óleo e colocar no fogo. Depois, ela vai quebrar o ovo dentro da frigideira e jogar sal e depois de todos os passos feitos ela dá uma olhada para saber se o ovo queimou, ou se tudo ocorreu como desejado.
 
-Teresinha simboliza o sistema operacional executando um programa feito em C, a frigideira é a função `main`, e os ovos, o óleo, o sal e a fritura do ovo, são todos os comandos executados pela função, e Teresinha sabe se o ovo está queimado ou não porque a frigideira dá um retorno (quando o ovo está mais preto ela sabe que queimou), e esse é o papel do comando `return` da função `main`.
+Terezinha simboliza o sistema operacional executando um programa feito em C: a frigideira é a função `main`, os ovos, o óleo, o sal e a fritura do ovo, são todos os comandos executados pela função. 
+Terezinha sabe se o ovo está queimado ou não porque a frigideira dá um retorno (quando o ovo está mais escuro, ela sabe que queimou): esse é o papel do comando `return` da função `main`.
 
-A partir daqui você vai se deparar com diversos códigos soltos (para economizar espaço), mas quando for testá-los na sua máquina, coloque os dentro da função `main`.
+A partir daqui, você vai se deparar com diversos códigos soltos (para economizar espaço), mas quando for testá-los na sua máquina, coloque os dentro da função `main`.
 
 ```C
 #include <stdio.h>
@@ -241,7 +242,7 @@ int main(){
 
 ## Comentários
 
-Comentários são "comentários" escritos no código para descrever a função de algo, geralmente são úteis quando você quer analisar algum código antigo seu ou o código de outra pessoa. Os comentários sempre são ignorados pelo compilador, eles são apenas para auxiliar o programador.
+Comentários são "anotações ou esclarecimentos" escritas(os) no código para descrever a função de algo e geralmente são úteis quando se  quer analisar algum código antigo seu ou o código de outra pessoa. Os comentários sempre são ignorados pelo compilador, eles são apenas para auxiliar o programador.
 
 ```C
 // comentários de uma única linha
