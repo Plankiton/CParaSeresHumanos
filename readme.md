@@ -78,7 +78,7 @@ Antes de começar, este livro está sendo destinado a iniciantes no mundo da pro
 Por favor, se você encontrar qualquer erro de ortografia ou em relação aos conhecimentos apresentados me envie um email avisando, ou faça um pull-request no repositório do livro no github
 
 
-repositório do livro no github: http://github.com/RoboCopGay/c_para_seres_humanos.book
+repositório do livro no github: http://github.com/RoboCopGay/c\_para\_seres\_humanos.book
 
 # Índice
 
@@ -372,7 +372,7 @@ Você já viu anteriormente uma forma de saída de dados, o `printf`:
 printf("Hello mundo!!\n");
 ```
 
-### Caractere de scape ( "\" )
+### Caractere de scape ( "\\" )
 
 O caractere de scape, no C é o `\` e ele dá "poderes" ao seu texto, pode ser usado em variáveis do tipo `char` e em strings.
 
@@ -721,13 +721,25 @@ return 0;
 }
 ```
 
+### Desafio 2
+
+Faça uma calculadora onde o programa pede dois números e depois uma operação (a escolha deve ser entre soma e subtração)
+> Saída:
+```
+Digite um número: 8
+Digite outro número: 2
+Digite a operação [+/-]: +
+
+A soma entre 8 e 2 é 10
+```
+
 # Noções avançadas
 
 ## Arrays
 
 Arrays são uma variável com vários espaços... _"Como assim?"_ ... lembra do armário das variáveis? no caso do array você ao invés de reservar um espaço você pede vários espaços de uma vez, tipo:
-> `cubo dado extendido com  ` :game\_die:`,`:game\_die:`,`:game\_die:` dentro`
-
+> `cubo dado extendido com ` :game\_die:`,`:game\_die:`,`:game\_die:` dentro`
+>
 ```C
 int algarismos [] = {  1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 0};
 ```
@@ -886,8 +898,6 @@ j
 
 Notem que foi selecionado o primeiro caractere da string ( no C o a contagem começa do `0`), e isso foi possível por causa do `[0]` que simboliza a posição do caractere na string.
 > percebam que eu imprimi um `%c`, pois a string é um conjunto de `char` assim como você pôde perceber nas tabelas anteriores, caso focê use o `%s` o j teria que ser uma string, mas isso nós iremos ver posteriormente.
-
-
 
 <br>
 <br>
