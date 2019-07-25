@@ -226,7 +226,7 @@ Mas caso você ainda não tenha entendido eu vou explicar de uma maneira mais si
 
 > Imagine que teresinha, uma cozinheira muito habilidosa vai preparar um ovo frito, a primeira coisa que ela faz é pegar uma frigideira com óleo e colocar no fogo, depois ela vai quebrar o ovo dentro da frigideira e jogar sal, depois de todos os passos feitos ela dá uma olhada para saber se o ovo queimou, ou tudo ocorreu como desejado.
 
-Teresinha simboliza o sistema operacional executando um programa feito em C, a frigideira é a função `main`, e os ovos, o óleo e o sal são os dados recebidos pela função `main`, e a fritura do ovo, são todos os comandos executados pela função, os comandos que estão no bloco da função, e Teresinha sabe se o ovo está queimado ou não porque a frigideira dá um retorno para teresinha saber se tudo deu certo, e esse é o papel do comando `return` da função `main`.
+Teresinha simboliza o sistema operacional executando um programa feito em C, a frigideira é a função `main`, e os ovos, o óleo e o sal são os dados recebidos pela função `main`, e a fritura do ovo, são todos os comandos executados pela função, e Teresinha sabe se o ovo está queimado ou não porque a frigideira dá um retorno para teresinha saber se tudo deu certo, e esse é o papel do comando `return` da função `main`.
 
 O C é uma linguagem estruturada em funções, isto quer dizer que todo o código tem que estar dentro de funções, mas a declaração de variáveis e comandos do pré-processador (que será melhor abordado mais tarde no livro) são opcionais, logo podem ser usados fora de funções.
 
