@@ -890,7 +890,7 @@ Mas para modificar o array inteiro é necessário modificar item por item, porta
 ```C
 int algarismos [] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 
-algarismos [] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+algarismos = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 ```
 
 Os arrays não podem ser impressos ou atribuídos, isso significa que todos os ítens tem que ser imprimidos um por um:
