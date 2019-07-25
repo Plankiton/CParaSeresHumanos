@@ -994,30 +994,12 @@ E se você é observador deve estar se perguntando _"mas e o `&` antes da variá
 char Char = 'A';
 char String = "A";
 ```
-
-Uma variável `char` oculpa apenas um espaço na memória, enquanto uma string oculpa vários, pois a string é um array de caractere.
-> isso também confirma o por quê de 'A' ser diferente de "A", pois eles seriam registrados assim na memória:
+> 'A' é diferente de "A", pois eles seriam registrados assim na memória:
 >
-| [0] |  [1] |
-|-----|------|
-| 'A' |      |
-| 'A' | '\0' |
-
-
-```C
-char str [] = "joao";
-char j = str[0];
-
-printf("%c\n", j);
-```
-
-> saída:
-```
-j
-```
-
-Notem que foi selecionado o primeiro caractere da string ( no C o a contagem começa do `0`), e isso foi possível por causa do `[0]` que simboliza a posição do caractere na string.
-> percebam que eu imprimi um `%c`, pois a string é um conjunto de `char` assim como você pôde perceber nas tabelas anteriores, caso focê use o `%s` o j teria que ser uma string, mas isso nós iremos ver posteriormente.
+|        | [0] |  [1] |
+|--------|-----|------|
+| Char   | 'A' |      |
+| String | 'A' | '\0' |
 
 <br>
 <br>
