@@ -111,12 +111,12 @@ O C é uma linguagem compilada... _"mas o que é isso?"_ ...para explicar isso d
 Dessa forma, João dirá "limpe meu quarto" e o **interpretador** do robô transformará isso em "01101100 01101001 01101101 01110000 01100101 00100000 01101101 01100101 01110101 00100000 01110001 01110101 01100001 01110010 01110100 01101111". Isso fará com que o robô entenda e execute o comando.
 No outro dia, João manda novamente o robô limpar seu quarto: "limpe meu quarto", e o robô traduz novamente para binário, por meio do interpretador, e no outro dia de novo. Então João, em vez de usar um interpretador, usa um **compilador** para que esse comando/essa frase fique no robô. Dessa forma, sempre que quiser que o robô limpe o quarto, envia o comando, mas o robô não precisa mais traduzir para binário, pois o binário que corresponde a esse comando já está lá.
 
-Em termos técnicos, um **interpretador** traduz o código do seu programa e executa toda vez que é executado, enquanto o **compilador** traduz uma vez e gera um **binário**(linguagem do computador), e sempre que você quiser executar, o **binário** será executado, e isso vai reduzir o tempo de execução do código, já que o texto está na linguagem do computador.
+Em termos técnicos, um **interpretador** traduz e executa o código do seu programa toda vez que é executado, enquanto o **compilador** traduz uma vez e gera um **binário**. Assim, sempre que você precisar, o **binário** será apenas executado, reduzindo o tempo de execução do código, já que o texto está na linguagem do computador.
 
-E por ser uma linguagem compilada o C é mais rápido que qualquer linguagem interpretada, além disso o C é considerado uma linguagem de _médio nível_ (alguns o consideram uma linguagem de _baixo nível_), e com isso não estou referindo-me a qualidade do C mas ao nível de proximidade com o hardware (a parte física do computador), e quanto mais próximo do hardware, mais baixo é o nível, e essa característica do C o torna a linguagem mais indicada para fazer aplicações de sistema (programas que manipulam o hardware) e aplicações gráficas (jogos, editores de imagem...).
+E por ser uma linguagem compilada, o C é mais rápido que qualquer linguagem interpretada, além disso, é considerado uma linguagem de _médio nível_ (alguns o consideram uma linguagem de _baixo nível_), e com isso não estou referindo-me à qualidade do C, mas ao nível de proximidade com o hardware (a parte física do computador). Quanto mais próximo do hardware, mais baixo é o nível e essa característica do C o torna a linguagem mais indicada para fazer aplicações de sistema (programas que manipulam o hardware) e aplicações gráficas (jogos, editores de imagem...).
 
-Só para ter uma idéia do poder do C vou listar alguns _softwares_ feitos em C:
-> todos os softwares listados são **open source**, pois assim vocês podem ter certeza de que foi mesmo feito em C, além de poderem editar o código se quiserem...
+Só para se ter uma idéia do poder do C, vou listar alguns _softwares_ feitos nessa linguagem:
+> todos os softwares listados são **open source**, dessa forma vocês podem ter certeza de que foi mesmo feito em C, além de poderem editar o código, se quiserem...
 
 1. [Blender](http://blender.org)                - Modelador 3D e engine de jogos.
 2. [Linux](http://kernel.org)                   - Núcleo das distribuicões linux.
@@ -128,15 +128,15 @@ Existe uma infinidade de aplicativos feitos em C, mas como o foco aqui é ensina
 
 ## Qual é a história do C?
 
-Resumidamente o C foi criado da década de 1970 por [Ken Thompson](https://pt.wikipedia.org/wiki/Ken_Thompson) e [Dennis Ritchie](https://pt.wikipedia.org/wiki/Dennis_Ritchie) para reprogramar o [UNIX](https://pt.wikipedia.org/wiki/Unix), que era escrito em [assembly](https://pt.wikipedia.org/wiki/Linguagem_assembly).
+Resumidamente, o C foi criado na década de 1970 por [Ken Thompson](https://pt.wikipedia.org/wiki/Ken_Thompson) e [Dennis Ritchie](https://pt.wikipedia.org/wiki/Dennis_Ritchie) para reprogramar o [UNIX](https://pt.wikipedia.org/wiki/Unix), que era escrito em [assembly](https://pt.wikipedia.org/wiki/Linguagem_assembly).
 
-O C é uma evolução da linguagem [B](https://pt.wikipedia.org/wiki/B_(linguagem_de_programa%C3%A7%C3%A3o)) que foi influenciada pela linguagem [BCPL](https://pt.wikipedia.org/wiki/BCPL), a linguagem C no início era despadronizada, isso significa que cada compilador de C usava uma _"versão"_ diferente do C, então em 1983 a [ANSI](https://pt.wikipedia.org/wiki/American_National_Standards_Institute) resolveu padronizar o C para que ele funcionasse mais coerentemente em compiladores diferentes, e não foi só a ANSI que padronizou o C, a [ISO](https://pt.wikipedia.org/wiki/ISO) também já fez isso.
+O C é uma evolução da linguagem [B](https://pt.wikipedia.org/wiki/B_(linguagem_de_programa%C3%A7%C3%A3o)) que foi influenciada pela linguagem [BCPL](https://pt.wikipedia.org/wiki/BCPL). No início, a linguagem C era despadronizada, isso significa que cada compilador de C usava uma _"versão"_ diferente, então, em 1983 a [ANSI](https://pt.wikipedia.org/wiki/American_National_Standards_Institute) resolveu padronizar o C para que ele funcionasse mais coerentemente em compiladores diferentes, e não foi só a ANSI que padronizou, a [ISO](https://pt.wikipedia.org/wiki/ISO) também já fez isso.
 
 ## Como se instala o tal "compilador" C?
 
 ### Linux/BSD
 
-Se você usa uma distribuição Linux ou BSD, provavelmente já está instalado, mas caso não esteja (o que eu duvido muito) é só usar o gerenciador de pacotes para instalar.
+Se você usa uma distribuição Linux ou BSD, provavelmente já está instalado, mas, caso não esteja (o que eu duvido muito), é só usar o gerenciador de pacotes para instalar.
 
 exemplo (debian/ubuntu):
 ```sh
