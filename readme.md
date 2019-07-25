@@ -490,7 +490,7 @@ isso é uma contra-barra: \
 
 ### printf
 
-_"Mas e se eu quiser imprimir uma variável?"_ ... é só usar a formatação de texto do `printf` ... _"Mas como se usa isso?"_ ... para imprimir uma variável `int` é só escrever um `%i` ou `%d` dentro da string, se for um `char` escreva `%c` na string, se for `float` escreva `%f`, se for uma notação científica (geralmente usada no tipo `double`) escreva `%E`( se estiver usando o "e" maiúsculo) e `%e` para o "e" minúsculo, após escrever a formatação desejada, é só listar as variáveis separando por vírgula ligo após a string... _"Eu não entendi nada do que tu disse!"_ ...Relaxa... Olhe o exemplo e suas dúvidas em relação a isso irão desaparecer.
+_"Mas e se eu quiser imprimir uma variável?"_ ... é só usar a formatação de texto do `printf` ... _"Mas como se usa isso?"_ ... para imprimir uma variável `int` é só escrever um `%i` ou `%d` dentro da string. Se for um `char`, escreva `%c` na string, se for `float`, escreva `%f`, se for uma notação científica (geralmente usada no tipo `double`), escreva `%E`( se estiver usando o "e" maiúsculo) e `%e` para o "e" minúsculo, após escrever a formatação desejada, é só listar as variáveis separando por vírgula ligo após a string... _"Eu não entendi nada do que tu disse!"_ ...Relaxa... Olhe o exemplo e suas dúvidas em relação a isso irão desaparecer:
 
 ```C
 int numero = 90;
@@ -525,9 +525,9 @@ int numero;
 scanf("%i", &numero);
 ```
 
-Ta, eu sei que você está se perguntando _"e esse_ `&` _serve pra que?"_, esse `&` diz para o printf colocar o valor no lugar da memória onde está o número, o `&` simbolisa um endereçamento de memória, o `scanf` coloca o valor direto no local da memória onde está a variável.
+Tá, eu sei que você está se perguntando _"e esse_ `&` _serve pra que?"_ Esse `&` diz para o printf colocar o valor no lugar da memória onde está o número, o `&` simbolisa um endereçamento de memória, o `scanf` coloca o valor direto no local da memória onde está a variável.
 
-E como você pode perceber o `%i` se refere a um numero inteiro, todos os tipos de variáveis são simbolizados pelos simbolos (`%i`, `%c`, `%f`...) do `printf`.
+E como você pode perceber o `%i` se refere a um número inteiro. Todos os tipos de variáveis são simbolizados pelos simbolos (`%i`, `%c`, `%f`...) do `printf`.
 
 Também é possível ler várias variáveis com um único comando:
 
@@ -543,7 +543,7 @@ printf("\nnumero inteiro: %i", numero);
 printf("numero real: %f", real);
 printf("caractere: %c", caractere);
 ```
-> Na hora de ler `char`, as vezes o `scanf` buga, isso ocorre quando ele recebe lixo do teclado, você só precisa ler a variável duas vezes, isso geralmente ocorre com `char`, mas se acontecer com outro tipo, a resolução para o problema é a mesma.
+> Na hora de ler `char`, às vezes o `scanf` buga, isso ocorre quando ele recebe lixo do teclado, você só precisa ler a variável duas vezes, isso geralmente ocorre com `char`, mas se acontecer com outro tipo, a resolução para o problema é a mesma.
 
 > Saída:
 >
@@ -558,37 +558,37 @@ numero real: 5.8769
 caractere: J
 ```
 
-Esses não são os únicos métodos de entrada e saída de dados, mas veremos outros em outros capítulos, esses são o bastante para proceguirmos nossos estudos.
+Esses não são os únicos métodos de entrada e saída de dados, mas veremos outros em outros capítulos, esses são o bastante para prosseguirmos nossos estudos.
 
 ## Operadores 
 
 ### Aritméticos
 
-Os operadores aritméticos são os operadores matemáticos, eles são expressos da seguinte maneira em C:
+Os operadores aritméticos são os operadores matemáticos e são expressos da seguinte maneira em C:
 
 ```C
-n + N // Adição            -> soma os dois números
-n - N // Subtração         -> subtrai os dois números
-n * N // Multiplicação     -> multiplica dois números
-n / N // Divisão           -> divide dois números
-n % N // resto da divisão  -> retorna o resto da divivão entre dois números
+n + N // Adição            -> soma os dois números;
+n - N // Subtração         -> subtrai os dois números;
+n * N // Multiplicação     -> multiplica dois números;
+n / N // Divisão           -> divide dois números;
+n % N // resto da divisão  -> retorna o resto da divivão entre dois números.
 ```
 
-Mas lembre-se sempre, esses operadores só fazem operações com tipos compatíveis, isso quer dizer que eles não irão funcionar com strings e caracteres, e sempre que houver um `float` ou `/` ou `%` na operação matemática o resutado deve ser `float`, caso seja `int` os números depois do ponto seram ignorados (e é assim que fazemos divisão inteira no C, coloque o resultado da divisão em uma variável do tipo `int`).
+Mas lembre-se sempre: esses operadores só fazem operações com tipos compatíveis, isso quer dizer que eles não irão funcionar com strings e caracteres e sempre que houver um `float` ou `/` ou `%` na operação matemática, o resutado deve ser `float`, caso seja `int`, os números depois do ponto serão ignorados (e é assim que fazemos divisão inteira no C, coloque o resultado da divisão em uma variável do tipo `int`).
 
 ### Relacionais
 
-Os operadores lógicos são todos aqueles que testam uma expressão e disem se ela é verdadeira ou falsa, exemplo:
+Os operadores lógicos são todos aqueles que testam uma expressão e dizem se ela é verdadeira ou falsa, exemplo:
 
 ```C
-n == N // igual            -> testa se n é igual a N
-n != N // diferente        -> testa se n é diferente de N
+n == N // igual            -> testa se n é igual a N;
+n != N // diferente        -> testa se n é diferente de N;
 
-n <  N // menor que        -> testa se n é menor que N
-n >  N // maior que        -> testa se n é maior que N
+n <  N // menor que        -> testa se n é menor que N;
+n >  N // maior que        -> testa se n é maior que N;
 
-n <= N // menor ou igual   -> testa se n é menor ou igual a N
-n >= N // maior ou igual   -> testa se n é maior ou igual a N
+n <= N // menor ou igual   -> testa se n é menor ou igual a N;
+n >= N // maior ou igual   -> testa se n é maior ou igual a N.
 ```
 
 Eles serão usados por vocês nas estruturas condicionais, laços de repetição e com o **operador ternário**.
