@@ -525,7 +525,7 @@ int numero;
 scanf("%i", &numero);
 ```
 
-Tá, eu sei que você está se perguntando _"e esse_ `&` _serve pra que?"_ Esse `&` diz para o printf colocar o valor no lugar da memória onde está o número, o `&` simbolisa um endereçamento de memória, o `scanf` coloca o valor direto no local da memória onde está a variável.
+Tá, eu sei que você está se perguntando _"e esse_ `&` _serve pra que?"_ Esse `&` diz para o printf colocar o valor no lugar da memória onde está o número. O `&` simboliza um endereçamento de memória, o `scanf` coloca o valor direto no local da memória onde está a variável.
 
 E como você pode perceber o `%i` se refere a um número inteiro. Todos os tipos de variáveis são simbolizados pelos simbolos (`%i`, `%c`, `%f`...) do `printf`.
 
