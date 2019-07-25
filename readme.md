@@ -101,7 +101,7 @@ repositório do livro no github: http://github.com/RoboCopGay/c_para_seres_human
 
 ## O que é "C"?
 
-C é uma linguagem de programação... _"mas o que é linguagem de programação?"_ ...eu sei que é quase impossível você ter chegado até este livro sem saber o que é linguagem de programação, mas caso você não saiba, é "a forma de falar com o computador", você escreve o que quer que ele faça em um arquivo e ele vai fazer, e o C é só uma forma de se fazer isso. Existe uma infinidade de linguagens por aí, mas eu estou aqui para lhes mostrar essa que é considerada por muitos uma das melhores linguagens de todos os tempos, e eu estou sendo inserido nesse "muitos".
+C é uma linguagem de programação... _"mas o que é linguagem de programação?"_ ...eu sei que é quase impossível você ter chegado até este livro sem saber o que é linguagem de programação, mas, caso você não saiba, é "a forma de falar com o computador". Você escreve o que quer que ele faça em um arquivo e ele vai fazer, e o C é só uma forma de se fazer isso. Existe uma infinidade de linguagens por aí, mas eu estou aqui para lhes mostrar essa que é considerada por muitos uma das melhores linguagens de todos os tempos, e eu estou sendo inserido nesse "muitos".
 
 ## Como o C funciona?
 
@@ -138,14 +138,14 @@ O C é uma evolução da linguagem [B](https://pt.wikipedia.org/wiki/B_(linguage
 
 Se você usa uma distribuição Linux ou BSD, provavelmente já está instalado, mas, caso não esteja (o que eu duvido muito), é só usar o gerenciador de pacotes para instalar.
 
-exemplo (debian/ubuntu):
+Exemplo (debian/ubuntu):
 ```sh
 sudo apt install gcc
 ```
 
 ### Mac OSX
 
-Se você não tem homebrew rode:
+Se você não tem homebrew, rode:
 
 ```sh
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -159,7 +159,7 @@ brew install gcc
 
 ### Windows
 
-Se você não tem o chocolatey rode no cmd em modo adm:
+Se você não tem o chocolatey, rode no cmd em modo adm:
 
 ```bat
 @"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
@@ -170,7 +170,7 @@ Se você não tem o chocolatey rode no cmd em modo adm:
 choco install mingw
 ```
 
-## Introdução a sintaxe do C
+## Introdução à sintaxe do C
 
 
 ### Hello mundo em C
@@ -217,14 +217,14 @@ Hello mundo!!
 
 > todos os exemplos e desafios são executados da mesma forma mostrada acima, apenas troque o `hello` pelo nome do binário gerado.
 
-No programa apresentado, nós vimos a estrutura básica de todo programa em C, onde temos a importação do módulo `stdio.h` (conjunto de funções para saída e entrada de dados), a função `main`(função que é chamada na execução do programa), e os comandos da função que serão executados (tudo o que está entre `{` e `}`), que no nosso caso é o `printf`(função de saída de dados que escreve texto na tela), e por fim o `return` que diz para o sistema operacional se ocorreu tudo como o planejado na execução da função `main`.
+No programa apresentado, nós vimos a estrutura básica de todo programa em C, no qual temos a importação do módulo `stdio.h` (conjunto de funções para saída e entrada de dados), a função `main`(função que é chamada na execução do programa), e os comandos da função que serão executados (tudo o que está entre `{` e `}`), que no nosso caso é o `printf`(função de saída de dados que escreve texto na tela), e por fim o `return` que diz para o sistema operacional se ocorreu tudo como o planejado na execução da função `main`.
 > notem que todos os comandos dentro do bloco (tudo o que está entre `{` e `}`) da função `main`, estão separados por `;`, e caso você se esqueça desse caractere o seu programa não será compilado.
 
 A função `main` é essencial para o funcionamento de programas escritos em C, pois ela é a função que é chamada na execução do programa.
 
 Mas caso você ainda não tenha entendido eu vou explicar de uma maneira mais simples.
 
-> Imagine que teresinha, uma cozinheira muito habilidosa vai preparar um ovo frito, a primeira coisa que ela faz é pegar uma frigideira com óleo e colocar no fogo, depois ela vai quebrar o ovo dentro da frigideira e jogar sal, depois de todos os passos feitos ela dá uma olhada para saber se o ovo queimou, ou tudo ocorreu como desejado.
+> Imagine que terezinha, uma cozinheira muito habilidosa, vai preparar um ovo frito, a primeira coisa que ela faz é pegar uma frigideira com óleo e colocar no fogo. Depois ela vai quebrar o ovo dentro da frigideira e jogar sal, depois de todos os passos feitos ela dá uma olhada para saber se o ovo queimou, ou tudo ocorreu como desejado.
 
 Teresinha simboliza o sistema operacional executando um programa feito em C, a frigideira é a função `main`, e os ovos, o óleo, o sal e a fritura do ovo, são todos os comandos executados pela função, e Teresinha sabe se o ovo está queimado ou não porque a frigideira dá um retorno (quando o ovo está mais preto ela sabe que queimou), e esse é o papel do comando `return` da função `main`.
 
