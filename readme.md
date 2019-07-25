@@ -298,9 +298,9 @@ int i = 5; // declaração da variável "i" valendo "5"
 i = 92;    // agora a variável vale 92
 ```
 
-Esse exemplo acima serve para todos os tipos primitivos, mas lembre-se de colocar valores do tipo certo na variável, se você declarou uma variável inteira, na hora de alterar o valor você tem que trocar por um inteiro.
+Esse exemplo acima serve para todos os tipos primitivos, mas lembre-se de colocar valores do tipo certo na variável. Se você declarou uma variável inteira, na hora de alterar o valor, tem que trocar por um inteiro.
 
-Além disso também existe o tipo `double` que é descendente do tipo `float`, mas com mais capacidade de espaço... _"Mas como assim espaço? Números não são infinitos?"_ ... Os números são infinitos sim, mas a memória ram do computador não é, e mesmo que fosse, seria um desperdício liberar um espaço infinito para uma única variável, então todas as variáveis dentro do C tem um espaço limitado.
+Além disso, também existe o tipo `double` que é descendente do tipo `float`, mas com mais capacidade de espaço... _"Mas como assim espaço? Números não são infinitos?"_ ... Os números são infinitos sim, mas a memória ram do computador não é, e mesmo que fosse, seria um desperdício liberar um espaço infinito para uma única variável, então todas as variáveis dentro do C tem um espaço limitado.
 
 Cada variável ocupa uma certa quantidade de bytes na memória ram:
 
@@ -323,9 +323,9 @@ char caractere = 'A'; /* 1 byte -> só aceita um caractere
                       */
 
 float real = 3.14; /* 4 bytes -> só suporta valores entre 
-                        10E-38 e 10E38 (esse "E", é a forma
+                        10E-38 e 10E38 (esse "E" é a forma
                         de dizer que ele é elevado a outro
-                        número, e essa é a forma que o C 
+                        número e essa é a forma que o C 
                         adota para evitar a necessidade de
                         escrever todas as casas decimais).
                    */
@@ -338,14 +338,14 @@ double real_dobro = 10E49; /* 8 bytes -> o double tem o
                            */
 ```
 
-E a galera que já conhece um pouco de programação deve estar se perguntando _"Mas e os boleanos? No C não existe verdadeiro e falso?"_ , sim, mas no C o `int` faz esse papel, sendo que o **0** equivale a **falso** e o **1** equivale a **verdadeiro**.
+E a galera que já conhece um pouco de programação deve estar se perguntando _"Mas e os boleanos? No C não existe verdadeiro e falso?"_  sim, mas no C o `int` faz esse papel, sendo que o **0** equivale a **falso** e o **1** equivale a **verdadeiro**.
 
-As variáveis em C (e acho que em todas as linguagens) tem algumas regras quanto à escolha do seu nome, estas regras são:
+As variáveis em C (e acho que em todas as linguagens) têm algumas regras quanto à escolha do seu nome, estas regras são:
 
-1. Variáveis não podem iniciar com numeros
-2. Variáveis não podem ter espaços (substitua os espaços por `_`)
-3. Variáveis só podem conter letras, números e travessões (evite usar letras com acento também).
-4. Variáveis não podem ser iguais a palavras reservadas.
+1. Variáveis não podem iniciar com numeros;
+2. Variáveis não podem ter espaços (substitua os espaços por `_`);
+3. Variáveis só podem conter letras, números e travessões (evite usar letras com acento também);
+4. Variáveis não podem ser iguais à palavras reservadas.
 
 > Palavras reservadas do C:
 ```C
@@ -354,11 +354,11 @@ extern float for goto if int long register return short signed void
 sizeof static struct  switch  typedef union unsigned volatile while
 ```
 
-Sendo assim, variáveis com nomes como `2letras`, `char`, `jo%ao` ou `peso da pedra` estão erradas, mas variáveis como `_2letras`, `Char`, `joao` ou `peso_da_pedra` estão certas, e tome muito cuidado com o uso de maiúsculas e minúsculas, pois o C as diferencia, portanto `char` é uma palavra reservada, mas `Char` não é.
+Sendo assim, variáveis com nomes como `2letras`, `char`, `jo%ao` ou `peso da pedra` estão erradas, mas variáveis como `_2letras`, `Char`, `joao` ou `peso_da_pedra` estão certas, e tome muito cuidado com o uso de maiúsculas e minúsculas, pois o C as diferencia, portanto, `char` é uma palavra reservada, mas `Char` não é.
 
 ### Conflito entre tipos
 
-Um problema (na minha opinião) do C é a forte tipagem, que significa que os tipos tem que ser respeitados a todo o custo, logo se queremos que um dado seja transformado em outro precisamos fazer conversões de tipos.
+Um problema (na minha opinião) do C é a forte tipagem, que significa que os tipos têm que ser respeitados a todo o custo, logo, se queremos que um dado seja transformado em outro, precisamos fazer conversões de tipos.
 
 ```C
 int Um = (int) 1.5; // apenas o 1 será atribuído
@@ -371,7 +371,7 @@ float Dois = (float) 9 / 2.45; /* divisão só acontece entre tipos
 
 ## Entrada e saída de dados
 
-Você já viu anteriormente uma forma de saída de dados, o `printf`:
+Você já viu anteriormente uma forma de saída de dados: o `printf`:
 
 ```C
 printf("Hello mundo!!\n");
@@ -379,7 +379,7 @@ printf("Hello mundo!!\n");
 
 ### Caractere de scape ( "\\" )
 
-O caractere de scape, no C é o `\` e ele dá "poderes" ao seu texto, pode ser usado em variáveis do tipo `char` e em strings.
+O caractere de scape, no C, é o `\` e ele dá "poderes" ao seu texto, pode ser usado em variáveis do tipo `char` e em strings.
 
 #### \n
 
@@ -428,7 +428,7 @@ joa
 printf("coisas mais coisas\r outras coisas"); // \r: elimina tudo o que está antes dele na linha.
 ```
 
-Esse `\r` vem de "remove", todos os caracteres da mesma linha e anteriores a ele seram apagados.
+Esse `\r` vem de "remove", todos os caracteres da mesma linha e anteriores a ele serão apagados.
 
 > saída:
 ```
@@ -441,7 +441,7 @@ Esse `\r` vem de "remove", todos os caracteres da mesma linha e anteriores a ele
 printf("coisas\voutrascoisas\vjoao\v."); // \v: tabulação vertical.
 ```
 
-O `\v` vai quebrar a linha assim como o `\n`, mas ao invés de iniciar a nova no inicio da linha ele iniciar no "final" da anterior, formando uma "escadinha".
+O `\v` vai quebrar a linha assim como o `\n`, mas em vez de iniciar a nova no inicio da linha, ele inicia no "final" da anterior, formando uma "escadinha".
 
 > saída:
 ```
