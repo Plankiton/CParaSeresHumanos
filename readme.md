@@ -78,7 +78,7 @@ Antes de começar, este livro é destinado a iniciantes no mundo da programaçã
 Por favor, se você encontrar qualquer erro ortográfico ou em relação aos conhecimentos apresentados, envie-me um email avisando, ou faça um pull-request no repositório do livro no github.
 
 
-repositório do livro no github: http://github.com/RoboCopGay/c\_para\_seres\_humanos.book
+repositório do livro no github: http://github.com/RoboCopGay/c_para_seres_humanos.book
 
 # Índice
 
