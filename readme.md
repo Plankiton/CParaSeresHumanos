@@ -196,6 +196,7 @@ gcc Hello_mundo.c -o hello
 ```bat
 gcc Hello_mundo.c -o hello.exe
 ```
+> todos os exemplos e desafios são compilados da mesma forma: `gcc <arquivo.c> -o <nome do binário>`
 
 Executando o arquivo (lembre-se de estar no mesmo diretório do arquivo compilado)
 
@@ -205,7 +206,7 @@ Executando o arquivo (lembre-se de estar no mesmo diretório do arquivo compilad
 ```
 > Windows
 ```bat
-hello
+hello.exe
 ```
 >
 > Saída
@@ -214,16 +215,18 @@ Hello mundo!!
 ```
 >
 
-No programa apresentado, nós vimos a estrutura básica de todo programa em C, onde temos o _header_ (onde ocorre a importação do módulo `stdio.h`), a função `main`, o bloco de código da função `main`, que é tudo que está entre `{` e `}`, e nele estão _"os comandos"_ que serão executados (no exemplo é o `printf`, que escreve a nossa mensagem na tela), e por fim, temos o `return`, que envia um inteiro para o sistema operacional ( a função `main` sempre vai ser do tipo `int` e sempre tem que retornar um inteiro, que são números sem vírgula ou ponto como 1, 23, 90...).
+> todos os exemplos e desafios são executados da mesma forma mostrada acima, apenas troque o `hello` pelo nome do binário gerado.
+
+No programa apresentado, nós vimos a estrutura básica de todo programa em C, onde temos a importação do módulo `stdio.h` (conjunto de funções para saída e entrada de dados), a função `main`(função que é chamada na execução do programa), e os comandos da função que serão executados (tudo o que está entre `{` e `}`), que no nosso caso é o `printf`(função de saída de dados que escreve texto na tela), e por fim o `return` que diz para o sistema operacional se ocorreu tudo como o planejado na execução da função `main`.
+> notem que todos os comandos dentro do bloco (tudo o que está entre `{` e `}`) da função `main`
 
 A função `main` é essencial para o funcionamento de programas escritos em C, pois ela é a função que é chamada na execução do programa.
-> nunca se esqueça de colocar o `;` no final de cada comando, pois o seu programa pode talvez não compilar se você o-esquecer.
 
 Mas caso você ainda não tenha entendido eu vou explicar de uma maneira mais simples.
 
-> Imagine que a mãe de João é empregada na casa de um médico, e o médico pede para ela fazer carne frita para o almoço, então a mãe de João manda ele ir comprar carne no supermercado para ela, então João vai ao supermercado e compra a carne, quando João chega ele diz que tudo ocorreu bem, e entregou a carne para ela.
+> Imagine que teresinha, uma cozinheira muito habilidosa vai preparar um ovo frito, a primeira coisa que ela faz é pegar uma frigideira com óleo e colocar no fogo, depois ela vai quebrar o ovo dentro da frigideira e jogar sal, depois de todos os passos feitos ela dá uma olhada para saber se o ovo queimou, ou tudo ocorreu como desejado.
 
-O exemplo acima descreve como o nosso programa funciona, suponha que o médico seja você, a mãe de João seja o programa, e o João a função `main`, quando o médico pede carne frita é quando você executa o programa, e o ato da mãe mandar João ir ao supermercado é a execução da função `main`, e o ato do João de comprar a carne é um conjunto de ações que constitui o bloco da função, depois ele volta, entrega a carne para a mãe e diz se ocorreu algum erro na execução do bloco, esse é o retorno.
+Teresinha simboliza o sistema operacional executando um programa feito em C, a frigideira é a função `main`, e os ovos, o óleo e o sal são os dados recebidos pela função `main`, e a fritura do ovo, são todos os comandos executados pela função, os comandos que estão no bloco da função, e Teresinha sabe se o ovo está queimado ou não porque a frigideira dá um retorno para teresinha saber se tudo deu certo, e esse é o papel do comando `return` da função `main`.
 
 O C é uma linguagem estruturada em funções, isto quer dizer que todo o código tem que estar dentro de funções, mas a declaração de variáveis e comandos do pré-processador (que será melhor abordado mais tarde no livro) são opcionais, logo podem ser usados fora de funções.
 
@@ -256,7 +259,7 @@ Comentários são "comentários" escritos no código para descrever a função d
 
 ## Variáveis
 
-> Imagine um armário, com diversos espaços para guardar coisas, alguns só dá para guardar esferas, outros só podem pra guardar bonecas, outros só podem guardar cubos, e cada espaço desses tem um nome.
+> Imagine um armário, com diversos espaços para guardar coisas, alguns só podem guardar esferas, outros só podem pra guardar bonecas, outros só podem guardar cubos, e cada espaço desses tem um nome.
 >
 > Toda vez que alguém quer um espaço no armário tem que pedir para o dono, mas o dono só reserva o espaço se pedir da maneira certa, que é:
 >
@@ -266,7 +269,7 @@ Comentários são "comentários" escritos no código para descrever a função d
 >
 > `esfera bola_de_futbol com `:soccer:` dentro`
 >
-> `boneca pepita         com `:dolls:` dentro`
+> `boneca gemeas         com `:dolls:` dentro`
 >
 > `cubo   dado           com `:game_die:` dentro`
 
