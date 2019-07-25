@@ -215,6 +215,7 @@ Hello mundo!!
 No programa apresentado, nós vimos a estrutura básica de todo programa em C, onde temos o _header_ (onde ocorre a importação do módulo `stdio.h`), a função `main`, o bloco de código da função `main`, que é tudo que está entre `{` e `}`, e nele estão _"os comandos"_ que serão executados (no exemplo é o `printf`, que escreve a nossa mensagem na tela), e por fim, temos o `return`, que envia um inteiro para o sistema operacional ( a função `main` sempre vai ser do tipo `int` e sempre tem que retornar um inteiro, que são números sem vírgula ou ponto como 1, 23, 90...).
 
 A função `main` é essencial para o funcionamento de programas escritos em C, pois ela é a função que é chamada na execução do programa.
+> nunca se esqueça de colocar o `;` no final de cada comando, pois o seu programa pode talvez não compilar se você o-esquecer.
 
 Mas caso você ainda não tenha entendido eu vou explicar de uma maneira mais simples.
 
@@ -538,6 +539,7 @@ printf("\nnumero inteiro: %i", numero);
 printf("numero real: %f", real);
 printf("caractere: %c", caractere);
 ```
+> Na hora de ler `char`, as vezes o `scanf` buga, isso ocorre quando ele recebe lixo do teclado, você só precisa ler a variável duas vezes, isso geralmente ocorre com `char`, mas se acontecer com outro tipo, a resolução para o problema é a mesma.
 
 > Saída:
 >
@@ -723,15 +725,133 @@ return 0;
 
 ### Desafio 2
 
-Faça uma calculadora onde o programa pede dois números e depois uma operação (a escolha deve ser entre soma e subtração)
+Faça uma calculadora onde o programa pede dois números e depois uma operação (a escolha deve ser entre soma e subtração).
+
 > Saída:
+>
 ```
-Digite um número: 8
-Digite outro número: 2
+Digite um número inteiro: 8
+Digite outro número inteiro: 2
 Digite a operação [+/-]: +
 
 A soma entre 8 e 2 é 10
 ```
+
+#### Resposta
+
+A primeira coisa que devemos fazer é obviamente escrever a estrutura padrão.
+
+```C
+#include <stdio.h>
+
+int main (){
+
+   return 0;
+}
+```
+
+Agora temos que declarar as variáveis que irão guardar os dados.
+
+```C
+int numero, outro_numero;
+char operacao;
+```
+
+E temos que pedir os dados para o usuário.
+
+```C
+printf("Digite um número inteiro: ");
+scanf("%i", &numero);
+
+printf("Digite outro número inteiro: ");
+scanf("%i", &outro_numero);
+
+printf("Digite a operação [+/-]: ");
+scanf("%c", &operacao);
+scanf("%c", &operacao);
+```
+> no meu caso ocorreu aquele bug do `scanf` que eu mensionei no capítulo de entrada e saída de dados, mas caso no seu não aconteça coloque o `scanf` só uma vez.
+
+Agora iremos testar se a operação escolhida foi soma ou subtração e depois salvar o resutado em outra variável (`res`):
+
+```C
+int res = ( operacao == '+' ) ? numero + outro_numero : numero - outro_numero ;
+//   ...se operacao for +            some          senao   subtraia
+```
+
+E finalmente exibimos os resultados:
+
+```C
+printf ( "a %s entre %i e %i é %i\n", 
+   ( operacao == '+' ) ? "soma" : "subtração", 
+   numero,
+   outro_numero,
+   res
+);
+```
+
+O código final ficou assim:
+
+```C
+#include <stdio.h>
+
+int main (){
+
+   // declarando variáveis
+   int numero, outro_numero;
+   char operacao = '+';
+
+   // lendo variáveis
+   printf("Digite um número inteiro: ");
+   scanf("%i", &numero);
+
+   printf("Digite outro número inteiro: ");
+   scanf("%i", &outro_numero);
+
+   printf("Digite a operação [+/-]: ");
+   // resolvendo bug do scanf
+   scanf("%c", &operacao);
+   // lendo variável
+   scanf("%c", &operacao);
+
+   // calculando resultado
+   int res = ( operacao == '+' ) ? numero + outro_numero : numero - outro_numero ;
+   //   ...se operacao for +            some          senao   subtraia
+
+   // exibindo resultado
+   printf ( "a %s entre %i e %i é %i\n", 
+         ( operacao == '+' ) ? "soma" : "subtração", 
+         numero, 
+         outro_numero, 
+         res 
+   );
+
+   return 0;
+}
+```
+
+### Desafio 3
+
+Faça um programa que leia 3 números e diga, se eles são impares ou pares, se eles são divisíveis por 3 (se divididos por 3 o resto tem que ser 0), e qual é o maior entre eles.
+
+> Saída:
+```
+Digite 3 números: 1
+2
+3
+
+O número 1 é impar
+O número 2 é par
+O número 3 é impar
+
+O número 1 é indivisível por 3
+O número 2 é indivisível por 3
+O número 3 é divisível por 3
+
+O maior entre eles é o 3
+```
+
+Este você tem que fazer sozinho, e eu sei que ele é um pouco complicado, mas todas as coisas necessárias para fazê-lo foram ensinadas, boa sorte, e se não conseguir fazer, releia os capítulos anteriores com muito cuidado e tente de novo.
 
 # Noções avançadas
 
@@ -741,7 +861,7 @@ Arrays são uma variável com vários espaços... _"Como assim?"_ ... lembra do 
 > `cubo dado extendido com ` :game\_die:`,`:game\_die:`,`:game\_die:` dentro`
 >
 ```C
-int algarismos [] = {  1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 0};
+int algarismos [] = { 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 0 };
 ```
 
 E também é possível acessar um ítem específico do array adicionando a posição entre `[` e `]`.
