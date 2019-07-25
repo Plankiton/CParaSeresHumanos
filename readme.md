@@ -226,10 +226,10 @@ Mas, caso você ainda não tenha entendido, eu vou explicar de uma maneira mais 
 
 > Imagine que terezinha, uma cozinheira muito habilidosa, vai preparar um ovo frito. A primeira coisa que ela faz é pegar uma frigideira com óleo e colocar no fogo. Depois, ela vai quebrar o ovo dentro da frigideira e jogar sal e depois de todos os passos feitos ela dá uma olhada para saber se o ovo queimou, ou se tudo ocorreu como desejado.
 
-Terezinha simboliza o sistema operacional executando um programa feito em C: a frigideira é a função `main`, os ovos, o óleo, o sal e a fritura do ovo, são todos os comandos executados pela função. 
+Terezinha simboliza o sistema operacional executando um programa feito em C:  a frigideira é a função `main`, os ovos, o óleo, o sal e a fritura do ovo são todos os comandos executados pela função. 
 Terezinha sabe se o ovo está queimado ou não porque a frigideira dá um retorno (quando o ovo está mais escuro, ela sabe que queimou): esse é o papel do comando `return` da função `main`.
 
-A partir daqui, você vai se deparar com diversos códigos soltos (para economizar espaço), mas quando for testá-los na sua máquina, coloque os dentro da função `main`.
+A partir daqui, você vai se deparar com diversos códigos soltos (para economizar espaço), mas quando for testá-los na sua máquina, coloque-os dentro da função `main`.
 
 ```C
 #include <stdio.h>
@@ -258,9 +258,9 @@ Comentários são "anotações ou esclarecimentos" escritas(os) no código para 
 
 ## Variáveis
 
-> Imagine um armário, com diversos espaços para guardar coisas, alguns só podem guardar esferas, outros só podem pra guardar bonecas, outros só podem guardar cubos, e cada espaço desses tem um nome.
+> Imagine um armário com diversos espaços para guardar coisas: alguns só podem guardar esferas, outros só podem pra guardar bonecas, outros só podem guardar cubos e cada espaço desses possui um nome.
 >
-> Toda vez que alguém quer um espaço no armário tem que pedir para o dono, mas o dono só reserva o espaço se pedir da maneira certa, que é:
+> Toda vez que alguém quer um espaço no armário deve  pedir para o dono, mas o dono só reserva o espaço se pedir da maneira correta, que é:
 >
 >`<tipo do espaço> <nome do espaço> com <coisa que queremos no espaço> dentro`
 >
@@ -272,14 +272,14 @@ Comentários são "anotações ou esclarecimentos" escritas(os) no código para 
 >
 > `cubo   dado           com `:game_die:` dentro`
 
-O armário é a memória do seu computador, os espaços são as variáveis e o nome em cada espaço é o nome da variável, que só conseguem armazenar tipos expecíficos de dados, no exemplo são `esfera`, `cubo` ou `boneca`, e a situação descrita para a reserva de um espaço é a declaração:
+O armário é a memória do seu computador, os espaços são as variáveis e o nome em cada espaço é o nome da variável, que só consegue armazenar tipos expecíficos de dados, no exemplo são `esfera`, `cubo` ou `boneca`, e a situação descrita para a reserva de um espaço é a declaração:
 
 ```C
 // <tipo do espaço>  <nome do espaço>  com  <coisa que queremos no espaço> dentro
    int               numero            =    80                                  ;
 ```
 
-No exemplo acima eu reservei um espaço que só guarda numeros inteiros (`int`) com o nome `numero` e com o valor `80` dentro. E no C existem 3 tipos primitivos, ou seja 3 tipos de dados básicos, e eles são o `int`, o `float` e o `char`:
+No exemplo acima, reservei um espaço que só guarda numeros inteiros (`int`) com o nome `numero` e com o valor `80` dentro. E no C, existem 3 tipos primitivos, ou seja, 3 tipos de dados básicos: `int`, o `float` e o `char`.
 
 ```C
 // <tipo do espaço>  <nome do espaço>  com  <coisa que queremos no espaço> dentro
@@ -288,9 +288,9 @@ No exemplo acima eu reservei um espaço que só guarda numeros inteiros (`int`) 
    float             numero_real       =    99.9                                ;
 ```
 
-Variáveis do tipo `int` recebem números sem ponto, como 2, 8 ou 234 enquanto as do tipo `float` recebem números com ponto como 2.5, 8.3 ou 23.0, já variáveis do tipo `char` recebem um caractere, **apenas um** , logo se tentar colocar um `"hello"` ou até mesmo um `"h"` ele vai retornar um erro, pois todo e qualquer caractere entre `"` é uma string enquanto um `char` é um único caractere entre `'`, não se preocupe com as strings por enquanto...
+Variáveis do tipo `int` recebem números sem ponto, como 2, 8 ou 234 enquanto as do tipo `float` recebem números com ponto como 2.5, 8.3 ou 23.0, já variáveis do tipo `char` recebem um caractere, **apenas um** , logo, se tentar colocar um `"hello"` ou até mesmo um `"h"`, ele vai retornar um erro, pois todo e qualquer caractere entre `"` é uma string enquanto um `char` é um único caractere entre `'`, não se preocupe com as strings, por enquanto...
 
-E se você deseja alterar o valor da variável, você só precisa colocar o nome da variável recebendo o valor:
+E se você deseja alterar o valor da variável, só precisa colocar o nome da variável recebendo o valor:
 
 ```C
 int i = 5; // declaração da variável "i" valendo "5"
