@@ -601,9 +601,9 @@ char imparOuPar = (  numero % 2 == 0  ) ? 'p'               : 'i'              ;
 //                ( <expreção logica> ) ? <se for Verdade>  : <se for Mentira>
 ```
 
-O código acima representa um uso simples do operador ternário, e eu sei que você deve estar um pouco confuso com isso, mas eu explico:
+O código acima representa um uso simples do operador ternário e eu sei que você deve estar um pouco confuso com isso, mas eu explico:
 
-> Antes de mais nada, saiba que **todo numero par tem o resto da divisão por 2 igual 0** , então no exemplo acima, caso `( numero % 2 == 0 )` for verdadeiro o operador vai retornar `'p'` de par, e caso seja falso ele vai retornar `'i'` de impar, por tanto o C vai testar a expressão lógica entre `(` e `)` se essa expressão for verdadeira o valor da operação vai ser o que está entre `?` e `:` caso contrário o valor será o que está após `:`
+> Antes de mais nada, saiba que **todo número par tem o resto da divisão por 2 igual 0** , então, no exemplo acima, caso `( numero % 2 == 0 )` seja verdadeiro, o operador vai retornar `'p'` de par e caso seja falso, ele vai retornar `'i'` de impar, portanto, o C vai testar a expressão lógica entre `(` e `)` se essa expressão for verdadeira, o valor da operação vai ser o que está entre `?` e `:` caso contrário, o valor será o que está após `:`
 
 Outro exemplo do uso seria:
 
@@ -614,21 +614,21 @@ char status = ( nota >= 7 ) ? 'p' : 'r';
 printf("João %s de ano", (status=='p')? "passou" : "reprovou" );
 ```
 
-No código acima se a nota do João for maior ou igual a 7 o programa escreve `"João passou de ano"` na tela se não ele escreve `"João reprovou de ano"`.
+No código acima, se a nota do João for maior ou igual a 7, o programa escreve `"João passou de ano"` na tela, se não, ele escreve `"João reprovou de ano"`.
 
 ## Chegou a hora de praticar!
 
-Agora chegou a hora de praticar, e não pule essa parte, pois o seu aprendizado só é absoluto se você praticar, então para potencializar o seu aprendizado em C e em qualquer linguagem de programação:
+Agora chegou a hora de praticar, e não pule essa parte, pois o seu aprendizado só é absoluto se você praticar, então, para potencializar o seu aprendizado em C e em qualquer linguagem de programação:
 
 > Dicas:
 >
-> 1. Se tiver dificudade em algo na hora da resolução do exercício, primeiro volte ao assunto antes de consultar a resposta.
-> 2. Sempre escreva todo o código, não use o `ctrl+C` e `ctrl+V` enquanto ainda está aprendendo, pois quando você escreve você está acostumando o seu cérebro com a sintaxe da linguagem.
-> 3. Sempre que você conseguir resolver o desafio, antes de pular para o próximo, tente resolvê-lo de novo de outra maneira.
-> 4. Caso não consiga resolver, veja a resposta e depois tente fazer de novo de outra maneira.
+> 1. Se tiver dificuldade em algo na hora da resolução do exercício, primeiro volte ao assunto antes de consultar a resposta;
+> 2. Sempre escreva todo o código: não use o `ctrl+C` e `ctrl+V` enquanto ainda está aprendendo, pois quando você escreve,  está acostumando o seu cérebro com a sintaxe da linguagem;
+> 3. Sempre que você conseguir resolver o desafio, antes de pular para o próximo, tente resolvê-lo de novo de outra maneira;
+> 4. Caso não consiga resolver, veja a resposta e depois tente fazer de novo de outra maneira;
 > 5. Crie seus próprios desafios para dificultar os que estão aqui.
 
-Todos os desafios serão resolvidos e explicados linha a linha, exeto o último de cada rodada, pois esse você vai ter que resolver sozinho obrigatóriamente, para tentar provar para si mesmo que aprendeu, e se você não conseguir, leia de novo os conteúdos anteriores e tente novamente. Caso você passe para a próxima parte sem resolvê-lo você terá dificuldades posteriores em outros assuntos.
+Todos os desafios serão resolvidos e explicados linha a linha, exceto o último de cada rodada, pois esse você vai ter que resolver sozinho, obrigatóriamente, para tentar provar para si mesmo que aprendeu e se você não conseguir, leia de novo os conteúdos anteriores e tente novamente. Caso você passe para a próxima parte sem resolvê-lo,  terá dificuldades posteriores em outros assuntos.
 
 ### Desafio 1
 
@@ -650,7 +650,7 @@ A divisão inteira entre 3 e 4 é 0 e o resto dessa divisão é 3
 
 #### Resposta
 
-Antes de mais nada nós temos que digitar nossa estrutura padrão:
+Antes de mais nada, nós temos que digitar nossa estrutura padrão:
 
 ```C
 #include <stdio.h>
@@ -660,20 +660,20 @@ return 0;
 }
 ```
 
-Depois nós temos que pedir dois números para o usuário.
+Depois, nós temos que pedir dois números para o usuário:
 
 ```C
 printf("digite um número: ");
 printf("digite outro número: ");
 ```
 
-Agora iremos ler os dois números, mas antes de ler os dois números temos que criar as variáveis que vão guardar esses números.
+Agora, iremos ler os dois números, mas antes, temos que criar as variáveis que vão guardar esses números:
 
 ```C
 float numero, outro_numero; // dessa forma criamos várias variáveis do mesmo tipo de uma vez
 ```
 
-Agora nós podemos ler os números.
+Agora, nós podemos ler os números:
 
 ```C
 printf("digite um número: ");
@@ -683,7 +683,7 @@ printf("digite outro número: ");
 scanf("%f", &numero);
 ```
 
-Finalmente iremos exibir os resultados.
+Finalmente, iremos exibir os resultados:
 
 ```C
 printf("\n");
@@ -729,7 +729,7 @@ return 0;
 
 ### Desafio 2
 
-Faça uma calculadora onde o programa pede dois números e depois uma operação (a escolha deve ser entre soma e subtração).
+Faça uma calculadora na qual o programa peça dois números e depois uma operação (a escolha deve ser entre soma e subtração).
 
 > Saída:
 >
@@ -743,7 +743,7 @@ A soma entre 8 e 2 é 10
 
 #### Resposta
 
-A primeira coisa que devemos fazer é obviamente escrever a estrutura padrão.
+A primeira coisa que devemos fazer é obviamente escrever a estrutura padrão:
 
 ```C
 #include <stdio.h>
@@ -754,14 +754,14 @@ int main (){
 }
 ```
 
-Agora temos que declarar as variáveis que irão guardar os dados.
+Agora, temos que declarar as variáveis que irão guardar os dados:
 
 ```C
 int numero, outro_numero;
 char operacao;
 ```
 
-E temos que pedir os dados para o usuário.
+E temos que pedir os dados para o usuário:
 
 ```C
 printf("Digite um número inteiro: ");
@@ -774,9 +774,9 @@ printf("Digite a operação [+/-]: ");
 scanf("%c", &operacao);
 scanf("%c", &operacao);
 ```
-> no meu caso ocorreu aquele bug do `scanf` que eu mensionei no capítulo de entrada e saída de dados, mas caso no seu não aconteça coloque o `scanf` só uma vez.
+> no meu caso ocorreu aquele bug do `scanf` que eu mencionei no capítulo de entrada e saída de dados, mas caso no seu não aconteça, coloque o `scanf` só uma vez.
 
-Agora iremos testar se a operação escolhida foi soma ou subtração e depois salvar o resutado em outra variável (`res`):
+Agora, iremos testar se a operação escolhida foi soma ou subtração e depois salvar o resultado em outra variável (`res`):
 
 ```C
 int res = ( operacao == '+' ) ? numero + outro_numero : numero - outro_numero ;
@@ -836,7 +836,7 @@ int main (){
 
 ### Desafio 3
 
-Faça um programa que leia 3 números e diga, se eles são impares ou pares, se eles são divisíveis por 3 (se divididos por 3 o resto tem que ser 0), e qual é o maior entre eles.
+Faça um programa que leia 3 números e diga se eles são ímpares ou pares, se eles são divisíveis por 3 (se divididos por 3 o resto tem que ser 0) e qual é o maior entre eles.
 
 > Saída:
 ```
@@ -855,7 +855,7 @@ O número 3 é divisível por 3
 O maior entre eles é o 3
 ```
 
-Este você tem que fazer sozinho, e eu sei que ele é um pouco complicado, mas todas as coisas necessárias para fazê-lo foram ensinadas, boa sorte, e se não conseguir fazer, releia os capítulos anteriores com muito cuidado e tente de novo.
+Este você tem que fazer sozinho, e eu sei que ele é um pouco complicado, mas todas as coisas necessárias para fazê-lo foram ensinadas. Boa sorte e se não conseguir fazer, releia os capítulos anteriores com muito cuidado e tente de novo.
 
 # Noções avançadas
 
