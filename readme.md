@@ -1004,6 +1004,84 @@ char String = "A";
 | Char   | 'A' |      |
 | String | 'A' | '\0' |
 
+## Os blocos e o escopo
+
+Até agora eu apenas mencionei o que é um bloco lá no inicio do livro para explicar a função `main`, mas acho que aquilo não foi o suficiente para encerrar o assunto.
+
+A primeira característica de um bloco, que a propósito já foi abordada, é que ele é uma sequencia de comandos entre `{` e `}`, mas uma coisa que você não sabia é que ele pode ser usado sem a necessidade de uma estrutura:
+
+```C
+int numero;
+
+{
+   numero = 89;
+}
+
+numero += 67;
+```
+
+_"mas que diferença isso fez para o programa?"_ , neste caso acima nenhuma, mas os blocos podem ser úteis para a organização do código e também para o isolamento de variáveis:
+
+```C
+int n = 46;
+{
+   char a = n;
+   printf("char: %c\n", a);
+}
+printf("char: %c\n", a);
+```
+
+O programa a seguir não irá compilar por que a variável `a` só existe dentro do bloco, logo, o segundo `printf` não vai conseguir imprimir a variável.
+
+Isso acontece por causa de uma coisa que chamamos de escopo, e o escopo determina o nível de acesso de uma variável no código, isso significa a variável `a` do código anterior só podia ser acessada dentro do bloco onde foi declarada, e é o que chamamos de variável local.
+
+```C
+int coisa = 0;
+
+int main () {
+
+   int outra_coisa = 90;
+
+   // bloco
+   {
+      int A = 100;
+   }
+   return 0;
+}
+```
+
+O escopo do código anterior seria assim
+
+|    var    | bloco | `main` | global |
+|-----------|-------|--------|--------|
+|coisa      |  X    |   X    |   X    |
+|outra_coisa|  X    |   X    |        |
+|A          |  X    |        |        |
+
+> A variável `coisa` é global por que esta fora de todos os blocos possíveis, portanto pode ser acessada em qualquer bloco do programa, enquanto a variável `outra_coisa` é "global" apenas na função `main`, logo, todo e qualquer bloco dentro do `main` pode ter acesso a ela, e a variável `A` só existe dentro do bloco isolado.
+
+```C
+int a = 78973;
+{
+   char a = 'a';
+   printf("char a : %c\n", a);
+}
+printf("int a : %i\n", a);
+```
+
+> Saída:
+```
+char a : a
+int a : 78973
+```
+> O que aconteceu aqui foi que a variável `a` do tipo inteiro foi declarada fora do bloco, logo, ela existia também dentro do bloco, até que outra variável `a` foi declarada dentro do bloco também, e o valor do `a` de dentro do bloco não sobescreve o `a` de fora do bloco porque ela só existe dentro do bloco, e quando o bloco acaba a variável `a` do tipo `char` deixa de existir e o `a` inteiro continua existindo...
+
+Eu sei que é um pouco confuso, mas isso acontece simplesmente por que as variáveis de escopos diferentes são declaradas áreas diferentes da memória.
+
+## Condicionais
+
+Até agora nós fizemos códigos mais sequenciais, onde todos os comandos eram executados e a única forma de decisão que usamos foi o operador ternário ( que mesmo assim foi um pouco chato de usar pela obrigatóriedade de colocá-lo em uma variável ou dentro do `printf` para tomar essas decisões), a estrutura condicional promete fazer o que o operador ternário fez e muito mais.
+
 <br>
 <br>
 <br>
