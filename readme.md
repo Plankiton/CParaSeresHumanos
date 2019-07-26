@@ -861,14 +861,14 @@ Este você tem que fazer sozinho, e eu sei que ele é um pouco complicado, mas t
 
 ## Arrays
 
-Arrays são uma variável com vários espaços... _"Como assim?"_ ... lembra do armário das variáveis? no caso do array você ao invés de reservar um espaço você pede vários espaços de uma vez, tipo:
+Arrays são uma variável com vários espaços... _"Como assim?"_ ... lembra do armário das variáveis? No caso do array, em vez de reservar um espaço, você pede vários espaços de uma vez, tipo:
 > `cubo dado extendido com ` :game\_die:`,`:game\_die:`,`:game\_die:` dentro`
 >
 ```C
 int algarismos [] = { 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 0 };
 ```
 
-E também é possível acessar um ítem específico do array adicionando a posição entre `[` e `]`.
+E também é possível acessar um item específico do array adicionando a posição entre `[` e `]`.
 
 ```C
 int algarismos [] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
@@ -876,7 +876,7 @@ int algarismos [] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 int tres = algarismos[2]
 ```
 
-Agora a variável `tres` está com o item `3`, _"Mas o 3 está da 3º posição!"_ , eu entendo, esse é um erro que todo iniciante comete, a questão é que a contagem começa do `0`:
+Agora, a variável `tres` está com o item `3`, _"Mas o 3 está da 3º posição!"_ , eu entendo, esse é um erro que todo iniciante comete, a questão é que a contagem começa do `0`:
 
 ```C
 //                    [0] [1] [2] [3] [4] [5] [6] [7] [8] [9]
@@ -889,7 +889,7 @@ E desta forma é possível modificar um valor do array:
 algarismos[9] = 9;
 ```
 
-Mas para modificar o array inteiro é necessário modificar item por item, portanto a seguinte forma não funcionará:
+Mas para modificar o array inteiro é necessário modificar item por item, portanto, a seguinte forma não funcionará:
 
 ```C
 int algarismos [] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
@@ -897,7 +897,7 @@ int algarismos [] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 algarismos = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 ```
 
-Os arrays não podem ser impressos ou atribuídos, isso significa que todos os ítens tem que ser imprimidos um por um:
+Os arrays não podem ser impressos ou atribuídos, isso significa que todos os itens tem de ser imprimidos um por um:
 
 ```C
 algarismos [] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -930,9 +930,9 @@ E antes que alguém pergunte _"Só existe array inteiro?"_, não, você pode faz
 
 ## Strings
 
-Uma string é uma cadeia de caracteres, ou um array de caracteres ou um "vetor" de caracteres.
+Uma string é uma cadeia de caracteres ou um array de caracteres ou um "vetor" de caracteres.
 
-_"Mas se é um array, por que eu preciso ler essa parte se você já explicou os arrays?"_ ... Muito simples, as strings são arrays e possuem todas as características de arrays, mas elas tem algumas particularidades.
+_"Mas se é um array, por que eu preciso ler essa parte se você já explicou os arrays?"_ ... Muito simples, as strings são arrays e possuem todas as características de arrays, mas elas têm algumas particularidades.
 
 ```C
 char Char = 'A';          // isso é um caractere
@@ -942,9 +942,9 @@ char String [] = "coisa"; // isso é uma cadeia de caracteres
 char other_str [] = {'c', 'o', 'i', 's', 'a', '\0'};
 ```
 
-> tanto a variável `String` quanto a `other_str` são strings, mas caso você use a segunda forma, não se esqueça do `\0` no fim, pois este caractere é o que delimita o fim de uma string.
+> tanto a variável `String` quanto a `other_str` são strings, mas, caso você use a segunda forma, não se esqueça do `\0` no fim, pois este caractere é o que delimita o fim de uma string.
 
-Caso você não queira dar valor para a String você deverá dizer qual o seu tamanho (assim como em qualquer outro tipo de array), exemplo:
+Caso  não queira dar valor para a String, você deverá dizer qual o seu tamanho (assim como em qualquer outro tipo de array), exemplo:
 
 ```C
 char String [10];
@@ -952,7 +952,7 @@ char String [10];
 
 > Caso você necessite usar a forma acima, lembre-se de colocar um numero a mais no comprimento da string, pois o último caractere é reservado para simbolizar o fim de uma string, por isso esta string só tem 9 caracteres válidos.
 
-_"Ta! Mas como eu dou um valor para ela?"_ ... Você pode fazer isso de duas maneiras.
+_"Tá, mas como eu dou um valor para ela?"_ ... Você pode fazer isso de duas maneiras.
 
 A primeira forma é a tradicional para dar valores a um array:
 
@@ -967,9 +967,9 @@ s[4] = 'a';
 s[5] = 's';
 s[6] = '\0';
 ```
-> E só pra relembrar, NÂO SE ESQUEÇA DO `\0`... to parecendo até flashback de naruto com esse caractere ...
+> E só pra relembrar: NÃO SE ESQUEÇA DO `\0`... tô parecendo até flashback de naruto com esse caractere ...
 
-Na segunda você tem que importar a biblioteca `String.h`, e depois usar a função `strcpy` para atribuir o valor, dessa maneira:
+Na segunda, você tem que importar a biblioteca `String.h` e depois usar a função `strcpy` para atribuir o valor, dessa maneira:
 
 ```C
 #include <string.h>
@@ -982,7 +982,7 @@ strcpy(str, "coisas");
 
 Note que você não é obrigado a colocar a quantidade exata de caracteres na string, mas não coloque uma string maior que o tamanho tamanho estipulado.
 
-_"legal, mas e se eu quiser ler uma string? ou imprimir uma string?"_ ... Muito simples é só usar o `%s` no `scanf`, e no `printf`, mas em relação ao `scanf` temos uma leve diferença:
+_"Legal, mas se eu quiser ler uma string? ou imprimir uma string?"_ ... Muito simples, é só usar o `%s` no `scanf` e no `printf`, mas em relação ao `scanf` temos uma leve diferença:
 
 ```C
 char str [20];
@@ -991,7 +991,7 @@ scanf("%s", str);
 printf("a string lida foi: %s\n", str);
 ```
 
-E se você é observador deve estar se perguntando _"mas e o `&` antes da variável no scanf?"_ , aqui não é necessário, por que a string não oculpa apenas um espaço na memória, mas vários, por isso não tem apenas um endereço. Para uma melhor compreenção observe:
+E se você é observador deve estar se perguntando _"mas e o `&` antes da variável no scanf?"_ Aqui não é necessário, porque a string não ocupa apenas um espaço na memória, mas vários, por isso não há apenas um endereço. Para uma melhor compreensão, observe:
 
 
 ```C
@@ -1019,4 +1019,4 @@ char String = "A";
 <br>
 <br>
 <br>
-O livro ainda não acabou... mas ainda está em processo de criação, então aguarde outra atualização, e poderá proseguir...
+O livro ainda não acabou... mas ainda está em processo de criação, então aguarde outra atualização e poderá proseguir...
