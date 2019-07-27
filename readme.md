@@ -590,6 +590,77 @@ n % N // resto da divisão  -> retorna o resto da divivão entre dois números.
 ```
 > para evitar erros sempre faça operações com números de tipos iguais.
 
+### Atribuição
+
+O operadores de atribuição são formas simplificadas de atribuir valores... _"Não entendi..."_
+
+Isso é uma atribuição:
+
+```C
+numero = 89;
+```
+
+E caso eu queira que este número valia ele mesmo + 1 eu faço:
+
+```C
+numero = numero + 1;
+```
+
+Mas para poupar esforços o C também aceita:
+
+```C
+numero += 1;
+```
+
+E isso vale para qualquer operação:
+
+```C
+numero += 2; // numero = numero + 2
+numero -= 3; // numero = numero - 3
+numero *= 7; // numero = numero * 7
+numero /= 2; // numero = numero / 2
+```
+
+Além desses também existe os operadores de incremento e decremento:
+
+```C
+numero ++; // numero = numero + 1
+numero --; // numero = numero - 1
+```
+> os vistos acima são denominados de pós incremento, pois a variável só recebe o valor depois de retorna-lo _"O que?"_ ... Observe:
+
+```C
+int numero = 89;
+printf("%i\n", numero++ );
+```
+
+> Saída:
+
+```
+89
+```
+
+_"Pera! mas ele não deveria ser 90?"_ ... A variável numero só é incrementada depois de retornar o valor dela, isso quer dizer que ela só é incrementada depois dessa parte do programa, mas se você usar o pré-incremento:
+
+```C
+int numero = 89;
+printf("%i\n", ++numero );
+```
+
+> Saída:
+
+```
+90
+```
+
+```C
+numero ++; // pós-incremento
+numero --; // pós-decremento
+
+++ numero; // pré-incremento
+-- numero; // pré-decremento
+```
+
 ### Relacionais
 
 Os operadores lógicos são todos aqueles que testam uma expressão e dizem se ela é verdadeira ou falsa, exemplo:
