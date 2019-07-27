@@ -337,6 +337,11 @@ double real_dobro = 10E49; /* 8 bytes -> o double tem o
                               10E4932
                            */
 ```
+> Essas quantidades demonstradas acima não são iguais em todas as arquiteturas, isto quer dizer que se o seu computador é de 32 bits o tamanho das variáveis pode ser diferente, logo, para que você tenha certeza do tamanho delas (em bytes) é só usar o `sizeof`:
+```C
+int inteiro;
+int tmh_inteiro = sizeof inteiro; // tamanho da variável inteiro
+```
 
 E a galera que já conhece um pouco de programação deve estar se perguntando _"Mas e os boleanos? No C não existe verdadeiro e falso?"_  sim, mas no C o `int` faz esse papel, sendo que o **0** equivale a **falso** e o **1** equivale a **verdadeiro**.
 
@@ -573,6 +578,7 @@ n * N // Multiplicação     -> multiplica dois números;
 n / N // Divisão           -> divide dois números;
 n % N // resto da divisão  -> retorna o resto da divivão entre dois números.
 ```
+> uma particularidade do operador `/` é que
 
 Mas lembre-se sempre: esses operadores só fazem operações com tipos compatíveis, isso quer dizer que eles não irão funcionar com strings e caracteres e sempre que houver um `float` ou `/` ou `%` na operação matemática, o resutado deve ser `float`, caso seja `int`, os números depois do ponto serão ignorados (e é assim que fazemos divisão inteira no C, coloque o resultado da divisão em uma variável do tipo `int`).
 
@@ -928,6 +934,34 @@ printf (
 
 E antes que alguém pergunte _"Só existe array inteiro?"_, não, você pode fazer arrays com qualquer tipo primitivo.
 
+Se você prestou atenção no capítulo sobre variáveis você deve conhecer o comando `sizeof`, que diz a quantidade de bytes de uma variável, se você usar com arrays também:
+
+```C
+int i [3];
+printf ("o tamanho de "i" é %i", sizeof i);
+```
+
+_"Mas e se eu quiser saber a quantidade de elementos do meu array?"_ ... você só precisa dividir o tamanho do array pelo tamanho do tipo desse array... _"Como assim?"_ ... O tamanho de uma variável `int` é o mesmo do tipo `int`, logo, o tamanho do tipo é o tamanho de uma variável com esse tipo...
+
+```C
+int i;
+int array_i [8];
+
+int tmh_i = sizeof i;           // tamanho de i
+int tmh_ari = sizeof array_i;   // tamanho de array_i
+
+int qnt_elem = tmh_ari / tmh_i; // quantidade de elementos
+```
+
+Ou, se você for preguisoso igual eu:
+
+```C
+int array_i [8];
+
+int qnt_elem = sizeof array_i / sizeof array_i[0]; // quantidade de elementos
+```
+> lembrem-se de que `array_i` é um array do tipo `int`, ou seja, tem elementos do tipo `int`, logo, se eu usar o tamanho de um desses elementos eu também vou ter acesso ou tamanho do tipo...
+
 ## Strings
 
 Uma string é uma cadeia de caracteres ou um array de caracteres ou um "vetor" de caracteres.
@@ -1081,7 +1115,79 @@ Eu sei que é um pouco confuso, mas isso acontece simplesmente por que as variá
 
 ## Condicionais
 
-Até agora nós fizemos códigos mais sequenciais, onde todos os comandos eram executados e a única forma de decisão que usamos foi o operador ternário ( que mesmo assim foi um pouco chato de usar pela obrigatóriedade de colocá-lo em uma variável ou dentro do `printf` para tomar essas decisões), a estrutura condicional promete fazer o que o operador ternário fez e muito mais.
+Até agora nós fizemos códigos mais sequenciais, onde todos os comandos eram executados e a única forma de decisão que usamos foi o operador ternário.
+
+```C
+int n;
+
+printf("digite um número: ");
+scanf("%i", &n);
+
+// com o ternário
+printf("o número %i é %s ", n, (n % 2 == 0) ? "par" : "ímpar" );
+
+// com condicionais
+printf("o número %i é ", n)
+if (n % 2 == 0) {         // operação lógica
+   printf("par \n");      // caso for verdade
+} else {
+   printf("ímpar \n");    // caso for falso
+}
+```
+
+_"Mas com o ternário ficou muito mais simples e curto!"_ ...Sim, mas e se sempre que o número for ímpar ele tenha também de pedir outro número ao usuário?...
+> não se questione sobre esta funcionalidade a mais, ela é só uma forma de dificutar um pouco o exemplo.
+
+```C
+// com ternário
+int n;
+
+printf("digite um número: ");
+scanf("%i", &n);
+
+( n % 2 == 0 )? printf("o número %i é par", n) : printf("digite outro número: ");
+int reserva = n;
+n = ( n % 2 == 0 ) ? n : scanf("%i", &reserva);
+n = reserva;
+```
+> antes que você se pergunte o por quê de eu ter criado outra variável, se o código estivesse assim:
+```C
+n = ( n % 2 == 0 ) ? n : scanf("%i", &n);
+```
+> O `scanf` iria ler o valor, colocar dentro do n, mas quando ele finalizasse esta instrução ele retornaria um `1` ou um `0` que substituiria o valor lido e sempre que o número fosse ímpar o `n` seria `1` ou `0`, então a variável `reserva` serve de reserva para o valor de `n`.
+
+```C
+// com condicionais
+int n;
+
+printf("digite um número: ");
+scanf("%i", &n);
+
+if (n % 2 == 0) {
+   printf("o número %i é par", n);
+} else {
+   printf("digite outro número: ");
+   scanf("%i", &n);
+}
+```
+
+Note que o código feito com condicionais ficou muito mais organizado e simples de entender além de eliminar a necessidade da variável auxiliar `reserva`...
+> Claro que devem haver outras formas de fazer o código com o ternário que não necessite de variável auxiliar, mas vamos combinar que o condicional é muito mais intuitivo.
+
+Existem 3 formas de fazer um condicional no C:
+
+```C
+int condicao = (67 != 5);  /* 
+                              e se você prestou atenção 
+                              no capítulo de operadores 
+                              sabe que o valor dessa 
+                              variável é 1.
+                           */
+
+// simples
+
+if ( condicao )
+```
 
 <br>
 <br>
