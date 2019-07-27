@@ -96,6 +96,8 @@ repositório do livro no github: http://github.com/RoboCopGay/c_para_seres_human
 2. [Noções avançadas](#noções-avançadas)
    - [Arrays](#arrays)
    - [Strings](#strings)
+   - [Os blocos e o escopo](#os-blocos-e-o-escopo)
+   - [Condicionais](#condicionais)
 
 # Noções básicas
 
@@ -367,12 +369,20 @@ Um problema (na minha opinião) do C é a forte tipagem, que significa que os ti
 
 ```C
 int Um = (int) 1.5; // apenas o 1 será atribuído
-float Dois = (float) 9 / 2.45; /* divisão só acontece entre tipos 
-                                  iguais por isso temos que 
-                                  converter o 9 para float antes 
-                                  de dividir 
-                              */
 ```
+
+Quando você atribui a uma variável o valor que pertence a outro tipo o C vai converter isso para o tipo da variável, mas isso não irá acontecer quando você fizer operações matemáticas, por isso é sempre bom converter para o tipo certo:
+
+```C
+int i = 1.5e-9;   // apenas o 1 será atribuído
+float f =  i / 3; /*
+                     o resultado dessa divisão seria 0.033...
+                     Mas como os dois  números são inteiros o
+                     resutado  é  0, e por  isso é  atribuído
+                     o valor 0.0 à variável f
+                  */
+```
+> Portanto, sempre use variáveis do mesmo tipo para operações matemáticas ou a conversão de tipo.
 
 ## Entrada e saída de dados
 
@@ -578,9 +588,7 @@ n * N // Multiplicação     -> multiplica dois números;
 n / N // Divisão           -> divide dois números;
 n % N // resto da divisão  -> retorna o resto da divivão entre dois números.
 ```
-> uma particularidade do operador `/` é que
-
-Mas lembre-se sempre: esses operadores só fazem operações com tipos compatíveis, isso quer dizer que eles não irão funcionar com strings e caracteres e sempre que houver um `float` ou `/` ou `%` na operação matemática, o resutado deve ser `float`, caso seja `int`, os números depois do ponto serão ignorados (e é assim que fazemos divisão inteira no C, coloque o resultado da divisão em uma variável do tipo `int`).
+> para evitar erros sempre faça operações com números de tipos iguais.
 
 ### Relacionais
 
@@ -845,6 +853,7 @@ int main (){
 Faça um programa que leia 3 números e diga se eles são ímpares ou pares, se eles são divisíveis por 3 (se divididos por 3 o resto tem que ser 0) e qual é o maior entre eles.
 
 > Saída:
+
 ```
 Digite 3 números: 1
 2
@@ -1113,6 +1122,8 @@ int a : 78973
 
 Eu sei que é um pouco confuso, mas isso acontece simplesmente por que as variáveis de escopos diferentes são declaradas áreas diferentes da memória.
 
+E nunca se esqueça que essas regras vistas neste capítulo serve para todo e qualquer bloco...
+
 ## Condicionais
 
 Até agora nós fizemos códigos mais sequenciais, onde todos os comandos eram executados e a única forma de decisão que usamos foi o operador ternário.
@@ -1183,11 +1194,87 @@ int condicao = (67 != 5);  /*
                               sabe que o valor dessa 
                               variável é 1.
                            */
+int outra_condicao = (8 > 2);
 
 // simples
 
-if ( condicao )
+if ( condicao ) {
+   // comandos
+}
+
+// composto
+if ( condicao ) {
+   // comandos
+else {
+   // outros comandos
+}
+
+// aninhado
+if ( condicao ) {
+   // comandos
+else if ( outra_condicao ) {
+   // comandos
+} else {
+   // outros comandos
+}
 ```
+> É possível colocar condições dentro de outras, mas isso depende do programa, exemplo:
+
+```C
+int  numero = 80;
+char imparOuPar = ( numero % 2 == 0  ) ? 'p' : 'i' ;
+
+if ( imparOuPar == 'p' ) {
+   printf("o número %i é par", numero);
+
+   // testando intervalos
+   if ( numero < 10 ) {
+      printf( "o número %i é menor que 10", numero );
+   } else if ( numero >= 10 && numero <= 30 ){
+      printf( "o número %i é maior ou igual a 10 e menor ou igual a 30", numero );
+   } else {
+      printf( "o número %i é maior que 30", numero );
+   }
+
+} else {
+   printf("o número %i é ímpar", numero);
+
+   // testando intervalos
+   if ( numero < 10 ) {
+      printf( "o número %i é menor que 10", numero );
+   } else if ( numero >= 10 && numero <= 30 ){
+      printf( "o número %i é maior ou igual a 10 e menor ou igual a 30", numero );
+   } else {
+      printf( "o número %i é maior que 30", numero );
+   }
+}
+```
+
+> Note que há uma área exatamente idêntica testando os intervalos no fim de cada condicional, então para tornar o código acima mais eficiênte ele deveria ser assim:
+
+```C
+int  numero = 80;
+char imparOuPar = ( numero % 2 == 0  ) ? 'p' : 'i' ;
+
+if ( imparOuPar == 'p' ) {
+   printf("o número %i é par", numero);
+
+} else {
+   printf("o número %i é ímpar", numero);
+}
+
+// testando intervalos
+if ( numero < 10 ) {
+   printf( "o número %i é menor que 10", numero );
+} else if ( numero >= 10 && numero <= 30 ){
+   printf( "o número %i é maior ou igual a 10 e menor ou igual a 30", numero );
+} else {
+   printf( "o número %i é maior que 30", numero );
+}
+```
+
+> O programa acima vai funcionar da mesma maneira, mas sem retundânceas...
+
 
 <br>
 <br>
