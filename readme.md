@@ -1395,7 +1395,7 @@ if (condicao) /* comando */;
 else if ( outra_condicao ) /*comando*/;
 else /*outro comando*/;
 ```
-> Caso você precise executar mais de um comando você vai ter que usar um bloco do código.
+> Caso você precise executar mais de um comando você vai ter que usar um bloco.
 
 
 <br>
