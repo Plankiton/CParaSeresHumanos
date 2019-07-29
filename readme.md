@@ -663,9 +663,9 @@ numero --; // pós-decremento
 
 ### Relacionais
 
-Os operadores lógicos são todos aqueles que testam uma expressão e dizem se ela é verdadeira ou falsa, exemplo.
+Os operadores lógicos são todos aqueles que testam uma expressão relacional e dizem se ela é verdadeira ou falsa.
 
-> lembrando que verdadeiro no C é 1 e falso no C é 0... _"Ah! Mas por que você não faz com "verdadeiro" e "falso"?"_ ...Muito simples, vocês tem que se acostumar com a sintaxe do C, logo, tem que se acostumar também com esses detalhes para poder entender códigos alheios.
+> lembrando que no C verdadeiro é 1 e falso é 0.
 
 ```C
 n == N // igual            -> testa se n é igual a N;
@@ -676,6 +676,24 @@ n >  N // maior que        -> testa se n é maior que N;
 
 n <= N // menor ou igual   -> testa se n é menor ou igual a N;
 n >= N // maior ou igual   -> testa se n é maior ou igual a N.
+```
+
+Exemplo simples:
+
+```C
+printf("%i\n", 1 < 2);
+printf("%i\n", 1 > 2);
+printf("%i\n", 1 != 2);
+printf("%i\n", 1 == 2);
+```
+
+> Saída:
+
+```
+1
+0
+1
+0
 ```
 
 > E lembrem-se que os tipos dos dados sendo testados tem que ser o mesmo.
@@ -693,38 +711,56 @@ João só ficaria satisfeito ( verdadeiro ) se ele ganhasse o celular e o fone d
 O operador usado no exemplo acima é o "and" ( `&&` ) que só é "verdadeiro" se as duas opções forem verdadeiras, exemplo:
 
 ```C
-   1 < 5   &&   2 > 0
-//   1     e      1    = 1
+printf("%i && %i = %i\n", 1 < 5, 2 > 0, 1 < 5   &&   2 > 0);
+printf("%i && %i = %i\n", 1+80 < 5, 2 > 0, 1+80 < 5   &&   2 > 0);
 ```
 
-Os outros são o "or" ( `||` ), o "not" ( `!` ) e o "exclusive or" ( `^` ), e os 4 (incluindo o `&&`) funcionam da seguinte maneira:
+> Saída:
+
+```
+1 && 1 = 1
+0 && 1 = 0
+```
+
+Os operadores lógicos são o `&&`, que equivale a "and"("e"), já visto anteriormente, o `||`, que equivale a "or"("ou") e o `!`, que equivale a "not"("não").
 > considere os uns e zeros abaixo apenas o resultado de alguma operação relacional...
 
-| resultado 1 |`&&`| resultado 2 | resultado final |
+|             |`&&`|             | resultado final |
 |-------------|----|-------------|-----------------|
 | `1`         |`&&`| `1`         | 1               |
 | `0`         |`&&`| `1`         | 0               |
 | `1`         |`&&`| `0`         | 0               |
 | `0`         |`&&`| `0`         | 0               |
 
-| resultado 1 |`||`| resultado 2 | resultado final |
+|             |`||`|             | resultado final |
 |-------------|----|-------------|-----------------|
 | `1`         |`||`| `1`         | 1               |
 | `0`         |`||`| `1`         | 1               |
 | `1`         |`||`| `0`         | 1               |
 | `0`         |`||`| `0`         | 0               |
 
-| resultado 1 |`^`| resultado 2 | resultado final |
-|-------------|---|-------------|-----------------|
-| `1`         |`^`| `1`         | 0               |
-| `0`         |`^`| `1`         | 1               |
-| `1`         |`^`| `0`         | 1               |
-| `0`         |`^`| `0`         | 0               |
-
-|`!`| resultado 1 | resultado final |
+|`!`|             | resultado final |
 |---|-------------|-----------------|
 |`!`| `1`         | 0               |
 |`!`| `0`         | 1               |
+
+Exemplo:
+
+```C
+printf("%i && %i = %i\n", 1 < 5, 2 > 0, 1 < 5   &&   2 > 0);
+
+printf("%i || %i = %i\n", 1 < 5, 2 > 6, 1 < 5   ||   2 > 6);
+
+printf("!(%i && %i) = %i\n", 1 < 5, 2 > 6, !(1 < 5   &&   2 > 6));
+```
+
+> Saída:
+
+```
+1 && 1 = 1
+1 || 0 = 1
+!(1 && 0) = 1
+```
 
 ### Ternário ou condicional
 
