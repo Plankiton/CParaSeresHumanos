@@ -1249,15 +1249,16 @@ int main () {
 }
 ```
 
-O escopo do código anterior seria assim
+O escopo do código anterior seria assim:
+> Trate o "X" como "pode acessar" o bloco dentro da função `main` é o "bloco" da tabela e tudo o que está fora da função `main` é a área "global".
 
-|    var    | bloco | `main` | global |
-|-----------|-------|--------|--------|
-|coisa      |  X    |   X    |   X    |
-|outra_coisa|  X    |   X    |        |
-|A          |  X    |        |        |
+|             | bloco | `main` | global |
+|-------------|-------|--------|--------|
+|`coisa`      |  X    |   X    |   X    |
+|`outra_coisa`|  X    |   X    |        |
+|`A`          |  X    |        |        |
 
-> A variável `coisa` é global por que esta fora de todos os blocos possíveis, portanto pode ser acessada em qualquer bloco do programa, enquanto a variável `outra_coisa` é "global" apenas na função `main`, logo, todo e qualquer bloco dentro do `main` pode ter acesso a ela, e a variável `A` só existe dentro do bloco isolado.
+> A variável `coisa` é global porque está fora de todos os blocos possíveis, portanto pode ser acessada em qualquer bloco do programa, enquanto a variável `outra_coisa` é local da função `main`, logo, todo e qualquer bloco dentro do `main` pode ter acesso a ela, e a variável `A` só existe dentro do bloco isolado.
 
 ```C
 int a = 78973;
