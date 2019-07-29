@@ -1230,7 +1230,7 @@ int n = 46;
 printf("char: %c\n", a);
 ```
 
-O programa a seguir não irá compilar por que a variável `a` só existe dentro do bloco, logo, o segundo `printf` não vai conseguir imprimir a variável.
+O programa a cima não irá compilar por que a variável `a` só existe dentro do bloco, logo, o segundo `printf` não vai conseguir imprimir a variável.
 
 Isso acontece por causa de uma coisa que chamamos de escopo, e o escopo determina o nível de acesso de uma variável no código, isso significa a variável `a` do código anterior só podia ser acessada dentro do bloco onde foi declarada, e é o que chamamos de variável local.
 
