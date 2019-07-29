@@ -3,6 +3,8 @@
 #include <string.h>
 int main(){
    /*
+
+   // ponteiros e strings
    char j [20];
    char * str = &j[0];
    while (strlen(j) < 20){
@@ -12,15 +14,7 @@ int main(){
    * str = '\0';
    printf("%s", j);
 
-   // ...
-
-   char str [] = "joao";
-   char j = str[0];
-
-   printf("%c\n", j);
-   */
-
-   // ... ++
+   // strings e strings
 
    char str [] = "jnjnj";
    char k[] = "o joao maria eu";
@@ -29,5 +23,12 @@ int main(){
    printf("%s\n"
          "%s\n"
          "%s", j, k, str);
+   */
+
+   // atribuindo strings a strings sem o string.h
+   char * string;
+
+   string = "joao";
+   puts(string);
 return 0;
 }
