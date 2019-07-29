@@ -98,6 +98,7 @@ Repositório do livro no github: http://github.com/RoboCopGay/c_para_seres_human
    - [Strings](#strings)
    - [Os blocos e o escopo](#os-blocos-e-o-escopo)
    - [Condicionais](#condicionais)
+   - [Estruturas de repetição](#estruturas-de-repetição)
 
 # Noções básicas
 
@@ -1296,10 +1297,10 @@ printf("o número %i é %s ", n, (  n % 2 == 0   ) ?     "par"    :  "ímpar"   
 
 // com condicionais
 printf("o número %i é ", n)
-if (n % 2 == 0) {         // operação lógica
-   printf("par \n");      // caso for verdade
-} else {
-   printf("ímpar \n");    // caso for falso
+if (n % 2 == 0) {         // se n for par
+   printf("par \n");      //   escreva "par"
+} else {                  // senão
+   printf("ímpar \n");    //   escreva "ímpar"
 }
 ```
 
@@ -1382,6 +1383,7 @@ else if ( outra_condicao ) {
 ```
 
 > Mas o bloco não é obrigatório para o uso do condicional, caso você queira um `if` mais compacto:
+
 ```C
 // simples
 if (condicao) /* comando */;
@@ -1395,8 +1397,46 @@ if (condicao) /* comando */;
 else if ( outra_condicao ) /*comando*/;
 else /*outro comando*/;
 ```
+
 > Caso você precise executar mais de um comando você vai ter que usar um bloco.
 
+## Estruturas de repetição
+
+Estruturas de repetição são estruturas que permitem que você repita comandos.
+
+### While
+
+```C
+// exibindo uma contagem até 5
+
+// sem estruturas de repetição
+printf("%i\n", 1);
+printf("%i\n", 2);
+printf("%i\n", 3);
+printf("%i\n", 4);
+printf("%i\n", 5);
+
+// com uma estrutura de repetição
+int contador = 1;
+while (contador <= 5){          // enquanto o contador for menor ou igual 5
+   printf("%i\n", contador);    //   escreva o contador
+   contador ++;                 //   e incremente o contador
+}
+```
+> No caso acima temos duas formas de exibir uma contagem... _"Mas deu a mesma quantidade de linhas, então não vale a pena aprender esse negócio difícil aí, a primeira opção é mais simples!!"_ ... E se ao invés de contar até 5 nós precisássemos contar até mil? Você ainda acha aceitável escrever isso sem usar uma estrutura de repetição ?
+
+A estrutura usada é o `while`, que significa "enquanto", basicamente ele funciona assim:
+
+```C
+condicao = (2 != 3);
+while ( condicao ) {   // enquanto a condição for verdadeira
+   // comandos
+}
+```
+
+E se a condição for verdadeira o `while` vai executar os comandos do bloco, mas se ela for falsa ele vai sair do loop (estrutura de repetição).
+
+No caso da contagem foi necessário adicionar `1` ao contador, pois se a `condicao` sempre for verdadeira o programa vai entrar em um loop infinito, e foi isso que aconteceu com o nosso exemplo anterior, pois o `2` sempre será diferente do `3`.
 
 <br>
 <br>
