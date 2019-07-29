@@ -663,7 +663,9 @@ numero --; // pós-decremento
 
 ### Relacionais
 
-Os operadores lógicos são todos aqueles que testam uma expressão e dizem se ela é verdadeira ou falsa, exemplo:
+Os operadores lógicos são todos aqueles que testam uma expressão e dizem se ela é verdadeira ou falsa, exemplo.
+
+> lembrando que verdadeiro no C é 1 e falso no C é 0... _"Ah! Mas por que você não faz com "verdadeiro" e "falso"?"_ ...Muito simples, vocês tem que se acostumar com a sintaxe do C, logo, tem que se acostumar também com esses detalhes para poder entender códigos alheios.
 
 ```C
 n == N // igual            -> testa se n é igual a N;
@@ -676,7 +678,53 @@ n <= N // menor ou igual   -> testa se n é menor ou igual a N;
 n >= N // maior ou igual   -> testa se n é maior ou igual a N.
 ```
 
+> E lembrem-se que os tipos dos dados sendo testados tem que ser o mesmo.
+
 Eles serão usados por vocês nas estruturas condicionais, laços de repetição e com o **operador ternário**.
+
+### Lógicos
+
+Os operadores lógicos são usados para assimilar operações que retornam valores lógicos... _"Como assim?"_ ... São usados para operações verdadeiras e falsas.
+
+> João pede ao seu pai um fone de ouvido e um celular, mas o seu pai só dá o fone de ouvido, e ele fica insatisfeito pois ele queria as duas coisas.
+
+João só ficaria satisfeito ( verdadeiro ) se ele ganhasse o celular e o fone de ouvido, como ele só ganhou o fone ele ficou insatisfeito ( falso ).
+
+O operador usado no exemplo acima é o "and" ( `&&` ) que só é "verdadeiro" se as duas opções forem verdadeiras, exemplo:
+
+```C
+   1 < 5   &&   2 > 0
+//   1     e      1    = 1
+```
+
+Os outros são o "or" ( `||` ), o "not" ( `!` ) e o "exclusive or" ( `^` ), e os 4 (incluindo o `&&`) funcionam da seguinte maneira:
+> considere os uns e zeros abaixo apenas o resultado de alguma operação relacional...
+
+| resultado 1 |`&&`| resultado 2 | resultado final |
+|-------------|----|-------------|-----------------|
+| `1`         |`&&`| `1`         | 1               |
+| `0`         |`&&`| `1`         | 0               |
+| `1`         |`&&`| `0`         | 0               |
+| `0`         |`&&`| `0`         | 0               |
+
+| resultado 1 |`||`| resultado 2 | resultado final |
+|-------------|----|-------------|-----------------|
+| `1`         |`||`| `1`         | 1               |
+| `0`         |`||`| `1`         | 1               |
+| `1`         |`||`| `0`         | 1               |
+| `0`         |`||`| `0`         | 0               |
+
+| resultado 1 |`^`| resultado 2 | resultado final |
+|-------------|---|-------------|-----------------|
+| `1`         |`^`| `1`         | 0               |
+| `0`         |`^`| `1`         | 1               |
+| `1`         |`^`| `0`         | 1               |
+| `0`         |`^`| `0`         | 0               |
+
+|`!`| resultado 1 | resultado final |
+|---|-------------|-----------------|
+|`!`| `1`         | 0               |
+|`!`| `0`         | 1               |
 
 ### Ternário ou condicional
 
@@ -1344,7 +1392,7 @@ if ( numero < 10 ) {
 }
 ```
 
-> O programa acima vai funcionar da mesma maneira, mas sem retundânceas...
+> O programa acima vai funcionar da mesma maneira, mas sem redundâncias...
 
 
 <br>
