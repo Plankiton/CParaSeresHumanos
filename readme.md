@@ -78,7 +78,7 @@ Antes de começar, este livro é destinado a iniciantes no mundo da programaçã
 Por favor, se você encontrar qualquer erro ortográfico ou em relação aos conhecimentos apresentados, envie-me um email avisando, ou faça um pull-request no repositório do livro no github.
 
 
-repositório do livro no github: http://github.com/RoboCopGay/c_para_seres_humanos.book
+Repositório do livro no github: http://github.com/RoboCopGay/c_para_seres_humanos.book
 
 # Índice
 
@@ -117,7 +117,7 @@ Em termos técnicos, um **interpretador** traduz e executa o código do seu prog
 
 E por ser uma linguagem compilada, o C é mais rápido que qualquer linguagem interpretada, além disso, é considerado uma linguagem de _médio nível_ (alguns o consideram uma linguagem de _baixo nível_), e com isso não estou referindo-me à qualidade do C, mas ao nível de proximidade com o hardware (a parte física do computador). Quanto mais próximo do hardware, mais baixo é o nível e essa característica do C o torna a linguagem mais indicada para fazer aplicações de sistema (programas que manipulam o hardware) e aplicações gráficas (jogos, editores de imagem...).
 
-Só para se ter uma idéia do poder do C, vou listar alguns _softwares_ feitos nessa linguagem:
+Só para se ter uma ideia do poder do C, vou listar alguns _softwares_ feitos nessa linguagem:
 > todos os softwares listados são **open source**, dessa forma vocês podem ter certeza de que foi mesmo feito em C, além de poderem editar o código, se quiserem...
 
 1. [Blender](http://blender.org)                - Modelador 3D e engine de jogos.
@@ -126,7 +126,7 @@ Só para se ter uma idéia do poder do C, vou listar alguns _softwares_ feitos n
 4. [Darwim](http://github.com/apple/darwin-xnu) - Núcleo do Mac OSX
 5. [Vlc](http://www.videolan.org/vlc/)          - Reprodutor de Vídeos
 
-Existe uma infinidade de aplicativos feitos em C, mas como o foco aqui é ensinar C (e não citar aplicativos feitos em C), eu vou proceguir...
+Existe uma infinidade de aplicativos feitos em C, mas como o foco aqui é ensinar C (e não citar aplicativos feitos em C), eu vou prosseguir...
 
 ## Qual é a história do C?
 
@@ -274,14 +274,14 @@ Comentários são "anotações ou esclarecimentos" escritas(os) no código para 
 >
 > `cubo   dado           com `:game_die:` dentro`
 
-O armário é a memória do seu computador, os espaços são as variáveis e o nome em cada espaço é o nome da variável, que só consegue armazenar tipos expecíficos de dados, no exemplo são `esfera`, `cubo` ou `boneca`, e a situação descrita para a reserva de um espaço é a declaração:
+O armário é a memória do seu computador, os espaços são as variáveis e o nome em cada espaço é o nome da variável, que só consegue armazenar tipos específicos de dados, no exemplo são `esfera`, `cubo` ou `boneca`, e a situação descrita para a reserva de um espaço é a declaração:
 
 ```C
 // <tipo do espaço>  <nome do espaço>  com  <coisa que queremos no espaço> dentro
    int               numero            =    80                                  ;
 ```
 
-No exemplo acima, reservei um espaço que só guarda numeros inteiros (`int`) com o nome `numero` e com o valor `80` dentro. E no C, existem 3 tipos primitivos, ou seja, 3 tipos de dados básicos: `int`, o `float` e o `char`.
+No exemplo acima, reservei um espaço que só guarda números inteiros (`int`) com o nome `numero` e com o valor `80` dentro. E no C, existem 3 tipos primitivos, ou seja, 3 tipos de dados básicos: `int`, o `float` e o `char`.
 
 ```C
 // <tipo do espaço>  <nome do espaço>  com  <coisa que queremos no espaço> dentro
@@ -335,7 +335,7 @@ float real = 3.14; /* 4 bytes -> só suporta valores entre
 double real_dobro = 10E49; /* 8 bytes -> o double tem o
                               dobro de espaço de um float
                               e por isso pode suportar
-                              numeros entre 10E-4932 e
+                              números entre 10E-4932 e
                               10E4932
                            */
 ```
@@ -542,7 +542,7 @@ scanf("%i", &numero);
 
 Tá, eu sei que você está se perguntando _"e esse_ `&` _serve pra que?"_ Esse `&` diz para o printf colocar o valor no lugar da memória onde está o número. O `&` simboliza um endereçamento de memória, o `scanf` coloca o valor direto no local da memória onde está a variável.
 
-E como você pode perceber o `%i` se refere a um número inteiro. Todos os tipos de variáveis são simbolizados pelos simbolos (`%i`, `%c`, `%f`...) do `printf`.
+E como você pode perceber o `%i` se refere a um número inteiro. Todos os tipos de variáveis são simbolizados pelos símbolos (`%i`, `%c`, `%f`...) do `printf`.
 
 Também é possível ler várias variáveis com um único comando:
 
@@ -761,7 +761,7 @@ Agora chegou a hora de praticar, e não pule essa parte, pois o seu aprendizado 
 > 4. Caso não consiga resolver, veja a resposta e depois tente fazer de novo de outra maneira;
 > 5. Crie seus próprios desafios para dificultar os que estão aqui.
 
-Todos os desafios serão resolvidos e explicados linha a linha, exceto o último de cada rodada, pois esse você vai ter que resolver sozinho, obrigatóriamente, para tentar provar para si mesmo que aprendeu e se você não conseguir, leia de novo os conteúdos anteriores e tente novamente. Caso você passe para a próxima parte sem resolvê-lo,  terá dificuldades posteriores em outros assuntos.
+Todos os desafios serão resolvidos e explicados linha a linha, exceto o último de cada rodada, pois esse você vai ter que resolver sozinho, obrigatoriamente, para tentar provar para si mesmo que aprendeu e se você não conseguir, leia de novo os conteúdos anteriores e tente novamente. Caso você passe para a próxima parte sem resolvê-lo,  terá dificuldades posteriores em outros assuntos.
 
 ### Desafio 1
 
@@ -995,8 +995,8 @@ Este você tem que fazer sozinho, e eu sei que ele é um pouco complicado, mas t
 
 ## Arrays
 
-Arrays são uma variável com vários espaços... _"Como assim?"_ ... lembra do armário das variáveis? No caso do array, em vez de reservar um espaço, você pede vários espaços de uma vez, tipo:
-> `cubo dado extendido com ` :game\_die:`,`:game\_die:`,`:game\_die:` dentro`
+Arrays são uma variável com vários espaços... _"Como assim?"_ ... Lembra do armário das variáveis? No caso do array, em vez de reservar um espaço, você pede vários espaços de uma vez, tipo:
+> `cubo dado estendido com ` :game\_die:`,`:game\_die:`,`:game\_die:` dentro`
 >
 ```C
 int algarismos [] = { 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 0 };
@@ -1081,7 +1081,7 @@ int tmh_ari = sizeof array_i;   // tamanho de array_i
 int qnt_elem = tmh_ari / tmh_i; // quantidade de elementos
 ```
 
-Ou, se você for preguisoso igual eu:
+Ou, se você for preguiçoso igual eu:
 
 ```C
 int array_i [8];
@@ -1106,7 +1106,7 @@ char other_str [] = {'c', 'o', 'i', 's', 'a', '\0'};
 
 > tanto a variável `String` quanto a `other_str` são strings, mas, caso você use a segunda forma, não se esqueça do `\0` no fim, pois este caractere é o que delimita o fim de uma string.
 
-Caso  não queira dar valor para a String, você deverá dizer qual o seu tamanho (assim como em qualquer outro tipo de array), exemplo:
+Caso não queira dar valor para a string, você deverá dizer qual o seu tamanho (assim como em qualquer outro tipo de array), exemplo:
 
 ```C
 char String [10];
@@ -1144,7 +1144,7 @@ strcpy(str, "coisas");
 
 Note que você não é obrigado a colocar a quantidade exata de caracteres na string, mas não coloque uma string maior que o tamanho tamanho estipulado.
 
-_"Legal, mas se eu quiser ler uma string? ou imprimir uma string?"_ ... Muito simples, é só usar o `%s` no `scanf` e no `printf`, mas em relação ao `scanf` temos uma leve diferença:
+_"Legal, mas se eu quiser ler uma string? Ou imprimir uma string?"_ ... Muito simples, é só usar o `%s` no `scanf` e no `printf`, mas em relação ao `scanf` temos uma leve diferença:
 
 ```C
 char str [20];
@@ -1237,7 +1237,7 @@ printf("int a : %i\n", a);
 char a : a
 int a : 78973
 ```
-> O que aconteceu aqui foi que a variável `a` do tipo inteiro foi declarada fora do bloco, logo, ela existia também dentro do bloco, até que outra variável `a` foi declarada dentro do bloco também, e o valor do `a` de dentro do bloco não sobescreve o `a` de fora do bloco porque ela só existe dentro do bloco, e quando o bloco acaba a variável `a` do tipo `char` deixa de existir e o `a` inteiro continua existindo...
+> O que aconteceu aqui foi que a variável `a` do tipo inteiro foi declarada fora do bloco, logo, ela existia também dentro do bloco, até que outra variável `a` foi declarada dentro do bloco também, e o valor do `a` de dentro do bloco não sob-escreve o `a` de fora do bloco porque ela só existe dentro do bloco, e quando o bloco acaba a variável `a` do tipo `char` deixa de existir e o `a` inteiro continua existindo...
 
 Eu sei que é um pouco confuso, mas isso acontece simplesmente por que as variáveis de escopos diferentes são declaradas áreas diferentes da memória.
 
@@ -1266,7 +1266,7 @@ if (n % 2 == 0) {         // operação lógica
 ```
 
 _"Mas com o ternário ficou muito mais simples e curto!"_ ...Sim, mas e se sempre que o número for ímpar ele tenha também de pedir outro número ao usuário?...
-> não se questione sobre esta funcionalidade a mais, ela é só uma forma de dificutar um pouco o exemplo.
+> não se questione sobre esta funcionalidade a mais, ela é só uma forma de dificultar um pouco o exemplo.
 
 ```C
 // com ternário
@@ -1369,7 +1369,7 @@ if ( imparOuPar == 'p' ) {
 }
 ```
 
-> Note que há uma área exatamente idêntica testando os intervalos no fim de cada condicional, então para tornar o código acima mais eficiênte ele deveria ser assim:
+> Note que há uma área exatamente idêntica testando os intervalos no fim de cada condicional, então para tornar o código acima mais eficiente ele deveria ser assim:
 
 ```C
 int  numero = 80;
@@ -1409,4 +1409,4 @@ if ( numero < 10 ) {
 <br>
 <br>
 <br>
-O livro ainda não acabou... mas ainda está em processo de criação, então aguarde outra atualização e poderá proseguir...
+O livro ainda não acabou... mas ainda está em processo de criação, então aguarde outra atualização e poderá prosseguir...
