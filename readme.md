@@ -1151,7 +1151,7 @@ char String [10];
 
 > Caso você necessite usar a forma acima, lembre-se de colocar um numero a mais no comprimento da string, pois o último caractere é reservado para simbolizar o fim de uma string, por isso esta string só tem 9 caracteres válidos.
 
-_"Tá, mas como eu dou um valor para ela?"_ ... Você pode fazer isso de duas maneiras.
+_"Tá, mas como eu dou um valor para ela?"_ ... Você pode fazer isso de três maneiras.
 
 A primeira forma é a tradicional para dar valores a um array:
 
@@ -1176,6 +1176,8 @@ Na segunda, você tem que importar a biblioteca `String.h` e depois usar a funç
 char str[13];
 strcpy(str, "coisas");
 ```
+
+E a terceira, você vai ter que esperar pelo capítulo de ponteiros para entender, logo, use as mostradas acima por enquanto.
 
 > O `include` acima pode ficar tanto dentro da função `main` quanto fora, só é importante colocar antes do uso da função `strcpy`.
 
