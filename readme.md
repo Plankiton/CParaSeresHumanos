@@ -1381,6 +1381,21 @@ else if ( outra_condicao ) {
 }
 ```
 
+> Mas o bloco não é obrigatório para o uso do condicional, caso você queira um `if` mais compacto:
+```C
+// simples
+if (condicao) /* comando */;
+
+// composto
+if (condicao) /* comando */;
+else /*outro comando*/;
+
+// aninhado
+if (condicao) /* comando */;
+else if ( outra_condicao ) /*comando*/;
+else /*outro comando*/;
+```
+> Caso você precise executar mais de um comando você vai ter que usar um bloco do código.
 
 
 <br>

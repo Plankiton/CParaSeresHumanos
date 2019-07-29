@@ -3,6 +3,7 @@
 int main(){
    int condicao = 67 != 5;
 
-   printf("%i", condicao);
+   if (!condicao) printf("%i", condicao);
+   else printf("porra ninhuma!!");
 return 0;
 }
