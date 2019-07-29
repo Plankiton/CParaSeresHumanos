@@ -1291,7 +1291,8 @@ printf("digite um número: ");
 scanf("%i", &n);
 
 // com o ternário
-printf("o número %i é %s ", n, (n % 2 == 0) ? "par" : "ímpar" );
+printf("o número %i é %s ", n, (  n % 2 == 0   ) ?     "par"    :  "ímpar"   );
+//                             (operação lógica) ? caso verdade : caso falso
 
 // com condicionais
 printf("o número %i é ", n)
@@ -1302,8 +1303,10 @@ if (n % 2 == 0) {         // operação lógica
 }
 ```
 
-_"Mas com o ternário ficou muito mais simples e curto!"_ ...Sim, mas e se sempre que o número for ímpar ele tenha também de pedir outro número ao usuário?...
-> não se questione sobre esta funcionalidade a mais, ela é só uma forma de dificultar um pouco o exemplo.
+Note que os condicionais são muito mais intuitivos, e por isso são mais fáceis de usar que o ternário... _"Ué? Então por que você mostrou o ternário primeiro?"_ ...Porque eu precisava de uma estrutura que não exigisse um conhecimento sobre blocos e escopo e que tornasse o você mais preparado para esse assunto, pois se você entendeu o ternário você com certeza entendeu os condicionais.
+
+_"Mas com o ternário ficou muito mais curto!"_ ...Sim, mas e se sempre que o número for ímpar ele tenha também de pedir outro número ao usuário?...
+> Não se questione sobre esta funcionalidade a mais, ela é só uma forma de dificultar um pouco o exemplo.
 
 ```C
 // com ternário
@@ -1312,16 +1315,20 @@ int n;
 printf("digite um número: ");
 scanf("%i", &n);
 
-( n % 2 == 0 )? printf("o número %i é par", n) : printf("digite outro número: ");
+   (  n % 2 == 0  )? printf("o número %i é par", n) : printf("digite outro número: ");
+//   se n for par         diga que ele é par      senão        peça outro número
+
 int reserva = n;
-n = ( n % 2 == 0 ) ? n : scanf("%i", &reserva);
+n = ( n % 2 == 0 ) ?   n       :      scanf("%i", &reserva);
+//   se n for par    n é n   senão      leia outro número
+
 n = reserva;
 ```
-> antes que você se pergunte o por quê de eu ter criado outra variável, se o código estivesse assim:
+> antes que você se pergunte o por quê de eu ter criado a variável `reserva`, se o código estivesse assim:
 ```C
 n = ( n % 2 == 0 ) ? n : scanf("%i", &n);
 ```
-> O `scanf` iria ler o valor, colocar dentro do n, mas quando ele finalizasse esta instrução ele retornaria um `1` ou um `0` que substituiria o valor lido e sempre que o número fosse ímpar o `n` seria `1` ou `0`, então a variável `reserva` serve de reserva para o valor de `n`.
+> O `scanf` iria ler o valor, colocar dentro do n, mas quando ele finalizasse esta instrução ele retornaria um `1` ou um `0` para informar se deu certo ou não, e esse feedback do `scanf` substituiria o valor lido por ele, e sempre que o número fosse ímpar o `n` seria `1` ou `0`, então a variável `reserva` serve de reserva para o valor de `n`.
 
 ```C
 // com condicionais
@@ -1330,21 +1337,20 @@ int n;
 printf("digite um número: ");
 scanf("%i", &n);
 
-if (n % 2 == 0) {
-   printf("o número %i é par", n);
-} else {
-   printf("digite outro número: ");
-   scanf("%i", &n);
+if (n % 2 == 0) {                    // se n for par
+   printf("o número %i é par", n);   // diga que ele é par
+} else {                             // senão
+   printf("digite outro número: ");  // peça outro número
+   scanf("%i", &n);                  // e leia esse número
 }
 ```
 
-Note que o código feito com condicionais ficou muito mais organizado e simples de entender além de eliminar a necessidade da variável auxiliar `reserva`...
-> Claro que devem haver outras formas de fazer o código com o ternário que não necessite de variável auxiliar, mas vamos combinar que o condicional é muito mais intuitivo.
+Note que o código feito com condicionais ficou muito mais organizado e simples de entender, além de eliminar a necessidade da variável auxiliar `reserva`...
 
 Existem 3 formas de fazer um condicional no C:
 
 ```C
-int condicao = (67 != 5);  /* 
+int condicao = (67 != 5);  /*
                               e se você prestou atenção 
                               no capítulo de operadores 
                               sabe que o valor dessa 
@@ -1374,62 +1380,7 @@ else if ( outra_condicao ) {
    // outros comandos
 }
 ```
-> É possível colocar condições dentro de outras, mas isso depende do programa, exemplo:
 
-```C
-int  numero = 80;
-char imparOuPar = ( numero % 2 == 0  ) ? 'p' : 'i' ;
-
-if ( imparOuPar == 'p' ) {
-   printf("o número %i é par", numero);
-
-   // testando intervalos
-   if ( numero < 10 ) {
-      printf( "o número %i é menor que 10", numero );
-   } else if ( numero >= 10 && numero <= 30 ){
-      printf( "o número %i é maior ou igual a 10 e menor ou igual a 30", numero );
-   } else {
-      printf( "o número %i é maior que 30", numero );
-   }
-
-} else {
-   printf("o número %i é ímpar", numero);
-
-   // testando intervalos
-   if ( numero < 10 ) {
-      printf( "o número %i é menor que 10", numero );
-   } else if ( numero >= 10 && numero <= 30 ){
-      printf( "o número %i é maior ou igual a 10 e menor ou igual a 30", numero );
-   } else {
-      printf( "o número %i é maior que 30", numero );
-   }
-}
-```
-
-> Note que há uma área exatamente idêntica testando os intervalos no fim de cada condicional, então para tornar o código acima mais eficiente ele deveria ser assim:
-
-```C
-int  numero = 80;
-char imparOuPar = ( numero % 2 == 0  ) ? 'p' : 'i' ;
-
-if ( imparOuPar == 'p' ) {
-   printf("o número %i é par", numero);
-
-} else {
-   printf("o número %i é ímpar", numero);
-}
-
-// testando intervalos
-if ( numero < 10 ) {
-   printf( "o número %i é menor que 10", numero );
-} else if ( numero >= 10 && numero <= 30 ){
-   printf( "o número %i é maior ou igual a 10 e menor ou igual a 30", numero );
-} else {
-   printf( "o número %i é maior que 30", numero );
-}
-```
-
-> O programa acima vai funcionar da mesma maneira, mas sem redundâncias...
 
 
 <br>
