@@ -232,7 +232,7 @@ Mas, caso você ainda não tenha entendido, eu vou explicar de uma maneira mais 
 Terezinha simboliza o sistema operacional executando um programa feito em C:  a frigideira é a função `main`, os ovos, o óleo, o sal e a fritura do ovo são todos os comandos executados pela função. 
 Terezinha sabe se o ovo está queimado ou não porque a frigideira dá um retorno (quando o ovo está mais escuro, ela sabe que queimou): esse é o papel do comando `return` da função `main`.
 
-A partir daqui, você vai se deparar com diversos códigos soltos (para economizar espaço), mas quando for testá-los na sua máquina, coloque-os dentro da função `main`.
+> A partir daqui, você vai se deparar com diversos códigos soltos (para economizar espaço), mas quando for testá-los na sua máquina, coloque-os dentro da função `main`:
 
 ```C
 #include <stdio.h>
@@ -243,6 +243,37 @@ int main(){
 }
 ```
 
+O `;` é o que delimita o fim de um comando no C e ele ignora os espaços ou quebras de linha em excesso antes do `;`, logo, isso:
+
+```C
+           printf
+(
+"Hello mundo!!\n"
+         )
+;
+```
+
+É o mesmo que isso:
+
+```C
+printf("Hello mundo!!\n");
+```
+
+> Então as regras para o uso do `;` são:
+>
+> 1. Devem estar no final das linhas com comandos.
+> 2. Não devem estar em linhas que começarem com `#`.
+> 3. Não devem estar em linhas que terminam com `{` ou `}`.
+
+
+Mas mesmo sabendo disso tome cuidado com os espaços, pois em alguns casos muito específicos a falta deles pode confundir o compilador, por exemplo:
+
+```C
+int i = -2 - -3;
+```
+> não se preocupe com o `int i =`, saiba apenas que `i` é uma variável, isso será explicado mais tarde...
+
+O `-3` é um número negativo, mas o `-` entre `-2` e `-3` é o sinal de subtração, se não houvesse espaço entre o `-` solto e os outros números o programa acima não seria compilado pois o C não saberia o que você quer que ele faça.
 ## Comentários
 
 Comentários são "anotações ou esclarecimentos" escritas(os) no código para descrever a função de algo e geralmente são úteis quando se  quer analisar algum código antigo seu ou o código de outra pessoa. Os comentários sempre são ignorados pelo compilador, eles são apenas para auxiliar o programador.
@@ -1166,7 +1197,7 @@ s[4] = 'a';
 s[5] = 's';
 s[6] = '\0';
 ```
-> E só pra relembrar: NÃO SE ESQUEÇA DO `\0`... tô parecendo até flashback de naruto com esse caractere ...
+> E só pra relembrar: NÃO SE ESQUEÇA DO `\0`... Tô parecendo até flashback de naruto com esse caractere ...
 
 Na segunda, você tem que importar a biblioteca `String.h` e depois usar a função `strcpy` para atribuir o valor, dessa maneira:
 
@@ -1177,9 +1208,9 @@ char str[13];
 strcpy(str, "coisas");
 ```
 
-E a terceira, você vai ter que esperar pelo capítulo de ponteiros para entender, logo, use as mostradas acima por enquanto.
-
 > O `include` acima pode ficar tanto dentro da função `main` quanto fora, só é importante colocar antes do uso da função `strcpy`.
+
+E a terceira, você vai ter que esperar pelo capítulo de ponteiros para entender, logo, use as mostradas acima por enquanto.
 
 Note que você não é obrigado a colocar a quantidade exata de caracteres na string, mas não coloque uma string maior que o tamanho tamanho estipulado.
 
@@ -1193,7 +1224,6 @@ printf("a string lida foi: %s\n", str);
 ```
 
 E se você é observador deve estar se perguntando _"mas e o `&` antes da variável no scanf?"_ Aqui não é necessário, porque a string não ocupa apenas um espaço na memória, mas vários, por isso não há apenas um endereço. Para uma melhor compreensão, observe:
-
 
 ```C
 char Char = 'A';
@@ -1385,26 +1415,28 @@ else if ( outra_condicao ) {
 ```
 
 > Mas o bloco não é obrigatório para o uso do condicional, caso você queira um `if` mais compacto:
-
 ```C
-// simples
 if (condicao) /* comando */;
-
-// composto
-if (condicao) /* comando */;
-else /*outro comando*/;
-
-// aninhado
-if (condicao) /* comando */;
-else if ( outra_condicao ) /*comando*/;
-else /*outro comando*/;
 ```
 
-> Caso você precise executar mais de um comando você vai ter que usar um bloco.
+> Caso você precise executar mais de um comando você vai ter que usar um bloco, mas você usar a forma acima em conjunto com as anteriores, logo, o seguinte código é válido:
+
+```C
+int i = 3847;
+
+if (i % 2 == 0) printf("O número é par!\n");
+
+else if ( ( (float) i / 3.0 == 0.0 ) && ( i % 2 == 1 ) ) {
+   printf("O número é ímpar e divisível por 3!");
+   printf("\n");
+}
+
+else printf("O número é ímpar!");
+```
 
 ## Estruturas de repetição
 
-Estruturas de repetição são estruturas que permitem que você repita comandos.
+Estruturas de repetição são estruturas que permitem que você repita comandos, e isso te permite automatizar algumas coisas como atribuir valor a arrays ou fazer contagem...
 
 ### While
 
@@ -1431,14 +1463,205 @@ A estrutura usada é o `while`, que significa "enquanto", basicamente ele funcio
 
 ```C
 condicao = (2 != 3);
-while ( condicao ) {   // enquanto a condição for verdadeira
+while ( condicao ) {   // enquanto a condição for verdade execute
    // comandos
 }
 ```
 
 E se a condição for verdadeira o `while` vai executar os comandos do bloco, mas se ela for falsa ele vai sair do loop (estrutura de repetição).
 
+E assim como nos condicionais, se você precisar
+
 No caso da contagem foi necessário adicionar `1` ao contador, pois se a `condicao` sempre for verdadeira o programa vai entrar em um loop infinito, e foi isso que aconteceu com o nosso exemplo anterior, pois o `2` sempre será diferente do `3`.
+
+Mas isso não quer dizer que loops infinitos sejam sempre ruins,Digamos que agente queira que um programa leia dados, mas não sabemos a quantidade exata de vezes ler, então criamos um loop infinito e damos um "flag"(uma forma de interrupção do loop) a ele, no nosso exemplo flag será a resposta para a pergunta "Deseja continuar?", caso a pessoa digite "n" loop será interrompido.
+
+Eu vou ilustrar a situação acima de duas maneiras usando o `while`.
+
+```C
+// usando o teste lógico do while
+{
+   char flag = 's';
+
+   while (flag == 's'){
+      printf("Deseja continuar? [s/N] ");
+      scanf("%c", &flag);
+   }
+}
+
+// usando o break
+{
+   char flag;
+
+   while (1) {
+      printf("Deseja continuar? [s/N] ");
+      scanf("%c", &flag);
+
+      if (flag != 's') break; // se a resposta for não interrompa
+   }
+}
+```
+> O break é um comando que interrompe loops
+
+E assim como nos condicionais o `while` também tem uma forma compacta:
+
+```C
+int cont = 0;
+while (cont <= 10) printf("%i\n", cont++);
+```
+
+### Do..while
+
+A estrutura popularmente conhecida como `do`..`while` é basicamente um `while` de cabeça para baixo.
+
+```C
+// exibindo uma contagem até 5
+int i = 1;
+
+// while
+
+while ( i <= 5 )         // enquanto ( i menor ou igual a 5 )
+   printf ( "%i\n", i++ );  //     escreva i
+
+// do..while
+do {                         // faça {
+   printf ( "%i\n", i );     //    escreva i
+} while ( i<=5 );            // } enquanto ( i menor ou igual a 5 )
+```
+
+O `do`..`while` funciona da mesma forma que o `while`, com uma única diferença, ele faz o teste lógico no final, logo, ele executa o que está no bloco e só depois testa a condição:
+
+```C
+int i = 90;
+
+do {
+   printf("%i\n", i);
+} while ( i <= 10 );
+```
+
+> Saída:
+
+```
+90
+```
+
+_"Ué? Por que ele imprimiu?"_ , Porque ele faz o teste lógico ( `i <= 10` ) no fim da execução do bloco, se este fosse um `while` comum o teste seria feito antes, e só executaria o bloco se este teste fosse verdadeiro.
+
+_"Aah! Então é inútil usar este laço!!"_ ... Sinto discordar, mas este laço foi criado para agilizar algumas tarefas, lembra do código com flag? Que vimos no capítulo anterior?
+
+```C
+char flag = 's';
+
+while (flag == 's'){
+   printf("Deseja continuar? [s/N] ");
+   scanf("%c", &flag);
+}
+```
+
+Para que o código acima funcione nós somos obrigados o valor `'s'` à variável `flag`, com o `do`..`while` isso não é necessário:
+
+```C
+char flag;
+
+do {
+   printf("Deseja continuar? [s/N] ");
+   scanf("%c", &flag);
+} while (flag == 's');
+```
+
+E o código com `while` e sem usar o teste lógico (o que usamos o `break` para sair do loop) é um `do`..`while` escrito manualmente!
+
+### For
+
+O `for` é uma forma mais automatizada de loop, ele é mais usado para contagem, mas também é possível usá-lo com flag.
+
+Em uma comparação direta com o `while`:
+
+```C
+// exibindo uma contagem até 5
+
+// while
+{
+   int i = 0;
+   while (i <= 5) printf("%i\n", i++);
+}
+
+// for
+{
+   for ( int i = 0; i <= 5; i++) printf("%i\n", i);
+}
+```
+
+_"Caramba!! O que aconteceu aqui?"_ ... Se você não estiver entendido o código acima eu irei mostrar da forma tradicional:
+
+```C
+// exibindo uma contagem até 5
+
+// while
+{
+   int i = 0;            // dando o valor 0 a i
+   while (i <= 5) {      // enquanto i menor ou igual a 5
+      printf("%i\n", i); // escreva i
+      i ++;              // incremente i
+   }
+}
+
+// for
+{
+   for ( int i   =   0; i <= 5;     i++      ) { 
+// para      i entre 0    e  5  incremente i
+      printf("%i\n", i); 
+   }
+}
+```
+
+_"Ainda não entendi o `for`"_ ... Note que temos três espaços entre os parenteses separados por `;`, no primeiro espaço você declara uma variável, no segundo você digita o teste lógico, e no terceiro você digita um incremento.
+
+Basicamente o `for` é uma gambiarra do `while`, ainda utilizando o exemplo anterior observe um for escrito no estilo se um `while`:
+
+```C
+int i = 0;
+
+for ( ; i <= 5 ; ){
+   printf("%i\n", i);
+   i++;
+}
+```
+
+> Os espaços entre `;` podem ficar em branco, mas convenhamos que é um tanto inútil usar um `for` desta maneira...
+
+E as formas diversas de usar o `for` são essas:
+
+```C
+// usar variável já existente
+int i;
+for (i = 1; i <= 5; i++) printf("%i\n", i);
+
+// criando variável local exclusiva para o uso do for
+for ( int i = 1; i <= 5; i++) printf("%i\n", i);
+
+// forma while
+int i = 1;
+for ( ; i <= 5; ) printf("%i\n", i++);
+
+// forma de loop infinito com flag
+int i = 1;
+for (;;) {
+   printf ("%i\n", i++);
+   if ( i == 5 ) break;
+}
+```
+
+Deu pra perceber que o `for` é bem eclético não é mesmo? Mas definitivamente a forma em que ele é mais útil é a tradicional:
+
+```C
+for ( int <nome da variável> = <valor inicial>; <teste lógico>; <incremento>) {
+   // comandos
+}
+
+// forma compacta
+for ( int <nome da variável> = <valor inicial>; <teste lógico>; <incremento>) /* comando */;
+```
 
 <br>
 <br>
