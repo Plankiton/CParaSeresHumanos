@@ -38,5 +38,46 @@ int main(int argc, char **argv){
    }
    */
 
+
+   char * str;          // aqui temos um ponteiro vazio.
+
+   str = malloc (6);          // aqui nós alocamos 6 bytes na memória.
+
+   // guardando dados...
+   str[0] = 'c';
+   str[1] = 'o';
+   str[2] = 'i';
+   str[3] = 's';
+   str[4] = 'a';
+   str[5] = '\0';
+
+   printf( str );
+   putchar('\n');
+
+   str = realloc (str, 12);        // aqui nós realocamos o espaço de 6 bytes para 12 bytes
+
+   // guardando dados...
+   str[0] = 'o';
+   str[1] = 'u';
+   str[2] = 't';
+   str[3] = 'r';
+   str[4] = 'a';
+   str[5] = ' ';
+   str[6] = 'c';
+   str[7] = 'o';
+   str[8] = 'i';
+   str[9] = 's';
+   str[10] = 'a';
+   str[11] = '\0';
+   
+
+   printf( str );
+   putchar('\n');
+
+   free( str );           /*
+                              essa linha vai no fim do programa e serve
+                              para liberar a memória que nó alocamos.
+                          */
+
 return 0;
 }

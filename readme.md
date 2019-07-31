@@ -101,6 +101,7 @@ Repositório do livro no github: http://github.com/RoboCopGay/c_para_seres_human
    - [Estruturas de repetição](#estruturas-de-repetição)
    - [Ponteiros](#ponteiros)
    - [Funções](#funções)
+   - [Outras formas de entrada e saída de dados](#outras-formas-de-entrada-e-saída-de-dados)
 
 # Noções básicas
 
@@ -265,7 +266,7 @@ printf("Hello mundo!!\n");
 >
 > 1. Devem estar no final das linhas com comandos.
 > 2. Não devem estar em linhas que começarem com `#`.
-> 3. Não devem estar em linhas que terminam com chaves se essas chaves pertencem a blocos de código.
+> 3. Não devem estar em linhas que terminam com chaves se essas chaves pertencem a blocos de código (pois existem outras estruturas que usam chaves).
 
 
 Mas mesmo sabendo disso tome cuidado com os espaços, pois em alguns casos muito específicos a falta deles pode confundir o compilador, por exemplo:
@@ -374,10 +375,19 @@ double real_dobro = 10E49; /* 8 bytes -> o double tem o
                            */
 ```
 > Essas quantidades demonstradas acima não são iguais em todas as arquiteturas, isto quer dizer que se o seu computador é de 32 bits o tamanho das variáveis pode ser diferente, logo, para que você tenha certeza do tamanho delas (em bytes) é só usar o `sizeof`:
+
 ```C
 int inteiro;
 int tmh_inteiro = sizeof inteiro; // tamanho da variável inteiro
 ```
+
+> Caso você não queira criar uma variável unicamente para pegar o seu tamanho é possível usar o `sizeof` para pegar o tamanho do tipo diretamente:
+
+```C
+int tmh_inteiro = sizeof (int); // tamanho da variável inteiro
+```
+
+> Note que o tipo está entre parênteses, isso é obrigatório ou o C vai achar que você está declarando uma variável.
 
 E a galera que já conhece um pouco de programação deve estar se perguntando _"Mas e os boleanos? No C não existe verdadeiro e falso?"_  sim, mas no C o `int` faz esse papel, sendo que o **0** equivale a **falso** e o **1** equivale a **verdadeiro**.
 
@@ -426,9 +436,11 @@ Você já viu anteriormente uma forma de saída de dados: o `printf`:
 printf("Hello mundo!!\n");
 ```
 
+> Sem este `\n` caso você escreva outra coisa os dois irão aparecer juntos.
+
 ### Caractere de scape ( "\\" )
 
-O caractere de scape, no C, é o `\` e ele dá "poderes" ao seu texto, pode ser usado em variáveis do tipo `char` e em strings.
+O caractere de scape, no C, é o `\` e ele dá "poderes" ao seu texto, pode ser usado em variáveis do tipo `char` e em strings, mas para ilustrá-lo eu irei representá-lo sempre dentro de um `printf`.
 
 #### \n
 
@@ -500,7 +512,7 @@ coisas
                       .
 ```
 
-#### \"
+#### \\"
 
 ```C
 printf("\"joao\" é um nome feio); // \": exibe as aspas duplas.
@@ -513,7 +525,7 @@ Exibe as aspas duplas ( `"` ), pois se você escrever simplesmente `"` o C vai a
 "joao" é um nome feio
 ```
 
-#### \'
+#### \\'
 
 ```C
 printf("it\'s estranho"); // \': exibe as aspas simples ou apótrofos.
@@ -574,7 +586,7 @@ int numero;
 scanf("%i", &numero);
 ```
 
-Tá, eu sei que você está se perguntando _"e esse_ `&` _serve pra que?"_ Esse `&` diz para o printf colocar o valor no lugar da memória onde está o número. O `&` simboliza um endereçamento de memória, o `scanf` coloca o valor direto no local da memória onde está a variável.
+Tá, eu sei que você está se perguntando _"e esse_ `&` _serve pra que?"_ Esse `&` diz para o `scanf` colocar o valor no lugar da memória onde está o número. O `&` simboliza um endereçamento de memória, o `scanf` coloca o valor direto no local da memória onde está a variável.
 
 E como você pode perceber o `%i` se refere a um número inteiro. Todos os tipos de variáveis são simbolizados pelos símbolos (`%i`, `%c`, `%f`...) do `printf`.
 
@@ -1755,14 +1767,141 @@ a[1] = 90;
 
 Notem que o índice ( o valor entre `[` e `]` ), é somado a `a`, isso acontece porque um array cria uma fila de espaços do mesmo tipo, uma do lado da outra, por isso `*(a+3)` é o mesmo que `a[3]`.
 
-E como prometi no capítulo sobre strings... Esta é a terceira forma de atribuir uma string:
+### Alocação dinâmica (arrays dinâmicos)
+
+Em alguns casos, precisamos de mais espaço do que a variável comum para guardar dados, e para esses casos geralmente usamos arrays, mas e se durante a execução eu necessite de um array maior... _"É só criar um array maior e usar ele para a manipulação do novos dados!"_ ... Isso pode até funcionar, mas não é recomendável, pois seria um desperdício de memória.
+
+Para resolver isso nós podemos alocar a quantidade de memória que for necessária e colocar um ponteiro apontando para este trecho da memória, e se quisermos um espaço maior, é só realocar a memória.
+
+> E como prometi no capítulo sobre strings... Esta é a terceira forma de atribuir uma string:
 
 ```C
 char * str;
 str = "string";
 ```
+
 > Isto só funciona com strings, arrays de outros tipos tem que ser atribuídos item a item.
 
+
+O próprio exemplo da atribuição de uma string é um exemplo de alocação dinâmica, mas ela é feita automaticamente:
+
+```C
+char * str;          // aqui temos um ponteiro vazio.
+str = "coisa";       /* 
+                        aqui nós alocamos 6 bytes na memória para
+                        guardar { 'c', 'o', 'i', 's', 'a', '\0' }
+                     */
+
+printf("%s\n", str);
+
+str = "outra coisa"; /*
+                        aqui nós realocamos o espaço de 6 bytes
+                        para 12 bytes e assim podemos guardar 
+                        { 
+                           'o', 'u', 't', 'r', 'a', ' ',
+                           'c', 'o', 'i', 's', 'a'
+                        }
+                     */
+
+printf("%s\n", str);
+```
+
+Se fossemos fazer o código acima usando puramente ponteiros, nós faríamos assim:
+
+```C
+char * str;                   // aqui temos um ponteiro vazio.
+
+str = malloc (6);             // aqui nós alocamos 6 bytes na memória.
+
+// guardando dados...
+*( str + 0 ) = 'c';   // str[0] = 'c';
+*( str + 1 ) = 'o';   // str[1] = 'o';
+*( str + 2 ) = 'i';   // str[2] = 'i';
+*( str + 3 ) = 's';   // str[3] = 's';
+*( str + 4 ) = 'a';   // str[4] = 'a';
+*( str + 5 ) = '\0';  // str[5] = '\0';
+
+printf( str );
+putchar('\n');
+
+str = realloc (str, 12);        // aqui nós realocamos o espaço de 6 bytes para 12 bytes
+
+// guardando dados...
+str[0] = 'o';
+str[1] = 'u';
+str[2] = 't';
+str[3] = 'r';
+str[4] = 'a';
+str[5] = ' ';
+str[6] = 'c';
+str[7] = 'o';
+str[8] = 'i';
+str[9] = 's';
+str[10] = 'a';
+str[11] = '\0';
+
+printf("%s\n", str);
+
+free( str );           /*
+                           essa linha vai no fim do programa e serve
+                           para liberar a memória que nó alocamos,
+                           para não ocorrerem erros sempre temos
+                           que liberar a memória.
+                       */
+
+```
+
+> Note que o ultimo printf está antes do `free`, pois se ele estiver depois, vai dar erro já que o espaço alocado anteriormente seria apagado.
+
+A saída de ambos os códigos é a mesma:
+
+```
+coisa
+outra coisa
+```
+
+O código apresentado é autoexplicativo, mas para garantir... Primeiro criamos o ponteiro vazio `str`,
+agora temos que dar um endereço de memória para ele, então usamos a função `malloc` para alocar um espaço na memória e atribuimos o endereço desse espaço para `str`,
+depois escrevemos os dados que queremos nesse ponteiro e o exibimos na tela, 
+E para que tenhamos mais caracteres na string realocamos o espaço de `str` com a função `realloc`,
+e para que ela funcione precisamos dar o ponteiro que queremos realocar como primeiro parâmetro e o tamanho novo em bytes como segundo parâmetro,
+e atribuir o `realloc` ao ponteiro desejado, pois ele assim como o `malloc` retorna um endereço de memória,
+então, escrevemos os dados no ponteiro de novo e o exibimos, por fim, nós liberamos a memória usada pelo ponteiro com a função `free`.
+
+_"Ah então eu vou sempre usar a primeira forma, porque é mais fácil!"_ , use, mas não se esqueça que a primeira forma só funciona com strings, para outros tipos de arrays você terá que usar a segunda forma.
+
+Só para fixar melhor veja como funcionariam o array dinâmico com o tipo `int`.
+
+```C
+
+// alocando a memória que o array terá
+int * array_dinamico = malloc ( sizeof (int) * 4); /*
+                                                aqui nós alocamos um espaço que caiba 4 inteiros,
+                                                pois o nosso array inicial terá 4 posições.
+                                              */
+
+array_dinamico [0] = 2;
+*( array_dinamico + 1) = 3;
+array_dinamico [2] = 23;
+array_dinamico [3] = 894;
+
+// realocando memória para que caibam 5 posições
+array_dinamico = realloc ( array_dinamico , sizeof (int) * 5);
+
+array_dinamico [0] = 2;
+*( array_dinamico + 1) = 3;
+array_dinamico [2] = 23;
+array_dinamico [3] = 894;
+*( array_dinamico + 4) = 34;
+```
+
+> Lembre-se de alocar colocar a quantidade certa de memória, ao contrário dos arrays aqui você tem que saber a quantidade exata de bytes reservar, um macete muito útil é:
+
+```C
+<tipo> * <variável> = malloc ( sizeof (<tipo>) * <quantidade de posições>);
+```
+
+> Desta forma a quantidade de bytes necessária será sempre respeitada.
 
 ## Funções
 
@@ -1838,6 +1977,77 @@ return 0;
 > O `arg_counter` é a quantidade de argumentos recebidos, o `arg_variable` é um parâmetros com os parâmetros, e esses parâmetros ou argumentos, são strings.
 
 No exemplo acima usamos `arg_counter` e `arg_variable` para o nome dos parâmetros, você pode usar o que você quiser, mas a maioria das pessoas usam `argc` (`arg_counter`) e `argv` (`arg_variable`).
+
+## Outras formas de entrada e saída de dados
+
+Até agora nós só usamos o `printf` e o `scanf` para entrada e saída de dados, mas existem outras formas... e neste capítulo veremos essas outras formas.
+
+### Putchar e puts
+
+Basicamente o "put" significa coloque, logo, `putchar` é coloque um `char`:
+
+```C
+char c = '\n';
+
+putchar ('j');
+putchar ('o');
+putchar ('ã');
+putchar ('o');
+putchar ( c );
+putchar ('!');
+putchar ( c );
+```
+
+> Saída:
+
+```
+joao
+!
+```
+
+E seguindo a mesma lógica, `puts` é coloque uma string ( o `s` é uma abreviação ).
+
+```C
+char * str = "string coisada";
+
+puts ( "joao" );
+puts ( "!" );
+
+puts ( str );
+```
+
+> Saída:
+
+```
+joao
+!
+string coisada
+```
+
+> Uma particularidade do `puts` é que ele adiciona um `\n` no fim da string.
+
+### Getchar e gets
+
+Assim como o `scanf`, o `getchar` e o `gets`, são funções para leitura de dados, mas que só servem para ler variáveis do tipo `char` e strings.
+
+É assim que se usa o `getchar`:
+
+```C
+char j;
+
+j = getchar();
+```
+
+E o `gets` é usado assim:
+
+```C
+char str [20];
+gets(str);
+```
+> Mesmo o `gets` sendo uma função contraindicada pela comunidade, ela ainda funciona, então caso o gcc aponte erros pelo uso do `gets`, saiba que ela vai funcionar normalmente.
+
+### Fprintf e fscanf
+
 
 
 <br>
