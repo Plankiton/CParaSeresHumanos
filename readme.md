@@ -1862,7 +1862,10 @@ coisa
 outra coisa
 ```
 
-O código apresentado é autoexplicativo, mas para garantir... Primeiro criamos o ponteiro vazio `str`,
+O código apresentado é autoexplicativo, mas para garantir... 
+
+```C
+Primeiro criamos o ponteiro vazio `str`
 agora temos que dar um endereço de memória para ele, então usamos a função `malloc` para alocar um espaço de `6` bytes na memória e atribuímos o endereço desse espaço para `str`.
 
 Depois escrevemos os dados que queremos nesse ponteiro e o exibimos na tela.
@@ -1872,6 +1875,7 @@ E para que tenhamos mais caracteres na string realocamos o espaço de `str` com 
 Então, escrevemos os dados no ponteiro de novo e o exibimos na tela mais uma vez. 
 
 Por fim, nós liberamos a memória usada pelo ponteiro com a função `free`.
+```
 
 _"Ah então eu vou sempre usar a primeira forma, porque é mais fácil!"_ , use, mas não se esqueça que a primeira forma só funciona com strings, para outros tipos de arrays você terá que usar a segunda forma.
 
@@ -1900,7 +1904,7 @@ array_dinamico [3] = 894;
 *( array_dinamico + 4) = 34;
 ```
 
-> Lembre-se de alocar colocar a quantidade certa de memória, ao contrário dos arrays aqui você tem que saber a quantidade exata de bytes reservar, um macete muito útil é:
+> Lembre-se de alocar a quantidade certa de memória para o ponteiro, ao contrário dos arrays aqui você tem que saber a quantidade exata de bytes reservar, um macete muito útil é:
 
 ```C
 <tipo> * <variável> = malloc ( sizeof (<tipo>) * <quantidade de posições>);
@@ -2050,11 +2054,6 @@ char str [20];
 gets(str);
 ```
 > Mesmo o `gets` sendo uma função contraindicada pela comunidade, ela ainda funciona, então caso o gcc aponte erros pelo uso do `gets`, saiba que ela vai funcionar normalmente.
-
-### Fprintf e fscanf
-
-
-
 
 <br>
 <br>
