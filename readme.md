@@ -265,7 +265,7 @@ printf("Hello mundo!!\n");
 >
 > 1. Devem estar no final das linhas com comandos.
 > 2. Não devem estar em linhas que começarem com `#`.
-> 3. Não devem estar em linhas que terminam com `{` ou `}`.
+> 3. Não devem estar em linhas que terminam com chaves se essas chaves pertencem a blocos de código.
 
 
 Mas mesmo sabendo disso tome cuidado com os espaços, pois em alguns casos muito específicos a falta deles pode confundir o compilador, por exemplo:
