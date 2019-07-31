@@ -99,6 +99,7 @@ Repositório do livro no github: http://github.com/RoboCopGay/c_para_seres_human
    - [Os blocos e o escopo](#os-blocos-e-o-escopo)
    - [Condicionais](#condicionais)
    - [Estruturas de repetição](#estruturas-de-repetição)
+   - [Ponteiros](#ponteiros)
 
 # Noções básicas
 
@@ -1218,19 +1219,19 @@ _"Legal, mas se eu quiser ler uma string? Ou imprimir uma string?"_ ... Muito si
 
 ```C
 char str [20];
-scanf("%s", str);
+scanf("%s", &str);
 
 printf("a string lida foi: %s\n", str);
 ```
 
-E se você é observador deve estar se perguntando _"mas e o `&` antes da variável no scanf?"_ Aqui não é necessário, porque a string não ocupa apenas um espaço na memória, mas vários, por isso não há apenas um endereço. Para uma melhor compreensão, observe:
+Uma coisa que eu sei que você ficou na dúvida no capítulo sobre variáveis foi o por que de `'A'` ser diferente de `"A"`.
 
 ```C
 char Char = 'A';
 char String = "A";
 ```
-> 'A' é diferente de "A", pois eles seriam registrados assim na memória:
->
+'A' é diferente de "A", pois a string tem sempre um caractere nulo no fim:
+
 |        | [0] |  [1] |
 |--------|-----|------|
 | Char   | 'A' |      |
@@ -1663,6 +1664,109 @@ for ( int <nome da variável> = <valor inicial>; <teste lógico>; <incremento>) 
 for ( int <nome da variável> = <valor inicial>; <teste lógico>; <incremento>) /* comando */;
 ```
 
+## Funções
+
+A estrutura de uma função já foi explicada
+
+## Ponteiros
+
+Os ponteiros ou pointers no inglês, são variáveis que guardam endereços de memória.
+
+Lembra do `&` antes da variável no `scanf`?
+
+```C
+int n;
+scanf("%i", &n);
+```
+
+Este `&` indica um endereço de memória da variável `n`, e para guardar este endereço em uma variável, é necessário que agente crie um ponteiro:
+
+```C
+int n = 9;
+int * ponteiro_n = &n;
+```
+
+Este `*` antes do nome da variável diz para o C que esta variável vai guardar endereços de memória... _"Mas porque colocar um tipo se a variável vai guardar só endereços? Por acaso endereço tem tipo?_ ... Não é bem assim, temos que dar um tipo ao ponteiro porque ele também tem tamanho, e para que consiga armazenar o endereço de uma variável ele tem que ter o mesmo tamanho.
+
+_"Tá, mas ainda não entendi a utilidade desse negócio!"_ , acho que essa mentalidade vai mudar assim que você descobrir que um array é um ponteiro que aloca vários espaços na memória.
+
+Existem algumas regras sobre o uso de ponteiros, por exemplo:
+
+```C
+int i = 90;
+
+int * p = &i; // o ponteiro "p" agora aponta para a variável "i"
+
+printf("%i\n", *p);
+```
+> Quando damos o endereço de memória de uma variável para um ponteiro, nós dizemos que esse ponteiro aponta para essa variável
+
+No exemplo acima, declaramos um ponteiro `p` apontando para `i`, agora nós podemos ter acesso ao valor de `i` apenas adicionando um `*` antes do `p`, e com isso conseguimos exibir o valor de `i` na tela com o `printf`.
+
+E usando esse `*` também podemos alterar o valor de `i`:
+
+```C
+int i = 90;
+
+int * p = &i;
+*p = 89;
+```
+> Só que nós estamos alterando o valor diretamente na memória, e uma prova disso é que se você incrementar o ponteiro `p`, terá acesso a outro endereço de memória.
+
+```C
+int i = 90;
+int * p = &i;
+
+p ++;
+
+*p = 89;
+```
+
+Quando você executar o código acima irá ocorrer um erro de segmentação (quando o programa tenta acessar uma memória que não pertence a ele) ou se não ocorrer erro, quer dizer que ele acessou um espaço de memória desconhecido, e quando este ultimo ocorre o valor que está nesse espaço é um lixo do sistema ou o local onde está alocada outra variável.
+
+```C
+int a[] = { 2, 4, 5, 6};
+
+printf("%i\n", a[1]); // 4
+
+a ++;
+printf("%i\n", * a);  // 4
+```
+
+Como um array é um ponteiro, nós podemos usar o array como um ponteiro, _"Mas por que você incrementou o `a` antes de exibi-lo?"_ , porque se eu usá-se o endereço original, o valor exibido seria o `2`, pois o endereço de memória sempre se refere ao primeiro valor.
+
+Mas o método que usei anteriormente não é muito adequado já que uma vez que você incremente o array ele estará apontando para outra posição e assim você tem que decrementar toda vez, o que não é prático, então, a forma mais indicada para isso seria:
+
+```C
+int a[] = { 2, 4, 5, 6};
+
+printf("%i\n", a[1]);     // 4
+
+printf("%i\n", *(a+1) );  // 4
+```
+> Desta forma o valor de `a` não será alterado.
+
+Isso também serve para atribuir valor aos itens de um array.
+
+```C
+int a[] = { 2, 4, 5, 6};
+
+a[1] = 90;
+
+*(a+2) = 56
+```
+
+Notem que o índice ( o valor entre `[` e `]` ), é somado a `a`, isso acontece porque um array cria uma fila de espaços do mesmo tipo, uma do lado da outra, por isso `*(a+3)` é o mesmo que `a[3]`.
+
+E como prometi no capítulo sobre strings... Esta é a terceira forma de atribuir uma string:
+
+```C
+char * str;
+str = "string";
+```
+> Isto só funciona com strings, arrays de outros tipos tem que ser atribuídos item a item.
+
+
 <br>
 <br>
 <br>
@@ -1677,4 +1781,5 @@ for ( int <nome da variável> = <valor inicial>; <teste lógico>; <incremento>) 
 <br>
 <br>
 <br>
+
 O livro ainda não acabou... mas ainda está em processo de criação, então aguarde outra atualização e poderá prosseguir...
