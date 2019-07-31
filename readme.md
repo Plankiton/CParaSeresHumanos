@@ -1771,7 +1771,7 @@ Notem que o índice ( o valor entre `[` e `]` ), é somado a `a`, isso acontece 
 
 Em alguns casos, precisamos de mais espaço do que a variável comum para guardar dados, e para esses casos geralmente usamos arrays, mas e se durante a execução eu necessite de um array maior... _"É só criar um array maior e usar ele para a manipulação do novos dados!"_ ... Isso pode até funcionar, mas não é recomendável, pois seria um desperdício de memória.
 
-Para resolver isso nós podemos alocar a quantidade de memória que for necessária e colocar um ponteiro apontando para este trecho da memória, e se quisermos um espaço maior, é só realocar a memória.
+Para resolver isso nós podemos alocar a quantidade de memória que queremos (em bytes) e usar um ponteiro com este endereço de memória, e se quisermos um espaço maior, é só realocar a memória deste ponteiro, assim nós poderemos aumentar e diminuir o tamanho do array.
 
 > E como prometi no capítulo sobre strings... Esta é a terceira forma de atribuir uma string:
 
