@@ -1108,34 +1108,51 @@ E por fim exibimos os valores:
 // agora que temos as quantidades e sabemos se são plurais ou não é só exibir os resultados
 
 printf(
-      "\n%i%c%s %s", 
+   "\n%i%c%s %s", 
 
-      impar,
-      (impar_plural == 0 )? '\b' : ' ', // se a quantidade for 0 ele apaga o 0 ('\b') senão ele escreve um espaço
+   impar,                            // quantidade de impares
+   (impar_plural == 0 )? '\b' : ' ', /*
+                                       se a quantidade for 0
+                                          ele  apaga o 0 ("\b") 
+                                       senão  
+                                          ele escreve um espaço
+                                    */
 
-      (  impar_plural == 0  )?         "nenhum é"   :     ((impar_plural == 1 )?         "é"   :            "são"),
-      // se for nulo           escreve "nenhum é"  senão     se for singular     escreve "é" senão  escreve "são"
+   (impar_plural == 0 )?  "nenhum é" :
+      ( (impar_plural == 1 )? "é" : "são") ,/*
+                                               se for nulo 
+                                                  escreve "nenhum é"
+                                               senão se for singular 
+                                                  escreve "é" 
+                                               senão  
+                                                  escreve "são"
+                                            */
 
-      (impar_plural == 2)? "ímpares": "ímpar" // se for plural escreve "ímpares" senão escreve "ímpar"
-      );
+   (impar_plural == 2)? "ímpares": "ímpar" /* 
+                                             se for plural 
+                                                escreve "ímpares" 
+                                             senão 
+                                                escreve "ímpar"
+                                           */
+   );
 
 printf(
-      "\n%i%c%s %s", 
+   "\n%i%c%s %s", 
 
-      par,
-      (par_plural == 0 )? '\b' : ' ',
-      (par_plural == 0 )? "nenhum é" : ((par_plural == 1 )? "é" : "são"),
-      (par_plural == 2)? "pares": "par"
-      );
+   par,
+   (par_plural == 0 )? '\b' : ' ',
+   (par_plural == 0 )? "nenhum é" : ((par_plural == 1 )? "é" : "são"),
+   (par_plural == 2)? "pares": "par"
+   );
 
 printf(
-      "\ne %i%c%s %s", 
+   "\ne %i%c%s %s", 
 
-      divPor3,
-      (divPor3_plural == 0 )? '\b' : ' ',
-      (divPor3_plural == 0 )? "nenhum é" : ((divPor3_plural == 1 )? "é" : "são"),
-      (divPor3_plural == 2)? "divisíveis por 3": "divisível por 3"
-      );
+   divPor3,
+   (divPor3_plural == 0 )? '\b' : ' ',
+   (divPor3_plural == 0 )? "nenhum é" : ((divPor3_plural == 1 )? "é" : "são"),
+   (divPor3_plural == 2)? "divisíveis por 3": "divisível por 3"
+   );
 ```
 
 E o código final ficou assim:
@@ -1188,51 +1205,51 @@ int main(int argc, char **argv){
    // agora que temos as quantidades e sabemos se são plurais ou não é só exibir os resultados
 
    printf(
-         "\n%i%c%s %s", 
+      "\n%i%c%s %s", 
 
-         impar,                            // quantidade de impares
-         (impar_plural == 0 )? '\b' : ' ', /*
-                                             se a quantidade for 0
-                                                ele  apaga o 0 ("\b") 
-                                             senão  
-                                                ele escreve um espaço
-                                          */
+      impar,                            // quantidade de impares
+      (impar_plural == 0 )? '\b' : ' ', /*
+                                          se a quantidade for 0
+                                             ele  apaga o 0 ("\b") 
+                                          senão  
+                                             ele escreve um espaço
+                                       */
 
-         (impar_plural == 0 )?  "nenhum é" :
-            ( (impar_plural == 1 )? "é" : "são") ,/*
-                                                     se for nulo 
-                                                        escreve "nenhum é"
-                                                     senão se for singular 
-                                                        escreve "é" 
-                                                     senão  
-                                                        escreve "são"
-                                                  */
+      (impar_plural == 0 )?  "nenhum é" :
+         ( (impar_plural == 1 )? "é" : "são") ,/*
+                                                  se for nulo 
+                                                     escreve "nenhum é"
+                                                  senão se for singular 
+                                                     escreve "é" 
+                                                  senão  
+                                                     escreve "são"
+                                               */
 
-         (impar_plural == 2)? "ímpares": "ímpar" /* 
-                                                   se for plural 
-                                                      escreve "ímpares" 
-                                                   senão 
-                                                      escreve "ímpar"
-                                                 */
-         );
-
-   printf(
-         "\n%i%c%s %s", 
-
-         par,
-         (par_plural == 0 )? '\b' : ' ',
-         (par_plural == 0 )? "nenhum é" : ((par_plural == 1 )? "é" : "são"),
-         (par_plural == 2)? "pares": "par"
-         );
+      (impar_plural == 2)? "ímpares": "ímpar" /* 
+                                                se for plural 
+                                                   escreve "ímpares" 
+                                                senão 
+                                                   escreve "ímpar"
+                                              */
+      );
 
    printf(
-         "\ne %i%c%s %s", 
+      "\n%i%c%s %s", 
 
-         divPor3,
-         (divPor3_plural == 0 )? '\b' : ' ',
-         (divPor3_plural == 0 )? "nenhum é" : ((divPor3_plural == 1 )? "é" : "são"),
-         (divPor3_plural == 2)? "divisíveis por 3": "divisível por 3"
-         );
+      par,
+      (par_plural == 0 )? '\b' : ' ',
+      (par_plural == 0 )? "nenhum é" : ((par_plural == 1 )? "é" : "são"),
+      (par_plural == 2)? "pares": "par"
+      );
+
+   printf(
+      "\ne %i%c%s %s", 
+
+      divPor3,
+      (divPor3_plural == 0 )? '\b' : ' ',
+      (divPor3_plural == 0 )? "nenhum é" : ((divPor3_plural == 1 )? "é" : "são"),
+      (divPor3_plural == 2)? "divisíveis por 3": "divisível por 3"
+      );
 
    return 0;
 }
