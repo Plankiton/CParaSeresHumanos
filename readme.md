@@ -2055,6 +2055,51 @@ gets(str);
 ```
 > Mesmo o `gets` sendo uma função contraindicada pela comunidade, ela ainda funciona, então caso o gcc aponte erros pelo uso do `gets`, saiba que ela vai funcionar normalmente.
 
+### Fprintf e fgets
+
+O `f` antes do `printf` significa formatação, logo, um `fprintf` é um `printf` formatado, e essa formatação é basicamente um parâmetro a mais indicando o lugar onde você quer escrever a informação.
+
+```C
+fprintf(stdout, "Hello mundo!!\n"); // printf ( "Hello mundo!!" )
+```
+
+> O `stdout` é um "stream" ( local para onde vai a string do `fprintf` ), e o `printf` é um `fprintf` com o `stdout` como "stream", e o `stdout` é a saída padrão (a tela).
+
+Mas também é possível enviar a saída para outros streams, dentre eles nós temos o `stderr`, que é a saída padrão de erros:
+
+```C
+char coisa [30];
+
+puts("escreva de 1 a 10 caracteres: ");
+scanf ("%s", &coisa );
+
+if (coisa [0] == '\0' ) {
+   fprintf ( stderr, "ERROR: você não digitou nenhum caractere!");
+   return 1;
+}
+
+if (coisa [10] != '\0' ) {
+   fprintf ( stderr, "ERROR: você digitou caracteres demais!");
+   return 1;
+}
+```
+
+> No programa acima são pedidos caracteres de 1 a 10, então se o caractere da posição `0` corresponder ao fim de uma string (`'\0'`) quer dizer que 0 caracteres foram lidos, e se o 11º caractere (posição `10`) for o fim da string (`'\0'`) quer dizer que existem mais de 10 caracteres na string.
+
+Note que quando ocorreu um erro o valor retornado foi o `1`, indicando para o sistema operacional que aconteceu um erro.
+
+O `fgets` seria um `gets` formatado, e ele funciona da seguinte maneira:
+
+```C
+char str[10];
+
+fgets ( stdin, 10, str ); // gets (str)
+```
+
+> O `stdin` é a entrada de dados padrão (o teclado).
+
+_"Ué? Então por que eu deveria usar esse `fgets` aí se o `gets` é mais simple?"_ ...Muito simples, lembra que o `gets` tem um problema, tanto que ele é contra-indicado pelo próprio compilador? Pois é, o `fgets` não tem esse problema, porque nele além de você indicar a string a ser lida e o "stream", ele exige que você coloque o tamanho da string, assim evitando colocar dados no lugar errado.
+
 <br>
 <br>
 <br>
