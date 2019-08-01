@@ -1163,13 +1163,22 @@ E o código final ficou assim:
 int main(int argc, char **argv){
 
    // declaração e leitura de variáveis
-   int n1, n2, n3; // Essa é a forma de declarar várias variáveis ao mesmo tempo
+   int n1, n2, n3; /*
+                     Essa é a forma de declarar
+                     várias variáveis ao  mesmo
+                     tempo
+                   */
 
    printf ("Digite 3 números: ");
    scanf ("%i %i %i", &n1, &n2, &n3);
 
    // declaração e inicialização dos contadores
-   int impar = 0, par = 0, divPor3 = 0; // essa é a forma de inicializar várias variáveis ao mesmo tempo
+   int impar = 0, par = 0, divPor3 = 0; /*
+                                          essa é a forma de
+                                          inicializar várias
+                                          variáveis ao mesmo
+                                          tempo
+                                        */
 
    // se o número for divisível por 2 incremente par senão incremente impar
    ( n1 % 2 == 0 )? par ++: impar ++;
@@ -1187,7 +1196,7 @@ int main(int argc, char **argv){
       pois na hora de escrever a saída nós devemos respeitar o
       plural e o singular para que o nosso programa fique mais
       inteligente.
-      */
+   */
 
    // Declarando variáveis que dizem se está no plural (2), singular (1) ou nulo(0)
    int impar_plural, par_plural, divPor3_plural;
@@ -1196,7 +1205,7 @@ int main(int argc, char **argv){
       Se o contador for  maior que 1, ele é plural, portanto 2,
       senão teste se contador igual a 1 se for verdadeiro (1) é
       singular se for falso (0) não tem nenhum.
-      */
+   */
 
    divPor3_plural = ( divPor3 > 1 ) ? 2 : ( divPor3 == 1 );
    impar_plural   = ( impar   > 1 ) ? 2 : ( impar   == 1 );
