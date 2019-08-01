@@ -102,6 +102,7 @@ Repositório do livro no github: http://github.com/RoboCopGay/c_para_seres_human
    - [Ponteiros](#ponteiros)
    - [Funções](#funções)
    - [Outras formas de entrada e saída de dados](#outras-formas-de-entrada-e-saída-de-dados)
+   - [Chegou a hora de praticar de novo!](#chegou-a-hora-de-praticar-de-novo)
 
 # Noções básicas
 
@@ -1057,13 +1058,8 @@ Faça um programa que leia 3 números e diga quantos deles são ímpares ou pare
 > Saída:
 
 ```
-Digite 3 números: 2
-1
-3
-
-2 são ímpares
-1 é par
-e 1 é divisível por 3
+Digite 3 números: 2 1 3
+2 são ímpares, 1 é par e 1 é divisível por 3
 ```
 
 Você já deve ter percebido que este é complicado, mas calma... É só pensar bem, e uma dica, explore bem o ternário antes.
@@ -1104,55 +1100,94 @@ divPor3 = ( n3 % 3 == 0 )? divPor3 + 1: divPor3;
 
 E por fim exibimos os valores:
 
+Aqui nós temos duas opções, exibimos os dados de forma preguiçosa:
+
 ```C
-// agora que temos as quantidades e sabemos se são plurais ou não é só exibir os resultados
+printf ( "%i são ímpares\n", impar);
+printf ( "%i são pares\n", par);
+printf ( "%i são divíveis por 3\n", divPor3);
+```
+> E nesse caso, quando o contador vale 0 ou 1, vai ficar "0 são <algo>" ou "1 são <algo>".
+
+Ou tentamos adaptar a resposta para que ela respeite os plurais e singulares e assim criando um programa mais inteligente:
+
+> Ambos os códigos de exibição dos dados funcionarão da mesma forma, basicamente temos que exibir uma resposta assim:
+
+> `<contador> <são (se plural)|| é (se singular)> <info que o contador se refere>`
+
+> E caso o contador for `0` essa resposta tem que ser assim: `nenhum é <info que o contador se refere>`
+
+> mas para economizar linhas de código essas duas formas de frase teriam que ser uma só, logo, eu temos que montar um esqueleto assim:
+
+> `<contador><caractere auxiliar><string indicando a quantidade> <info a que o contador se refere>`
+
+> Então a string do `printf` ficou assim: `"%i%c%s %s\n"`
+>
+> Agora que temos o "esqueleto" da resposta, temos que dar valores a esses campos e o primeiro é o contador ( `par`, `impar` e `divPor3` )
+>
+> O segundo é o caractere auxiliar e ele tem que apagar o contador caso ele for nulo (igual a `0`) com o caractere `\b`, caso contrário ele insere um espaço (' '):
+>
+> `( <contador> == 0 ) ? '\b' : ' ' `
+>
+> O terceiro é a string indicando a quantidade, e nesse caso temos três opções, se o contador for 0 essa string tem que ser `"nenhum é"`, se o contador não for `0` ele testa se o contador é igual a 1, e caso for verdadeiro essa string vai valer `"é"` (indicando que é singular), senão ele obviamente é plural (contador maior que `1`) então essa string vai valer `"são"`:
+>
+> `(<contador> == 0)? "nenhum é" : ( ( <contador> == 1 )? "é" : "são" )`.
+>
+> Por fim é só testar se é plural ou singular e colocar a informação a que o contador se refere no plural ou singular:
+>
+> `(<contador> > 1)? <info no plural> : <info no singular>`
+
+> O "esqueleto" final do printf ficou assim:
+
+```C
+printf ( "%i%c%s %s",
+         <contador>,                                              // %i
+         (<contador> == 0)? '\b' : ' ',                           // %c
+         (<contador> == 0)? "nenhum é" :
+               ( ( <contador> == 1 )? "é" : "são" ),              // %s
+         (<contador> > 1)? <info no plural> : <info no singular>  // %s
+);
+```
+
+E é assim que fica a exibição dos resultados seguindo o esqueleto acima:
+
+```C
+// Hora de exibir os resultados
 
 printf(
-   "\n%i%c%s %s", 
+   "%i%c%s %s,", 
 
-   impar,                            // quantidade de impares
-   (impar_plural == 0 )? '\b' : ' ', /*
-                                       se a quantidade for 0
-                                          ele  apaga o 0 ("\b") 
-                                       senão  
-                                          ele escreve um espaço
-                                    */
+   impar,
+   (impar == 0 )? '\b' : ' ',
 
-   (impar_plural == 0 )?  "nenhum é" :
-      ( (impar_plural == 1 )? "é" : "são") ,/*
-                                               se for nulo 
-                                                  escreve "nenhum é"
-                                               senão se for singular 
-                                                  escreve "é" 
-                                               senão  
-                                                  escreve "são"
-                                            */
+   (impar == 0 )?  "nenhum é" :
+      ( (impar == 1 )? "é" : "são" ) ,
 
-   (impar_plural == 2)? "ímpares": "ímpar" /* 
-                                             se for plural 
-                                                escreve "ímpares" 
-                                             senão 
-                                                escreve "ímpar"
-                                           */
-   );
+   (impar > 1)? "ímpares": "ímpar"
+);
 
 printf(
-   "\n%i%c%s %s", 
+   " %i%c%s %s", 
 
    par,
-   (par_plural == 0 )? '\b' : ' ',
-   (par_plural == 0 )? "nenhum é" : ((par_plural == 1 )? "é" : "são"),
-   (par_plural == 2)? "pares": "par"
-   );
+   (par == 0 )? '\b' : ' ',
+   (par == 0 )? "nenhum é" :
+      ( (par == 1 )? "é" : "são" ),
+
+   (par > 1)? "pares": "par"
+);
 
 printf(
-   "\ne %i%c%s %s", 
+   " e %i%c%s %s\n", 
 
    divPor3,
-   (divPor3_plural == 0 )? '\b' : ' ',
-   (divPor3_plural == 0 )? "nenhum é" : ((divPor3_plural == 1 )? "é" : "são"),
-   (divPor3_plural == 2)? "divisíveis por 3": "divisível por 3"
-   );
+   (divPor3 == 0 )? '\b' : ' ',
+
+   (divPor3 == 0 )? "nenhum é" :
+      ( (divPor3 == 1 )? "é" : "são" ),
+
+   (divPor3 > 1)? "divisíveis por 3": "divisível por 3"
+);
 ```
 
 E o código final ficou assim:
@@ -1163,22 +1198,13 @@ E o código final ficou assim:
 int main(int argc, char **argv){
 
    // declaração e leitura de variáveis
-   int n1, n2, n3; /*
-                     Essa é a forma de declarar
-                     várias variáveis ao  mesmo
-                     tempo
-                   */
+   int n1, n2, n3;
 
    printf ("Digite 3 números: ");
    scanf ("%i %i %i", &n1, &n2, &n3);
 
    // declaração e inicialização dos contadores
-   int impar = 0, par = 0, divPor3 = 0; /*
-                                          essa é a forma de
-                                          inicializar várias
-                                          variáveis ao mesmo
-                                          tempo
-                                        */
+   int impar = 0, par = 0, divPor3 = 0;
 
    // se o número for divisível por 2 incremente par senão incremente impar
    ( n1 % 2 == 0 )? par ++: impar ++;
@@ -1190,75 +1216,42 @@ int main(int argc, char **argv){
    divPor3 = ( n2 % 3 == 0 )? divPor3 + 1: divPor3;
    divPor3 = ( n3 % 3 == 0 )? divPor3 + 1: divPor3;
 
-   // exibindo resultados
-   /*
-      geralmente esta é a parte mais fácil, mas nesse caso não,
-      pois na hora de escrever a saída nós devemos respeitar o
-      plural e o singular para que o nosso programa fique mais
-      inteligente.
-   */
-
-   // Declarando variáveis que dizem se está no plural (2), singular (1) ou nulo(0)
-   int impar_plural, par_plural, divPor3_plural;
-
-   /* 
-      Se o contador for  maior que 1, ele é plural, portanto 2,
-      senão teste se contador igual a 1 se for verdadeiro (1) é
-      singular se for falso (0) não tem nenhum.
-   */
-
-   divPor3_plural = ( divPor3 > 1 ) ? 2 : ( divPor3 == 1 );
-   impar_plural   = ( impar   > 1 ) ? 2 : ( impar   == 1 );
-   par_plural     = ( par     > 1 ) ? 2 : ( par     == 1 );
-
-   // agora que temos as quantidades e sabemos se são plurais ou não é só exibir os resultados
+   // Hora de exibir os resultados
 
    printf(
-      "\n%i%c%s %s", 
+      "%i%c%s %s", 
 
-      impar,                            // quantidade de impares
-      (impar_plural == 0 )? '\b' : ' ', /*
-                                          se a quantidade for 0
-                                             ele  apaga o 0 ("\b") 
-                                          senão  
-                                             ele escreve um espaço
-                                       */
+      impar,
+      (impar == 0 )? '\b' : ' ',
 
-      (impar_plural == 0 )?  "nenhum é" :
-         ( (impar_plural == 1 )? "é" : "são") ,/*
-                                                  se for nulo 
-                                                     escreve "nenhum é"
-                                                  senão se for singular 
-                                                     escreve "é" 
-                                                  senão  
-                                                     escreve "são"
-                                               */
+      (impar == 0 )?  "nenhum é" :
+         ( (impar == 1 )? "é" : "são" ) ,
 
-      (impar_plural == 2)? "ímpares": "ímpar" /* 
-                                                se for plural 
-                                                   escreve "ímpares" 
-                                                senão 
-                                                   escreve "ímpar"
-                                              */
-      );
+      (impar > 1)? "ímpares": "ímpar"
+   );
 
    printf(
-      "\n%i%c%s %s", 
+      "%i%c%s %s", 
 
       par,
-      (par_plural == 0 )? '\b' : ' ',
-      (par_plural == 0 )? "nenhum é" : ((par_plural == 1 )? "é" : "são"),
-      (par_plural == 2)? "pares": "par"
-      );
+      (par == 0 )? '\b' : ' ',
+      (par == 0 )? "nenhum é" :
+         ( (par == 1 )? "é" : "são" ),
+
+      (par > 1)? "pares": "par"
+   );
 
    printf(
-      "\ne %i%c%s %s", 
+      " e %i%c%s %s\n", 
 
       divPor3,
-      (divPor3_plural == 0 )? '\b' : ' ',
-      (divPor3_plural == 0 )? "nenhum é" : ((divPor3_plural == 1 )? "é" : "são"),
-      (divPor3_plural == 2)? "divisíveis por 3": "divisível por 3"
-      );
+      (divPor3 == 0 )? '\b' : ' ',
+
+      (divPor3 == 0 )? "nenhum é" :
+         ( (divPor3 == 1 )? "é" : "são" ),
+
+      (divPor3 > 1)? "divisíveis por 3": "divisível por 3"
+   );
 
    return 0;
 }
@@ -2309,6 +2302,23 @@ fgets ( stdin, 10, str ); // gets (str)
 > O `stdin` é a entrada de dados padrão (o teclado).
 
 _"Ué? Então por que eu deveria usar esse `fgets` aí se o `gets` é mais simple?"_ ...Muito simples, lembra que o `gets` tem um problema, tanto que ele é contra-indicado pelo próprio compilador? Pois é, o `fgets` não tem esse problema, porque nele além de você indicar a string a ser lida e o "stream", ele exige que você coloque o tamanho da string, assim evitando colocar dados no lugar errado.
+
+## Chegou a hora de praticar de novo!
+
+### Desafio 5
+
+Faça uma calculadora onde o usuário digite dois números (reais) e no final ele pergunte qual operação matemática fazer ( +, -, / ou * ) e no fim ele pergunte se a pessoa deseja calcular de novo.
+
+> Saída:
+
+```
+Digite 2 números: 2 3
+Você quer somar (+), subtrair (-), multiplicar (*) ou dividir (/)? +
+
+2 + 3 = 5
+
+deseja calcular de novo? [S/n] n
+```
 
 <br>
 <br>
