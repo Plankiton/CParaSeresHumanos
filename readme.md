@@ -1049,29 +1049,213 @@ int main (){
 }
 ```
 
+
 ### Desafio 3
 
-Faça um programa que leia 3 números e diga se eles são ímpares ou pares, se eles são divisíveis por 3 (se divididos por 3 o resto tem que ser 0) e qual é o maior entre eles.
+Faça um programa que leia 3 números e diga quantos deles são ímpares ou pares e quantos deles são divisíveis por 3 (se divididos por 3 o resto tem que ser 0).
 
 > Saída:
 
 ```
-Digite 3 números: 1
-2
+Digite 3 números: 2
+1
 3
 
-O número 1 é impar
-O número 2 é par
-O número 3 é impar
-
-O número 1 é indivisível por 3
-O número 2 é indivisível por 3
-O número 3 é divisível por 3
-
-O maior entre eles é o 3
+2 são ímpares
+1 é par
+e 1 é divisível por 3
 ```
 
-Este você tem que fazer sozinho, e eu sei que ele é um pouco complicado, mas todas as coisas necessárias para fazê-lo foram ensinadas. Boa sorte e se não conseguir fazer, releia os capítulos anteriores com muito cuidado e tente de novo.
+Você já deve ter percebido que este é complicado, mas calma... É só pensar bem, e uma dica, explore bem o ternário antes.
+
+#### Resposta
+
+A primeira coisa que iremos fazer é declarar e ler os números ( depois de escrever a estrutura padrão é claro ) :
+
+```C
+int n1, n2, n3; // Essa é a forma de declarar várias variáveis ao mesmo tempo
+
+printf ("Digite 3 números: ");
+scanf ("%i %i %i", &n1, &n2, &n3);
+```
+
+Agora nós iremos declarar contadores para os ímpares, pares e divisíveis por 3 e iniciá-los com `0` (se não fizer isso suas variáveis vão receber lixos da memória):
+
+```C
+int impar = 0, par = 0, divPor3 = 0; // essa é a forma de inicializar várias variáveis ao mesmo tempo
+```
+
+Declarados os contadores, iremos testar os números pares e ímpares:
+
+```C
+// se o número for divisível por 2 incremente par senão incremente impar
+( n1 % 2 == 0 )? par ++: impar ++;
+( n2 % 2 == 0 )? par ++: impar ++;
+( n3 % 2 == 0 )? par ++: impar ++;
+```
+
+Agora testamos os divisíveis por 3:
+
+```C
+divPor3 = ( n1 % 3 == 0 )? divPor3 + 1: divPor3;
+divPor3 = ( n2 % 3 == 0 )? divPor3 + 1: divPor3;
+divPor3 = ( n3 % 3 == 0 )? divPor3 + 1: divPor3;
+```
+
+E por fim exibimos os valores:
+
+```C
+// agora que temos as quantidades e sabemos se são plurais ou não é só exibir os resultados
+
+printf(
+      "\n%i%c%s %s", 
+
+      impar,
+      (impar_plural == 0 )? '\b' : ' ', // se a quantidade for 0 ele apaga o 0 ('\b') senão ele escreve um espaço
+
+      (  impar_plural == 0  )?         "nenhum é"   :     ((impar_plural == 1 )?         "é"   :            "são"),
+      // se for nulo           escreve "nenhum é"  senão     se for singular     escreve "é" senão  escreve "são"
+
+      (impar_plural == 2)? "ímpares": "ímpar" // se for plural escreve "ímpares" senão escreve "ímpar"
+      );
+
+printf(
+      "\n%i%c%s %s", 
+
+      par,
+      (par_plural == 0 )? '\b' : ' ',
+      (par_plural == 0 )? "nenhum é" : ((par_plural == 1 )? "é" : "são"),
+      (par_plural == 2)? "pares": "par"
+      );
+
+printf(
+      "\ne %i%c%s %s", 
+
+      divPor3,
+      (divPor3_plural == 0 )? '\b' : ' ',
+      (divPor3_plural == 0 )? "nenhum é" : ((divPor3_plural == 1 )? "é" : "são"),
+      (divPor3_plural == 2)? "divisíveis por 3": "divisível por 3"
+      );
+```
+
+E o código final ficou assim:
+
+```C
+#include <stdio.h>
+#include <stdlib.h>
+int main(int argc, char **argv){
+
+   // declaração e leitura de variáveis
+   int n1, n2, n3; // Essa é a forma de declarar várias variáveis ao mesmo tempo
+
+   printf ("Digite 3 números: ");
+   scanf ("%i %i %i", &n1, &n2, &n3);
+
+   // declaração e inicialização dos contadores
+   int impar = 0, par = 0, divPor3 = 0; // essa é a forma de inicializar várias variáveis ao mesmo tempo
+
+   // se o número for divisível por 2 incremente par senão incremente impar
+   ( n1 % 2 == 0 )? par ++: impar ++;
+   ( n2 % 2 == 0 )? par ++: impar ++;
+   ( n3 % 2 == 0 )? par ++: impar ++;
+
+   // se é divisível por 3 incremente senão não incremente
+   divPor3 = ( n1 % 3 == 0 )? divPor3 + 1: divPor3;
+   divPor3 = ( n2 % 3 == 0 )? divPor3 + 1: divPor3;
+   divPor3 = ( n3 % 3 == 0 )? divPor3 + 1: divPor3;
+
+   // exibindo resultados
+   /*
+      geralmente esta é a parte mais fácil, mas nesse caso não,
+      pois na hora de escrever a saída nós devemos respeitar o
+      plural e o singular para que o nosso programa fique mais
+      inteligente.
+      */
+
+   // Declarando variáveis que dizem se está no plural (2), singular (1) ou nulo(0)
+   int impar_plural, par_plural, divPor3_plural;
+
+   /* 
+      Se o contador for  maior que 1, ele é plural, portanto 2,
+      senão teste se contador igual a 1 se for verdadeiro (1) é
+      singular se for falso (0) não tem nenhum.
+      */
+
+   divPor3_plural = ( divPor3 > 1 ) ? 2 : ( divPor3 == 1 );
+   impar_plural   = ( impar   > 1 ) ? 2 : ( impar   == 1 );
+   par_plural     = ( par     > 1 ) ? 2 : ( par     == 1 );
+
+   // agora que temos as quantidades e sabemos se são plurais ou não é só exibir os resultados
+
+   printf(
+         "\n%i%c%s %s", 
+
+         impar,                            // quantidade de impares
+         (impar_plural == 0 )? '\b' : ' ', /*
+                                             se a quantidade for 0
+                                                ele  apaga o 0 ("\b") 
+                                             senão  
+                                                ele escreve um espaço
+                                          */
+
+         (impar_plural == 0 )?  "nenhum é" :
+            ( (impar_plural == 1 )? "é" : "são") ,/*
+                                                     se for nulo 
+                                                        escreve "nenhum é"
+                                                     senão se for singular 
+                                                        escreve "é" 
+                                                     senão  
+                                                        escreve "são"
+                                                  */
+
+         (impar_plural == 2)? "ímpares": "ímpar" /* 
+                                                   se for plural 
+                                                      escreve "ímpares" 
+                                                   senão 
+                                                      escreve "ímpar"
+                                                 */
+         );
+
+   printf(
+         "\n%i%c%s %s", 
+
+         par,
+         (par_plural == 0 )? '\b' : ' ',
+         (par_plural == 0 )? "nenhum é" : ((par_plural == 1 )? "é" : "são"),
+         (par_plural == 2)? "pares": "par"
+         );
+
+   printf(
+         "\ne %i%c%s %s", 
+
+         divPor3,
+         (divPor3_plural == 0 )? '\b' : ' ',
+         (divPor3_plural == 0 )? "nenhum é" : ((divPor3_plural == 1 )? "é" : "são"),
+         (divPor3_plural == 2)? "divisíveis por 3": "divisível por 3"
+         );
+
+   return 0;
+}
+```
+
+### Desafio 4
+
+Faça um programa que leia 3 números e diga qual é o maior e qual é o menor, e se a pessoa digitar números iguais, ele tem que avisar "foram digitados números iguais".
+
+> Saída:
+
+```
+Digite 3 números:2
+3
+3
+
+O número 1 é o menor
+O número 3 é o maior
+
+foram digitados números iguais
+```
+
+Este você tem que fazer sozinho, todas as coisas necessárias para fazê-lo foram ensinadas. Boa sorte e se não conseguir fazer, releia os capítulos anteriores com muito cuidado, e depois tente de novo.
 
 # Noções avançadas
 
