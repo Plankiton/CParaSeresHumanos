@@ -2313,11 +2313,119 @@ Faça uma calculadora onde o usuário digite dois números (reais) e no final el
 
 ```
 Digite 2 números: 2 3
-Você quer somar (+), subtrair (-), multiplicar (*) ou dividir (/)? +
-
+Você quer somar (+), subtrair (-), multiplicar (*) ou dividir (/)?
+ +
 2 + 3 = 5
 
-deseja calcular de novo? [S/n] n
+Deseja calcular de novo? [S/n] n
+```
+
+#### Resposta
+
+Primeiramente iremos declarar as variáveis necessárias:
+
+```C
+int n1, n2;    // números que iremos ler
+char operacao; // operação
+int res;       // resposta
+```
+
+E iremos ler os dados necessários:
+
+```C
+printf("Digite 2 números: ");
+scanf("%i %i", &n1, &n2);
+
+printf("Você quer somar (+), subtrair (-), multiplicar (*) ou dividir (/)? ");
+operacao = getchar();
+```
+
+Agora nós vamos efetuar os devidos cálculos:
+
+```C
+if (operacao == '+')
+   res = n1 + n2;
+
+else if (operacao == '-')
+   res = n1 - n2;
+
+else if (operação == '/')
+   res = n1 / n2;
+
+else res = n1 * n2;
+```
+
+E exibimos o resultado:
+
+```C
+printf("\n%i %c %i = %i\n", n1, operacao, n2, res);
+```
+
+E se você é atento notou que faltou perguntar se a pessoa que calcular de novo, mas antes de fazer esta pergunta nó temos que colocar o código que queremos repetir dentro de uma estrutura de repetição, mas não coloque a parte da declaração de variáveis:
+
+```C
+do {
+
+   printf("Digite 2 números: ");
+   scanf("%i %i", &n1, &n2);
+
+   printf("Você quer somar (+), subtrair (-), multiplicar (*) ou dividir (/)? ");
+   operacao = getchar();
+
+   if (operacao == '+')
+      res = n1 + n2;
+   else if (operacao == '-')
+      res = n1 - n2;
+   else if (operação == '/')
+      res = n1 / n2;
+   else res = n1 * n2;
+
+   printf("\n%i %c %i = %i\n", n1, operacao, n2, res);
+
+   printf("Deseja calcular de novo? [S/n] ");
+
+   if ( getchar() == 'n' )
+      break;
+
+} while ( 1 );
+```
+
+> Eu escolhi o `do..while` porque o código sempre vai ser executado pelo menos uma vez.
+
+E o código final ficou assim:
+
+```C
+int n1, n2;    // números que iremos ler
+char operacao; // operação
+int res;       // resposta
+
+do {
+
+   // lendo dados
+   printf("Digite 2 números: ");
+   scanf("%i %i", &n1, &n2);
+
+   printf("Você quer somar (+), subtrair (-), multiplicar (*) ou dividir (/)? ");
+   operacao = getchar();
+
+   // processando dados
+   if (operacao == '+')
+      res = n1 + n2;
+   else if (operacao == '-')
+      res = n1 - n2;
+   else if (operação == '/')
+      res = n1 / n2;
+   else res = n1 * n2;
+
+   // exibindo dados
+   printf("\n%i %c %i = %i\n", n1, operacao, n2, res);
+
+   // reiniciando ou interrompendo programa
+   printf("Deseja calcular de novo? [S/n] ");
+   if ( getchar() == 'n' )
+      break;
+
+} while ( 1 );
 ```
 
 <br>
