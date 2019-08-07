@@ -53,6 +53,7 @@ return 0;
 */
 
 
+/*
 #include <stdio.h>
 
 int soma(int a,int b)
@@ -78,5 +79,43 @@ int main(void)
 
 return 0;
 }
+*/
 
 
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct {
+   char * n;
+} j;
+
+void add ( j * _j, int n){
+   _j = realloc(_j, sizeof (j) * n);
+}
+
+int main(int argc, char **argv){
+
+   j c [4];
+
+   for (int i = 0; i < 4; i ++)
+      c[i].n = "jojaodjf";
+   for (int i = 0; i < 4; i ++)
+      puts(c[i].n);
+   puts("\n\n");
+
+   j * n;
+   n = malloc(sizeof(j));
+
+   add (n, 4);
+   for (int i = 0; i < 4; i ++)
+      n[i].n = "huhuhu";
+   for (int i = 0; i < 4; i ++)
+      puts(n[i].n);
+
+   add (n, 7);
+   for (int i = 0; i < 7; i ++)
+      n[i].n = "boiolage";
+   for (int i = 0; i < 7; i ++)
+      puts(n[i].n);
+return 0;
+}

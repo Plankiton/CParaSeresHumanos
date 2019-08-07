@@ -103,6 +103,7 @@ Repositório do livro no github: http://github.com/RoboCopGay/c_para_seres_human
    - [Funções](#funções)
    - [Outras formas de entrada e saída de dados](#outras-formas-de-entrada-e-saída-de-dados)
    - [Chegou a hora de praticar de novo!](#chegou-a-hora-de-praticar-de-novo)
+   - [Noções definitivas](#noções-definitivas)
 
 # Noções básicas
 
@@ -2013,7 +2014,15 @@ Se fossemos fazer o código acima usando puramente ponteiros, nós faríamos ass
 
 > Lembrando que ao alocar espaços e referenciando com ponteiros, nós estamos criando arrays.
 
+Antes de mais nada você tem que incluir o `stdlib.h` no seu arquivo (para evitar erros, sempre faça qualquer `include` no inicio do arquivo e antes da função `main`.
 ```C
+#include <stdlib.h>           // biblioteca necessária para usar as funções de alocação.
+```
+
+Agora sim, podemos continuar...
+
+```C
+
 char * str;                   // aqui temos um ponteiro vazio.
 
 str = malloc (6);             // aqui nós alocamos 6 bytes na memória.
@@ -2426,6 +2435,73 @@ do {
       break;
 
 } while ( 1 );
+```
+
+# Noções definitivas
+
+## Estruturas
+
+Até agora você só viu estruturas padrões do próprio C, e como usá-las, mas agora você vai aprender a criar as suas próprias...
+
+### Structs e unions
+
+`struct` é o tipo de dado que cria uma estrutura própria, e é muito útil para criar "objetos" ou seja, criar variáveis com várias características...
+
+> E a galera que já conhece um pouco mais deve estar se perguntando "Mas o C é orientado a objetos?" e desde já, não, o máximo que você pode fazer no C é criar um tipo com espaços para armazenar dados, mas não é possível criar objetos ou classes.
+
+```C
+
+struct pessoa {
+   char * nome;
+   int idade;
+   char sexo;
+   float peso;
+   float altura;
+}
+
+```
+
+Como podem ver no exemplo acima, nós criamos uma estrutura `pessoa` que pode receber um `nome`, uma `idade`, um `peso`, um `sexo` e uma `altura`, assim melhorando e muito nosso armazenamento de dados, _"Mas como eu posso acessá-los?"_, muito simples:
+
+```C
+struct pessoa joao;        // aqui nós criamos uma pessoa "joao".
+joao.nome = "Joao";        // aqui nós atribuímos "Joao" ao nome da pessoa.
+```
+
+E como você pôde notar agora existe um tipo `struct pessoa`, _"Mas, eu quero criar um tipo `pessoa`, é poossível?"_, sim, é, e para isso você vai usar o `typedef`, e ele serve para apelidar um tipo:
+
+```C
+typedef MyInt int;
+
+MyInt inteiro;
+```
+
+Mas como nós queremos usá-lo com a nossa `struct`, temos 3 formas de usar:
+
+Criando o `struct` antes:
+
+```C
+struct p { char * name };
+typedef pessoa struct p;
+```
+
+Criando ao mesmo tempo:
+
+```C
+typedef struct _p { char * name } pessoa;
+```
+
+Criando ao mesmo tempo com uma `struct` anônima:
+
+```C
+typedef struct { char * name } pessoa;
+```
+
+Não importa a forma que você escolha, todas vão funcionar:
+
+```C
+pessoa joao;
+joao.name = "Joao";
 ```
 
 <br>
