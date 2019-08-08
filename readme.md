@@ -103,7 +103,9 @@ Repositório do livro no github: http://github.com/RoboCopGay/c_para_seres_human
    - [Funções](#funções)
    - [Outras formas de entrada e saída de dados](#outras-formas-de-entrada-e-saída-de-dados)
    - [Chegou a hora de praticar de novo!](#chegou-a-hora-de-praticar-de-novo)
-   - [Noções definitivas](#noções-definitivas)
+3. [Noções definitivas](#noções-definitivas)
+   - [Estruturas](#estruturas)
+   - [Modificadores de tipo](#modificadores-de-tipo)
 
 # Noções básicas
 
@@ -2468,10 +2470,10 @@ struct pessoa joao;        // aqui nós criamos uma pessoa "joao".
 joao.nome = "Joao";        // aqui nós atribuímos "Joao" ao nome da pessoa.
 ```
 
-E como você pôde notar agora existe um tipo `struct pessoa`, _"Mas, eu quero criar um tipo `pessoa`, é poossível?"_, sim, é, e para isso você vai usar o `typedef`, e ele serve para apelidar um tipo:
+E como você pôde notar agora existe um tipo `struct pessoa`, _"Mas, eu quero criar um tipo `pessoa`, é possível?"_, sim, é, e para isso você vai usar o `typedef`, e ele serve para apelidar um tipo.
 
 ```C
-typedef MyInt int;
+typedef int MyInt;
 
 MyInt inteiro;
 ```
@@ -2482,7 +2484,7 @@ Criando o `struct` antes:
 
 ```C
 struct p { char * name };
-typedef pessoa struct p;
+typedef struct p pessoa;
 ```
 
 Criando ao mesmo tempo:
@@ -2503,6 +2505,128 @@ Não importa a forma que você escolha, todas vão funcionar:
 pessoa joao;
 joao.name = "Joao";
 ```
+
+> E para evitar erros de escopo, sempre declare structs fora do `main`.
+
+Outra estrutura muito interessante é a `union`, ela é semelhante a `struct`, mas só vai assumir uma variável quando declarada... _"Como assim?"_ ...observe:
+
+```C
+// struct
+{
+   struct p {
+      char * nome;
+      int idade;
+   };
+
+   // Uso
+
+   struct p joao;
+   joao.nome = "Joao";
+   joao.idade = 12;
+}
+
+// union
+{
+   union p {
+      char * nome;
+      int idade;
+   };
+
+   // Uso
+
+   union p joao;
+   joao.nome = "Joao";       // aqui você escolheu usar a variável nome
+   joao.idade = "jumento";   // aqui você está atribuíndo "jumento" à variável nome
+}
+```
+
+> _"Ué? Como assim?"_... O que acontece é que você tem que escolher apenas uma das variáveis da `union` e as outras variáveis vão apontar para a escolhida. Isso significa que se você atribuísse valor a `joao.idade` primeiro teria que lidar com valores inteiros na `idade.nome`.
+
+### Enum
+
+O `enum` vem enumeração e nesse você deseje designar valores constantes para as suas estruturas.
+
+```C
+typedef enum {
+   true = 1,
+   false = 0,
+} bool;
+
+bool falso = false;
+```
+
+> Só pode colocar inteiros em enums.
+
+E acima acabamos de criar o tipo booleano no C.
+
+Como só é possível colocar inteiros em enums, e por isso existe um macete legal para atribuir esses números:
+
+```C
+typedef enum {
+
+   zero = 0,        // zero é 0
+   um,              // um é zero + 1
+   dois,            // dois é um + 1
+   tres,            // tres é dois + 1
+
+   sete = 7,        // sete é 7
+   oito,            // oito é sete + 1
+   nove,            // nove é oito + 1
+
+   quatro = 4,      // quatro é 4
+   cinco,           // cinco é quatro + 1
+   seis             // seis é seis + 1
+
+} por_extenso;
+```
+
+## Modificadores de tipo
+
+E mais uma vez falaremos de tipos primitivos, como havíamos visto, os tipos primitivos tem tamanhos diferentes na memória, e estes tamanhos podem ser expandidos ou reduzido, além de modificar o tamanho os modificadores também podem modificar sinais.
+
+### Long
+
+O `long` alonga (expande) a capacidade de variáveis do tipo `int` e `double`.
+
+> Lembrando que os valores de tamanho variam de computador para computador.
+
+```C
+int inteiro = 0;              // 4 bytes
+long int l_inteiro = 0;       // 8 bytes
+
+double real = 10E49;          // 6 bytes
+long double l_real = 10e49;   // 8 bytes
+```
+
+E para alcançar o máximo de tamanho de uma variável para a sua arquitetura use o `long long int` ou simplesmente `long long`.
+
+### Short
+
+O `short` encurta a capacidade de variáveis do tipo `int`.
+
+```C
+int inteiro = 0;              // 4 bytes
+short int s_inteiro = 0;      // 2 bytes
+```
+
+### Signed e unsigned
+
+`signed` e `unsigned` significam respectivamente "com sinal" e "sem sinal".
+
+```C
+int c = 90;
+int i = +90;
+int j = -90;
+```
+
+Sempre que você declara um número, ele por padrão é `signed`, portanto suporta números negativos e positivos, e o `unsigned` só suporta números positivos.
+
+```C
+int inteiro = 0;               // intervalo: -2147483648 a 2147483647
+unsiged int us_inteiro = 0;    // intervalo: 0           a 4294967295
+```
+
+
 
 <br>
 <br>
