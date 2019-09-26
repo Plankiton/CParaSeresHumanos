@@ -90,6 +90,7 @@ Repositório do livro no github: http://github.com/RoboCopGay/c_para_seres_human
    - [Introdução à sintaxe do C](#introdução-a-sintaxe-do-c)
    - [Comentários](#comentários)
    - [Variáveis](#variáveis)
+   - [Modificadores de tipo](#modificadores-de-tipo)
    - [Entrada e saída de dados](#entrada-e-saída-de-dados)
    - [Operadores](#operadores)
    - [Chegou a hora de praticar!](#chegou-a-hora-de-praticar)
@@ -101,11 +102,8 @@ Repositório do livro no github: http://github.com/RoboCopGay/c_para_seres_human
    - [Estruturas de repetição](#estruturas-de-repetição)
    - [Ponteiros](#ponteiros)
    - [Funções](#funções)
-   - [Outras formas de entrada e saída de dados](#outras-formas-de-entrada-e-saída-de-dados)
-   - [Chegou a hora de praticar de novo!](#chegou-a-hora-de-praticar-de-novo)
-3. [Noções definitivas](#noções-definitivas)
    - [Estruturas](#estruturas)
-   - [Modificadores de tipo](#modificadores-de-tipo)
+   - [Chegou a hora de praticar de novo!](#chegou-a-hora-de-praticar-de-novo)
 
 # Noções básicas
 
@@ -115,15 +113,11 @@ C é uma linguagem de programação... _"mas o que é linguagem de programação
 
 ## Como o C funciona?
 
-O C é uma linguagem compilada... _"mas o que é isso?"_ ...para explicar isso de forma simples preste atenção no exemplo:
+O C é uma linguagem compilada... _"mas o que é isso?"_
 
-> João precisa que um robô limpe o quarto, mas como pedir isso a ele, se o robô só recebe comandos em *binário* (que é a "linguagem" dos computadores)? Simples, João precisará de um interpretador que realizará a tradução para binário.
-Dessa forma, João dirá "limpe meu quarto" e o **interpretador** do robô transformará isso em "01101100 01101001 01101101 01110000 01100101 00100000 01101101 01100101 01110101 00100000 01110001 01110101 01100001 01110010 01110100 01101111". Isso fará com que o robô entenda e execute o comando.
-No outro dia, João manda novamente o robô limpar seu quarto: "limpe meu quarto", e o robô traduz novamente para binário, por meio do interpretador, e no outro dia de novo. Então João, em vez de usar um interpretador, usa um **compilador** para que esse comando/essa frase fique no robô. Dessa forma, sempre que quiser que o robô limpe o quarto, envia o comando, mas o robô não precisa mais traduzir para binário, pois o binário que corresponde a esse comando já está lá.
+> Basicamente, significa que o c traduz o que você escreve em um arquivo para uma liguagem que só o computador entende.
 
-Em termos técnicos, um **interpretador** traduz e executa o código do seu programa toda vez que é executado, enquanto o **compilador** traduz uma vez e gera um **binário**. Assim, sempre que você precisar, o **binário** será apenas executado, reduzindo o tempo de execução do código, já que o texto está na linguagem do computador.
-
-E por ser uma linguagem compilada, o C é mais rápido que qualquer linguagem interpretada, além disso, é considerado uma linguagem de _médio nível_ (alguns o consideram uma linguagem de _baixo nível_), e com isso não estou referindo-me à qualidade do C, mas ao nível de proximidade com o hardware (a parte física do computador). Quanto mais próximo do hardware, mais baixo é o nível e essa característica do C o torna a linguagem mais indicada para fazer aplicações de sistema (programas que manipulam o hardware) e aplicações gráficas (jogos, editores de imagem...).
+...E é considerado uma linguagem de _médio nível_ (alguns o consideram uma linguagem de _baixo nível_), e com isso não estou referindo-me à qualidade do C, mas ao nível de proximidade com o hardware (a parte física do computador). Quanto mais próximo do hardware, mais baixo é o nível e essa característica do C o torna a linguagem mais indicada para fazer aplicações de sistema (programas que manipulam o hardware) e aplicações gráficas (jogos, editores de imagem...).
 
 Só para se ter uma ideia do poder do C, vou listar alguns _softwares_ feitos nessa linguagem:
 > todos os softwares listados são **open source**, dessa forma vocês podem ter certeza de que foi mesmo feito em C, além de poderem editar o código, se quiserem...
@@ -281,6 +275,7 @@ int i = -2 - -3;
 > não se preocupe com o `int i =`, saiba apenas que `i` é uma variável, isso será explicado mais tarde...
 
 O `-3` é um número negativo, mas o `-` entre `-2` e `-3` é o sinal de subtração, se não houvesse espaço entre o `-` solto e os outros números o programa acima não seria compilado pois o C não saberia o que você quer que ele faça.
+
 ## Comentários
 
 Comentários são "anotações ou esclarecimentos" escritas(os) no código para descrever a função de algo e geralmente são úteis quando se  quer analisar algum código antigo seu ou o código de outra pessoa. Os comentários sempre são ignorados pelo compilador, eles são apenas para auxiliar o programador.
@@ -378,7 +373,7 @@ double real_dobro = 10E49; /* 8 bytes -> o double tem o
                               10E4932
                            */
 ```
-> Essas quantidades demonstradas acima não são iguais em todas as arquiteturas, isto quer dizer que se o seu computador é de 32 bits o tamanho das variáveis pode ser diferente, logo, para que você tenha certeza do tamanho delas (em bytes) é só usar o `sizeof`:
+> Essas quantidades demonstradas acima não são iguais em todas as arquiteturas (tipo de processador), isto quer dizer que se o seu computador é de 32 bits o tamanho das variáveis pode ser diferente de um de 64 bits, logo, para que você tenha certeza do tamanho delas (em bytes) é só usar o `sizeof`:
 
 ```C
 int inteiro;
@@ -391,7 +386,7 @@ int tmh_inteiro = sizeof inteiro; // tamanho da variável inteiro
 int tmh_inteiro = sizeof (int); // tamanho da variável inteiro
 ```
 
-> Note que o tipo está entre parênteses, isso é obrigatório ou o C vai achar que você está declarando uma variável.
+> Note que o tipo está entre parênteses, isso é obrigatório ou o C vai achar que você está se referindo a uma variável.
 
 E a galera que já conhece um pouco de programação deve estar se perguntando _"Mas e os boleanos? No C não existe verdadeiro e falso?"_  sim, mas no C o `int` faz esse papel, sendo que o **0** equivale a **falso** e o **1** equivale a **verdadeiro**.
 
@@ -403,9 +398,10 @@ As variáveis em C (e acho que em todas as linguagens) têm algumas regras quant
 4. Variáveis não podem ser iguais à palavras reservadas.
 
 > Palavras reservadas do C:
+
 ```C
 auto break case char if const continue  default do double else enum
-extern float for goto if int long register return short signed void 
+extern float for goto if int long register return short signed void
 sizeof static struct  switch  typedef union unsigned volatile while
 ```
 
@@ -430,7 +426,53 @@ float f =  i / 3; /*
                      o valor 0.0 à variável f
                   */
 ```
-> Portanto, sempre use variáveis do mesmo tipo para operações matemáticas ou a conversão de tipo.
+> Portanto, sempre use variáveis do mesmo tipo para operações matemáticas, caso sejam de tipos diferentes use a conversão de tipos.
+
+## Modificadores de tipo
+
+E mais uma vez falaremos de tipos primitivos, como havíamos visto, os tipos primitivos tem tamanhos diferentes na memória, e estes tamanhos podem ser expandidos ou reduzido, além de modificar o tamanho os modificadores também podem modificar sinais.
+
+### Long
+
+O `long` alonga (expande) a capacidade de variáveis do tipo `int` e `double`.
+
+> Lembrando que os valores de tamanho variam de computador para computador.
+
+```C
+int inteiro = 0;              // 4 bytes
+long int l_inteiro = 0;       // 8 bytes
+
+double real = 10E49;          // 6 bytes
+long double l_real = 10e49;   // 8 bytes
+```
+
+E para alcançar o máximo de tamanho de uma variável para a sua arquitetura use o `long long int` ou simplesmente `long long`.
+
+### Short
+
+O `short` encurta a capacidade de variáveis do tipo `int`.
+
+```C
+int inteiro = 0;              // 4 bytes
+short int s_inteiro = 0;      // 2 bytes
+```
+
+### Signed e unsigned
+
+`signed` e `unsigned` significam respectivamente "com sinal" e "sem sinal".
+
+```C
+int c = 90;
+int i = +90;
+int j = -90;
+```
+
+Sempre que você declara um número, ele por padrão é `signed`, portanto suporta números negativos e positivos, e o `unsigned` só suporta números positivos.
+
+```C
+int inteiro = 0;               // intervalo: -2147483648 a 2147483647
+unsiged int us_inteiro = 0;    // intervalo: 0           a 4294967295
+```
 
 ## Entrada e saída de dados
 
@@ -572,6 +614,7 @@ printf("caractere: %c", caractere);
 ```
 
 > saída:
+
 ```
 numero inteiro: 90
 numero real: 9.23
@@ -624,6 +667,189 @@ caractere: J
 ```
 
 Esses não são os únicos métodos de entrada e saída de dados, mas veremos outros em outros capítulos, esses são o bastante para prosseguirmos nossos estudos.
+
+### Formatos do printf e scanf
+
+#### %s
+
+Strings ou texto, exemplo:
+
+```C
+printf("string: '%s'\n", "string");
+```
+
+#### %d e %i
+
+Inteiros, exemplo:
+
+```C
+printf("int: %i\n", 90);
+```
+
+#### %f
+
+Reais, exemplo:
+
+```C
+printf("float: %f\n", 9.3);
+```
+
+#### %c
+
+Caracteres, exemplo:
+
+```C
+printf("char: %c\n", 'A');
+```
+
+#### %o
+
+Numeros octais, exemplo:
+
+```C
+printf("int: %o\n", 018);
+```
+
+> Numeros octais iniciam com `0`, logo `012` é o mesmo que `10`
+
+#### %u
+
+Numeros sem sinal, exemplo:
+
+```C
+printf("int: %u\n", 18);
+```
+
+#### %x
+
+Numeros hexadecimais, exemplo:
+
+```C
+printf("int: %x\n", 0xDB7B5);
+```
+
+> Todo hexadecimal começa com `0x`.
+
+#### %l
+
+Numeros longos (sempre acompanhado pelo tipo alongado), exemplo:
+
+```C
+// Reais longos
+printf("double: %lf\n", (double) 9.3);
+
+// Inteiros longos
+printf("long int: %li\n", 698);
+```
+
+### Putchar e puts
+
+Basicamente o "put" significa coloque, logo, `putchar` é coloque um `char`:
+
+```C
+char c = '\n';
+
+putchar ('j');
+putchar ('o');
+putchar ('ã');
+putchar ('o');
+putchar ( c );
+putchar ('!');
+putchar ( c );
+```
+
+> Saída:
+
+```
+joao
+!
+```
+
+E seguindo a mesma lógica, `puts` é coloque uma string ( o `s` é uma abreviação ).
+
+```C
+char * str = "string coisada";
+
+puts ( "joao" );
+puts ( "!" );
+
+puts ( str );
+```
+
+> Saída:
+
+```
+joao
+!
+string coisada
+```
+
+> Uma particularidade do `puts` é que ele adiciona um `\n` no fim da string.
+
+### Getchar e gets
+
+Assim como o `scanf`, o `getchar` e o `gets`, são funções para leitura de dados, mas que só servem para ler variáveis do tipo `char` e strings.
+
+É assim que se usa o `getchar`:
+
+```C
+char j;
+
+j = getchar();
+```
+
+E o `gets` é usado assim:
+
+```C
+char str [20];
+gets(str);
+```
+> Mesmo o `gets` sendo uma função contraindicada pela comunidade, ela ainda funciona, então caso o gcc aponte erros pelo uso do `gets`, saiba que ela vai funcionar normalmente.
+
+### Fprintf e fgets
+
+O `f` antes do `printf` significa formatação, logo, um `fprintf` é um `printf` formatado, e essa formatação é basicamente um parâmetro a mais indicando o lugar onde você quer escrever a informação.
+
+```C
+fprintf(stdout, "Hello mundo!!\n"); // printf ( "Hello mundo!!" )
+```
+
+> O `stdout` é um "stream" ( local para onde vai a string do `fprintf` ), e o `printf` é um `fprintf` com o `stdout` como "stream", e o `stdout` é a saída padrão (a tela).
+
+Mas também é possível enviar a saída para outros streams, dentre eles nós temos o `stderr`, que é a saída padrão de erros:
+
+```C
+char coisa [30];
+
+puts("escreva de 1 a 10 caracteres: ");
+scanf ("%s", &coisa );
+
+if (coisa [0] == '\0' ) {
+   fprintf ( stderr, "ERROR: você não digitou nenhum caractere!");
+   return 1;
+}
+
+if (coisa [10] != '\0' ) {
+   fprintf ( stderr, "ERROR: você digitou caracteres demais!");
+   return 1;
+}
+```
+
+> No programa acima são pedidos caracteres de 1 a 10, então se o caractere da posição `0` corresponder ao fim de uma string (`'\0'`) quer dizer que 0 caracteres foram lidos, e se o 11º caractere (posição `10`) for o fim da string (`'\0'`) quer dizer que existem mais de 10 caracteres na string.
+
+Note que quando ocorreu um erro o valor retornado foi o `1`, indicando para o sistema operacional que aconteceu um erro.
+
+O `fgets` seria um `gets` formatado, e ele funciona da seguinte maneira:
+
+```C
+char str[10];
+
+fgets ( stdin, 10, str ); // gets (str)
+```
+
+> O `stdin` é a entrada de dados padrão (o teclado).
+
+_"Ué? Então por que eu deveria usar esse `fgets` aí se o `gets` é mais simple?"_ ...Muito simples, lembra que o `gets` tem um problema, tanto que ele é contra-indicado pelo próprio compilador? Pois é, o `fgets` não tem esse problema, porque nele além de você indicar a string a ser lida e o "stream", ele exige que você coloque o tamanho da string, assim evitando colocar dados no lugar errado.
 
 ## Operadores 
 
@@ -951,13 +1177,14 @@ return 0;
 Faça uma calculadora na qual o programa peça dois números e depois uma operação (a escolha deve ser entre soma e subtração).
 
 > Saída:
->
+
 ```
 Digite um número inteiro: 8
 Digite outro número inteiro: 2
 Digite a operação [+/-]: +
 
 A soma entre 8 e 2 é 10
+
 ```
 
 #### Resposta
@@ -1283,8 +1510,9 @@ Este você tem que fazer sozinho, todas as coisas necessárias para fazê-lo for
 
 ## Arrays
 
-Arrays são uma variável com vários espaços... _"Como assim?"_ ... Lembra do armário das variáveis? No caso do array, em vez de reservar um espaço, você pede vários espaços de uma vez, tipo:
-> `cubo dado estendido com ` :game\_die:`,`:game\_die:`,`:game\_die:` dentro`
+Arrays são variáveis com vários espaços... _"Como assim?"_ ... Lembra do armário das variáveis? No caso do array, em vez de reservar um espaço, você pede vários espaços de uma vez, tipo:
+
+> `cubo dado [] com ` :game\_die:`,`:game\_die:`,`:game\_die:` dentro`
 >
 ```C
 int algarismos [] = { 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 0 };
@@ -2017,9 +2245,11 @@ Se fossemos fazer o código acima usando puramente ponteiros, nós faríamos ass
 > Lembrando que ao alocar espaços e referenciando com ponteiros, nós estamos criando arrays.
 
 Antes de mais nada você tem que incluir o `stdlib.h` no seu arquivo (para evitar erros, sempre faça qualquer `include` no inicio do arquivo e antes da função `main`.
+
 ```C
 #include <stdlib.h>           // biblioteca necessária para usar as funções de alocação.
 ```
+> Para garantir inclua esta biblioteca em todos os exemplos a partir daqui.
 
 Agora sim, podemos continuar...
 
@@ -2197,249 +2427,11 @@ int main (int arg_counter, char * arg_variable []) {
 return 0;
 }
 ```
-> O `arg_counter` é a quantidade de argumentos recebidos, o `arg_variable` é um parâmetros com os parâmetros, e esses parâmetros ou argumentos, são strings.
 
-No exemplo acima usamos `arg_counter` e `arg_variable` para o nome dos parâmetros, você pode usar o que você quiser, mas a maioria das pessoas usam `argc` (`arg_counter`) e `argv` (`arg_variable`).
+> O `arg_counter` é a quantidade de argumentos recebidos, o `arg_variable` é um parâmetros com os argumentos, e esses parâmetros ou argumentos, são strings.
 
-## Outras formas de entrada e saída de dados
+> No exemplo acima usamos `arg_counter` e `arg_variable` para o nome dos parâmetros, e você pode usar o que você quiser, mas a maioria das pessoas usam `argc` (`arg_counter`) e `argv` (`arg_variable`).
 
-Até agora nós só usamos o `printf` e o `scanf` para entrada e saída de dados, mas existem outras formas... e neste capítulo veremos essas outras formas.
-
-### Putchar e puts
-
-Basicamente o "put" significa coloque, logo, `putchar` é coloque um `char`:
-
-```C
-char c = '\n';
-
-putchar ('j');
-putchar ('o');
-putchar ('ã');
-putchar ('o');
-putchar ( c );
-putchar ('!');
-putchar ( c );
-```
-
-> Saída:
-
-```
-joao
-!
-```
-
-E seguindo a mesma lógica, `puts` é coloque uma string ( o `s` é uma abreviação ).
-
-```C
-char * str = "string coisada";
-
-puts ( "joao" );
-puts ( "!" );
-
-puts ( str );
-```
-
-> Saída:
-
-```
-joao
-!
-string coisada
-```
-
-> Uma particularidade do `puts` é que ele adiciona um `\n` no fim da string.
-
-### Getchar e gets
-
-Assim como o `scanf`, o `getchar` e o `gets`, são funções para leitura de dados, mas que só servem para ler variáveis do tipo `char` e strings.
-
-É assim que se usa o `getchar`:
-
-```C
-char j;
-
-j = getchar();
-```
-
-E o `gets` é usado assim:
-
-```C
-char str [20];
-gets(str);
-```
-> Mesmo o `gets` sendo uma função contraindicada pela comunidade, ela ainda funciona, então caso o gcc aponte erros pelo uso do `gets`, saiba que ela vai funcionar normalmente.
-
-### Fprintf e fgets
-
-O `f` antes do `printf` significa formatação, logo, um `fprintf` é um `printf` formatado, e essa formatação é basicamente um parâmetro a mais indicando o lugar onde você quer escrever a informação.
-
-```C
-fprintf(stdout, "Hello mundo!!\n"); // printf ( "Hello mundo!!" )
-```
-
-> O `stdout` é um "stream" ( local para onde vai a string do `fprintf` ), e o `printf` é um `fprintf` com o `stdout` como "stream", e o `stdout` é a saída padrão (a tela).
-
-Mas também é possível enviar a saída para outros streams, dentre eles nós temos o `stderr`, que é a saída padrão de erros:
-
-```C
-char coisa [30];
-
-puts("escreva de 1 a 10 caracteres: ");
-scanf ("%s", &coisa );
-
-if (coisa [0] == '\0' ) {
-   fprintf ( stderr, "ERROR: você não digitou nenhum caractere!");
-   return 1;
-}
-
-if (coisa [10] != '\0' ) {
-   fprintf ( stderr, "ERROR: você digitou caracteres demais!");
-   return 1;
-}
-```
-
-> No programa acima são pedidos caracteres de 1 a 10, então se o caractere da posição `0` corresponder ao fim de uma string (`'\0'`) quer dizer que 0 caracteres foram lidos, e se o 11º caractere (posição `10`) for o fim da string (`'\0'`) quer dizer que existem mais de 10 caracteres na string.
-
-Note que quando ocorreu um erro o valor retornado foi o `1`, indicando para o sistema operacional que aconteceu um erro.
-
-O `fgets` seria um `gets` formatado, e ele funciona da seguinte maneira:
-
-```C
-char str[10];
-
-fgets ( stdin, 10, str ); // gets (str)
-```
-
-> O `stdin` é a entrada de dados padrão (o teclado).
-
-_"Ué? Então por que eu deveria usar esse `fgets` aí se o `gets` é mais simple?"_ ...Muito simples, lembra que o `gets` tem um problema, tanto que ele é contra-indicado pelo próprio compilador? Pois é, o `fgets` não tem esse problema, porque nele além de você indicar a string a ser lida e o "stream", ele exige que você coloque o tamanho da string, assim evitando colocar dados no lugar errado.
-
-## Chegou a hora de praticar de novo!
-
-### Desafio 5
-
-Faça uma calculadora onde o usuário digite dois números (reais) e no final ele pergunte qual operação matemática fazer ( +, -, / ou * ) e no fim ele pergunte se a pessoa deseja calcular de novo.
-
-> Saída:
-
-```
-Digite 2 números: 2 3
-Você quer somar (+), subtrair (-), multiplicar (*) ou dividir (/)?
- +
-2 + 3 = 5
-
-Deseja calcular de novo? [S/n] n
-```
-
-#### Resposta
-
-Primeiramente iremos declarar as variáveis necessárias:
-
-```C
-int n1, n2;    // números que iremos ler
-char operacao; // operação
-int res;       // resposta
-```
-
-E iremos ler os dados necessários:
-
-```C
-printf("Digite 2 números: ");
-scanf("%i %i", &n1, &n2);
-
-printf("Você quer somar (+), subtrair (-), multiplicar (*) ou dividir (/)? ");
-operacao = getchar();
-```
-
-Agora nós vamos efetuar os devidos cálculos:
-
-```C
-if (operacao == '+')
-   res = n1 + n2;
-
-else if (operacao == '-')
-   res = n1 - n2;
-
-else if (operação == '/')
-   res = n1 / n2;
-
-else res = n1 * n2;
-```
-
-E exibimos o resultado:
-
-```C
-printf("\n%i %c %i = %i\n", n1, operacao, n2, res);
-```
-
-E se você é atento notou que faltou perguntar se a pessoa que calcular de novo, mas antes de fazer esta pergunta nó temos que colocar o código que queremos repetir dentro de uma estrutura de repetição, mas não coloque a parte da declaração de variáveis:
-
-```C
-do {
-
-   printf("Digite 2 números: ");
-   scanf("%i %i", &n1, &n2);
-
-   printf("Você quer somar (+), subtrair (-), multiplicar (*) ou dividir (/)? ");
-   operacao = getchar();
-
-   if (operacao == '+')
-      res = n1 + n2;
-   else if (operacao == '-')
-      res = n1 - n2;
-   else if (operação == '/')
-      res = n1 / n2;
-   else res = n1 * n2;
-
-   printf("\n%i %c %i = %i\n", n1, operacao, n2, res);
-
-   printf("Deseja calcular de novo? [S/n] ");
-
-   if ( getchar() == 'n' )
-      break;
-
-} while ( 1 );
-```
-
-> Eu escolhi o `do..while` porque o código sempre vai ser executado pelo menos uma vez.
-
-E o código final ficou assim:
-
-```C
-int n1, n2;    // números que iremos ler
-char operacao; // operação
-int res;       // resposta
-
-do {
-
-   // lendo dados
-   printf("Digite 2 números: ");
-   scanf("%i %i", &n1, &n2);
-
-   printf("Você quer somar (+), subtrair (-), multiplicar (*) ou dividir (/)? ");
-   operacao = getchar();
-
-   // processando dados
-   if (operacao == '+')
-      res = n1 + n2;
-   else if (operacao == '-')
-      res = n1 - n2;
-   else if (operação == '/')
-      res = n1 / n2;
-   else res = n1 * n2;
-
-   // exibindo dados
-   printf("\n%i %c %i = %i\n", n1, operacao, n2, res);
-
-   // reiniciando ou interrompendo programa
-   printf("Deseja calcular de novo? [S/n] ");
-   if ( getchar() == 'n' )
-      break;
-
-} while ( 1 );
-```
-
-# Noções definitivas
 
 ## Estruturas
 
@@ -2580,53 +2572,281 @@ typedef enum {
 } por_extenso;
 ```
 
-## Modificadores de tipo
 
-E mais uma vez falaremos de tipos primitivos, como havíamos visto, os tipos primitivos tem tamanhos diferentes na memória, e estes tamanhos podem ser expandidos ou reduzido, além de modificar o tamanho os modificadores também podem modificar sinais.
+## Chegou a hora de praticar de novo!
 
-### Long
+### Desafio 5
 
-O `long` alonga (expande) a capacidade de variáveis do tipo `int` e `double`.
+Faça uma calculadora onde o usuário digite dois números (reais) e no final ele pergunte qual operação matemática fazer ( +, -, / ou * ) e no fim ele pergunte se a pessoa deseja calcular de novo.
 
-> Lembrando que os valores de tamanho variam de computador para computador.
+> Saída:
 
-```C
-int inteiro = 0;              // 4 bytes
-long int l_inteiro = 0;       // 8 bytes
+```
+Digite 2 números: 2 3
+Você quer somar (+), subtrair (-), multiplicar (*) ou dividir (/)?
+ +
+2 + 3 = 5
 
-double real = 10E49;          // 6 bytes
-long double l_real = 10e49;   // 8 bytes
+Deseja calcular de novo? [S/n] n
 ```
 
-E para alcançar o máximo de tamanho de uma variável para a sua arquitetura use o `long long int` ou simplesmente `long long`.
+#### Resposta
 
-### Short
-
-O `short` encurta a capacidade de variáveis do tipo `int`.
+Primeiramente iremos declarar as variáveis necessárias:
 
 ```C
-int inteiro = 0;              // 4 bytes
-short int s_inteiro = 0;      // 2 bytes
+int n1, n2;    // números que iremos ler
+char operacao; // operação
+int res;       // resposta
 ```
 
-### Signed e unsigned
-
-`signed` e `unsigned` significam respectivamente "com sinal" e "sem sinal".
+E iremos ler os dados necessários:
 
 ```C
-int c = 90;
-int i = +90;
-int j = -90;
+printf("Digite 2 números: ");
+scanf("%i %i", &n1, &n2);
+
+printf("Você quer somar (+), subtrair (-), multiplicar (*) ou dividir (/)? ");
+operacao = getchar();
 ```
 
-Sempre que você declara um número, ele por padrão é `signed`, portanto suporta números negativos e positivos, e o `unsigned` só suporta números positivos.
+Agora nós vamos efetuar os devidos cálculos:
 
 ```C
-int inteiro = 0;               // intervalo: -2147483648 a 2147483647
-unsiged int us_inteiro = 0;    // intervalo: 0           a 4294967295
+if (operacao == '+')
+   res = n1 + n2;
+
+else if (operacao == '-')
+   res = n1 - n2;
+
+else if (operação == '/')
+   res = n1 / n2;
+
+else res = n1 * n2;
 ```
 
+E exibimos o resultado:
 
+```C
+printf("\n%i %c %i = %i\n", n1, operacao, n2, res);
+```
+
+E se você é atento notou que faltou perguntar se a pessoa que calcular de novo, mas antes de fazer esta pergunta nó temos que colocar o código que queremos repetir dentro de uma estrutura de repetição, mas não coloque a parte da declaração de variáveis:
+
+```C
+do {
+
+   printf("Digite 2 números: ");
+   scanf("%i %i", &n1, &n2);
+
+   printf("Você quer somar (+), subtrair (-), multiplicar (*) ou dividir (/)? ");
+   operacao = getchar();
+
+   if (operacao == '+')
+      res = n1 + n2;
+   else if (operacao == '-')
+      res = n1 - n2;
+   else if (operação == '/')
+      res = n1 / n2;
+   else res = n1 * n2;
+
+   printf("\n%i %c %i = %i\n", n1, operacao, n2, res);
+
+   printf("Deseja calcular de novo? [S/n] ");
+
+   if ( getchar() == 'n' )
+      break;
+
+} while ( 1 );
+```
+
+> Eu escolhi o `do..while` porque o código sempre vai ser executado pelo menos uma vez.
+
+E o código final ficou assim:
+
+```C
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[])
+{
+  int n1, n2;    // números que iremos ler
+  char operacao; // operação
+  int res;       // resposta
+
+  do {
+
+    // lendo dados
+    printf("Digite 2 números: ");
+    scanf("%i %i", &n1, &n2);
+
+    printf("Você quer somar (+), subtrair (-), multiplicar (*) ou dividir (/)? ");
+    scanf("%c %c", &operacao, &operacao);
+
+    // processando dados
+    if (operacao == '+')
+      res = n1 + n2;
+    else if (operacao == '-')
+      res = n1 - n2;
+    else if (operacao == '/')
+      res = n1 / n2;
+    else res = n1 * n2;
+
+    // exibindo dados
+    printf("\n%i %c %i = %i\n", n1, operacao, n2, res);
+
+    // reiniciando ou interrompendo programa
+    printf("Deseja calcular de novo? [S/n] ");
+    getchar();
+    if ( getchar() == 'n' )
+      break;
+
+  } while ( 1 );
+  return 0;
+}
+```
+
+### Desafio 6
+
+Faça um programa que leia 5 números e retorne a soma entre os 3 menores divididos pelo maior.
+
+> Saída:
+
+```
+digite 5 numeros: 10 36 88 89 43
+
+(10+36+43)/89 = 1.0
+```
+
+#### Resposta
+
+Primeiramente precisamos ler os dados
+
+```C
+int n[5];
+printf("digite 5 numeros: ");
+scanf("%i%i%i%i%i", &n[0], &n[1], &n[2], &n[3], &n[4]);
+```
+
+Agora vamos pegar o maior número digitado (já que é mais simples que pegar os 3 menores).
+
+```C
+int maior = 0;
+for (int i=0; i<5; i++){
+  maior = (n[i] > n[maior])?i:maior;
+}
+```
+
+Agora a parte mais complidada, existem duas formas de fazer isso, a primeira é comparar manualmente e atribuir a variáveis.
+
+```C
+int menor1 = maior, menor2 = maior, menor3 = maior;
+maior = n[maior];
+```
+
+> temos que dar o `maior` como valor, porque para comparar temos que ter certeza de que pode existir um valor menor, caso atribuamos o `0` a variável sempre vai ter o menor valor
+
+```C
+for (int i=0; i++; i<5){
+  if (n[i] < n[menor1])
+    menor1 = n[i];
+maior = n[maior]
+}
+
+for (int i=0; i++; i<5){
+  if (n[i] < n[menor2] && i != menor1)
+    menor1 = n[i];
+}
+
+for (int i=0; i++; i<5){
+  if (n[i] < n[menor3] && i != menor2 && i != menor1)
+    menor1 = n[i];
+}
+```
+
+Essa forma com certeza funciona, mas existe uma forma mais inteligente de fazer:
+
+```
+maior = n[maior];
+int menores [] = {maior, maior, maior};
+for (int j=0; j<3; j++){
+  for (int i=0; i<5; i++){
+    if (n[i]<menores[j]){
+
+      menores[j] = n[i];
+      n[i] = maior;
+
+    }
+  }
+}
+```
+
+E por fim vamos exibir os resultados:
+
+```C
+printf("(%i+%i+%i)/%i = %1.1f\n",
+    menores[0],
+    menores[1],
+    menores[2],
+    maior,
+    (float)(menores[0]+menores[1]+menores[2])/maior
+    );
+```
+
+> Código final:
+
+```C
+#include <stdio.h>
+#include <stdlib.h>
+
+int main(int argc, char *argv[])
+{
+
+  // criando e lendo dados
+  int n[5];
+  printf("digite 5 numeros: ");
+  scanf("%i%i%i%i%i", &n[0], &n[1], &n[2], &n[3], &n[4]);
+
+  // pegando o maior valor
+  int maior = 0;
+  for (int i=0; i<5; i++)
+    maior = (n[i] > n[maior])?i:maior;
+
+  // pegando os menores valores
+  maior = n[maior];
+  int menores [] = {maior, maior, maior};
+  for (int j=0; j<3; j++){
+    for (int i=0; i<5; i++){
+
+      // caso o numero atual for menor que o menor
+      if (n[i]<menores[j]){
+        menores[j] = n[i];
+
+        /* o numero atual é o menor de todos
+         * e por isso tem que deixar de ser,
+         * ou não haverá como pegar o segundo
+         * menor e muito menos o terceiro já
+         * que ele seria o menor.
+         */
+        n[i] = maior;
+      }
+
+    }
+
+  }
+
+  printf("(%i+%i+%i)/%i = %1.1f\n",
+      menores[0],
+      menores[1],
+      menores[2],
+      maior,
+      (float)(menores[0]+menores[1]+menores[2])/maior
+      );
+
+  return 0;
+}
+
+```
 
 <br>
 <br>
