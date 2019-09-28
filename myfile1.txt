@@ -1,1 +1,0 @@
-This is sent to a buffered stream
