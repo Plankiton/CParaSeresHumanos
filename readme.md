@@ -80,31 +80,6 @@ Por favor, se você encontrar qualquer erro ortográfico ou em relação aos con
 
 Repositório do livro no github: http://github.com/RoboCopGay/c_para_seres_humanos.book
 
-# Índice
-
-1. [Noções básicas](#noções-básicas)
-   - [O que é C?](#o-que-é-c)
-   - [Como o C funciona](#como-o-c-funciona)
-   - [Qual é a história do C?](#qual-é-a-história-do-c)
-   - [Como se instala o tal compilador C?](#como-se-instala-o-tal-compilador-c)
-   - [Introdução à sintaxe do C](#introdução-a-sintaxe-do-c)
-   - [Comentários](#comentários)
-   - [Variáveis](#variáveis)
-   - [Modificadores de tipo](#modificadores-de-tipo)
-   - [Entrada e saída de dados](#entrada-e-saída-de-dados)
-   - [Operadores](#operadores)
-   - [Chegou a hora de praticar!](#chegou-a-hora-de-praticar)
-2. [Noções avançadas](#noções-avançadas)
-   - [Arrays](#arrays)
-   - [Strings](#strings)
-   - [Os blocos e o escopo](#os-blocos-e-o-escopo)
-   - [Condicionais](#condicionais)
-   - [Estruturas de repetição](#estruturas-de-repetição)
-   - [Ponteiros](#ponteiros)
-   - [Funções](#funções)
-   - [Estruturas](#estruturas)
-   - [Chegou a hora de praticar de novo!](#chegou-a-hora-de-praticar-de-novo)
-
 # Noções básicas
 
 ## O que é "C"?
@@ -651,7 +626,11 @@ printf("\nnumero inteiro: %i", numero);
 printf("numero real: %f", real);
 printf("caractere: %c", caractere);
 ```
-> Na hora de ler `char`, às vezes o `scanf` buga, isso ocorre quando ele recebe lixo do teclado, você só precisa ler a variável duas vezes, isso geralmente ocorre com `char`, mas se acontecer com outro tipo, a resolução para o problema é a mesma.
+> Na hora de ler um `char`, às vezes o `scanf` buga, isso ocorre quando ele recebe lixo do teclado, você só precisa ler a variável duas vezes, isso geralmente ocorre com `char`, mas se acontecer com outro tipo, a resolução para o problema é a mesma:
+
+```C
+fflush(stdin); // esse comando vai limpar o lixo da memória
+```
 
 > Saída:
 >
@@ -866,6 +845,19 @@ n % N // resto da divisão  -> retorna o resto da divivão entre dois números.
 ```
 > para evitar erros sempre faça operações com números de tipos iguais.
 
+E nunca se esqueça que em expressões numéricas existe uma ordem de precedencia, logo, `6+4/2` é `8` e não `5`, e isso acontece porque assim como na matemática é resolvida primeiro a multiplicação (`4/2`) e depois é somado `6` a esse valor.
+
+Odem de precedencia:
+
+- parênteses (`( )`)
+- multiplicação (`*`), divivão (`/`) e resto (`%`)
+- adição (`+`) e subtração (`-`)
+
+```C
+6+4/2    //  ->  8
+(6+4)/2  //  ->  5
+```
+
 ### Atribuição
 
 O operadores de atribuição são formas simplificadas de atribuir valores... _"Não entendi..."_
@@ -916,7 +908,7 @@ printf("%i\n", numero++ );
 89
 ```
 
-_"Pera! mas ele não deveria ser 90?"_ ... A variável numero só é incrementada depois de retornar o valor dela, isso quer dizer que ela só é incrementada depois dessa parte do programa, mas se você usar o pré-incremento:
+_"Pera! mas ele não deveria ser 90?"_ ... A variável `numero` só é incrementada depois de retornar o valor dela, isso quer dizer que ela só é incrementada depois dessa parte do programa, mas se você usar o pré-incremento:
 
 ```C
 int numero = 89;
@@ -1217,10 +1209,11 @@ printf("Digite outro número inteiro: ");
 scanf("%i", &outro_numero);
 
 printf("Digite a operação [+/-]: ");
-scanf("%c", &operacao);
+fflush(stdin);
+
 scanf("%c", &operacao);
 ```
-> no meu caso ocorreu aquele bug do `scanf` que eu mencionei no capítulo de entrada e saída de dados, mas caso no seu não aconteça, coloque o `scanf` só uma vez.
+> no meu caso ocorreu aquele bug do `scanf` que eu mencionei no capítulo de entrada e saída de dados, mas caso no seu não aconteça apague a linha com o `fflush`.
 
 Agora, iremos testar se a operação escolhida foi soma ou subtração e depois salvar o resultado em outra variável (`res`):
 
@@ -2846,6 +2839,321 @@ int main(int argc, char *argv[])
   return 0;
 }
 
+```
+
+### Desafio 7
+
+Faça um algoritmo que leia números inteiros indefinidamente e só pare quando o valor lido for maior que 1000, nos resultados devem ser informados o maior, o menor, e a media entre eles, além de dizer quais foram repetidos e se repetidos o número de vezes que foi repetido, além de todos os números primos da lista.
+
+```
+digitte números... (para parar digite um numero >= 1000)
+9
+8
+4
+2
+9
+8
+11
+390
+23
+42
+13
+1000
+```
+
+# Algumas funções e bibliotecas úteis
+
+Até agora só usamos duas bibliotecas em nossos porgramas em C, e não vimos nem 10% dessas, então para deixar seu conhecimento mais completo aqui vamos mostrar algumas funções dessas duas bibliotecas, além de outras que também podem ser bem interessantes.
+
+## <stdio.h>
+
+Como já vimos as funções `scanf`, `printf`, `putchar`, `puts`, `getchar`, `gets`, `fprintf` e `fgets`, iremos ignorá-las.
+
+O `std` significa exclusivamente "standard" ("padrão" em português), `i` é de "input" (entrada) e o `o` de "output" (saída), portanto entrada e saída de dados padrão.
+
+### I/O em arquivos
+
+Como o `stdio` serve para entrada e saída de dados, óbviamente também é usada para manipulação de arquivos, usada tanto para ler (input), quanto para escrever (output) neles.
+
+Para ler um arquivo precisamos criar um ponteiro do tipo `FILE`
+
+```C
+FILE * arquivo;
+```
+
+#### Leitura
+
+> crie um arquivo `j.txt` com "joao" escrito dentro
+
+Para abrir o arquivo `j.txt` no nosso programa, é só usar a função `fopen`.
+
+```C
+arquivo = fopen("j.txt", "r");
+```
+
+> O `"r"` no segundo parametro é o modo desse arquivo, nesse caso, abrimos um arquivo em modo leitura.
+
+Para ler e exibir o que foi lido é só usar o `fgetc`:
+
+```C
+char caractere = fgetc(arquivo);
+```
+
+> O `fgetc` retorna um caractere de cada vez, e quando le o caractere, quando você for ler de novo ele lerá somente o próximo, exemplo:
+
+```C
+// suponha que o arquivo "texto.txt" tem "abc" escrito dentro
+FILE *f = fopen("texto.txt", "r");
+char a, b, c;
+
+b = fgetc(f); // -> "a"
+c = fgetc(f); // -> "b"
+a = fgetc(f); // -> "c"
+
+print("%c %c %c\n", a, b, c);
+```
+
+> Saída:
+
+```
+c a b
+```
+
+Lembre-se que o fim de um arquivo é demarcado por uma constante chamada de `EOF` (significa "end of file" ou "fim do arquivo"), logo, se voce usar um loop, para ler o tal arquivo, usem o `EOF` como "flag"
+
+> "flag" é a condição de interrupção
+
+```C
+char caractere;
+do {
+  caractere = fgetc(arquivo); // -> <caractere> = fgetc(<arquivo>)
+  putchar(caractere);
+} while (caractere != EOF);
+```
+
+E depois de terminar de usar, assim como você tem que liberar a memória com o `free` trabalhando com ponteiros, você tem que fechar o arquivo, ou ele vai ficar ocupando memória à toa
+
+```C
+fclose(arquivo);
+```
+
+E ficaria assim:
+
+```C
+FILE * arquivo;
+arquivo = fopen("j.txt", "r");
+
+char caractere;
+do {
+  caractere = fgetc(arquivo);
+  putchar(caractere);
+} while (caractere != EOF);
+fclose(arquivo);
+```
+
+Na minha humilde opnião é muito melhor ler os dados caractere por caractere porque assim se tem mais controle dos dados, mas existem outras funções que auxiliam nisso.
+
+O `fscanf` lê dados do arquivo e joga na variável estipulada:
+
+```C
+FILE *arquivo = fopen("texto.txt", "r");
+
+char * texto_do_arquivo = malloc(10);
+fscanf(arquivo, "%s", texto_do_arquivo);
+
+printf ("%s", texto_do_arquivo);
+
+fclose(arquivo);
+free(texto_do_arquivo);
+```
+
+>  Não usei a forma de array aqui porque aparentemente o `fscanf` crachou comigo, mas sinta-se a vontade para testar se isso acontece com você também...
+
+O `fscanf` vai ler até o primeiro espaço ou a primeira quebra de linha (`\n`).
+
+Também dá pra fazer com o já conhecido `fgets`:
+
+```C
+FILE *f = fopen("f.txt", "r");
+
+char str [100];
+fgets (f, 100, str); // -> fgets ( <arquivo>, <tamanho da string>, <string> )
+
+fclose(f);
+```
+
+E por fim com o `fread`, que é uma forma mais direta de ler os dados, mas para usar o `fread` você tem que saber o limite da leitura ( que no nosso caso é o fim do arquivo), e para descobrir isso, nós vamos usar duas funções chamadas `fseek` e `ftell`.
+
+```C
+fseek(arquivo, 0, SEEK_END); // mudando o "cursor" para o fim do arquivo
+size_t tamanho_arquivo = ftell(arquivo); // pegando a posição do cursor
+fseek(arquivo, 0, SEEK_SET); // colocando o cursor no inicio de novo
+```
+
+Feito isso é só ler usando o `fread`
+
+```C
+fread(      texto,        sizeof (char),              tamanho_arquivo, arquivo );
+//   ( <ponteiro>, <tmh do tipo do ptr>, <limite da leitura em bytes>, <arquivo> )
+```
+
+E vai ficar assim:
+
+```C
+FILE *arquivo = fopen("f.txt", "r");
+
+fseek(arquivo, 0, SEEK_END); // mudando o "cursor" para o fim do arquivo
+size_t tamanho_arquivo = ftell(arquivo); // pegando a posição do cursor
+fseek(arquivo, 0, SEEK_SET); // colocando o cursor no inicio de novo
+
+char * texto = malloc( tamanho_arquivo );
+
+fread( texto, sizeof (char), tamanho_arquivo, arquivo );
+
+free(texto);
+fclose(arquivo);
+```
+
+> O conteúdo do arquivo vai ser escrito na variável `texto`
+
+#### Escrita
+
+Para abrir um arquivo em modo escrita ao invés de colocar o `r` no parametro do `fopen`, colocamos um `w`:
+
+```C
+FILE *arquivo = fopen("texto.txt", "w");
+```
+
+> Nesse caso, se o arquivo não existir, ele será criado, mas se existir um arquivo ele perderá todos os seus dados.
+
+Para escrever um `char` em um arquivo usamos a função `fputc`
+
+```C
+fputc('a', arquivo); // -> fputc( <char>, <arquivo> )
+```
+
+Para escrever uma string use o `fputs`
+
+```C
+fputs("string com coisas", arquivo); // -> fputs(<string>, <arquivo>)
+```
+
+Ou se quiser escrever um dados formatado use o já estudado `fprintf`
+
+```C
+fprintf ( arquivo, "%i > %i = %s", 4, 3, (4 > 3? "True": "False"));
+```
+
+E por fim você pode usar o irmão do `fread`, o `fwrite`:
+
+```C
+char texto [] = "texto aleatorio para colocar no arquivo";
+fwrite( texto, sizeof (char), sizeof(texto), arquivo );
+```
+
+Mas esses não são os únicos modos de abertura de um arquivo
+
+```C
+"r"  // -> read: somente leitura
+"w"  // -> write: somente escrita, mas apaga o conteúdo do arquivo antes de escrever
+"a"  // -> append: somente escrita
+"r+" // -> read/write: leitura e escrita
+"w+" // -> read/write: leitura e escrita, mas apaga o conteúdo do arquivo antes de escrever
+"a+" // -> read/append: leitura e escrita
+```
+
+> Faça seus testes com cada um deles, para ver funcionando na prática
+
+Você já deve ter percebido que as mesmas funções que usamos em arquivos, são usadas na `stdout`, `stdin` e `stderr`, não é mesmo?
+Isuuso acontece, porque essas 3 variáveis são arquivos, e por esse motivo você pode usar todas as funções usadas em arquivos colocando elas no lugar, mas lembre-se, o `stdout` e o `stderr` estão em modo `"w"`, enquanto o `stdin` está em modo `"r"`, portanto, você só pode escrever no `stdout` e no `stderr`, e só pode ler o `stdin`. Divirta-se!
+
+### Posicionamento em arquivos
+
+Para "finalizar" este assunto, existem algumas funções que podem ser úteis na manipulação de arquivos, como o `fseek` (que já foi visto de maneira superficial)
+
+> Não vamos finalizar totalmente porque ainda faltam algumas funções, que agente vai ver no capítulo de `stdarg.h`
+
+```C
+FILE *j = fopen("j.txt", "r");
+
+fseek( j, 0, SEEK_SET); // passa o cursor para o inicio do arquivo
+fseek( j, 0, SEEK_CUR); /* passa o cursor para a posição atual do ponteiro
+                           se ja tiver lido 3 caracteres, o cursor volta para
+                           o caractere 3
+                        */
+fseek( j, 0, SEEK_END);
+```
+
+Caso queira retornar para o inicio do arquivo, você pode usar a versão simplificada do `fseek` que se chama `rewind`
+
+```C
+FILE * arquivo = open("j.txt", "r");
+rewind( arquivo );
+```
+
+A função `ftell`, também já vista retorna a posição atual do cursor
+
+```C
+FILE *j = fopen("j.txt", "r");
+
+char c;
+while ((c = fgetc(j)) != 'a')
+  putchar(c);
+
+printf("\n%li\n", ftell(j));
+```
+
+Mas caso você precise de mais controle nesse posicionamento é só usar as funções `fgetpos` e `fsetpos`
+
+```C
+// j.txt -> "abcdefghijklmnop"
+FILE * arquivo = fopen("j.txt", "r+");
+
+fpos_t posicao; // tem que ser deste tipo para funcionar
+
+fgetpos(arquivo, &posicao); // pegando a posição
+printf("posicao: %p\ncaractere: %c", &posicao, fgetc(arquivo));
+fseek( arquivo, 0, SEEK_SET );
+
+fsetpos(arquivo, &posicao + 4); // mudando posição para o 4 caractere
+fgetpos(arquivo, &posicao);     // pegando a posição de novo
+
+getchar();
+
+printf("posicao: %p\ncaractere: %c\n", &posicao, fgetc(arquivo));
+fclose ( arquivo );
+
+getchar();
+```
+
+> Saída:
+```
+posicao: 0x7ffddf294270
+caractere: a
+posicao: 0x7ffddf294270
+caractere: e
+```
+
+### Operações com arquivos
+
+Para apagar o arquivo é só usar a função `remove`
+
+```C
+remove("j.txt");
+```
+
+E para renomear é só usar `rename`
+
+```C
+rename(       "j.txt",  "joao.txt");
+//    ( <nome antigo>, <nome novo>)
+```
+
+A função `reopen` é muito útil para mudar o destino de arquivos, exemplo:
+
+```C
+freopen("j.txt", "w", stdout);
+fprintf("joao é uma pessoa!!\n", stdout); // o resultado não será impresso na tela, mas no arquivo "j.txt"
 ```
 
 <br>
