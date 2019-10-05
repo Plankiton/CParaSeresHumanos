@@ -175,7 +175,10 @@ gcc Hello_mundo.c -o hello
 ```bat
 gcc Hello_mundo.c -o hello.exe
 ```
-> Todos os exemplos e desafios são compilados da mesma forma: `gcc <arquivo.c> -o <nome do binário>`
+
+Todos os exemplos e desafios são compilados da mesma forma: `gcc <arquivo.c> -o <nome do binário>`
+
+> Caso o arquivo não compile com o `gcc` use o `g++`
 
 Executando o arquivo (lembre-se de estar no mesmo diretório do arquivo compilado)
 
@@ -671,6 +674,20 @@ Reais, exemplo:
 
 ```C
 printf("float: %f\n", 9.3);
+```
+
+E como são números com `.` você pode formatar a saída deles, o `9.3` vai ser exibido como `9.300000`, mas eu quero que sáia `9.3`
+
+```C
+printf("float: %.1f\n", 9.3);
+```
+
+> Notem que entre o `%` e o `f` existe um `.1`, isso quer dizer que só é para exibir `1` numero após a "vírgula"(que no C é um `.`).
+
+O protótipo é mais ou menos assim:
+
+```C
+printf("%.<decimais>f\n", <numero>);
 ```
 
 #### %c
@@ -1640,7 +1657,7 @@ s[6] = '\0';
 ```
 > E só pra relembrar: NÃO SE ESQUEÇA DO `\0`... Tô parecendo até flashback de naruto com esse caractere ...
 
-Na segunda, você tem que importar a biblioteca `String.h` e depois usar a função `strcpy` para atribuir o valor, dessa maneira:
+Na segunda, você tem que importar a biblioteca `string.h` e depois usar a função `strcpy` para atribuir o valor, dessa maneira:
 
 ```C
 #include <string.h>
@@ -2867,6 +2884,10 @@ Até agora só usamos duas bibliotecas em nossos porgramas em C, e não vimos ne
 
 ## <stdio.h>
 
+```C
+#include <stdio.h>
+```
+
 Como já vimos as funções `scanf`, `printf`, `putchar`, `puts`, `getchar`, `gets`, `fprintf` e `fgets`, iremos ignorá-las.
 
 O `std` significa exclusivamente "standard" ("padrão" em português), `i` é de "input" (entrada) e o `o` de "output" (saída), portanto entrada e saída de dados padrão.
@@ -3154,6 +3175,390 @@ A função `reopen` é muito útil para mudar o destino de arquivos, exemplo:
 ```C
 freopen("j.txt", "w", stdout);
 fprintf("joao é uma pessoa!!\n", stdout); // o resultado não será impresso na tela, mas no arquivo "j.txt"
+```
+
+Além de todas essas, lembra de quando imprimimos mensagens na saída de erro (`stderr`) com `fprintf`? na `stdio.h` existe uma que faz isso automaticamente; é o `perror`
+
+```C
+perror("ferrou!!");
+```
+
+Para outras informações sobre a biblioteca veja a [referência](https://pt.wikibooks.org/wiki/Programar_em_C/Entrada_e_sa%C3%ADda_simples) que está no [wikibooks](https://pt.wikibooks.org) sobre ela.
+
+## <stdlib.h>
+
+```C
+#include <stdlib.h>
+```
+
+A `stdlib.h` é com certeza uma das bibliotecas mais importantes do C, portanto, merece ser dicecada aqui.
+
+E as funções que já vimos dela foram as de gerenciamento de memória (`malloc`, `free`, `realloc`), logo, não iremos revê-las.
+
+### Conversões entre string e outros tipos
+
+```C
+double     d = atof ("8.9"); // atof(<valor>): de string para double
+int        i = atoi ("89");  // atoi(<valor>): de string para inteiro
+long       l = atol ("999"); // atol(<valor>): de string para long
+long long ll = atoll ("99"); // atoll(<valor>): de string para long long
+```
+
+### Sistema
+
+Caso queira abortar o programa, você pode usar a função `exit`, e assim como no `return` do main, você escolhe o valor que quer retornar para o SO
+
+```C
+int i;
+
+scanf("%i", &i);
+if (i%2)
+  exit(0); // se for impar saia
+else
+  exit(1); // senao saia e retorne um erro
+```
+
+Outra função relacionada ao fechamento do programa é a função `atexit`, que registra funções que serão executadas quando o programa finalizar, sendo que estas funções não podem retornar valores e nem receber parametros.
+
+```C
+#include <stdio.h>
+#include <stdlib.h>
+
+void tmp_file_remove (void){
+  remove("/tmp/at_exit_lock");
+}
+
+int main(){
+  FILE * tmp = fopen("/tmp/at_exit_lock", "w");
+  atexit(tmp_file_remove);
+
+  // pausando a execução
+  puts("não click em enter ainda... olhe se há um arquivo \"at_exit_lock\" na pasta /tmp/");
+  getchar();
+
+  puts("agora veja se ainda está lá");
+  fclose (tmp);
+  return 0;
+}
+```
+
+Outra semelhante à `atexit` é a `at_quick_exit`, que vai ser executada quando o programa for interromido usando a função `quick_exit`
+
+```C
+#include <stdio.h>
+#include <stdlib.h>
+
+void tmp_file_remove (void){
+  remove("/tmp/at_exit_lock");
+}
+
+int main(){
+  FILE * tmp = fopen("/tmp/at_exit_lock", "w");
+  atexit(tmp_file_remove);
+
+  // pausando a execução
+  puts("não click em enter ainda... olhe se há um arquivo \"at_exit_lock\" na pasta /tmp/");
+  getchar();
+
+  fclose (tmp);
+  quick_exit(0);
+
+  // essa parte não vai executar
+  puts("agora veja se ainda está lá");
+  return 0;
+}
+```
+
+Outra variável de sistema muito útil é a `getenv`, que retorna o valor de uma variável de ambiente.
+
+```C
+char path = getenv("PATH"); // caminhos para executáveis no linux ($PATH)
+```
+
+E as mais úteis de todas, com essas você vai conseguir executar comandos do sistema operacional
+
+```C
+system( "echo hello mundo!" ); // system( <comando> )
+```
+
+Mas a `system` executa e manda o resultado para a `stdout`, se você quiser acessar o valor de retorno, tem que usar a função `popen` (que retorna um `stream`, logo, você vai ter que tratá-la como um arquivo)
+
+> A função popen não funciona no C99, se seu compilador usa C99, não irá compilar.
+
+```C
+FILE *response = popen("echo hello mundo!", "r"); // popen( <comando> )
+
+char comando [20];
+fgets(comando, 20, response);
+printf("o a resposta do comando usado foi:\n%s\n", comando);
+```
+
+Ainda faltam algumas funções mas essas são as mais importantes (contando com as de alocamanto de memória),  para outras informações sobre a biblioteca, consulte a [referência](https://pt.wikipedia.org/wiki/Stdlib.h) feita por alguém na [wikipedia](http://wikipedia.org/wiki/Stdlib.h).
+
+## <math.h>
+
+```C
+#include <math.h>
+```
+
+Com certeza toda linguagem que se presa tem uma biblioteca de matemática, a `math.h` tem diversas funções para resolução de problemas matemáticos desde arredondamento até trigonométricos.
+
+### Funções de arredondamento
+
+Digamos que o valor de uma operação dê `1.7`, se quisermos arredondá-lo para cima usamos a função `ceil`:
+
+```C
+printf("%f\n", ceil(1.7));
+```
+
+Mas se quisermos arredondá-lo para um número menor usamos a função `floor`:
+
+```C
+printf("%f\n", floor(1.7));
+```
+
+E se quiser apenas cortar a parte decimal use o `trunc`:
+
+```C
+printf("%f\n", trunk(1.7));
+```
+
+Outra opção é arredondar para o número inteiro mais próximo, seja ele acima ou abaixo:
+
+```C
+printf("%f\n", round(1.7));
+```
+
+A função `round` tem algumas variações como o `lround` que arredonda para um `long int` e o `llround` que arredonda para um `long long int`.
+
+### Potencia e radiciação
+
+Para realizar uma potenciação é só usar a função `pow`
+
+```C
+printf("40 ao quadrado é %.0f", pow(40, 2));
+```
+
+E caso queira fazer uma raiz quadrada é só usar a função `sqrt`
+
+```C
+float n = pow(40, 2);
+printf("a raiz quadrada de %.0f é %.0f", n, sqrt(n) );
+```
+
+E raiz cúbica é `cbrt`
+
+```C
+float n = pow(40, 3);
+printf("a raiz quadrada de %.0f é %.0f", n, cbrt(n) );
+```
+
+E caso você queira fazer uma raiz de índice `5`, `4` ou qualquer outro número, lemre-se que uma radiciação é apenas uma potencia elevada à um expoente "ao contrário":
+
+> 2 normal é igual a 2/1, 2 ao contrário é igual a 1/2
+
+```C
+// vou usar o expoente 2 mas funciona com qualquer valor
+int numero = pow(5, 2);                  // 25
+int outro_numero = pow(numero, 1.0/2.0); // 5
+
+printf("5²  = %i\n√25 = %i\n", numero, outro_numero);
+```
+
+> E não esqueça dos `.0` após o número se você não fizer isso o valor do expoente vai ser um inteiro e portanto, será `0`, lunca se esqueça de checar os tipos primitivos...
+
+E existe uma rotina exclusiva para cálculo de hipotenusa:
+
+```C
+int cateto_oposto = 8, cateto_adjacente = 6;
+int hipotenusa = hypot( cateto_oposto, cateto_adjacente );
+```
+
+A biblioteca de matemática tem diversas outras funções, logo, caso necessite fazer algoritmos matemáticos consulte a [referência da math.h](https://www.ufrgs.br/reamat/ComputacaoCientifica/livro/iapcel-a_biblioteca_mathh.html) feita pela [UFRGS](https://www.ufrgs.br)
+
+## <stdarg.h>
+
+```C
+#include <stdarg.h>
+```
+
+A `stdarg.h` é uma biblioteca para tratamento de argumentos (ou parametros) de funções.
+
+Até aqui você deve está se perguntando, _"como fazer funções como o `printf` ou o `scanf` que recebem um número indeterminado de argumentos?"_, exatamente usando esta biblioteca, mas preste atenção para entender como você pode usá-la em seus algorítmos.
+
+Para essa biblioteca, vou explicar de uma maneira diferente, aqui nós vamos criar o `print`, que assim como o `printf`, irá esquever coisas na tela.
+
+> Como vai ser a chamada do `print`
+
+```C
+// print ( <formato>, <dados> );
+
+print( "isfsf", 90, " + ", 8.3, " = ", 90.0 + 8.3 );
+
+// i -> %i/%d/%li
+// s -> %s
+// f -> %f/%lf
+```
+
+Na declaração da função tem que ter pelo menos 1 argumento fixo, e no nosso caso é o `formato`, todos os outros argumentos serão substituídos por um `...`
+
+```C
+void print( char * formato, ... );
+```
+
+Para acessar os dados no `...` nós primeiro temos que guardar eles em uma variável do tipo `va_list`
+
+```C
+void print( char * formato, ... ){
+  va_list argumentos;
+}
+```
+
+Esse va_list é um ponteiro com todos os argumentos, mas para pegarmos os certos temos que dizer para ele de onde começar a pesquisar usando o `va_start`
+
+```C
+void print( char * formato, ... ){
+  va_list argumentos;
+  va_start( argumentos, formato );
+}
+```
+
+Agora iremos checar quantos dados estamos esperando, e depois pegar-los com a função `va_arg`
+
+> Caso for usar valores em `char`, na hora de usar o `va_arg`, usem com `int`, ele não aceita `char` porque é muito pequeno.
+
+```C
+#include <string.h> // -> strlen
+void print( char * formato, ... ){
+  va_list argumentos;
+  va_start( argumentos, formato );
+
+  int argc = strlen(formato); // pegando a qntd de caracteres da string
+
+  for (int i = 0; i<argc; i ++){
+    if (formato[ i ] == 'i') // caso o dado esperado for um int
+      printf( "%li", va_arg( argumentos,      long int ) );
+      //             va_arg( <lista de args>,   <tipo> ) );
+
+    if (formato[ i ] == 'f') // float
+      printf( "%lf", va_arg( argumentos, double ) );
+
+    if (formato[ i ] == 's') // string
+      printf(va_arg( argumentos, char *));
+  }
+  putchar('\n');
+  va_end( argumentos ); // fechando os argumentos
+}
+```
+
+> O `va_arg`, assim como o `fgetf`, retorna o dado e passa para o próximo automaticamente.
+
+E fim, essas são as únicas funções que existem nessa biblioteca. Mas como eu prometi no capítulo sobre `stdio.h` agora eu irei explicar sobre as funções que usam o `va_list` da `stdarg.h`
+
+As funções do `stdio.h` que usam `va_list` fazem o mesmo que as outras, só que aceitam esse tipo de argumento, como o `vprintf`
+
+```C
+void escreva_numeros ( int qntd, ... ){
+  va_list args;
+  va_start( args, qntd );
+
+  char * formato = malloc( qnt*3+1 );
+  for (int i=0; i<qntd; i+=2){
+    formato[i] = '%';
+    formato[i+1] = 'i';
+    formato[i+2] = 'i';
+  }
+  formato[ qnt*3 ] = '\n';
+
+  vprintf(formato, args);
+
+  va_end( args );
+  free(formato);
+}
+```
+
+E funciona da mesma maneira com as funções `vscanf` (`scanf`), `vsscanf` (`sscanf`), `vfscanf` (`fscanf`) ...
+
+## <string.h>
+
+```C
+#include <string.h>
+```
+
+Esta é mais uma das bibliotecas que eu já falei, mas não me aprofundei, portanto irei ignorar as funções já mencionadas (`strlen`, `strcpy`).
+
+A primeira função interessante é a `strncpy`, que ao invés de copiar a string inteira, copia apenas um número de caracteres
+
+```C
+char str[10];
+strncpy(str, "joao e maria", 4); // copia até o 4 caractere
+str[4] = '\0';                   // setando o fim da string
+
+puts(str);
+```
+
+> Saída:
+
+```
+joao
+```
+
+Outra que também é bacana é a `strcat`, que serve para concatenar strings
+
+```C
+char str[] = "joao";
+strcat(str, " e maria"); // strcat( <destino>, <destinatario> );
+```
+
+E existe a variação `strncat`, que concatena até um certo número de caracteres
+
+```C
+char str[] = "joao";
+strncat(str, " e maria rosa", 8);
+```
+
+Uma função muito útil dessa biblioteca é a `strcmp` que compara duas strings
+
+```C
+char str [] = "joao", str2 [] = "maria";
+int res = strcmp( str, str2 ); // strcmp( <str>, <str2> )
+
+if ( res == 0 )
+  puts("as strings são iguais");
+else if ( res < 0 )
+  puts("\"%s\" é menor que \"%s\"", str, str2);
+else if ( res > 0 )
+  puts("\"%s\" é maior que \"%s\"", str, str2);
+```
+
+E também existe a `strncmp` que funciona da mesma forma que a anterior, mas compara só até um certo caractere.
+
+```C
+char str [] = "joao", str2 [] = "joao e maria";
+int res = strncmp( str, str2, 4 ); // strncmp( <str>, <str2>, <numero> )
+
+if (res == 0)
+  puts("os primeiros 4 caracteres da string 2 são iguais aos da string 1");
+```
+
+Outras opções são usar funções de pesquisa em strings, como o `strchr` que irá retornar a string da primeira ocorrencia de um caractere até o seu fim
+
+```C
+char j[] = "abcdefghijklmnop";
+puts(strchr(j, 'g'));
+```
+
+> Saída:
+
+```
+ghijklmnop
+```
+
+Outra bem bacana é a `strcspn` onde você passa uma certa lista de caracteres e ela irá retornar a primeira ocorrencia
+
+```C
+char str[] = "bcdefgh";
+printf("a primeira vogal de \"%s\" está na %i posição\n",str, strcspn(str, "aeiou")+1);
 ```
 
 <br>

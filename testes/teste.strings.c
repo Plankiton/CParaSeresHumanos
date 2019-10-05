@@ -26,9 +26,20 @@ int main(){
    */
 
    // atribuindo strings a strings sem o string.h
-   char * string;
+  /*
 
-   string = "joao";
-   puts(string);
+  char str[10];
+  strncpy(str, "joao e maria", 4);
+  str[4] = '\0';
+
+  puts(str);
+  */
+  /*
+  char str[] = "abcdefghijklmnop";
+  printf("%s\n", strchr(str, 'g'));
+  */
+char str[] = "bcdefgh";
+printf("a primeira vogal de \"%s\" está na %i posição\n",str, strcspn(str, "aeiou")+1);
+
 return 0;
 }
