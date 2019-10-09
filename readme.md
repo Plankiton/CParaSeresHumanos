@@ -252,11 +252,11 @@ int i = -2 - -3;
 ```
 > não se preocupe com o `int i =`, saiba apenas que `i` é uma variável, isso será explicado mais tarde...
 
-O `-3` é um número negativo, mas o `-` entre `-2` e `-3` é o sinal de subtração, se não houvesse espaço entre o `-` solto e os outros números o programa acima não seria compilado pois o C não saberia o que você quer que ele faça.
+O `-3` é um número negativo, mas o `-` entre `-2` e `-3` é o sinal de subtração, se não houvesse espaço entre o `-` solto e os outros números, o programa acima não seria compilado pois o C não saberia o que você quer que ele faça.
 
 ## Comentários
 
-Comentários são "anotações ou esclarecimentos" escritas(os) no código para descrever a função de algo e geralmente são úteis quando se  quer analisar algum código antigo seu ou o código de outra pessoa. Os comentários sempre são ignorados pelo compilador, eles são apenas para auxiliar o programador.
+Comentários são "anotações ou esclarecimentos" escritas(os) no código para descrever a função de algo e geralmente são úteis quando se  quer analisar algum código antigo seu, ou o código de outra pessoa. Os comentários sempre são ignorados pelo compilador, eles são apenas para auxiliar o programador.
 
 ```C
 // comentários de uma única linha
@@ -268,11 +268,11 @@ Comentários são "anotações ou esclarecimentos" escritas(os) no código para 
 */
 ```
 
-É sempre aconselhável o uso de comentários, principalmente se você pretende fazer um projeto open source (como já dito, projetos de código aberto).
+É sempre aconselhável o uso de comentários, principalmente se você pretende fazer um projeto _open source_ (como já dito, projetos de código aberto).
 
 ## Variáveis
 
-> Imagine um armário com diversos espaços para guardar coisas: alguns só podem guardar esferas, outros só podem pra guardar bonecas, outros só podem guardar cubos e cada espaço desses possui um nome.
+> Imagine um armário com diversos espaços para guardar coisas, alguns só podem guardar esferas, outros só podem pra guardar bonecas, outros só podem guardar cubos e cada espaço desses possui um nome.
 >
 > Toda vez que alguém quer um espaço no armário deve  pedir para o dono, mas o dono só reserva o espaço se pedir da maneira correta, que é:
 >
@@ -293,7 +293,7 @@ O armário é a memória do seu computador, os espaços são as variáveis e o n
    int               numero            =    80                                  ;
 ```
 
-No exemplo acima, reservei um espaço que só guarda números inteiros (`int`) com o nome `numero` e com o valor `80` dentro. E no C, existem 3 tipos primitivos, ou seja, 3 tipos de dados básicos: `int`, o `float` e o `char`.
+No exemplo acima, reservei um espaço que só guarda números inteiros (`int`) com o nome `numero` e com o valor `80` dentro. E no C, existem 3 tipos primitivos, ou seja, 3 tipos de dados básicos, o `int`, o `float` e o `char`.
 
 ```C
 // <tipo do espaço>  <nome do espaço>  com  <coisa que queremos no espaço> dentro
@@ -302,7 +302,7 @@ No exemplo acima, reservei um espaço que só guarda números inteiros (`int`) c
    float             numero_real       =    99.9                                ;
 ```
 
-Variáveis do tipo `int` recebem números sem ponto, como 2, 8 ou 234 enquanto as do tipo `float` recebem números com ponto como 2.5, 8.3 ou 23.0, já variáveis do tipo `char` recebem um caractere, **apenas um** , logo, se tentar colocar um `"hello"` ou até mesmo um `"h"`, ele vai retornar um erro, pois todo e qualquer caractere entre `"` é uma string enquanto um `char` é um único caractere entre `'`, não se preocupe com as strings, por enquanto...
+Variáveis do tipo `int` recebem números sem ponto, como `2`, `8` ou `234` enquanto as do tipo `float` recebem números com ponto como `2.5`, `8.3` ou `23.0`, já variáveis do tipo `char` recebem um caractere, **apenas um** , logo, se tentar colocar um `"hello"` ou até mesmo um `"h"`, ele vai retornar um erro, pois todo e qualquer caractere entre `"` é uma string enquanto um `char` é um único caractere entre `'`, não se preocupe com as strings, por enquanto...
 
 E se você deseja alterar o valor da variável, só precisa colocar o nome da variável recebendo o valor:
 
@@ -331,21 +331,20 @@ int inteiro = 0; /* -> 4 bytes -> você só consegue colocar
                        intervalo ele teria mais de 4 bytes.
                  */
 
-char caractere = 'A'; /* 1 byte -> só aceita um caractere
+char caractere = 'A'; /* 1 byte -> só aceita um caractere,
                            porque um caractere ocupa um
                            byte.
                       */
 
 float real = 3.14; /* 4 bytes -> só suporta valores entre 
-                        10E-38 e 10E38 (esse "E" é a forma
-                        de dizer que ele é elevado a outro
-                        número e essa é a forma que o C 
-                        adota para evitar a necessidade de
-                        escrever todas as casas decimais).
+                        10E-38 e 10E38 (isso significa 10
+                        vezes 10 elevado a -38 a 38, o "E"
+                        substitui o "vezes 10 elevado a"
+                        para simplificar para o computador).
                    */
 
-double real_dobro = 10E49; /* 8 bytes -> o double tem o
-                              dobro de espaço de um float
+double real_2 = 10E49; /* 6 bytes -> o double tem mais
+                              espaço que um float
                               e por isso pode suportar
                               números entre 10E-4932 e
                               10E4932
@@ -408,11 +407,11 @@ float f =  i / 3; /*
 
 ## Modificadores de tipo
 
-E mais uma vez falaremos de tipos primitivos, como havíamos visto, os tipos primitivos tem tamanhos diferentes na memória, e estes tamanhos podem ser expandidos ou reduzido, além de modificar o tamanho os modificadores também podem modificar sinais.
+E mais uma vez falaremos de tipos primitivos, como havíamos visto, os tipos primitivos tem tamanhos diferentes na memória, e estes tamanhos podem ser expandidos ou reduzido.
 
 ### Long
 
-O `long` alonga (expande) a capacidade de variáveis do tipo `int` e `double`.
+O `long` alonga (expande) a capacidade de variáveis do tipo `int`, `float` e `double`.
 
 > Lembrando que os valores de tamanho variam de computador para computador.
 
@@ -460,7 +459,7 @@ Você já viu anteriormente uma forma de saída de dados: o `printf`:
 printf("Hello mundo!!\n");
 ```
 
-> Sem este `\n` caso você escreva outra coisa os dois irão aparecer juntos.
+> Sem este `\n`, caso você escreva outra coisa os dois irão aparecer juntos.
 
 ### Caractere de scape ( "\\" )
 
@@ -472,7 +471,7 @@ O caractere de scape, no C, é o `\` e ele dá "poderes" ao seu texto, pode ser 
 printf("\n1ª linha\n2ª linha\n3ª linha\n");   // \n: quebra de linha.
 ```
 
-Esse `\n` é uma quebra de linha, ou seja, sempre que tiver um `\n` o printf vai pular uma linha e escrever o que estiver na frente.
+Esse `\n` é uma quebra de linha, ou seja, sempre que tiver um `\n` o `printf` vai pular uma linha e escrever o que estiver na frente.
 
 > saída:
 ```
@@ -960,7 +959,7 @@ n <  N // menor que        -> testa se n é menor que N;
 n >  N // maior que        -> testa se n é maior que N;
 
 n <= N // menor ou igual   -> testa se n é menor ou igual a N;
-n >= N // maior ou igual   -> testa se n é maior ou igual a N.
+n >= N // maior ou igual   -> testa se n é maior ou igual a N;
 ```
 
 Exemplo simples:
@@ -1057,7 +1056,7 @@ char imparOuPar = (  numero % 2 == 0  ) ? 'p'               : 'i'              ;
 
 O código acima representa um uso simples do operador ternário e eu sei que você deve estar um pouco confuso com isso, mas eu explico:
 
-> Antes de mais nada, saiba que **todo número par tem o resto da divisão por 2 igual 0** , então, no exemplo acima, caso `( numero % 2 == 0 )` seja verdadeiro, o operador vai retornar `'p'` de par e caso seja falso, ele vai retornar `'i'` de impar, portanto, o C vai testar a expressão lógica entre `(` e `)` se essa expressão for verdadeira, o valor da operação vai ser o que está entre `?` e `:` caso contrário, o valor será o que está após `:`
+> Antes de mais nada, saiba que **todo número par tem o resto da divisão por 2 igual 0** , então, no exemplo acima, caso `( numero % 2 == 0 )` seja verdadeiro, o operador vai retornar `'p'` de par, casoa expressão seja falso, ele vai retornar `'i'` de impar, portanto, o C vai testar a expressão lógica entre `(` e `)` se essa expressão for verdadeira, o valor da operação vai ser o que está entre `?`, e aso contrário, o valor será o que está após `:`
 
 Outro exemplo do uso seria:
 
@@ -1531,7 +1530,7 @@ int algarismos [] = { 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 0 };
 E também é possível acessar um item específico do array adicionando a posição entre `[` e `]`.
 
 ```C
-int algarismos [] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+int algaridobro desmos [] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 
 int tres = algarismos[2]
 ```
@@ -1560,29 +1559,11 @@ algarismos = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 Os arrays não podem ser impressos ou atribuídos, isso significa que todos os itens tem de ser imprimidos um por um:
 
 ```C
-algarismos [] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+a [] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 printf (
-   "%i\n"
-   "%i\n"
-   "%i\n"
-   "%i\n"
-   "%i\n"
-   "%i\n"
-   "%i\n"
-   "%i\n"
-   "%i\n"
-   "%i\n",
-   algarismos[1],
-   algarismos[2],
-   algarismos[3],
-   algarismos[4],
-   algarismos[5],
-   algarismos[6],
-   algarismos[7],
-   algarismos[8],
-   algarismos[9],
-   algarismos[0]
+   "%i, %i, %i, %i, %i, %i, %i, %i, %i, %i\n",
+   a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[0]
 );
 ```
 
