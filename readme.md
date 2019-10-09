@@ -2235,7 +2235,7 @@ Se fossemos fazer o código acima usando puramente ponteiros, nós faríamos ass
 
 > Lembrando que ao alocar espaços e referenciando com ponteiros, nós estamos criando arrays.
 
-Antes de mais nada você tem que incluir o `stdlib.h` no seu arquivo (para evitar erros, sempre faça qualquer `include` no inicio do arquivo e antes da função `main`.
+Antes de mais nada você tem que incluir o `stdlib.h` no seu arquivo (para evitar erros, sempre faça qualquer `include` no inicio do arquivo)
 
 ```C
 #include <stdlib.h>           // biblioteca necessária para usar as funções de alocação.
@@ -2264,18 +2264,8 @@ putchar('\n');
 str = realloc (str, 12);        // aqui nós realocamos o espaço de 6 bytes para 12 bytes
 
 // guardando dados...
-str[0] = 'o';
-str[1] = 'u';
-str[2] = 't';
-str[3] = 'r';
-str[4] = 'a';
-str[5] = ' ';
-str[6] = 'c';
-str[7] = 'o';
-str[8] = 'i';
-str[9] = 's';
-str[10] = 'a';
-str[11] = '\0';
+str = "outra coisa";
+str[12] = '\0';
 
 printf("%s\n", str);
 
@@ -2295,21 +2285,6 @@ A saída de ambos os códigos é a mesma:
 ```
 coisa
 outra coisa
-```
-
-O código apresentado é autoexplicativo, mas para garantir... 
-
-```C
-Primeiro criamos o ponteiro vazio `str`
-agora temos que dar um endereço de memória para ele, então usamos a função `malloc` para alocar um espaço de `6` bytes na memória e atribuímos o endereço desse espaço para `str`.
-
-Depois escrevemos os dados que queremos nesse ponteiro e o exibimos na tela.
-
-E para que tenhamos mais caracteres na string realocamos o espaço de `str` com a função `realloc`, e para que ela funcione precisamos dar o ponteiro que queremos realocar como primeiro parâmetro e o tamanho novo em bytes como segundo parâmetro, e atribuir o `realloc` ao ponteiro desejado, pois ele assim como o `malloc` retorna um endereço de memória.
-
-Então, escrevemos os dados no ponteiro de novo e o exibimos na tela mais uma vez. 
-
-Por fim, nós liberamos a memória usada pelo ponteiro com a função `free`.
 ```
 
 _"Ah então eu vou sempre usar a primeira forma, porque é mais fácil!"_ , use, mas não se esqueça que a primeira forma só funciona com strings, para outros tipos de arrays você terá que usar a segunda forma.
@@ -2423,6 +2398,23 @@ return 0;
 
 > No exemplo acima usamos `arg_counter` e `arg_variable` para o nome dos parâmetros, e você pode usar o que você quiser, mas a maioria das pessoas usam `argc` (`arg_counter`) e `argv` (`arg_variable`).
 
+Por fim, é sempre interessante saber como seria um ponteiro para uma função:
+
+```C
+#include <stdio.h>
+
+int (* Soma) (int n1, int n2);
+
+int somador (int n, int n2){
+  return n + n2;
+}
+
+int main(){
+  Soma = somador;
+  printf("%i + %i = %i", 2, 3, Soma(2, 3));
+return 0;
+}
+```
 
 ## Estruturas
 
