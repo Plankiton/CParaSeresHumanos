@@ -2582,6 +2582,99 @@ typedef enum {
 } por_extenso;
 ```
 
+## Comandos do pré-processador
+
+O pré-processador é a ferramenta que prepara o código para a compilação, por isso existem ele tem seus próprios comandos, e caso você queira curiar a versão preprocessada de um arquivo em C use o comando `gcc -E <arquivo> > <saida.c>`
+
+
+Basicamente todos os comandos do pré-processador começam com `#`, e um desses comandos é o próprio `#include`, que usamos para importar nossas bibliotecas, que além de importar bibliotecas padrões, você pode importar seus próprios arquivos.
+
+```C
+#include "minhas_funcoes.c"
+#include "/home/robocopgay/biblioteca.c"
+```
+
+> Quando você usa as aspas duplas (`"`) você pode passar o caminho para a sua biblioteca (caso ela esteja no mesmo diretório coloque apenas o nome do arquivo)
+
+Outra diretris interessante é o `#declare`, que serve para criar constantes e macros:
+
+```
+#define PI 3.14
+#define soma (n, n2) n + n2
+
+#define add_item ( array, item )\
+array = realloc( sizeof (array) + sizeof (item) );
+```
+
+> Note que na ultima linha da ultima macro foi usado o `\` para indicar que a próxima linha pertence a ela.
+
+A vantagem aqui é que se precisa de uma constante, é mais útil usar o `#define` que criar uma variável, pois a variável tem que ocupar um espaço na memória, enquanto o pre-processador apenas substitue o lugar onde a macro ou constante é chamada pelo seu conteúdo.
+
+E a diretris `#undef` _"desdefine"_ uma macro ou constante
+
+```C
+#define max 10
+
+int i = max*3;
+
+#undef max
+define max 30
+```
+
+E existe o `#if`, `#else`, `#elif` e o `#endif`, usados para condicional
+
+```C
+#define MIN_SIZE 2
+
+#if defined(MAX_SIZE) // if -> se
+  #define tamanho MAX_SIZE
+
+#elif MIN_SIZE > 2 // else if -> senão se
+  #define tamanho 2
+
+#else // else -> senão
+  #define tamanho MIN_SIZE+1
+
+#endif // end -> fim
+
+#include <stdio.h>
+#include <stdlib.h>
+
+int main (int argc, char ** argv){
+  printf("%i", tamanho);
+return 0;
+}
+```
+
+Outra coisa interessantíssima é criar strings a partir de código, _"Ué? não entendi..."_, muito simples... Quando usamos o operador `#` dentro de uma macro ele transforma o comando em string
+
+```C
+#define to_str(texto) #texto
+
+puts( to_str(Hello mundo!!) );
+```
+
+> Saída:
+
+```
+Hello mundo!!
+```
+
+Ou se quiser juntar duas informações use o `##`
+
+```C
+#define to_str(texto) #texto
+#define str_function_template(func) str##func
+
+int l = str_function_template(len)("abacate");
+printf("\"%s\" tem %i letras.\n", "abacate", l);
+```
+
+> Saída:
+
+```
+"abacate" tem 7 letras.
+```
 
 ## Chegou a hora de praticar de novo!
 
@@ -3559,6 +3652,13 @@ Outra bem bacana é a `strcspn` onde você passa uma certa lista de caracteres e
 ```C
 char str[] = "bcdefgh";
 printf("a primeira vogal de \"%s\" está na %i posição\n",str, strcspn(str, "aeiou")+1);
+```
+
+Uma semelhante a `strchr` é a `strstr`, que retorna a string da primeira ocorrencia de um caractere até o seu fim
+
+```C
+char str[] = "joao maria ronaldo";
+puts(strstr(str, "maria"));
 ```
 
 <br>

@@ -38,8 +38,12 @@ int main(){
   char str[] = "abcdefghijklmnop";
   printf("%s\n", strchr(str, 'g'));
   */
+  /*
 char str[] = "bcdefgh";
 printf("a primeira vogal de \"%s\" está na %i posição\n",str, strcspn(str, "aeiou")+1);
+*/
+  char str[] = "joao maria ronaldo";
+  puts(strstr(str, "maria"));
 
 return 0;
 }
