@@ -113,18 +113,39 @@ O C é uma evolução da linguagem [B](https://pt.wikipedia.org/wiki/B_(linguage
 
 ## Como se instala o tal "compilador" C?
 
-### Linux/BSD
+### GNU C Collection
+
+O [gcc](https://pt.wikipedia.org/wiki/GNU_Compiler_Collection), já vem com uma gama de ferramentas já inclusas, como o compilador C (`gcc`) e o compilador C++ (`g++`).
+
+#### Linux
 
 Se você usa uma distribuição Linux ou BSD, provavelmente já está instalado, mas, caso não esteja (o que eu duvido muito), é só usar o gerenciador de pacotes para instalar.
 
-Exemplo (debian/ubuntu):
+Debian:
+--
+
 ```sh
 sudo apt install gcc
 ```
 
-### Mac OSX
+Red Hat:
+--
 
-Se você não tem homebrew, rode:
+```sh
+sudo dnf install gcc
+sudo yum install gcc
+```
+
+Arch Linux:
+--
+
+```sh
+sudo pacman -S gcc
+```
+
+#### Mac OSX
+
+Se você não tem [homebrew](https://brew.sh/index_pt-br), rode:
 
 ```sh
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
@@ -136,17 +157,59 @@ Se você não tem homebrew, rode:
 brew install gcc
 ```
 
-### Windows
+#### Windows
 
-Se você não tem o chocolatey, rode no cmd em modo adm:
+Se você não tem o [chocolatey](https://chocolatey.org/), rode no __[PowerShell](https://pt.wikipedia.org/wiki/PowerShell) em modo administrador__:
 
-```bat
-@"%SystemRoot%\System32\WindowsPowerShell\v1.0\powershell.exe" -NoProfile -InputFormat None -ExecutionPolicy Bypass -Command "iex ((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))" && SET "PATH=%PATH%;%ALLUSERSPROFILE%\chocolatey\bin"
+```PS1
+Set-ExecutionPolicy Bypass -Scope Process -Force
+iex((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
 ```
 
 > Instalando gcc
+
 ```bat
-choco install mingw
+choco install mingw -y
+```
+
+### Tiny C Compiler
+
+Uma outra opção de compilador muito interessante é o [tcc](https://en.wikipedia.org/wiki/Tiny_C_Compiler) é um compilador independente com o intúito de gerar códigos pequenos, mas não é recomendado para aplicações grandes, mas para estudo é uma ótima opção.
+
+#### Linux
+
+Debian:
+--
+
+```sh
+sudo apt install tcc
+```
+
+Red Hat:
+--
+
+```sh
+sudo dnf install tcc
+sudo yum install tcc
+```
+
+Arch Linux:
+--
+
+```sh
+sudo pacman -S tcc
+```
+
+#### Mac OSX
+
+```sh
+brew install tcc
+```
+
+#### Windows
+
+```sh
+choco install tcc
 ```
 
 ## Introdução à sintaxe do C
@@ -3632,6 +3695,32 @@ Uma semelhante a `strchr` é a `strstr`, que retorna a string da primeira ocorre
 ```C
 char str[] = "joao maria ronaldo";
 puts(strstr(str, "maria"));
+```
+
+## <ctype.h>
+
+```C
+#include <ctype.h>
+```
+
+Esta biblioteca possui funções para reconhecimento de tipos de caractere (`char`), e carrega diversas funções para esse reconhecimento.
+
+```C
+isnum    ('2'); // se é numerico
+isalpha  ('s'); // se é alfabético
+isblank ('\t'); // se é em branco
+iscntrl ('\n'); // se é caractere especial
+isdigit  ('4'); // se é numero decimal
+isgraph  ('!'); // se tem representação gráfica
+isprint  ('2'); // se dá para escrever na tela
+ispunct  ('.'); // se é pontuação
+isspace ('\v'); // se é um espaço branco
+isxdigit ('0'); // se é hexadecimal
+islower  ('a'); // se é letra minúscula
+isupper  ('A'); // se é letra maiúscula
+
+tolower  ('A'); // transforma em letra minúscula
+toupper  ('a'); // transforma em letra maiúscula
 ```
 
 <br>
