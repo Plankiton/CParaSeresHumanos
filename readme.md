@@ -176,23 +176,23 @@ choco install mingw -y
 
 Uma outra opção de compilador muito interessante é o [tcc](https://en.wikipedia.org/wiki/Tiny_C_Compiler) é um compilador independente com o intúito de gerar códigos pequenos, mas não é recomendado para aplicações grandes, mas para estudo é uma ótima opção.
 
-Debian
+Linux
 --
+
+### Debian
 
 ```sh
 sudo apt install tcc
 ```
 
-Red Hat
---
+### Red Hat
 
 ```sh
 sudo dnf install tcc
 sudo yum install tcc
 ```
 
-Arch Linux
---
+### Arch Linux
 
 ```sh
 sudo pacman -S tcc
