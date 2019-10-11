@@ -1,8 +1,8 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <wchar.h>
 int main(int argc, char **argv){
-   char n [20];
-   gets(n);
-   printf("%s\n", n);
+ char * c = "";
+   printf("%s\n", c);
 return 0;
 }

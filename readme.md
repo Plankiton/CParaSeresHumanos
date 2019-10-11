@@ -3723,31 +3723,85 @@ tolower  ('A'); // transforma em letra minúscula
 toupper  ('a'); // transforma em letra maiúscula
 ```
 
-## <time.h>
+É necessário que eu esclareça alguns pontos, caracteres como `` ou `ç` são grandes demais para caber em um `char`, caso precise desses caracteres unicode, use strings para representá-los.
 
-```C
-#include <time.h>
+# Considerações finais
+
+Espero que este livro tenha ajudado você, este não é o fim definitivo, os seus estudos não devem acabar aqui, e não se preocupe pois vem aí o próximo livro falando sobre criação de interfaces gráficas e manipulação de imagens, videos, músicas, etc. Então tenha paciência e antes de ir embora vou da um bônus para você se animar e começar seus projetos em C.
+
+## Criando um projeto em C
+
+
+Vamos utilizar o projeto do [pantuza](http://github.com/pantuza), que se chama [c-project-template](http://github.com/pantuza/c-project-template), que faz toda a estrutura automaticamente.
+
+> Para instalar basta clonar o repositório usando o `git`
+
+```sh
+git clone https://github.com/pantuza/c-project-template.git
 ```
 
-Serve para a consulta da hora e data, uma das suas funções é a `time`, que serve para pegar o horário atual do computador
-
-```C
+Essa é a arvore de diretórios do `c-project-template`:
 
 ```
+.
+├── bin
+├── lib
+├── LICENSE
+├── log
+├── Makefile
+├── project.conf
+├── README.md
+├── src
+│   ├── args.c
+│   ├── args.h
+│   ├── colors.h
+│   ├── main.c
+│   ├── messages.c
+│   └── messages.h
+└── test
+    └── main.c
+```
 
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
-<br>
+E para configurar o seu projeto você só precisa editar o arquivo `project.conf`, que devará estar mais ou menos assim:
 
-O livro ainda não acabou... mas ainda está em processo de criação, então aguarde outra atualização e poderá prosseguir...
+```conf
+
+#
+# This is a project configuration file. Change variables to generate
+# your project correctly
+#
+
+#
+# Put here your project name. It will create a root directory with this name
+#
+
+PROJECT_NAME := project
+
+
+#
+# Put here the binary file name. The compilation will result in that binary
+#
+BINARY := binary
+
+
+#
+# The project directory. At this path we will start the project
+#
+PROJECT_PATH := ~/projects/$(PROJECT_NAME)
+```
+
+E para exemplificar, o nosso `Hello mundo` que criamos no inicio do livro vai ser nossa cobaia:
+
+Dentro deste arquivo, você vai colocar no `PROJECT_NAME` o nome do projeto, no `BINARY` o nome do arquivo de compilação, e no `PROJECT_PATH` o diretório do projeto que você está criando.
+
+> project.conf:
+
+```
+PROJECT_NAME := Hello
+BINARY := hello
+PROJECT_PATH := ~/Create/Projects/Hello
+```
+
+Após editar o arquivo rode o comando `make start` dentro do diretório do `c-project-template`
+
+Pronto, agora você pode entrar no diretório do seu projeto e editar os códigos da pasta `src`, e quando for compilar use o comando `make`
