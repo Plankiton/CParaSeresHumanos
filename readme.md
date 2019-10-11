@@ -117,33 +117,32 @@ O C é uma evolução da linguagem [B](https://pt.wikipedia.org/wiki/B_(linguage
 
 O [gcc](https://pt.wikipedia.org/wiki/GNU_Compiler_Collection), já vem com uma gama de ferramentas já inclusas, como o compilador C (`gcc`) e o compilador C++ (`g++`).
 
-#### Linux
+Linux
+--
 
 Se você usa uma distribuição Linux ou BSD, provavelmente já está instalado, mas, caso não esteja (o que eu duvido muito), é só usar o gerenciador de pacotes para instalar.
 
-Debian:
---
+### Debian
 
 ```sh
 sudo apt install gcc
 ```
 
-Red Hat:
---
+### Red Hat
 
 ```sh
 sudo dnf install gcc
 sudo yum install gcc
 ```
 
-Arch Linux:
---
+### Arch Linux
 
 ```sh
 sudo pacman -S gcc
 ```
 
-#### Mac OSX
+Mac OSX
+--
 
 Se você não tem [homebrew](https://brew.sh/index_pt-br), rode:
 
@@ -157,7 +156,8 @@ Se você não tem [homebrew](https://brew.sh/index_pt-br), rode:
 brew install gcc
 ```
 
-#### Windows
+Windows
+--
 
 Se você não tem o [chocolatey](https://chocolatey.org/), rode no __[PowerShell](https://pt.wikipedia.org/wiki/PowerShell) em modo administrador__:
 
@@ -176,16 +176,14 @@ choco install mingw -y
 
 Uma outra opção de compilador muito interessante é o [tcc](https://en.wikipedia.org/wiki/Tiny_C_Compiler) é um compilador independente com o intúito de gerar códigos pequenos, mas não é recomendado para aplicações grandes, mas para estudo é uma ótima opção.
 
-#### Linux
-
-Debian:
+Debian
 --
 
 ```sh
 sudo apt install tcc
 ```
 
-Red Hat:
+Red Hat
 --
 
 ```sh
@@ -193,20 +191,22 @@ sudo dnf install tcc
 sudo yum install tcc
 ```
 
-Arch Linux:
+Arch Linux
 --
 
 ```sh
 sudo pacman -S tcc
 ```
 
-#### Mac OSX
+Mac OSX
+--
 
 ```sh
 brew install tcc
 ```
 
-#### Windows
+Windows
+--
 
 ```sh
 choco install tcc
@@ -3721,6 +3721,18 @@ isupper  ('A'); // se é letra maiúscula
 
 tolower  ('A'); // transforma em letra minúscula
 toupper  ('a'); // transforma em letra maiúscula
+```
+
+## <time.h>
+
+```C
+#include <time.h>
+```
+
+Serve para a consulta da hora e data, uma das suas funções é a `time`, que serve para pegar o horário atual do computador
+
+```C
+
 ```
 
 <br>
