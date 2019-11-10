@@ -1,4 +1,4 @@
-![C para Seres humanos](assets/icon.png)
+<img src="assets/Capa.png" style="width: 100%" alt="C para Seres humanos"/>
 
 <br/>
 <br/>
