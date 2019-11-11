@@ -153,7 +153,7 @@ choco install tcc
 
 > Hello_mundo.c
 
-```C
+```c
 #include <stdio.h>            // importação de biblioteca externa
 
 int main () {                 // declaração da função main
@@ -210,7 +210,7 @@ Terezinha sabe se o ovo está queimado ou não porque a frigideira dá um retorn
 
 > A partir daqui, você vai se deparar com diversos códigos soltos (para economizar espaço), mas quando for testá-los na sua máquina, coloque-os dentro da função `main`:
 
-```C
+```c
 #include <stdio.h>
 
 int main(){
@@ -221,7 +221,7 @@ int main(){
 
 O `;` é o que delimita o fim de um comando no C e ele ignora os espaços ou quebras de linha em excesso antes do `;`, logo, isso:
 
-```C
+```c
            printf
 (
 "Hello mundo!!\n"
@@ -231,7 +231,7 @@ O `;` é o que delimita o fim de um comando no C e ele ignora os espaços ou que
 
 É o mesmo que isso:
 
-```C
+```c
 printf("Hello mundo!!\n");
 ```
 
@@ -244,7 +244,7 @@ printf("Hello mundo!!\n");
 
 Mas mesmo sabendo disso tome cuidado com os espaços, pois em alguns casos muito específicos a falta deles pode confundir o compilador, por exemplo:
 
-```C
+```c
 int i = -2 - -3;
 ```
 > não se preocupe com o `int i =`, saiba apenas que `i` é uma variável, isso será explicado mais tarde...
@@ -255,7 +255,7 @@ O `-3` é um número negativo, mas o `-` entre `-2` e `-3` é o sinal de subtra�
 
 Comentários são "anotações ou esclarecimentos" escritas(os) no código para descrever a função de algo e geralmente são úteis quando se  quer analisar algum código antigo seu, ou o código de outra pessoa. Os comentários sempre são ignorados pelo compilador, eles são apenas para auxiliar o programador.
 
-```C
+```c
 // comentários de uma única linha
 /*
    comentários 
@@ -285,14 +285,14 @@ Comentários são "anotações ou esclarecimentos" escritas(os) no código para 
 
 O armário é a memória do seu computador, os espaços são as variáveis e o nome em cada espaço é o nome da variável, que só consegue armazenar tipos específicos de dados, no exemplo são `esfera`, `cubo` ou `boneca`, e a situação descrita para a reserva de um espaço é a declaração:
 
-```C
+```c
 // <tipo do espaço>  <nome do espaço>  com  <coisa que queremos no espaço> dentro
    int               numero            =    80                                  ;
 ```
 
 No exemplo acima, reservei um espaço que só guarda números inteiros (`int`) com o nome `numero` e com o valor `80` dentro. E no C, existem 3 tipos primitivos, ou seja, 3 tipos de dados básicos, o `int`, o `float` e o `char`.
 
-```C
+```c
 // <tipo do espaço>  <nome do espaço>  com  <coisa que queremos no espaço> dentro
    int               numero            =    80                                  ;
    char              caractere         =    'A'                                 ;
@@ -303,7 +303,7 @@ Variáveis do tipo `int` recebem números sem ponto, como `2`, `8` ou `234` enqu
 
 E se você deseja alterar o valor da variável, só precisa colocar o nome da variável recebendo o valor:
 
-```C
+```c
 int i = 5; // declaração da variável "i" valendo "5"
 
 i = 92;    // agora a variável vale 92
@@ -315,7 +315,7 @@ Além disso, também existe o tipo `double` que é descendente do tipo `float`, 
 
 Cada variável ocupa uma certa quantidade de bytes na memória ram:
 
-```C
+```c
 /*
 um byte tem 8 bites e um bite só pode ser 0 ou 1, isso quer dizer que 
 sempre que o computador reserva 1 byte ele está reservando 8 espacinhos
@@ -349,14 +349,14 @@ double real_2 = 10E49; /* 6 bytes -> o double tem mais
 ```
 > Essas quantidades demonstradas acima não são iguais em todas as arquiteturas (tipo de processador), isto quer dizer que se o seu computador é de 32 bits o tamanho das variáveis pode ser diferente de um de 64 bits, logo, para que você tenha certeza do tamanho delas (em bytes) é só usar o `sizeof`:
 
-```C
+```c
 int inteiro;
 int tmh_inteiro = sizeof inteiro; // tamanho da variável inteiro
 ```
 
 > Caso você não queira criar uma variável unicamente para pegar o seu tamanho é possível usar o `sizeof` para pegar o tamanho do tipo diretamente:
 
-```C
+```c
 int tmh_inteiro = sizeof (int); // tamanho da variável inteiro
 ```
 
@@ -373,7 +373,7 @@ As variáveis em C (e acho que em todas as linguagens) têm algumas regras quant
 
 > Palavras reservadas do C:
 
-```C
+```c
 auto break case char if const continue  default do double else enum
 extern float for goto if int long register return short signed void
 sizeof static struct  switch  typedef union unsigned volatile while
@@ -385,13 +385,13 @@ Sendo assim, variáveis com nomes como `2letras`, `char`, `jo%ao` ou `peso da pe
 
 Um problema (na minha opinião) do C é a forte tipagem, que significa que os tipos têm que ser respeitados a todo o custo, logo, se queremos que um dado seja transformado em outro, precisamos fazer conversões de tipos.
 
-```C
+```c
 int Um = (int) 1.5; // apenas o 1 será atribuído
 ```
 
 Quando você atribui a uma variável o valor que pertence a outro tipo o C vai converter isso para o tipo da variável, mas isso não irá acontecer quando você fizer operações matemáticas, por isso é sempre bom converter para o tipo certo:
 
-```C
+```c
 int i = 1.5e-9;   // apenas o 1 será atribuído
 float f =  i / 3; /*
                      o resultado dessa divisão seria 0.033...
@@ -412,7 +412,7 @@ O `long` alonga (expande) a capacidade de variáveis do tipo `int`, `float` e `d
 
 > Lembrando que os valores de tamanho variam de computador para computador.
 
-```C
+```c
 int inteiro = 0;              // 4 bytes
 long int l_inteiro = 0;       // 8 bytes
 
@@ -426,7 +426,7 @@ E para alcançar o máximo de tamanho de uma variável para a sua arquitetura us
 
 O `short` encurta a capacidade de variáveis do tipo `int`.
 
-```C
+```c
 int inteiro = 0;              // 4 bytes
 short int s_inteiro = 0;      // 2 bytes
 ```
@@ -435,7 +435,7 @@ short int s_inteiro = 0;      // 2 bytes
 
 `signed` e `unsigned` significam respectivamente "com sinal" e "sem sinal".
 
-```C
+```c
 int c = 90;
 int i = +90;
 int j = -90;
@@ -443,7 +443,7 @@ int j = -90;
 
 Sempre que você declara um número, ele por padrão é `signed`, portanto suporta números negativos e positivos, e o `unsigned` só suporta números positivos.
 
-```C
+```c
 int inteiro = 0;               // intervalo: -2147483648 a 2147483647
 unsiged int us_inteiro = 0;    // intervalo: 0           a 4294967295
 ```
@@ -452,7 +452,7 @@ unsiged int us_inteiro = 0;    // intervalo: 0           a 4294967295
 
 Você já viu anteriormente uma forma de saída de dados: o `printf`:
 
-```C
+```c
 printf("Hello mundo!!\n");
 ```
 
@@ -464,7 +464,7 @@ O caractere de scape, no C, é o `\` e ele dá "poderes" ao seu texto, pode ser 
 
 #### \n
 
-```C
+```c
 printf("\n1ª linha\n2ª linha\n3ª linha\n");   // \n: quebra de linha.
 ```
 
@@ -479,7 +479,7 @@ Esse `\n` é uma quebra de linha, ou seja, sempre que tiver um `\n` o `printf` v
 
 #### \t
 
-```C
+```c
 printf("\tjoao"); // \t: espaçamento ou tabulação (efeito da tecla "tab").
 ```
 
@@ -492,7 +492,7 @@ Esse `\t` é uma tabulação, o que estiver a frente dele irá se deslocar para 
 
 #### \b
 
-```C
+```c
 prinft("joao\b");  // \b: apagua um caractere da linha (efeito da tecla "backspace").
 ```
 
@@ -505,7 +505,7 @@ joa
 
 #### \r
 
-```C
+```c
 printf("coisas mais coisas\r outras coisas"); // \r: elimina tudo o que está antes dele na linha.
 ```
 
@@ -518,7 +518,7 @@ Esse `\r` vem de "remove", todos os caracteres da mesma linha e anteriores a ele
 
 #### \v
 
-```C
+```c
 printf("coisas\voutrascoisas\vjoao\v."); // \v: tabulação vertical.
 ```
 
@@ -534,20 +534,20 @@ coisas
 
 #### \\"
 
-```C
+```c
 printf("\"joao\" é um nome feio); // \": exibe as aspas duplas.
 ```
 
 Exibe as aspas duplas ( `"` ), pois se você escrever simplesmente `"` o C vai achar que aquele é o fim da string.
 
 > saída:
-```C
+```c
 "joao" é um nome feio
 ```
 
 #### \\'
 
-```C
+```c
 printf("it\'s estranho"); // \': exibe as aspas simples ou apótrofos.
 ```
 
@@ -560,7 +560,7 @@ it's estranho
 
 #### \\\\
 
-```C
+```c
 printf("isso é uma contra-barra: \\");     // \\: exibe a contra-barra
 ```
 
@@ -573,7 +573,7 @@ isso é uma contra-barra: \
 
 _"Mas e se eu quiser imprimir uma variável?"_ ... é só usar a formatação de texto do `printf` ... _"Mas como se usa isso?"_ ... para imprimir uma variável `int` é só escrever um `%i` ou `%d` dentro da string. Se for um `char`, escreva `%c` na string, se for `float`, escreva `%f`, se for uma notação científica (geralmente usada no tipo `double`), escreva `%E`( se estiver usando o "e" maiúsculo) e `%e` para o "e" minúsculo, após escrever a formatação desejada, é só listar as variáveis separando por vírgula ligo após a string... _"Eu não entendi nada do que tu disse!"_ ...Relaxa... Olhe o exemplo e suas dúvidas em relação a isso irão desaparecer:
 
-```C
+```c
 int numero = 90;
 char caractere = 'A';
 float real = 9.23;
@@ -601,7 +601,7 @@ caractere: A
 
 O scanf é semelhante ao printf, mas serve para ler dados:
 
-```C
+```c
 int numero;
 
 scanf("%i", &numero);
@@ -613,7 +613,7 @@ E como você pode perceber o `%i` se refere a um número inteiro. Todos os tipos
 
 Também é possível ler várias variáveis com um único comando:
 
-```C
+```c
 int numero;
 char caractere;
 float real;
@@ -627,7 +627,7 @@ printf("caractere: %c", caractere);
 ```
 > Na hora de ler um `char`, às vezes o `scanf` buga, isso ocorre quando ele recebe lixo do teclado, você só precisa ler a variável duas vezes, isso geralmente ocorre com `char`, mas se acontecer com outro tipo, a resolução para o problema é a mesma:
 
-```C
+```c
 fflush(stdin); // esse comando vai limpar o lixo da memória
 ```
 
@@ -652,7 +652,7 @@ Esses não são os únicos métodos de entrada e saída de dados, mas veremos ou
 
 Strings ou texto, exemplo:
 
-```C
+```c
 printf("string: '%s'\n", "string");
 ```
 
@@ -660,7 +660,7 @@ printf("string: '%s'\n", "string");
 
 Inteiros, exemplo:
 
-```C
+```c
 printf("int: %i\n", 90);
 ```
 
@@ -668,13 +668,13 @@ printf("int: %i\n", 90);
 
 Reais, exemplo:
 
-```C
+```c
 printf("float: %f\n", 9.3);
 ```
 
 E como são números com `.` você pode formatar a saída deles, o `9.3` vai ser exibido como `9.300000`, mas eu quero que sáia `9.3`
 
-```C
+```c
 printf("float: %.1f\n", 9.3);
 ```
 
@@ -682,7 +682,7 @@ printf("float: %.1f\n", 9.3);
 
 O protótipo é mais ou menos assim:
 
-```C
+```c
 printf("%.<decimais>f\n", <numero>);
 ```
 
@@ -690,7 +690,7 @@ printf("%.<decimais>f\n", <numero>);
 
 Caracteres, exemplo:
 
-```C
+```c
 printf("char: %c\n", 'A');
 ```
 
@@ -698,7 +698,7 @@ printf("char: %c\n", 'A');
 
 Numeros octais, exemplo:
 
-```C
+```c
 printf("int: %o\n", 018);
 ```
 
@@ -708,7 +708,7 @@ printf("int: %o\n", 018);
 
 Numeros sem sinal, exemplo:
 
-```C
+```c
 printf("int: %u\n", 18);
 ```
 
@@ -716,7 +716,7 @@ printf("int: %u\n", 18);
 
 Numeros hexadecimais, exemplo:
 
-```C
+```c
 printf("int: %x\n", 0xDB7B5);
 ```
 
@@ -726,7 +726,7 @@ printf("int: %x\n", 0xDB7B5);
 
 Numeros longos (sempre acompanhado pelo tipo alongado), exemplo:
 
-```C
+```c
 // Reais longos
 printf("double: %lf\n", (double) 9.3);
 
@@ -738,7 +738,7 @@ printf("long int: %li\n", 698);
 
 Basicamente o "put" significa coloque, logo, `putchar` é coloque um `char`:
 
-```C
+```c
 char c = '\n';
 
 putchar ('j');
@@ -759,7 +759,7 @@ joao
 
 E seguindo a mesma lógica, `puts` é coloque uma string ( o `s` é uma abreviação ).
 
-```C
+```c
 char * str = "string coisada";
 
 puts ( "joao" );
@@ -784,7 +784,7 @@ Assim como o `scanf`, o `getchar` e o `gets`, são funções para leitura de dad
 
 É assim que se usa o `getchar`:
 
-```C
+```c
 char j;
 
 j = getchar();
@@ -792,7 +792,7 @@ j = getchar();
 
 E o `gets` é usado assim:
 
-```C
+```c
 char str [20];
 gets(str);
 ```
@@ -802,7 +802,7 @@ gets(str);
 
 O `f` antes do `printf` significa formatação, logo, um `fprintf` é um `printf` formatado, e essa formatação é basicamente um parâmetro a mais indicando o lugar onde você quer escrever a informação.
 
-```C
+```c
 fprintf(stdout, "Hello mundo!!\n"); // printf ( "Hello mundo!!" )
 ```
 
@@ -810,7 +810,7 @@ fprintf(stdout, "Hello mundo!!\n"); // printf ( "Hello mundo!!" )
 
 Mas também é possível enviar a saída para outros streams, dentre eles nós temos o `stderr`, que é a saída padrão de erros:
 
-```C
+```c
 char coisa [30];
 
 puts("escreva de 1 a 10 caracteres: ");
@@ -833,7 +833,7 @@ Note que quando ocorreu um erro o valor retornado foi o `1`, indicando para o si
 
 O `fgets` seria um `gets` formatado, e ele funciona da seguinte maneira:
 
-```C
+```c
 char str[10];
 
 fgets ( stdin, 10, str ); // gets (str)
@@ -849,7 +849,7 @@ _"Ué? Então por que eu deveria usar esse `fgets` aí se o `gets` é mais simpl
 
 Os operadores aritméticos são os operadores matemáticos e são expressos da seguinte maneira em C:
 
-```C
+```c
 n + N // Adição            -> soma os dois números;
 n - N // Subtração         -> subtrai os dois números;
 n * N // Multiplicação     -> multiplica dois números;
@@ -866,7 +866,7 @@ Odem de precedencia:
 - multiplicação (`*`), divivão (`/`) e resto (`%`)
 - adição (`+`) e subtração (`-`)
 
-```C
+```c
 6+4/2    //  ->  8
 (6+4)/2  //  ->  5
 ```
@@ -877,25 +877,25 @@ O operadores de atribuição são formas simplificadas de atribuir valores... _"
 
 Isso é uma atribuição:
 
-```C
+```c
 numero = 89;
 ```
 
 E caso eu queira que este número valia ele mesmo + 1 eu faço:
 
-```C
+```c
 numero = numero + 1;
 ```
 
 Mas para poupar esforços o C também aceita:
 
-```C
+```c
 numero += 1;
 ```
 
 E isso vale para qualquer operação:
 
-```C
+```c
 numero += 2; // numero = numero + 2
 numero -= 3; // numero = numero - 3
 numero *= 7; // numero = numero * 7
@@ -904,13 +904,13 @@ numero /= 2; // numero = numero / 2
 
 Além desses também existe os operadores de incremento e decremento:
 
-```C
+```c
 numero ++; // numero = numero + 1
 numero --; // numero = numero - 1
 ```
 > os vistos acima são denominados de pós incremento, pois a variável só recebe o valor depois de retorna-lo _"O que?"_ ... Observe:
 
-```C
+```c
 int numero = 89;
 printf("%i\n", numero++ );
 ```
@@ -923,7 +923,7 @@ printf("%i\n", numero++ );
 
 _"Pera! mas ele não deveria ser 90?"_ ... A variável `numero` só é incrementada depois de retornar o valor dela, isso quer dizer que ela só é incrementada depois dessa parte do programa, mas se você usar o pré-incremento:
 
-```C
+```c
 int numero = 89;
 printf("%i\n", ++numero );
 ```
@@ -934,7 +934,7 @@ printf("%i\n", ++numero );
 90
 ```
 
-```C
+```c
 numero ++; // pós-incremento
 numero --; // pós-decremento
 
@@ -948,7 +948,7 @@ Os operadores lógicos são todos aqueles que testam uma expressão relacional e
 
 > lembrando que no C verdadeiro é 1 e falso é 0.
 
-```C
+```c
 n == N // igual            -> testa se n é igual a N;
 n != N // diferente        -> testa se n é diferente de N;
 
@@ -961,7 +961,7 @@ n >= N // maior ou igual   -> testa se n é maior ou igual a N;
 
 Exemplo simples:
 
-```C
+```c
 printf("%i\n", 1 < 2);
 printf("%i\n", 1 > 2);
 printf("%i\n", 1 != 2);
@@ -991,7 +991,7 @@ João só ficaria satisfeito ( verdadeiro ) se ele ganhasse o celular e o fone d
 
 O operador usado no exemplo acima é o "and" ( `&&` ) que só é "verdadeiro" se as duas opções forem verdadeiras, exemplo:
 
-```C
+```c
 printf("%i && %i = %i\n", 1 < 5, 2 > 0, 1 < 5   &&   2 > 0);
 printf("%i && %i = %i\n", 1+80 < 5, 2 > 0, 1+80 < 5   &&   2 > 0);
 ```
@@ -1027,7 +1027,7 @@ Os operadores lógicos são o `&&`, que equivale a "and"("e"), já visto anterio
 
 Exemplo:
 
-```C
+```c
 printf("%i && %i = %i\n", 1 < 5, 2 > 0, 1 < 5   &&   2 > 0);
 
 printf("%i || %i = %i\n", 1 < 5, 2 > 6, 1 < 5   ||   2 > 6);
@@ -1045,7 +1045,7 @@ printf("!(%i && %i) = %i\n", 1 < 5, 2 > 6, !(1 < 5   &&   2 > 6));
 
 ### Ternário ou condicional
 
-```C
+```c
 int  numero = 80;
 char imparOuPar = (  numero % 2 == 0  ) ? 'p'               : 'i'              ;
 //                ( <expreção logica> ) ? <se for Verdade>  : <se for Mentira>
@@ -1057,7 +1057,7 @@ O código acima representa um uso simples do operador ternário e eu sei que voc
 
 Outro exemplo do uso seria:
 
-```C
+```c
 int nota = 6;
 char status = ( nota >= 7 ) ? 'p' : 'r';
 
@@ -1102,7 +1102,7 @@ A divisão inteira entre 3 e 4 é 0 e o resto dessa divisão é 3
 
 Antes de mais nada, nós temos que digitar nossa estrutura padrão:
 
-```C
+```c
 #include <stdio.h>
 int main (){
 
@@ -1112,20 +1112,20 @@ return 0;
 
 Depois, nós temos que pedir dois números para o usuário:
 
-```C
+```c
 printf("digite um número: ");
 printf("digite outro número: ");
 ```
 
 Agora, iremos ler os dois números, mas antes, temos que criar as variáveis que vão guardar esses números:
 
-```C
+```c
 float numero, outro_numero; // dessa forma criamos várias variáveis do mesmo tipo de uma vez
 ```
 
 Agora, nós podemos ler os números:
 
-```C
+```c
 printf("digite um número: ");
 scanf("%f", &numero);
 
@@ -1135,7 +1135,7 @@ scanf("%f", &numero);
 
 Finalmente, iremos exibir os resultados:
 
-```C
+```c
 printf("\n");
 printf("%f + %f = %f\n", numero, outro_numero, numero + outro_numero);
 printf("%f - %f = %f\n", numero, outro_numero, numero - outro_numero);
@@ -1149,7 +1149,7 @@ printf("A divisão inteira entre %f e %f é %i e o resto dessa divisão é %i\n"
 
 E o código final ficou assim:
 
-```C
+```c
 #include <stdio.h>
 int main (){
 
@@ -1196,7 +1196,7 @@ A soma entre 8 e 2 é 10
 
 A primeira coisa que devemos fazer é obviamente escrever a estrutura padrão:
 
-```C
+```c
 #include <stdio.h>
 
 int main (){
@@ -1207,14 +1207,14 @@ int main (){
 
 Agora, temos que declarar as variáveis que irão guardar os dados:
 
-```C
+```c
 int numero, outro_numero;
 char operacao;
 ```
 
 E temos que pedir os dados para o usuário:
 
-```C
+```c
 printf("Digite um número inteiro: ");
 scanf("%i", &numero);
 
@@ -1230,14 +1230,14 @@ scanf("%c", &operacao);
 
 Agora, iremos testar se a operação escolhida foi soma ou subtração e depois salvar o resultado em outra variável (`res`):
 
-```C
+```c
 int res = ( operacao == '+' ) ? numero + outro_numero : numero - outro_numero ;
 //   ...se operacao for +            some          senao   subtraia
 ```
 
 E finalmente exibimos os resultados:
 
-```C
+```c
 printf ( "a %s entre %i e %i é %i\n", 
    ( operacao == '+' ) ? "soma" : "subtração", 
    numero,
@@ -1248,7 +1248,7 @@ printf ( "a %s entre %i e %i é %i\n",
 
 O código final ficou assim:
 
-```C
+```c
 #include <stdio.h>
 
 int main (){
@@ -1304,7 +1304,7 @@ Você já deve ter percebido que este é complicado, mas calma... É só pensar 
 
 A primeira coisa que iremos fazer é declarar e ler os números ( depois de escrever a estrutura padrão é claro ) :
 
-```C
+```c
 int n1, n2, n3; // Essa é a forma de declarar várias variáveis ao mesmo tempo
 
 printf ("Digite 3 números: ");
@@ -1313,13 +1313,13 @@ scanf ("%i %i %i", &n1, &n2, &n3);
 
 Agora nós iremos declarar contadores para os ímpares, pares e divisíveis por 3 e iniciá-los com `0` (se não fizer isso suas variáveis vão receber lixos da memória):
 
-```C
+```c
 int impar = 0, par = 0, divPor3 = 0; // essa é a forma de inicializar várias variáveis ao mesmo tempo
 ```
 
 Declarados os contadores, iremos testar os números pares e ímpares:
 
-```C
+```c
 // se o número for divisível por 2 incremente par senão incremente impar
 ( n1 % 2 == 0 )? par ++: impar ++;
 ( n2 % 2 == 0 )? par ++: impar ++;
@@ -1328,7 +1328,7 @@ Declarados os contadores, iremos testar os números pares e ímpares:
 
 Agora testamos os divisíveis por 3:
 
-```C
+```c
 divPor3 = ( n1 % 3 == 0 )? divPor3 + 1: divPor3;
 divPor3 = ( n2 % 3 == 0 )? divPor3 + 1: divPor3;
 divPor3 = ( n3 % 3 == 0 )? divPor3 + 1: divPor3;
@@ -1338,7 +1338,7 @@ E por fim exibimos os valores:
 
 Aqui nós temos duas opções, exibimos os dados de forma preguiçosa:
 
-```C
+```c
 printf ( "%i são ímpares\n", impar);
 printf ( "%i são pares\n", par);
 printf ( "%i são divíveis por 3\n", divPor3);
@@ -1375,7 +1375,7 @@ Ou tentamos adaptar a resposta para que ela respeite os plurais e singulares e a
 
 > O "esqueleto" final do printf ficou assim:
 
-```C
+```c
 printf ( "%i%c%s %s",
          <contador>,                                              // %i
          (<contador> == 0)? '\b' : ' ',                           // %c
@@ -1387,7 +1387,7 @@ printf ( "%i%c%s %s",
 
 E é assim que fica a exibição dos resultados seguindo o esqueleto acima:
 
-```C
+```c
 // Hora de exibir os resultados
 
 printf(
@@ -1428,7 +1428,7 @@ printf(
 
 E o código final ficou assim:
 
-```C
+```c
 #include <stdio.h>
 #include <stdlib.h>
 int main(int argc, char **argv){
@@ -1520,13 +1520,13 @@ Arrays são variáveis com vários espaços... _"Como assim?"_ ... Lembra do arm
 
 > `cubo dado [] com ` :game\_die:`,`:game\_die:`,`:game\_die:` dentro`
 >
-```C
+```c
 int algarismos [] = { 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 0 };
 ```
 
 E também é possível acessar um item específico do array adicionando a posição entre `[` e `]`.
 
-```C
+```c
 int algaridobro desmos [] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 
 int tres = algarismos[2]
@@ -1534,20 +1534,20 @@ int tres = algarismos[2]
 
 Agora, a variável `tres` está com o item `3`, _"Mas o 3 está da 3º posição!"_ , eu entendo, esse é um erro que todo iniciante comete, a questão é que a contagem começa do `0`:
 
-```C
+```c
 //                    [0] [1] [2] [3] [4] [5] [6] [7] [8] [9]
 int algarismos [] = {  1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 0};
 ```
 
 E desta forma é possível modificar um valor do array:
 
-```C
+```c
 algarismos[9] = 9;
 ```
 
 Mas para modificar o array inteiro é necessário modificar item por item, portanto, a seguinte forma não funcionará:
 
-```C
+```c
 int algarismos [] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 
 algarismos = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
@@ -1555,7 +1555,7 @@ algarismos = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 Os arrays não podem ser impressos ou atribuídos, isso significa que todos os itens tem de ser imprimidos um por um:
 
-```C
+```c
 a [] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
 
 printf (
@@ -1568,14 +1568,14 @@ E antes que alguém pergunte _"Só existe array inteiro?"_, não, você pode faz
 
 Se você prestou atenção no capítulo sobre variáveis você deve conhecer o comando `sizeof`, que diz a quantidade de bytes de uma variável, se você usar com arrays também:
 
-```C
+```c
 int i [3];
 printf ("o tamanho de "i" é %i", sizeof i);
 ```
 
 _"Mas e se eu quiser saber a quantidade de elementos do meu array?"_ ... você só precisa dividir o tamanho do array pelo tamanho do tipo desse array... _"Como assim?"_ ... O tamanho de uma variável `int` é o mesmo do tipo `int`, logo, o tamanho do tipo é o tamanho de uma variável com esse tipo...
 
-```C
+```c
 int i;
 int array_i [8];
 
@@ -1587,7 +1587,7 @@ int qnt_elem = tmh_ari / tmh_i; // quantidade de elementos
 
 Ou, se você for preguiçoso igual eu:
 
-```C
+```c
 int array_i [8];
 
 int qnt_elem = sizeof array_i / sizeof array_i[0]; // quantidade de elementos
@@ -1600,7 +1600,7 @@ Uma string é uma cadeia de caracteres ou um array de caracteres ou um "vetor" d
 
 _"Mas se é um array, por que eu preciso ler essa parte se você já explicou os arrays?"_ ... Muito simples, as strings são arrays e possuem todas as características de arrays, mas elas têm algumas particularidades.
 
-```C
+```c
 char Char = 'A';          // isso é um caractere
 char String [] = "coisa"; // isso é uma cadeia de caracteres
 
@@ -1612,7 +1612,7 @@ char other_str [] = {'c', 'o', 'i', 's', 'a', '\0'};
 
 Caso não queira dar valor para a string, você deverá dizer qual o seu tamanho (assim como em qualquer outro tipo de array), exemplo:
 
-```C
+```c
 char String [10];
 ```
 
@@ -1622,7 +1622,7 @@ _"Tá, mas como eu dou um valor para ela?"_ ... Você pode fazer isso de três m
 
 A primeira forma é a tradicional para dar valores a um array:
 
-```C
+```c
 char s [13];
 
 s[0] = 'c';
@@ -1637,7 +1637,7 @@ s[6] = '\0';
 
 Na segunda, você tem que importar a biblioteca `string.h` e depois usar a função `strcpy` para atribuir o valor, dessa maneira:
 
-```C
+```c
 #include <string.h>
 
 char str[13];
@@ -1652,7 +1652,7 @@ Note que você não é obrigado a colocar a quantidade exata de caracteres na st
 
 _"Legal, mas se eu quiser ler uma string? Ou imprimir uma string?"_ ... Muito simples, é só usar o `%s` no `scanf` e no `printf`, mas em relação ao `scanf` temos uma leve diferença:
 
-```C
+```c
 char str [20];
 scanf("%s", &str);
 
@@ -1661,7 +1661,7 @@ printf("a string lida foi: %s\n", str);
 
 Uma coisa que eu sei que você ficou na dúvida no capítulo sobre variáveis foi o por que de `'A'` ser diferente de `"A"`.
 
-```C
+```c
 char Char = 'A';
 char String = "A";
 ```
@@ -1678,7 +1678,7 @@ Até agora eu apenas mencionei o que é um bloco lá no inicio do livro para exp
 
 A primeira característica de um bloco, que a propósito já foi abordada, é que ele é uma sequencia de comandos entre `{` e `}`, mas uma coisa que você não sabia é que ele pode ser usado sem a necessidade de uma estrutura:
 
-```C
+```c
 int numero;
 
 {
@@ -1690,7 +1690,7 @@ numero += 67;
 
 _"mas que diferença isso fez para o programa?"_ , neste caso acima nenhuma, mas os blocos podem ser úteis para a organização do código e também para o isolamento de variáveis:
 
-```C
+```c
 int n = 46;
 {
    char a = n;
@@ -1703,7 +1703,7 @@ O programa a cima não irá compilar por que a variável `a` só existe dentro d
 
 Isso acontece por causa de uma coisa que chamamos de escopo, e o escopo determina o nível de acesso de uma variável no código, isso significa a variável `a` do código anterior só podia ser acessada dentro do bloco onde foi declarada, e é o que chamamos de variável local.
 
-```C
+```c
 int coisa = 0;
 
 int main () {
@@ -1729,7 +1729,7 @@ O escopo do código anterior seria assim:
 
 > A variável `coisa` é global porque está fora de todos os blocos possíveis, portanto pode ser acessada em qualquer bloco do programa, enquanto a variável `outra_coisa` é local da função `main`, logo, todo e qualquer bloco dentro do `main` pode ter acesso a ela, e a variável `A` só existe dentro do bloco isolado.
 
-```C
+```c
 int a = 78973;
 {
    char a = 'a';
@@ -1753,7 +1753,7 @@ E nunca se esqueça que essas regras vistas neste capítulo serve para todo e qu
 
 Até agora nós fizemos códigos mais sequenciais, onde todos os comandos eram executados e a única forma de decisão que usamos foi o operador ternário.
 
-```C
+```c
 int n;
 
 printf("digite um número: ");
@@ -1777,7 +1777,7 @@ Note que os condicionais são muito mais intuitivos, e por isso são mais fácei
 _"Mas com o ternário ficou muito mais curto!"_ ...Sim, mas e se sempre que o número for ímpar ele tenha também de pedir outro número ao usuário?...
 > Não se questione sobre esta funcionalidade a mais, ela é só uma forma de dificultar um pouco o exemplo.
 
-```C
+```c
 // com ternário
 int n;
 
@@ -1794,12 +1794,12 @@ n = ( n % 2 == 0 ) ?   n       :      scanf("%i", &reserva);
 n = reserva;
 ```
 > antes que você se pergunte o por quê de eu ter criado a variável `reserva`, se o código estivesse assim:
-```C
+```c
 n = ( n % 2 == 0 ) ? n : scanf("%i", &n);
 ```
 > O `scanf` iria ler o valor, colocar dentro do n, mas quando ele finalizasse esta instrução ele retornaria um `1` ou um `0` para informar se deu certo ou não, e esse feedback do `scanf` substituiria o valor lido por ele, e sempre que o número fosse ímpar o `n` seria `1` ou `0`, então a variável `reserva` serve de reserva para o valor de `n`.
 
-```C
+```c
 // com condicionais
 int n;
 
@@ -1818,7 +1818,7 @@ Note que o código feito com condicionais ficou muito mais organizado e simples 
 
 Existem 3 formas de fazer um condicional no C:
 
-```C
+```c
 int condicao = (67 != 5);  /*
                               e se você prestou atenção 
                               no capítulo de operadores 
@@ -1851,13 +1851,13 @@ else if ( outra_condicao ) {
 ```
 
 > Mas o bloco não é obrigatório para o uso do condicional, caso você queira um `if` mais compacto:
-```C
+```c
 if (condicao) /* comando */;
 ```
 
 > Caso você precise executar mais de um comando você vai ter que usar um bloco, mas você usar a forma acima em conjunto com as anteriores, logo, o seguinte código é válido:
 
-```C
+```c
 int i = 3847;
 
 if (i % 2 == 0) printf("O número é par!\n");
@@ -1876,7 +1876,7 @@ Estruturas de repetição são estruturas que permitem que você repita comandos
 
 ### While
 
-```C
+```c
 // exibindo uma contagem até 5
 
 // sem estruturas de repetição
@@ -1897,7 +1897,7 @@ while (contador <= 5){          // enquanto o contador for menor ou igual 5
 
 A estrutura usada é o `while`, que significa "enquanto", basicamente ele funciona assim:
 
-```C
+```c
 condicao = (2 != 3);
 while ( condicao ) {   // enquanto a condição for verdade execute
    // comandos
@@ -1914,7 +1914,7 @@ Mas isso não quer dizer que loops infinitos sejam sempre ruins,Digamos que agen
 
 Eu vou ilustrar a situação acima de duas maneiras usando o `while`.
 
-```C
+```c
 // usando o teste lógico do while
 {
    char flag = 's';
@@ -1941,7 +1941,7 @@ Eu vou ilustrar a situação acima de duas maneiras usando o `while`.
 
 E assim como nos condicionais o `while` também tem uma forma compacta:
 
-```C
+```c
 int cont = 0;
 while (cont <= 10) printf("%i\n", cont++);
 ```
@@ -1950,7 +1950,7 @@ while (cont <= 10) printf("%i\n", cont++);
 
 A estrutura popularmente conhecida como `do`..`while` é basicamente um `while` de cabeça para baixo.
 
-```C
+```c
 // exibindo uma contagem até 5
 int i = 1;
 
@@ -1967,7 +1967,7 @@ do {                         // faça {
 
 O `do`..`while` funciona da mesma forma que o `while`, com uma única diferença, ele faz o teste lógico no final, logo, ele executa o que está no bloco e só depois testa a condição:
 
-```C
+```c
 int i = 90;
 
 do {
@@ -1985,7 +1985,7 @@ _"Ué? Por que ele imprimiu?"_ , Porque ele faz o teste lógico ( `i <= 10` ) no
 
 _"Aah! Então é inútil usar este laço!!"_ ... Sinto discordar, mas este laço foi criado para agilizar algumas tarefas, lembra do código com flag? Que vimos no capítulo anterior?
 
-```C
+```c
 char flag = 's';
 
 while (flag == 's'){
@@ -1996,7 +1996,7 @@ while (flag == 's'){
 
 Para que o código acima funcione nós somos obrigados o valor `'s'` à variável `flag`, com o `do`..`while` isso não é necessário:
 
-```C
+```c
 char flag;
 
 do {
@@ -2013,7 +2013,7 @@ O `for` é uma forma mais automatizada de loop, ele é mais usado para contagem,
 
 Em uma comparação direta com o `while`:
 
-```C
+```c
 // exibindo uma contagem até 5
 
 // while
@@ -2030,7 +2030,7 @@ Em uma comparação direta com o `while`:
 
 _"Caramba!! O que aconteceu aqui?"_ ... Se você não estiver entendido o código acima eu irei mostrar da forma tradicional:
 
-```C
+```c
 // exibindo uma contagem até 5
 
 // while
@@ -2055,7 +2055,7 @@ _"Ainda não entendi o `for`"_ ... Note que temos três espaços entre os parent
 
 Basicamente o `for` é uma gambiarra do `while`, ainda utilizando o exemplo anterior observe um for escrito no estilo se um `while`:
 
-```C
+```c
 int i = 0;
 
 for ( ; i <= 5 ; ){
@@ -2068,7 +2068,7 @@ for ( ; i <= 5 ; ){
 
 E as formas diversas de usar o `for` são essas:
 
-```C
+```c
 // usar variável já existente
 int i;
 for (i = 1; i <= 5; i++) printf("%i\n", i);
@@ -2090,7 +2090,7 @@ for (;;) {
 
 Deu pra perceber que o `for` é bem eclético não é mesmo? Mas definitivamente a forma em que ele é mais útil é a tradicional:
 
-```C
+```c
 for ( int <nome da variável> = <valor inicial>; <teste lógico>; <incremento>) {
    // comandos
 }
@@ -2105,14 +2105,14 @@ Os ponteiros ou pointers no inglês, são variáveis que guardam endereços de m
 
 Lembra do `&` antes da variável no `scanf`?
 
-```C
+```c
 int n;
 scanf("%i", &n);
 ```
 
 Este `&` indica um endereço de memória da variável `n`, e para guardar este endereço em uma variável, é necessário que agente crie um ponteiro:
 
-```C
+```c
 int n = 9;
 int * ponteiro_n = &n;
 ```
@@ -2123,7 +2123,7 @@ _"Tá, mas ainda não entendi a utilidade desse negócio!"_ , acho que essa ment
 
 Existem algumas regras sobre o uso de ponteiros, por exemplo:
 
-```C
+```c
 int i = 90;
 
 int * p = &i; // o ponteiro "p" agora aponta para a variável "i"
@@ -2136,7 +2136,7 @@ No exemplo acima, declaramos um ponteiro `p` apontando para `i`, agora nós pode
 
 E usando esse `*` também podemos alterar o valor de `i`:
 
-```C
+```c
 int i = 90;
 
 int * p = &i;
@@ -2144,7 +2144,7 @@ int * p = &i;
 ```
 > Só que nós estamos alterando o valor diretamente na memória, e uma prova disso é que se você incrementar o ponteiro `p`, terá acesso a outro endereço de memória.
 
-```C
+```c
 int i = 90;
 int * p = &i;
 
@@ -2155,7 +2155,7 @@ p ++;
 
 Quando você executar o código acima irá ocorrer um erro de segmentação (quando o programa tenta acessar uma memória que não pertence a ele) ou se não ocorrer erro, quer dizer que ele acessou um espaço de memória desconhecido, e quando este ultimo ocorre o valor que está nesse espaço é um lixo do sistema ou o local onde está alocada outra variável.
 
-```C
+```c
 int a[] = { 2, 4, 5, 6};
 
 printf("%i\n", a[1]); // 4
@@ -2168,7 +2168,7 @@ Como um array é um ponteiro, nós podemos usar o array como um ponteiro, _"Mas 
 
 Mas o método que usei anteriormente não é muito adequado já que uma vez que você incremente o array ele estará apontando para outra posição e assim você tem que decrementar toda vez, o que não é prático, então, a forma mais indicada para isso seria:
 
-```C
+```c
 int a[] = { 2, 4, 5, 6};
 
 printf("%i\n", a[1]);     // 4
@@ -2179,7 +2179,7 @@ printf("%i\n", *(a+1) );  // 4
 
 Isso também serve para atribuir valor aos itens de um array.
 
-```C
+```c
 int a[] = { 2, 4, 5, 6};
 
 a[1] = 90;
@@ -2197,7 +2197,7 @@ Para resolver isso nós podemos alocar a quantidade de memória que queremos (em
 
 > E como prometi no capítulo sobre strings... Esta é a terceira forma de atribuir uma string:
 
-```C
+```c
 char * str;
 str = "string";
 ```
@@ -2207,7 +2207,7 @@ str = "string";
 
 O próprio exemplo da atribuição de uma string é um exemplo de alocação dinâmica, mas ela é feita automaticamente:
 
-```C
+```c
 char * str;          // aqui temos um ponteiro vazio.
 str = "coisa";       /* 
                         aqui nós alocamos 6 bytes na memória para
@@ -2234,14 +2234,14 @@ Se fossemos fazer o código acima usando puramente ponteiros, nós faríamos ass
 
 Antes de mais nada você tem que incluir o `stdlib.h` no seu arquivo (para evitar erros, sempre faça qualquer `include` no inicio do arquivo)
 
-```C
+```c
 #include <stdlib.h>           // biblioteca necessária para usar as funções de alocação.
 ```
 > Para garantir inclua esta biblioteca em todos os exemplos a partir daqui.
 
 Agora sim, podemos continuar...
 
-```C
+```c
 
 char * str;                   // aqui temos um ponteiro vazio.
 
@@ -2288,7 +2288,7 @@ _"Ah então eu vou sempre usar a primeira forma, porque é mais fácil!"_ , use,
 
 Só para fixar melhor veja como funcionariam o array dinâmico com o tipo `int`.
 
-```C
+```c
 
 // alocando a memória que o array terá
 int * array_dinamico = malloc ( sizeof (int) * 4); /*
@@ -2313,7 +2313,7 @@ array_dinamico [3] = 894;
 
 > Lembre-se de alocar a quantidade certa de memória para o ponteiro, ao contrário dos arrays aqui você tem que saber a quantidade exata de bytes reservar, um macete muito útil é:
 
-```C
+```c
 <tipo> * <variável> = malloc ( sizeof (<tipo>) * <quantidade de posições>);
 ```
 
@@ -2323,7 +2323,7 @@ array_dinamico [3] = 894;
 
 A estrutura de uma função já foi explicada anteriormente de uma forma bastante resumida:
 
-```C
+```c
 int main(){
    printf("Hello mundo!!");
 return 0;
@@ -2334,7 +2334,7 @@ Basicamente uma função é uma rotina, que pode ser usada durante a execução 
 
 A estrutura de uma função é simples:
 
-```C
+```c
 //  tipo do retorno  nome     parametros
     int              soma ( int n1, int n2) {
       return n1 + n2;
@@ -2351,7 +2351,7 @@ E se você não quiser retornar nenhum valor declare a função como `void`.
 
 Mas se você for criar uma função, certifique-se de que ela foi declarada antes da função `main`, e se mesmo assim você ainda queira que a sua função fique depois do `main`, você tem que antes declarar a função:
 
-```C
+```c
 void oi () ;
 
 int main () {
@@ -2380,7 +2380,7 @@ Hello mundo!!
 
 Os parâmetros `Hello` e `mundo!!` foram passados para a função `main` pela linha de comando, e para que agente possa receber e usar esses parâmetros você precisa declará-los a área de parâmetros do `main`.
 
-```C
+```c
 int main (int arg_counter, char * arg_variable []) {
 
    for (int i = 1; i <= arg_counter; i ++)
@@ -2397,7 +2397,7 @@ return 0;
 
 Por fim, é sempre interessante saber como seria um ponteiro para uma função:
 
-```C
+```c
 #include <stdio.h>
 
 int (* Soma) (int n1, int n2);
@@ -2423,7 +2423,7 @@ Até agora você só viu estruturas padrões do próprio C, e como usá-las, mas
 
 > E a galera que já conhece um pouco mais deve estar se perguntando "Mas o C é orientado a objetos?" e desde já, não, o máximo que você pode fazer no C é criar um tipo com espaços para armazenar dados, mas não é possível criar objetos ou classes.
 
-```C
+```c
 
 struct pessoa {
    char * nome;
@@ -2437,14 +2437,14 @@ struct pessoa {
 
 Como podem ver no exemplo acima, nós criamos uma estrutura `pessoa` que pode receber um `nome`, uma `idade`, um `peso`, um `sexo` e uma `altura`, assim melhorando e muito nosso armazenamento de dados, _"Mas como eu posso acessá-los?"_, muito simples:
 
-```C
+```c
 struct pessoa joao;        // aqui nós criamos uma pessoa "joao".
 joao.nome = "Joao";        // aqui nós atribuímos "Joao" ao nome da pessoa.
 ```
 
 E como você pôde notar agora existe um tipo `struct pessoa`, _"Mas, eu quero criar um tipo `pessoa`, é possível?"_, sim, é, e para isso você vai usar o `typedef`, e ele serve para apelidar um tipo.
 
-```C
+```c
 typedef int MyInt;
 
 MyInt inteiro;
@@ -2454,26 +2454,26 @@ Mas como nós queremos usá-lo com a nossa `struct`, temos 3 formas de usar:
 
 Criando o `struct` antes:
 
-```C
+```c
 struct p { char * name };
 typedef struct p pessoa;
 ```
 
 Criando ao mesmo tempo:
 
-```C
+```c
 typedef struct _p { char * name } pessoa;
 ```
 
 Criando ao mesmo tempo com uma `struct` anônima:
 
-```C
+```c
 typedef struct { char * name } pessoa;
 ```
 
 Não importa a forma que você escolha, todas vão funcionar:
 
-```C
+```c
 pessoa joao;
 joao.name = "Joao";
 ```
@@ -2482,7 +2482,7 @@ joao.name = "Joao";
 
 Outra estrutura muito interessante é a `union`, ela é semelhante a `struct`, mas só vai assumir uma variável quando declarada... _"Como assim?"_ ...observe:
 
-```C
+```c
 // struct
 {
    struct p {
@@ -2518,7 +2518,7 @@ Outra estrutura muito interessante é a `union`, ela é semelhante a `struct`, m
 
 O `enum` vem enumeração e nesse você deseje designar valores constantes para as suas estruturas.
 
-```C
+```c
 typedef enum {
    true = 1,
    false = 0,
@@ -2533,7 +2533,7 @@ E acima acabamos de criar o tipo booleano no C.
 
 Como só é possível colocar inteiros em enums, e por isso existe um macete legal para atribuir esses números:
 
-```C
+```c
 typedef enum {
 
    zero = 0,        // zero é 0
@@ -2559,7 +2559,7 @@ O pré-processador é a ferramenta que prepara o código para a compilação, po
 
 Basicamente todos os comandos do pré-processador começam com `#`, e um desses comandos é o próprio `#include`, que usamos para importar nossas bibliotecas, que além de importar bibliotecas padrões, você pode importar seus próprios arquivos.
 
-```C
+```c
 #include "minhas_funcoes.c"
 #include "/home/robocopgay/biblioteca.c"
 ```
@@ -2582,7 +2582,7 @@ A vantagem aqui é que se precisa de uma constante, é mais útil usar o `#defin
 
 E a diretris `#undef` _"desdefine"_ uma macro ou constante
 
-```C
+```c
 #define max 10
 
 int i = max*3;
@@ -2593,7 +2593,7 @@ define max 30
 
 E existe o `#if`, `#else`, `#elif` e o `#endif`, usados para condicional
 
-```C
+```c
 #define MIN_SIZE 2
 
 #if defined(MAX_SIZE) // if -> se
@@ -2618,7 +2618,7 @@ return 0;
 
 Outra coisa interessantíssima é criar strings a partir de código, _"Ué? não entendi..."_, muito simples... Quando usamos o operador `#` dentro de uma macro ele transforma o comando em string
 
-```C
+```c
 #define to_str(texto) #texto
 
 puts( to_str(Hello mundo!!) );
@@ -2632,7 +2632,7 @@ Hello mundo!!
 
 Ou se quiser juntar duas informações use o `##`
 
-```C
+```c
 #define to_str(texto) #texto
 #define str_function_template(func) str##func
 
@@ -2667,7 +2667,7 @@ Deseja calcular de novo? [S/n] n
 
 Primeiramente iremos declarar as variáveis necessárias:
 
-```C
+```c
 int n1, n2;    // números que iremos ler
 char operacao; // operação
 int res;       // resposta
@@ -2675,7 +2675,7 @@ int res;       // resposta
 
 E iremos ler os dados necessários:
 
-```C
+```c
 printf("Digite 2 números: ");
 scanf("%i %i", &n1, &n2);
 
@@ -2685,7 +2685,7 @@ operacao = getchar();
 
 Agora nós vamos efetuar os devidos cálculos:
 
-```C
+```c
 if (operacao == '+')
    res = n1 + n2;
 
@@ -2700,13 +2700,13 @@ else res = n1 * n2;
 
 E exibimos o resultado:
 
-```C
+```c
 printf("\n%i %c %i = %i\n", n1, operacao, n2, res);
 ```
 
 E se você é atento notou que faltou perguntar se a pessoa que calcular de novo, mas antes de fazer esta pergunta nó temos que colocar o código que queremos repetir dentro de uma estrutura de repetição, mas não coloque a parte da declaração de variáveis:
 
-```C
+```c
 do {
 
    printf("Digite 2 números: ");
@@ -2737,7 +2737,7 @@ do {
 
 E o código final ficou assim:
 
-```C
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -2795,7 +2795,7 @@ digite 5 numeros: 10 36 88 89 43
 
 Primeiramente precisamos ler os dados
 
-```C
+```c
 int n[5];
 printf("digite 5 numeros: ");
 scanf("%i%i%i%i%i", &n[0], &n[1], &n[2], &n[3], &n[4]);
@@ -2803,7 +2803,7 @@ scanf("%i%i%i%i%i", &n[0], &n[1], &n[2], &n[3], &n[4]);
 
 Agora vamos pegar o maior número digitado (já que é mais simples que pegar os 3 menores).
 
-```C
+```c
 int maior = 0;
 for (int i=0; i<5; i++){
   maior = (n[i] > n[maior])?i:maior;
@@ -2812,14 +2812,14 @@ for (int i=0; i<5; i++){
 
 Agora a parte mais complidada, existem duas formas de fazer isso, a primeira é comparar manualmente e atribuir a variáveis.
 
-```C
+```c
 int menor1 = maior, menor2 = maior, menor3 = maior;
 maior = n[maior];
 ```
 
 > temos que dar o `maior` como valor, porque para comparar temos que ter certeza de que pode existir um valor menor, caso atribuamos o `0` a variável sempre vai ter o menor valor
 
-```C
+```c
 for (int i=0; i++; i<5){
   if (n[i] < n[menor1])
     menor1 = n[i];
@@ -2856,7 +2856,7 @@ for (int j=0; j<3; j++){
 
 E por fim vamos exibir os resultados:
 
-```C
+```c
 printf("(%i+%i+%i)/%i = %1.1f\n",
     menores[0],
     menores[1],
@@ -2868,7 +2868,7 @@ printf("(%i+%i+%i)/%i = %1.1f\n",
 
 > Código final:
 
-```C
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -2947,7 +2947,7 @@ Até agora só usamos duas bibliotecas em nossos porgramas em C, e não vimos ne
 
 ## <stdio.h>
 
-```C
+```c
 #include <stdio.h>
 ```
 
@@ -2961,7 +2961,7 @@ Como o `stdio` serve para entrada e saída de dados, óbviamente também é usad
 
 Para ler um arquivo precisamos criar um ponteiro do tipo `FILE`
 
-```C
+```c
 FILE * arquivo;
 ```
 
@@ -2971,7 +2971,7 @@ FILE * arquivo;
 
 Para abrir o arquivo `j.txt` no nosso programa, é só usar a função `fopen`.
 
-```C
+```c
 arquivo = fopen("j.txt", "r");
 ```
 
@@ -2979,13 +2979,13 @@ arquivo = fopen("j.txt", "r");
 
 Para ler e exibir o que foi lido é só usar o `fgetc`:
 
-```C
+```c
 char caractere = fgetc(arquivo);
 ```
 
 > O `fgetc` retorna um caractere de cada vez, e quando le o caractere, quando você for ler de novo ele lerá somente o próximo, exemplo:
 
-```C
+```c
 // suponha que o arquivo "texto.txt" tem "abc" escrito dentro
 FILE *f = fopen("texto.txt", "r");
 char a, b, c;
@@ -3007,7 +3007,7 @@ Lembre-se que o fim de um arquivo é demarcado por uma constante chamada de `EOF
 
 > "flag" é a condição de interrupção
 
-```C
+```c
 char caractere;
 do {
   caractere = fgetc(arquivo); // -> <caractere> = fgetc(<arquivo>)
@@ -3017,13 +3017,13 @@ do {
 
 E depois de terminar de usar, assim como você tem que liberar a memória com o `free` trabalhando com ponteiros, você tem que fechar o arquivo, ou ele vai ficar ocupando memória à toa
 
-```C
+```c
 fclose(arquivo);
 ```
 
 E ficaria assim:
 
-```C
+```c
 FILE * arquivo;
 arquivo = fopen("j.txt", "r");
 
@@ -3039,7 +3039,7 @@ Na minha humilde opnião é muito melhor ler os dados caractere por caractere po
 
 O `fscanf` lê dados do arquivo e joga na variável estipulada:
 
-```C
+```c
 FILE *arquivo = fopen("texto.txt", "r");
 
 char * texto_do_arquivo = malloc(10);
@@ -3057,7 +3057,7 @@ O `fscanf` vai ler até o primeiro espaço ou a primeira quebra de linha (`\n`).
 
 Também dá pra fazer com o já conhecido `fgets`:
 
-```C
+```c
 FILE *f = fopen("f.txt", "r");
 
 char str [100];
@@ -3068,7 +3068,7 @@ fclose(f);
 
 E por fim com o `fread`, que é uma forma mais direta de ler os dados, mas para usar o `fread` você tem que saber o limite da leitura ( que no nosso caso é o fim do arquivo), e para descobrir isso, nós vamos usar duas funções chamadas `fseek` e `ftell`.
 
-```C
+```c
 fseek(arquivo, 0, SEEK_END); // mudando o "cursor" para o fim do arquivo
 size_t tamanho_arquivo = ftell(arquivo); // pegando a posição do cursor
 fseek(arquivo, 0, SEEK_SET); // colocando o cursor no inicio de novo
@@ -3076,14 +3076,14 @@ fseek(arquivo, 0, SEEK_SET); // colocando o cursor no inicio de novo
 
 Feito isso é só ler usando o `fread`
 
-```C
+```c
 fread(      texto,        sizeof (char),              tamanho_arquivo, arquivo );
 //   ( <ponteiro>, <tmh do tipo do ptr>, <limite da leitura em bytes>, <arquivo> )
 ```
 
 E vai ficar assim:
 
-```C
+```c
 FILE *arquivo = fopen("f.txt", "r");
 
 fseek(arquivo, 0, SEEK_END); // mudando o "cursor" para o fim do arquivo
@@ -3104,7 +3104,7 @@ fclose(arquivo);
 
 Para abrir um arquivo em modo escrita ao invés de colocar o `r` no parametro do `fopen`, colocamos um `w`:
 
-```C
+```c
 FILE *arquivo = fopen("texto.txt", "w");
 ```
 
@@ -3112,32 +3112,32 @@ FILE *arquivo = fopen("texto.txt", "w");
 
 Para escrever um `char` em um arquivo usamos a função `fputc`
 
-```C
+```c
 fputc('a', arquivo); // -> fputc( <char>, <arquivo> )
 ```
 
 Para escrever uma string use o `fputs`
 
-```C
+```c
 fputs("string com coisas", arquivo); // -> fputs(<string>, <arquivo>)
 ```
 
 Ou se quiser escrever um dados formatado use o já estudado `fprintf`
 
-```C
+```c
 fprintf ( arquivo, "%i > %i = %s", 4, 3, (4 > 3? "True": "False"));
 ```
 
 E por fim você pode usar o irmão do `fread`, o `fwrite`:
 
-```C
+```c
 char texto [] = "texto aleatorio para colocar no arquivo";
 fwrite( texto, sizeof (char), sizeof(texto), arquivo );
 ```
 
 Mas esses não são os únicos modos de abertura de um arquivo
 
-```C
+```c
 "r"  // -> read: somente leitura
 "w"  // -> write: somente escrita, mas apaga o conteúdo do arquivo antes de escrever
 "a"  // -> append: somente escrita
@@ -3157,7 +3157,7 @@ Para "finalizar" este assunto, existem algumas funções que podem ser úteis na
 
 > Não vamos finalizar totalmente porque ainda faltam algumas funções, que agente vai ver no capítulo de `stdarg.h`
 
-```C
+```c
 FILE *j = fopen("j.txt", "r");
 
 fseek( j, 0, SEEK_SET); // passa o cursor para o inicio do arquivo
@@ -3170,14 +3170,14 @@ fseek( j, 0, SEEK_END);
 
 Caso queira retornar para o inicio do arquivo, você pode usar a versão simplificada do `fseek` que se chama `rewind`
 
-```C
+```c
 FILE * arquivo = open("j.txt", "r");
 rewind( arquivo );
 ```
 
 A função `ftell`, também já vista retorna a posição atual do cursor
 
-```C
+```c
 FILE *j = fopen("j.txt", "r");
 
 char c;
@@ -3189,7 +3189,7 @@ printf("\n%li\n", ftell(j));
 
 Mas caso você precise de mais controle nesse posicionamento é só usar as funções `fgetpos` e `fsetpos`
 
-```C
+```c
 // j.txt -> "abcdefghijklmnop"
 FILE * arquivo = fopen("j.txt", "r+");
 
@@ -3222,27 +3222,27 @@ caractere: e
 
 Para apagar o arquivo é só usar a função `remove`
 
-```C
+```c
 remove("j.txt");
 ```
 
 E para renomear é só usar `rename`
 
-```C
+```c
 rename(       "j.txt",  "joao.txt");
 //    ( <nome antigo>, <nome novo>)
 ```
 
 A função `reopen` é muito útil para mudar o destino de arquivos, exemplo:
 
-```C
+```c
 freopen("j.txt", "w", stdout);
 fprintf("joao é uma pessoa!!\n", stdout); // o resultado não será impresso na tela, mas no arquivo "j.txt"
 ```
 
 Além de todas essas, lembra de quando imprimimos mensagens na saída de erro (`stderr`) com `fprintf`? na `stdio.h` existe uma que faz isso automaticamente; é o `perror`
 
-```C
+```c
 perror("ferrou!!");
 ```
 
@@ -3250,7 +3250,7 @@ Para outras informações sobre a biblioteca veja a [referência](https://pt.wik
 
 ## <stdlib.h>
 
-```C
+```c
 #include <stdlib.h>
 ```
 
@@ -3260,7 +3260,7 @@ E as funções que já vimos dela foram as de gerenciamento de memória (`malloc
 
 ### Conversões entre string e outros tipos
 
-```C
+```c
 double     d = atof ("8.9"); // atof(<valor>): de string para double
 int        i = atoi ("89");  // atoi(<valor>): de string para inteiro
 long       l = atol ("999"); // atol(<valor>): de string para long
@@ -3271,7 +3271,7 @@ long long ll = atoll ("99"); // atoll(<valor>): de string para long long
 
 Caso queira abortar o programa, você pode usar a função `exit`, e assim como no `return` do main, você escolhe o valor que quer retornar para o SO
 
-```C
+```c
 int i;
 
 scanf("%i", &i);
@@ -3283,7 +3283,7 @@ else
 
 Outra função relacionada ao fechamento do programa é a função `atexit`, que registra funções que serão executadas quando o programa finalizar, sendo que estas funções não podem retornar valores e nem receber parametros.
 
-```C
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -3307,7 +3307,7 @@ int main(){
 
 Outra semelhante à `atexit` é a `at_quick_exit`, que vai ser executada quando o programa for interromido usando a função `quick_exit`
 
-```C
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -3334,13 +3334,13 @@ int main(){
 
 Outra variável de sistema muito útil é a `getenv`, que retorna o valor de uma variável de ambiente.
 
-```C
+```c
 char path = getenv("PATH"); // caminhos para executáveis no linux ($PATH)
 ```
 
 E as mais úteis de todas, com essas você vai conseguir executar comandos do sistema operacional
 
-```C
+```c
 system( "echo hello mundo!" ); // system( <comando> )
 ```
 
@@ -3348,7 +3348,7 @@ Mas a `system` executa e manda o resultado para a `stdout`, se você quiser aces
 
 > A função popen não funciona no C99, se seu compilador usa C99, não irá compilar.
 
-```C
+```c
 FILE *response = popen("echo hello mundo!", "r"); // popen( <comando> )
 
 char comando [20];
@@ -3360,7 +3360,7 @@ Ainda faltam algumas funções mas essas são as mais importantes (contando com 
 
 ## <math.h>
 
-```C
+```c
 #include <math.h>
 ```
 
@@ -3370,25 +3370,25 @@ Com certeza toda linguagem que se presa tem uma biblioteca de matemática, a `ma
 
 Digamos que o valor de uma operação dê `1.7`, se quisermos arredondá-lo para cima usamos a função `ceil`:
 
-```C
+```c
 printf("%f\n", ceil(1.7));
 ```
 
 Mas se quisermos arredondá-lo para um número menor usamos a função `floor`:
 
-```C
+```c
 printf("%f\n", floor(1.7));
 ```
 
 E se quiser apenas cortar a parte decimal use o `trunc`:
 
-```C
+```c
 printf("%f\n", trunk(1.7));
 ```
 
 Outra opção é arredondar para o número inteiro mais próximo, seja ele acima ou abaixo:
 
-```C
+```c
 printf("%f\n", round(1.7));
 ```
 
@@ -3398,20 +3398,20 @@ A função `round` tem algumas variações como o `lround` que arredonda para um
 
 Para realizar uma potenciação é só usar a função `pow`
 
-```C
+```c
 printf("40 ao quadrado é %.0f", pow(40, 2));
 ```
 
 E caso queira fazer uma raiz quadrada é só usar a função `sqrt`
 
-```C
+```c
 float n = pow(40, 2);
 printf("a raiz quadrada de %.0f é %.0f", n, sqrt(n) );
 ```
 
 E raiz cúbica é `cbrt`
 
-```C
+```c
 float n = pow(40, 3);
 printf("a raiz quadrada de %.0f é %.0f", n, cbrt(n) );
 ```
@@ -3420,7 +3420,7 @@ E caso você queira fazer uma raiz de índice `5`, `4` ou qualquer outro número
 
 > 2 normal é igual a 2/1, 2 ao contrário é igual a 1/2
 
-```C
+```c
 // vou usar o expoente 2 mas funciona com qualquer valor
 int numero = pow(5, 2);                  // 25
 int outro_numero = pow(numero, 1.0/2.0); // 5
@@ -3432,7 +3432,7 @@ printf("5²  = %i\n√25 = %i\n", numero, outro_numero);
 
 E existe uma rotina exclusiva para cálculo de hipotenusa:
 
-```C
+```c
 int cateto_oposto = 8, cateto_adjacente = 6;
 int hipotenusa = hypot( cateto_oposto, cateto_adjacente );
 ```
@@ -3441,7 +3441,7 @@ A biblioteca de matemática tem diversas outras funções, logo, caso necessite 
 
 ## <stdarg.h>
 
-```C
+```c
 #include <stdarg.h>
 ```
 
@@ -3453,7 +3453,7 @@ Para essa biblioteca, vou explicar de uma maneira diferente, aqui nós vamos cri
 
 > Como vai ser a chamada do `print`
 
-```C
+```c
 // print ( <formato>, <dados> );
 
 print( "isfsf", 90, " + ", 8.3, " = ", 90.0 + 8.3 );
@@ -3465,13 +3465,13 @@ print( "isfsf", 90, " + ", 8.3, " = ", 90.0 + 8.3 );
 
 Na declaração da função tem que ter pelo menos 1 argumento fixo, e no nosso caso é o `formato`, todos os outros argumentos serão substituídos por um `...`
 
-```C
+```c
 void print( char * formato, ... );
 ```
 
 Para acessar os dados no `...` nós primeiro temos que guardar eles em uma variável do tipo `va_list`
 
-```C
+```c
 void print( char * formato, ... ){
   va_list argumentos;
 }
@@ -3479,7 +3479,7 @@ void print( char * formato, ... ){
 
 Esse va_list é um ponteiro com todos os argumentos, mas para pegarmos os certos temos que dizer para ele de onde começar a pesquisar usando o `va_start`
 
-```C
+```c
 void print( char * formato, ... ){
   va_list argumentos;
   va_start( argumentos, formato );
@@ -3490,7 +3490,7 @@ Agora iremos checar quantos dados estamos esperando, e depois pegar-los com a fu
 
 > Caso for usar valores em `char`, na hora de usar o `va_arg`, usem com `int`, ele não aceita `char` porque é muito pequeno.
 
-```C
+```c
 #include <string.h> // -> strlen
 void print( char * formato, ... ){
   va_list argumentos;
@@ -3520,7 +3520,7 @@ E fim, essas são as únicas funções que existem nessa biblioteca. Mas como eu
 
 As funções do `stdio.h` que usam `va_list` fazem o mesmo que as outras, só que aceitam esse tipo de argumento, como o `vprintf`
 
-```C
+```c
 void escreva_numeros ( int qntd, ... ){
   va_list args;
   va_start( args, qntd );
@@ -3544,7 +3544,7 @@ E funciona da mesma maneira com as funções `vscanf` (`scanf`), `vsscanf` (`ssc
 
 ## <string.h>
 
-```C
+```c
 #include <string.h>
 ```
 
@@ -3552,7 +3552,7 @@ Esta é mais uma das bibliotecas que eu já falei, mas não me aprofundei, porta
 
 A primeira função interessante é a `strncpy`, que ao invés de copiar a string inteira, copia apenas um número de caracteres
 
-```C
+```c
 char str[10];
 strncpy(str, "joao e maria", 4); // copia até o 4 caractere
 str[4] = '\0';                   // setando o fim da string
@@ -3568,21 +3568,21 @@ joao
 
 Outra que também é bacana é a `strcat`, que serve para concatenar strings
 
-```C
+```c
 char str[] = "joao";
 strcat(str, " e maria"); // strcat( <destino>, <destinatario> );
 ```
 
 E existe a variação `strncat`, que concatena até um certo número de caracteres
 
-```C
+```c
 char str[] = "joao";
 strncat(str, " e maria rosa", 8);
 ```
 
 Uma função muito útil dessa biblioteca é a `strcmp` que compara duas strings
 
-```C
+```c
 char str [] = "joao", str2 [] = "maria";
 int res = strcmp( str, str2 ); // strcmp( <str>, <str2> )
 
@@ -3596,7 +3596,7 @@ else if ( res > 0 )
 
 E também existe a `strncmp` que funciona da mesma forma que a anterior, mas compara só até um certo caractere.
 
-```C
+```c
 char str [] = "joao", str2 [] = "joao e maria";
 int res = strncmp( str, str2, 4 ); // strncmp( <str>, <str2>, <numero> )
 
@@ -3606,7 +3606,7 @@ if (res == 0)
 
 Outras opções são usar funções de pesquisa em strings, como o `strchr` que irá retornar a string da primeira ocorrencia de um caractere até o seu fim
 
-```C
+```c
 char j[] = "abcdefghijklmnop";
 puts(strchr(j, 'g'));
 ```
@@ -3619,27 +3619,27 @@ ghijklmnop
 
 Outra bem bacana é a `strcspn` onde você passa uma certa lista de caracteres e ela irá retornar a primeira ocorrencia
 
-```C
+```c
 char str[] = "bcdefgh";
 printf("a primeira vogal de \"%s\" está na %i posição\n",str, strcspn(str, "aeiou")+1);
 ```
 
 Uma semelhante a `strchr` é a `strstr`, que retorna a string da primeira ocorrencia de um caractere até o seu fim
 
-```C
+```c
 char str[] = "joao maria ronaldo";
 puts(strstr(str, "maria"));
 ```
 
 ## <ctype.h>
 
-```C
+```c
 #include <ctype.h>
 ```
 
 Esta biblioteca possui funções para reconhecimento de tipos de caractere (`char`), e carrega diversas funções para esse reconhecimento.
 
-```C
+```c
 isnum    ('2'); // se é numerico
 isalpha  ('s'); // se é alfabético
 isblank ('\t'); // se é em branco
