@@ -37,23 +37,24 @@ section {
 }
 
 h1 {
-    color: #FF5040;
     font-size: 25pt;
 }
 
 h2 {
-    color: #FF5035;
     font-size: 20pt;
 }
 
 h3 {
-    color: #FF5030;
     font-size: 15;
 }
 
 a {
     color: #FF5035;
     text-decoration: none;
+}
+
+a.title {
+    color: #A4A4A4;
 }
 
 li {
