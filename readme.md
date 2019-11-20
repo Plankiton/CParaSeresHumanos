@@ -1,18 +1,101 @@
 <img src="assets/Capa.png" style="width: 100%" alt="C para Seres humanos"/>
 
+# Índice
+
+1. [Índice](#índice)
+1. [Sobre o autor](#sobre-o-autor)
+1. [Sobre o livro](#sobre-o-livro)
+1. [Noções básicas](#noções-básicas)
+    - [O que é "C"?](#o-que-é-c)
+    - [Como o C funciona?](#como-o-c-funciona)
+    - [Qual é a história do C?](#qual-é-a-história-do-c)
+    - [Como se instala o tal "compilador" C?](#como-se-instala-o-tal-compilador-c)
+        - [GNU C Collection](#gnu-c-collection)
+        - [Tiny C Compiler](#tiny-c-compiler)
+    - [Introdução à sintaxe do C](#introdução-à-sintaxe-do-c)
+        - [Hello mundo em C](#hello-mundo-em-c)
+    - [Comentários](#comentários)
+    - [Variáveis](#variáveis)
+        - [Conflito entre tipos](#conflito-entre-tipos)
+    - [Modificadores de tipo](#modificadores-de-tipo)
+        - [Long](#long)
+        - [Short](#short)
+        - [Signed e unsigned](#signed-e-unsigned)
+    - [Entrada e saída de dados](#entrada-e-saída-de-dados)
+        - [Caractere de scape ( "\\" )](#caractere-de-scape---)
+        - [printf](#printf)
+        - [scanf](#scanf)
+        - [Formatos do printf e scanf](#formatos-do-printf-e-scanf)
+        - [Putchar e puts](#putchar-e-puts)
+        - [Getchar e gets](#getchar-e-gets)
+        - [Fprintf e fgets](#fprintf-e-fgets)
+    - [Operadores](#operadores)
+        - [Aritméticos](#aritméticos)
+        - [Atribuição](#atribuição)
+        - [Relacionais](#relacionais)
+        - [Lógicos](#lógicos)
+        - [Ternário ou condicional](#ternário-ou-condicional)
+    - [Chegou a hora de praticar!](#chegou-a-hora-de-praticar!)
+        - [Desafio 1](#desafio-1)
+        - [Desafio 2](#desafio-2)
+        - [Desafio 3](#desafio-3)
+        - [Desafio 4](#desafio-4)
+1. [Noções avançadas](#noções-avançadas)
+    - [Arrays](#arrays)
+    - [Strings](#strings)
+    - [Os blocos e o escopo](#os-blocos-e-o-escopo)
+    - [Condicionais](#condicionais)
+    - [Estruturas de repetição](#estruturas-de-repetição)
+        - [While](#while)
+        - [Do..while](#do..while)
+        - [For](#for)
+    - [Ponteiros](#ponteiros)
+        - [Alocação dinâmica (arrays dinâmicos)](#alocação-dinâmica-(arrays-dinâmicos))
+    - [Funções](#funções)
+    - [Estruturas](#estruturas)
+        - [Structs e unions](#structs-e-unions)
+        - [Enum](#enum)
+    - [Comandos do pré-processador](#comandos-do-pré-processador)
+    - [Chegou a hora de praticar de novo!](#chegou-a-hora-de-praticar-de-novo!)
+        - [Desafio 5](#desafio-5)
+        - [Desafio 6](#desafio-6)
+        - [Desafio 7](#desafio-7)
+1. [Algumas funções e bibliotecas úteis](#algumas-funções-e-bibliotecas-úteis)
+    - [stdio.h](#stdio.h)
+        - [I/O em arquivos](#i/o-em-arquivos)
+        - [Posicionamento em arquivos](#posicionamento-em-arquivos)
+        - [Operações com arquivos](#operações-com-arquivos)
+    - [stdlib.h](#stdlib.h)
+        - [Conversões entre string e outros tipos](#conversões-entre-string-e-outros-tipos)
+        - [Sistema](#sistema)
+    - [math.h](#math.h)
+        - [Funções de arredondamento](#funções-de-arredondamento)
+        - [Potencia e radiciação](#potencia-e-radiciação)
+    - [stdarg.h](#stdarg.h)
+    - [string.h](#string.h)
+    - [ctype.h](#ctype.h)
+1. [Considerações finais](#considerações-finais)
+    - [Criando um projeto em C](#criando-um-projeto-em-c)
+1. [your project correctly](#your-project-correctly)
+
 <br/>
 <br/>
 <br/>
 <br/>
+<br/>
+<br/>
+<br/>
+<br/>
+
+# Sobre o autor
+
+Eu sou Yak's Vinicios Silva Souza, sou um entusiasta de tecnologia e por isso resolvi expor um pouco do meu conhecimento neste livro, caso queira informações atualizadas sobre mim veja o meu [portifólio online](robocopgay.github.io).
 
 # Sobre o livro
 
 Antes de começar, este livro é destinado a iniciantes no mundo da programação, por isso todos os termos apresentados aqui estão sendo explicados da forma mais simples possível, mas os conhecimentos aqui apresentados irão atender qualquer iniciante em linguagem C (mesmo que você já saiba programar em outra linguagem).
 
-Por favor, se você encontrar qualquer erro ortográfico ou em relação aos conhecimentos apresentados, envie-me um email avisando, ou faça um pull-request no repositório do livro no github.
-
-
-Repositório do livro no github: http://github.com/RoboCopGay/c_para_seres_humanos.book
+Por favor, se você encontrar qualquer erro ortográfico ou em relação aos conhecimentos apresentados, envie-me um email avisando, ou faça um pull-request no [repositório do livro](http://github.com/RoboCopGay/cparasereshumanos)
 
 # Noções básicas
 
@@ -26,7 +109,9 @@ O C é uma linguagem compilada... _"mas o que é isso?"_
 
 > Basicamente, significa que o c traduz o que você escreve em um arquivo para uma liguagem que só o computador entende.
 
-...E é considerado uma linguagem de _médio nível_ (alguns o consideram uma linguagem de _baixo nível_), e com isso não estou referindo-me à qualidade do C, mas ao nível de proximidade com o hardware (a parte física do computador). Quanto mais próximo do hardware, mais baixo é o nível e essa característica do C o torna a linguagem mais indicada para fazer aplicações de sistema (programas que manipulam o hardware) e aplicações gráficas (jogos, editores de imagem...).
+...E é considerado por muitos uma linguagem de _médio nível_ (alguns o consideram uma linguagem de _baixo nível_), e com isso não estou referindo-me à qualidade do C, mas ao nível de proximidade com o hardware (a parte física do computador). Quanto mais próximo do hardware, mais baixo é o nível e essa característica do C o torna a linguagem mais indicada para fazer aplicações de sistema (programas que manipulam o hardware) e aplicações gráficas (jogos, editores de imagem...).
+
+> Só para deixar claro o C é uma linguagem de alto nível, mas por ter tanta intimidade com o hardware, as pessoas começaram a considerá-lo em um nível mais baixo.
 
 Só para se ter uma ideia do poder do C, vou listar alguns _softwares_ feitos nessa linguagem:
 > todos os softwares listados são **open source**, dessa forma vocês podem ter certeza de que foi mesmo feito em C, além de poderem editar o código, se quiserem...
@@ -51,32 +136,28 @@ O C é uma evolução da linguagem [B](https://pt.wikipedia.org/wiki/B_(linguage
 
 O [gcc](https://pt.wikipedia.org/wiki/GNU_Compiler_Collection), já vem com uma gama de ferramentas já inclusas, como o compilador C (`gcc`) e o compilador C++ (`g++`).
 
-Linux
---
-
 Se você usa uma distribuição Linux ou BSD, provavelmente já está instalado, mas, caso não esteja (o que eu duvido muito), é só usar o gerenciador de pacotes para instalar.
 
-### Debian
+#### Debian
 
 ```sh
 sudo apt install gcc
 ```
 
-### Red Hat
+#### Red Hat
 
 ```sh
 sudo dnf install gcc
 sudo yum install gcc
 ```
 
-### Arch Linux
+#### Arch Linux
 
 ```sh
 sudo pacman -S gcc
 ```
 
-Mac OSX
---
+#### Mac OSX
 
 Se você não tem [homebrew](https://brew.sh/index_pt-br), rode:
 
@@ -90,8 +171,7 @@ Se você não tem [homebrew](https://brew.sh/index_pt-br), rode:
 brew install gcc
 ```
 
-Windows
---
+#### Windows
 
 Se você não tem o [chocolatey](https://chocolatey.org/), rode no __[PowerShell](https://pt.wikipedia.org/wiki/PowerShell) em modo administrador__:
 
@@ -110,37 +190,32 @@ choco install mingw -y
 
 Uma outra opção de compilador muito interessante é o [tcc](https://en.wikipedia.org/wiki/Tiny_C_Compiler) é um compilador independente com o intúito de gerar códigos pequenos, mas não é recomendado para aplicações grandes, mas para estudo é uma ótima opção.
 
-Linux
---
-
-### Debian
+#### Debian
 
 ```sh
 sudo apt install tcc
 ```
 
-### Red Hat
+#### Red Hat
 
 ```sh
 sudo dnf install tcc
 sudo yum install tcc
 ```
 
-### Arch Linux
+#### Arch Linux
 
 ```sh
 sudo pacman -S tcc
 ```
 
-Mac OSX
---
+#### Mac OSX
 
 ```sh
 brew install tcc
 ```
 
-Windows
---
+#### Windows
 
 ```sh
 choco install tcc
@@ -545,7 +620,7 @@ Exibe as aspas duplas ( `"` ), pois se você escrever simplesmente `"` o C vai a
 "joao" é um nome feio
 ```
 
-#### \\'
+#### \\\'
 
 ```c
 printf("it\'s estranho"); // \': exibe as aspas simples ou apótrofos.
@@ -2945,7 +3020,7 @@ digitte números... (para parar digite um numero >= 1000)
 
 Até agora só usamos duas bibliotecas em nossos porgramas em C, e não vimos nem 10% dessas, então para deixar seu conhecimento mais completo aqui vamos mostrar algumas funções dessas duas bibliotecas, além de outras que também podem ser bem interessantes.
 
-## <stdio.h>
+## stdio.h
 
 ```c
 #include <stdio.h>
@@ -3248,7 +3323,7 @@ perror("ferrou!!");
 
 Para outras informações sobre a biblioteca veja a [referência](https://pt.wikibooks.org/wiki/Programar_em_C/Entrada_e_sa%C3%ADda_simples) que está no [wikibooks](https://pt.wikibooks.org) sobre ela.
 
-## <stdlib.h>
+## stdlib.h
 
 ```c
 #include <stdlib.h>
@@ -3358,7 +3433,7 @@ printf("o a resposta do comando usado foi:\n%s\n", comando);
 
 Ainda faltam algumas funções mas essas são as mais importantes (contando com as de alocamanto de memória),  para outras informações sobre a biblioteca, consulte a [referência](https://pt.wikipedia.org/wiki/Stdlib.h) feita por alguém na [wikipedia](http://wikipedia.org/wiki/Stdlib.h).
 
-## <math.h>
+## math.h
 
 ```c
 #include <math.h>
@@ -3439,7 +3514,7 @@ int hipotenusa = hypot( cateto_oposto, cateto_adjacente );
 
 A biblioteca de matemática tem diversas outras funções, logo, caso necessite fazer algoritmos matemáticos consulte a [referência da math.h](https://www.ufrgs.br/reamat/ComputacaoCientifica/livro/iapcel-a_biblioteca_mathh.html) feita pela [UFRGS](https://www.ufrgs.br)
 
-## <stdarg.h>
+## stdarg.h
 
 ```c
 #include <stdarg.h>
@@ -3542,7 +3617,7 @@ void escreva_numeros ( int qntd, ... ){
 
 E funciona da mesma maneira com as funções `vscanf` (`scanf`), `vsscanf` (`sscanf`), `vfscanf` (`fscanf`) ...
 
-## <string.h>
+## string.h
 
 ```c
 #include <string.h>
@@ -3631,7 +3706,7 @@ char str[] = "joao maria ronaldo";
 puts(strstr(str, "maria"));
 ```
 
-## <ctype.h>
+## ctype.h
 
 ```c
 #include <ctype.h>
@@ -3661,7 +3736,7 @@ toupper  ('a'); // transforma em letra maiúscula
 
 # Considerações finais
 
-Espero que este livro tenha ajudado você, este não é o fim definitivo, os seus estudos não devem acabar aqui, e não se preocupe pois vem aí o próximo livro falando sobre criação de interfaces gráficas e manipulação de imagens, videos, músicas, etc. Então tenha paciência e antes de ir embora vou da um bônus para você se animar e começar seus projetos em C.
+Espero que este livro tenha ajudado você, este não é o fim definitivo, os seus estudos não devem acabar aqui, então tenha paciência e antes de ir embora vou da um bônus para você se animar e começar seus projetos em C.
 
 ## Criando um projeto em C
 
@@ -3698,28 +3773,28 @@ Essa é a arvore de diretórios do `c-project-template`:
 
 E para configurar o seu projeto você só precisa editar o arquivo `project.conf`, que devará estar mais ou menos assim:
 
-```conf
+```Makefile
 
 #
-# This is a project configuration file. Change variables to generate
+#This is a project configuration file. Change variables to generate
 # your project correctly
 #
 
 #
-# Put here your project name. It will create a root directory with this name
+#Put here your project name. It will create a root directory with this name
 #
 
 PROJECT_NAME := project
 
 
 #
-# Put here the binary file name. The compilation will result in that binary
+#Put here the binary file name. The compilation will result in that binary
 #
 BINARY := binary
 
 
 #
-# The project directory. At this path we will start the project
+#The project directory. At this path we will start the project
 #
 PROJECT_PATH := ~/projects/$(PROJECT_NAME)
 ```
