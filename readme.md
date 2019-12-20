@@ -2399,6 +2399,20 @@ array_dinamico [3] = 894;
 
 > Desta forma a quantidade de bytes necessária será sempre respeitada.
 
+E de quebra vai aí uma dica extra sobre arrays dinâmicos, eles podem ser atribuídos diretamente, é só colocar um `(<tipo> [])` antes do array que você quer atribuir:
+
+> Mas cuidado, arrays normais não aceitam isso, só use em arrays dinâmicos
+
+```c
+// Array normal
+int a[3] = {0, 1, 2};
+a = (int []){1, 2, 3};          // Não funciona!
+
+// Array dinâmico
+int * ad = {0, 1, 2};
+ad = (int []){1, 2, 3};         // Funciona!
+```
+
 ## Funções
 
 A estrutura de uma função já foi explicada anteriormente de uma forma bastante resumida:
@@ -2542,7 +2556,7 @@ typedef struct p pessoa;
 Criando ao mesmo tempo:
 
 ```c
-typedef struct _p { char * name } pessoa;
+typedef struct p { char * name } pessoa;
 ```
 
 Criando ao mesmo tempo com uma `struct` anônima:
@@ -2551,7 +2565,7 @@ Criando ao mesmo tempo com uma `struct` anônima:
 typedef struct { char * name } pessoa;
 ```
 
-Não importa a forma que você escolha, todas vão funcionar:
+E o resultado das sentenças anteriores é:
 
 ```c
 pessoa joao;
@@ -2560,7 +2574,7 @@ joao.name = "Joao";
 
 > E para evitar erros de escopo, sempre declare structs fora do `main`.
 
-Outra estrutura muito interessante é a `union`, ela é semelhante a `struct`, mas só vai assumir uma variável quando declarada... _"Como assim?"_ ...observe:
+Outra estrutura muito interessante é a `union`, ela é semelhante a `struct`, mas a `union` assume apenas uma variável... _"Como assim?"_ ...observe:
 
 ```c
 // struct
@@ -2588,11 +2602,56 @@ Outra estrutura muito interessante é a `union`, ela é semelhante a `struct`, m
 
    union p joao;
    joao.nome = "Joao";       // aqui você escolheu usar a variável nome
-   joao.idade = "jumento";   // aqui você está atribuíndo "jumento" à variável nome
+   puts(joao.idade);         /* aqui aqui será imprimido "Joao", já que
+                                joao.idade está unido com joao.nome
+                             */
+    // Ou
+    union p coisa;
+    coisa.idade = 14;
+    printf("%i\n", coisa.idade);
 }
 ```
 
-> _"Ué? Como assim?"_... O que acontece é que você tem que escolher apenas uma das variáveis da `union` e as outras variáveis vão apontar para a escolhida. Isso significa que se você atribuísse valor a `joao.idade` primeiro teria que lidar com valores inteiros na `idade.nome`.
+Um macete legal na atribuíção de uma `struct` é usar um array para isso, é só colocar os valores na ordem de declaração da struct, _"Quê?"_:
+
+```c
+typedef struct {
+    char * nome;
+    int idade;
+    float peso;
+    float altura;
+} pessoa;
+
+//                      .nome, .idade, .peso, .altura
+pessoa joao = (pessoa){"joao",     13,  40.3,    1.60};
+```
+
+Ou caso você não queira colocar na ordem é só específicar o atributo:
+
+```C
+pessoa maria = (pessoa){
+    .altura = 1.5
+    .idade = 12,
+    .nome = "maria",
+    .peso = 39.4,
+};
+```
+
+E o mesmo vale para arrays de `struct`:
+
+```c
+pessoa * pessoas = (pessoa []){
+    (pessoa){ "vanderlei", 25, 90, 1.80 },
+    joao,
+    (pessoa){
+        .peso = 70,
+        .altura = 1.90,
+        .idade = 42,
+        .nome = "rita"
+    },
+    maria
+};
+```
 
 ### Enum
 
@@ -2630,6 +2689,20 @@ typedef enum {
    seis             // seis é seis + 1
 
 } por_extenso;
+```
+
+```c
+por_extenso numero = dois;
+
+printf("%i\n", numero)
+printf("%i\n", dois)
+```
+
+> Saída:
+
+```c
+2
+2
 ```
 
 ## Comandos do pré-processador
@@ -2676,24 +2749,35 @@ E existe o `#if`, `#else`, `#elif` e o `#endif`, usados para condicional
 ```c
 #define MIN_SIZE 2
 
-#if defined(MAX_SIZE) // if -> se
-  #define tamanho MAX_SIZE
-
-#elif MIN_SIZE > 2 // else if -> senão se
-  #define tamanho 2
-
-#else // else -> senão
-  #define tamanho MIN_SIZE+1
-
-#endif // end -> fim
+#if defined(MAX_SIZE)          // if -> se
+    #define tamanho MAX_SIZE
+#elif MIN_SIZE > 2             // else if -> senão se
+    #define tamanho 2
+#else                          // else -> senão
+    #define tamanho MIN_SIZE+1
+#endif                         // end -> fim
 
 #include <stdio.h>
 #include <stdlib.h>
 
 int main (int argc, char ** argv){
-  printf("%i", tamanho);
+    printf("%i", tamanho);
 return 0;
 }
+```
+
+Além desses existem os atalhos específicos para o `#if defined(<macro>)` e o `#if !defined(<macro>)`:
+
+```C
+#define MAX_SIZE 35
+
+#ifdef MAX_SIZE
+    #define TAMANHO_MAXIMO MAX_SIZE
+#endif
+
+#ifndef MIN_SIZE
+    #define TAMANHO_MINIMO 0
+#endif
 ```
 
 Outra coisa interessantíssima é criar strings a partir de código, _"Ué? não entendi..."_, muito simples... Quando usamos o operador `#` dentro de uma macro ele transforma o comando em string

@@ -80,7 +80,7 @@ int main(void)
 return 0;
 }
 */
-
+/*
 
 #include <stdio.h>
 #include <stdlib.h>
@@ -118,4 +118,27 @@ int main(int argc, char **argv){
    for (int i = 0; i < 7; i ++)
       puts(n[i].n);
 return 0;
+}
+   */
+
+int main(int argc, char *argv[])
+{
+    typedef struct {
+        char * nome;
+        int idade;
+        float peso;
+        float altura;
+    } pessoa;
+
+    //                      .nome, .idade, .peso, .altura
+    pessoa pessoa_normal = (pessoa){"joao",     13,  80.5,    1.60};
+    printf ("nome: %s idade: %i peso: %f altura: %f\n", pessoa_normal.nome, pessoa_normal.idade, pessoa_normal.peso, pessoa_normal.altura);
+    pessoa_normal = (pessoa){
+        .altura = 1.6,
+        .peso = 110,
+        .idade = 80,
+        .nome = "vanessa",
+    };
+    printf ("nome: %s idade: %i peso: %f altura: %f\n", pessoa_normal.nome, pessoa_normal.idade, pessoa_normal.peso, pessoa_normal.altura);
+    return 0;
 }
