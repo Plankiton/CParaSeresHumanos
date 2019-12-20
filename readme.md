@@ -50,7 +50,7 @@
         - [Do..while](#do..while)
         - [For](#for)
     - [Ponteiros](#ponteiros)
-        - [Alocação dinâmica (arrays dinâmicos)](#alocação-dinâmica-(arrays-dinâmicos))
+        - [Alocação dinâmica (arrays dinâmicos)](#alocação-dinâmica-arrays-dinâmicos)
     - [Funções](#funções)
     - [Estruturas](#estruturas)
         - [Structs e unions](#structs-e-unions)
