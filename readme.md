@@ -137,6 +137,8 @@ O C é uma evolução da linguagem [B](https://pt.wikipedia.org/wiki/B_(linguage
 
 ## Como se instala o tal "compilador" C?
 
+Neste capítulo vou demonstrar a instalação em alguns sistemas operacionais, mas todos os exemplos do livro foram testados em um sistema linux, então para garantir que tudo vai funcionar perfeitamente eu aconselho que seja lido e testado em um sistema linux (mesmo que seja uma máquina virtual).
+
 ### GNU C Collection
 
 O [gcc](https://pt.wikipedia.org/wiki/GNU_Compiler_Collection), já vem com uma gama de ferramentas já inclusas, como o compilador C (`gcc`) e o compilador C++ (`g++`).
@@ -357,7 +359,7 @@ Comentários são "anotações ou esclarecimentos" escritas(os) no código para 
 >
 > Exemplos:
 >
-> `esfera bola_de_futbol com `:soccer:` dentro`
+> `esfera bola_de_futebol com `:soccer:` dentro`
 >
 > `boneca gemeas         com `:dolls:` dentro`
 >
@@ -3768,24 +3770,41 @@ if (res == 0)
   puts("os primeiros 4 caracteres da string 2 são iguais aos da string 1");
 ```
 
-Outras opções são usar funções de pesquisa em strings, como o `strchr` que irá retornar a string da primeira ocorrencia de um caractere até o seu fim
+Outras opções são usar funções de pesquisa em strings, como o `strchr` que irá retornar um ponteiro para a primeira ocorrencia de um caractere
 
 ```c
-char j[] = "abcdefghijklmnop";
+char j[] = "abcdefghijklmnop;joao\0";
 puts(strchr(j, 'g'));
+puts(strchr(j, ';')+1);
+
+char * f = strchr(j, ';');
+* f = '\0'; /* finalizando a string
+               na primeira ocorrencia
+               de ";" */
+
+puts(j);
 ```
 
 > Saída:
 
 ```
-ghijklmnop
+ghijklmnop;joao
+joao
+abcdefghijklmnop
 ```
 
-Outra bem bacana é a `strcspn` onde você passa uma certa lista de caracteres e ela irá retornar a primeira ocorrencia
+Outra bem bacana é a `strcspn` onde você passa uma certa lista de caracteres e ela irá retornar a primeira ocorrencia de qualquer caractere da lista
 
 ```c
 char str[] = "bcdefgh";
-printf("a primeira vogal de \"%s\" está na %i posição\n",str, strcspn(str, "aeiou")+1);
+printf("A vogal \"%c\" está na %iª posição de \"%s\"\n",
+    str[ strcspn(str, "aeiou") ], strcspn(str, "aeiou")+1, str);
+```
+
+> Saída:
+
+```
+A vogal "e" está na 4ª posição de "bcdefgh"
 ```
 
 Uma semelhante a `strchr` é a `strstr`, que retorna a string da primeira ocorrencia de um caractere até o seu fim
@@ -3829,77 +3848,219 @@ Espero que este livro tenha ajudado você, este não é o fim definitivo, os seu
 
 ## Criando um projeto em C
 
+Geralmente na internet em geral, a maioria dos projetos feitos em C usa uma ferramenta para automatizar a compilação, vou demonstar aqui com o `make`, mas alguns projetos usam outras ferramentas (geralmente todos tem um `README` para auxiliar na compilação).
 
-Vamos utilizar o projeto do [pantuza](http://github.com/pantuza), que se chama [c-project-template](http://github.com/pantuza/c-project-template), que faz toda a estrutura automaticamente.
+O "mini projeto" que vamos escrever é um "hello mundo" gráfico, usando gtk, eu preferi fazer um gráfico para exemplificar o uso de bibliotecas externas e para dar um gostinho da programação GUI para vocês...
 
-> Para instalar basta clonar o repositório usando o `git`
+> hello.h: header com os protótipos de funções
+
+```c
+#include <gtk/gtk.h>
+#include <string.h>
+
+// Lista de texto que vai aparecer na tela
+typedef struct lista lista;
+struct lista {
+    char *texto;
+    lista *prox;
+};
+
+// Função que troca o texto na interface
+void mudar_rotulo(GtkWidget *, char *);
+
+// Função que organiza a lista de textos
+void organize_lista(lista *, int tamanho);
+```
+
+Basicamente o header (ou cabeçalhio) acima serve para declarar as funções e estruturas da nossa biblioteca.
+
+> hello.c: biblioteca com as funções usadas pelo programa
+
+```c
+#include "hello.h"
+
+void
+mudar_rotulo(GtkWidget * rotulo, char * texto){
+    g_print ("hello: ");
+    g_print (texto);
+    g_print ("\n");
+
+    // Mudando o texto do "rotulo"
+    gtk_label_set_text(GTK_LABEL(rotulo), texto);
+}
+
+void
+organize_lista(lista * lista_de_textos, int len){
+    // Organizando o acesso aos posteriores
+    for (int i = 0; i<len; i++){
+        lista_de_textos[i].prox = &lista_de_textos[i+1];
+        lista_de_textos[i].prox = &lista_de_textos[i+1];
+    }
+    lista_de_textos[len-1].prox = &lista_de_textos[0];
+}
+```
+
+> main.c: O nosso programa
+
+```c
+#include "hello.h"
+
+GtkWidget *janela;
+GtkWidget *conteiner;
+
+GtkWidget *botao;
+GtkWidget *rotulo;
+
+lista * lista_de_textos;
+
+void
+hello (void){
+    // Muando o texto do rotulo
+    mudar_rotulo(rotulo, lista_de_textos->texto);
+
+    // Mudando o texto atual para o proximo da lista
+    lista_de_textos = lista_de_textos->prox;
+}
+
+
+int
+main (int argc, char *argv[]){
+
+    // criando a lista de textos
+    lista_de_textos = (lista []){
+     {.texto = "Hello mundo!!", NULL},              // 1
+     {.texto = "Eu amo C!!", NULL},                 // 2
+     {.texto = "C para seres humanos!", NULL},      // 3
+     {.texto = "Outra coisa aleatória!", NULL},     // 4
+     {.texto = "Acesse robocopgay.github.io", NULL} // 5
+    };
+    organize_lista(lista_de_textos, 5);
+
+    // inicializando configurações padrões da biblioteca
+    gtk_init (&argc, &argv);
+
+    // criando a janela principal
+    janela = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+    // quando o usuário fechar a janela, ela será fechada
+    gtk_signal_connect (GTK_OBJECT (janela), "destroy",
+            GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
+
+    // criando um rótulo com o texto "..."
+    rotulo = gtk_label_new("...");
+    // criando um botão com o texto "Clique em mim"
+    botao = gtk_button_new_with_label ("Clique em mim");
+
+    // criando um conteiner para guardar os componentes acima (rotulo, botao)
+    conteiner = gtk_vbox_new((gint *)5,(gint *)5);
+
+    // quando o usuário clicar no botão ele vai chamar a função hello
+    gtk_signal_connect (GTK_OBJECT (botao), "clicked",
+            GTK_SIGNAL_FUNC (hello), NULL);
+
+    // adicionando componentes ao conteiner
+    gtk_container_add(GTK_BOX(conteiner), rotulo);
+    gtk_container_add(GTK_BOX(conteiner), botao);
+
+    // adicionando o conteiner à janela
+    gtk_container_add (GTK_CONTAINER (janela), conteiner);
+
+    // tornando os componentes visíveis
+    gtk_widget_show_all (janela);
+
+    // iniciando a execução do aplicativo gráfico
+    gtk_main();
+    return 0;
+}
+```
+
+Não se preocupe em entender a parte de interface gráfica, eu coloquei mais por que se você for compilar a aplicação acima com os comandos de sempre (`gcc main.c -o hello`), o programa acima não irá compilar, isso acontece porque o GTK+ (A biblioteca de interface gráfica utilizada pelo programa) é uma biblioteca externa, e não está disponível por padrão no seu computador.
+
+E para consertar esse problema, primeiro temos que baixar o GTK:
+
+> E me desculpem galera de Windows, mas eu não sei como usar GTK no sistema de vocês, fiz diversas pesquisas a respeito e tentei instalar e usar, mas não consegui, então estão por conta própria para tentar compilar.
+
+## MacOSX
 
 ```sh
-git clone https://github.com/pantuza/c-project-template.git
+$ brew install gtk+
 ```
 
-Essa é a arvore de diretórios do `c-project-template`:
+## Debian
 
-```
-.
-├── bin
-├── lib
-├── LICENSE
-├── log
-├── Makefile
-├── project.conf
-├── README.md
-├── src
-│   ├── args.c
-│   ├── args.h
-│   ├── colors.h
-│   ├── main.c
-│   ├── messages.c
-│   └── messages.h
-└── test
-    └── main.c
+```sh
+$ sudo apt install libgtk-2-dev
 ```
 
-E para configurar o seu projeto você só precisa editar o arquivo `project.conf`, que devará estar mais ou menos assim:
+## Red Hat
+
+```sh
+$ sudo dnf install gtk2-devel
+```
+
+## Arch Linux
+
+```sh
+$ sudo pacman -S gtk2
+```
+
+## Compilando
+
+E para compilar nós usaríamos:
+
+```bash
+$ gcc -o hello-gtk hello.c main.c $(pkg-config --libs --cflags gtk+-2.0)
+```
+
+Isso geraria um binario `hello-gtk`, e para automatizar isso:
+
+> Makefile: arquivo de compilação
 
 ```Makefile
+CC=gcc
+LIBS=$(pkg-config --libs gtk+-2.0)
+CFLAGS=$(pkg-config --cflags gtk+-2.0)
 
-#
-#This is a project configuration file. Change variables to generate
-# your project correctly
-#
+all: hello-gtk
 
-#
-#Put here your project name. It will create a root directory with this name
-#
-
-PROJECT_NAME := project
-
-
-#
-#Put here the binary file name. The compilation will result in that binary
-#
-BINARY := binary
-
-
-#
-#The project directory. At this path we will start the project
-#
-PROJECT_PATH := ~/projects/$(PROJECT_NAME)
+hello-gtk:
+    @echo CC -o $@ hello.c main.c LIBS CFLAGS
+    ${CC} -o $@ hello.c main.c ${LIBS} ${CFLAGs}
 ```
 
-E para exemplificar, o nosso `Hello mundo` que criamos no inicio do livro vai ser nossa cobaia:
+E agora para compilar é só digitar `make` dentro do diretório do projeto.
 
-Dentro deste arquivo, você vai colocar no `PROJECT_NAME` o nome do projeto, no `BINARY` o nome do arquivo de compilação, e no `PROJECT_PATH` o diretório do projeto que você está criando.
-
-> project.conf:
+Outra coisa interessante do make é dar opções para ele como:
 
 ```
-PROJECT_NAME := Hello
-BINARY := hello
-PROJECT_PATH := ~/Create/Projects/Hello
+install:
+    @cp hello-gtk /usr/bin/ -v
+clean:
+    @rm hello-gtk
+opcao-aleatoria:
+    @echo opcao aleatoria
 ```
 
-Após editar o arquivo rode o comando `make start` dentro do diretório do `c-project-template`
+E é só adicionar a opção na execução do make:
 
-Pronto, agora você pode entrar no diretório do seu projeto e editar os códigos da pasta `src`, e quando for compilar use o comando `make`
+```
+$ make opcao-aleatoria
+opcao aleatoria
+```
+
+Outra solução é colocar algumas configurações em um arquivo separado, que geralmente é chamado de config.mk (mas isso é opcional):
+
+> config.mk:
+
+```Makefile
+VERSION="0.1"
+CC=gcc
+LIBS=$(pkg-config --libs gtk+-2.0)
+CFLAGS=$(pkg-config --cflags gtk+-2.0)
+```
+
+> Makefile:
+
+```Makefile
+all:
+    ${CC} -o hello-${VERSION} hello.c main.c ${LIBS} ${CFLAGS}
+```
