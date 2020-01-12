@@ -76,7 +76,6 @@
     - [ctype.h](#ctype.h)
 1. [Considerações finais](#considerações-finais)
     - [Criando um projeto em C](#criando-um-projeto-em-c)
-1. [your project correctly](#your-project-correctly)
 
 <br/>
 <br/>
