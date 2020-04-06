@@ -125,13 +125,13 @@ O C é uma linguagem compilada... _"mas o que é isso?"_
 > Só para deixar claro o C é uma linguagem de alto nível, mas por ter tanta intimidade com o hardware, as pessoas começaram a considerá-lo em um nível mais baixo.
 
 Só para se ter uma ideia do poder do C, vou listar alguns _softwares_ feitos nessa linguagem:
-> todos os softwares listados são **open source**, dessa forma vocês podem ter certeza de que foi mesmo feito em C, além de poderem editar o código, se quiserem...
+> Todos os softwares listados são **open source**, dessa forma vocês podem ter certeza de que foi mesmo feito em C, além de poderem editar o código, se quiserem...
 
-1. [Blender](http://blender.org)                - Modelador 3D e engine de jogos.
-2. [Linux](http://kernel.org)                   - Núcleo das distribuicões linux.
-3. [Gimp](http://gimp.org)                      - Editor de imagens.
-4. [Darwim](http://github.com/apple/darwin-xnu) - Núcleo do Mac OSX
-5. [Vlc](http://www.videolan.org/vlc/)          - Reprodutor de Vídeos
+1. [Blender](https://blender.org)                - Modelador 3D e engine de jogos.
+2. [Linux](https://kernel.org)                   - Núcleo das distribuições linux.
+3. [Gimp](httsp://gimp.org)                      - Editor de imagens.
+4. [Darwin](https://github.com/apple/darwin-xnu) - Núcleo do Mac OS X
+5. [VLC](https://www.videolan.org/vlc/)          - Reprodutor de Vídeos
 
 Existe uma infinidade de aplicativos feitos em C, mas como o foco aqui é ensinar C (e não citar aplicativos feitos em C), eu vou prosseguir...
 
@@ -170,7 +170,7 @@ sudo yum install gcc
 sudo pacman -S gcc
 ```
 
-#### Mac OSX
+#### Mac OS X
 
 Se você não tem [homebrew](https://brew.sh/index_pt-br), rode:
 
@@ -222,7 +222,7 @@ sudo yum install tcc
 sudo pacman -S tcc
 ```
 
-#### Mac OSX
+#### Mac OS X
 
 ```sh
 brew install tcc
@@ -267,7 +267,7 @@ Todos os exemplos e desafios são compilados da mesma forma: `gcc <arquivo.c> -o
 
 Executando o arquivo (lembre-se de estar no mesmo diretório do arquivo compilado)
 
-> linux/BSD/Mac OSX
+> linux/BSD/Mac OS X
 ```sh
 ./hello
 ```
@@ -450,11 +450,11 @@ int tmh_inteiro = sizeof (int); // tamanho da variável inteiro
 
 > Note que o tipo está entre parênteses, isso é obrigatório ou o C vai achar que você está se referindo a uma variável.
 
-E a galera que já conhece um pouco de programação deve estar se perguntando _"Mas e os boleanos? No C não existe verdadeiro e falso?"_  sim, mas no C o `int` faz esse papel, sendo que o **0** equivale a **falso** e o **1** equivale a **verdadeiro**.
+E a galera que já conhece um pouco de programação deve estar se perguntando _"Mas e os booleanos? No C não existe verdadeiro e falso?"_  sim, mas no C o `int` faz esse papel, sendo que o **0** equivale a **falso** e o **1** equivale a **verdadeiro**.
 
 As variáveis em C (e acho que em todas as linguagens) têm algumas regras quanto à escolha do seu nome, estas regras são:
 
-1. Variáveis não podem iniciar com numeros;
+1. Variáveis não podem iniciar com números;
 2. Variáveis não podem ter espaços (substitua os espaços por `_`);
 3. Variáveis só podem conter letras, números e travessões (evite usar letras com acento também);
 4. Variáveis não podem ser iguais à palavras reservadas.
@@ -484,7 +484,7 @@ int i = 1.5e-9;   // apenas o 1 será atribuído
 float f =  i / 3; /*
                      o resultado dessa divisão seria 0.033...
                      Mas como os dois  números são inteiros o
-                     resutado  é  0, e por  isso é  atribuído
+                     resultado  é  0, e por  isso é  atribuído
                      o valor 0.0 à variável f
                   */
 ```
@@ -492,7 +492,7 @@ float f =  i / 3; /*
 
 ## Modificadores de tipo
 
-E mais uma vez falaremos de tipos primitivos, como havíamos visto, os tipos primitivos tem tamanhos diferentes na memória, e estes tamanhos podem ser expandidos ou reduzido.
+E mais uma vez falaremos de tipos primitivos, como havíamos visto, os tipos primitivos têm tamanhos diferentes na memória, e estes tamanhos podem ser expandidos ou reduzidos.
 
 ### Long
 
@@ -533,7 +533,7 @@ Sempre que você declara um número, ele por padrão é `signed`, portanto supor
 
 ```c
 int inteiro = 0;               // intervalo: -2147483648 a 2147483647
-unsiged int us_inteiro = 0;    // intervalo: 0           a 4294967295
+unsigned int us_inteiro = 0;    // intervalo: 0           a 4294967295
 ```
 
 ## Entrada e saída de dados
@@ -581,7 +581,7 @@ Esse `\t` é uma tabulação, o que estiver a frente dele irá se deslocar para 
 #### \b
 
 ```c
-prinft("joao\b");  // \b: apagua um caractere da linha (efeito da tecla "backspace").
+printf("joao\b");  // \b: apaga um caractere da linha (efeito da tecla "backspace").
 ```
 
 Esse `\b` é um backspace, o caractere anterior a ele será apagado.
@@ -623,7 +623,7 @@ coisas
 #### \\"
 
 ```c
-printf("\"joao\" é um nome feio); // \": exibe as aspas duplas.
+printf("\"joao\" é um nome feio"); // \": exibe as aspas duplas.
 ```
 
 Exibe as aspas duplas ( `"` ), pois se você escrever simplesmente `"` o C vai achar que aquele é o fim da string.
@@ -760,7 +760,7 @@ Reais, exemplo:
 printf("float: %f\n", 9.3);
 ```
 
-E como são números com `.` você pode formatar a saída deles, o `9.3` vai ser exibido como `9.300000`, mas eu quero que sáia `9.3`
+E como são números com `.` você pode formatar a saída deles, o `9.3` vai ser exibido como `9.300000`, mas eu quero que saia `9.3`
 
 ```c
 printf("float: %.1f\n", 9.3);
@@ -929,7 +929,7 @@ fgets ( stdin, 10, str ); // gets (str)
 
 > O `stdin` é a entrada de dados padrão (o teclado).
 
-_"Ué? Então por que eu deveria usar esse `fgets` aí se o `gets` é mais simple?"_ ...Muito simples, lembra que o `gets` tem um problema, tanto que ele é contra-indicado pelo próprio compilador? Pois é, o `fgets` não tem esse problema, porque nele além de você indicar a string a ser lida e o "stream", ele exige que você coloque o tamanho da string, assim evitando colocar dados no lugar errado.
+_"Ué? Então por que eu deveria usar esse `fgets` aí se o `gets` é mais simples?"_ ...Muito simples, lembra que o `gets` tem um problema, tanto que ele é contra-indicado pelo próprio compilador? Pois é, o `fgets` não tem esse problema, porque nele além de você indicar a string a ser lida e o "stream", ele exige que você coloque o tamanho da string, assim evitando colocar dados no lugar errado.
 
 ## Operadores 
 
@@ -946,9 +946,9 @@ n % N // resto da divisão  -> retorna o resto da divivão entre dois números.
 ```
 > para evitar erros sempre faça operações com números de tipos iguais.
 
-E nunca se esqueça que em expressões numéricas existe uma ordem de precedencia, logo, `6+4/2` é `8` e não `5`, e isso acontece porque assim como na matemática é resolvida primeiro a multiplicação (`4/2`) e depois é somado `6` a esse valor.
+E nunca se esqueça que em expressões numéricas existe uma ordem de precedência, logo, `6+4/2` é `8` e não `5`, e isso acontece porque assim como na matemática é resolvida primeiro a divisão (`4/2`) e depois é somado `6` a esse valor.
 
-Odem de precedencia:
+Ordem de precedência:
 
 - parênteses (`( )`)
 - multiplicação (`*`), divivão (`/`) e resto (`%`)
@@ -1136,12 +1136,12 @@ printf("!(%i && %i) = %i\n", 1 < 5, 2 > 6, !(1 < 5   &&   2 > 6));
 ```c
 int  numero = 80;
 char imparOuPar = (  numero % 2 == 0  ) ? 'p'               : 'i'              ;
-//                ( <expreção logica> ) ? <se for Verdade>  : <se for Mentira>
+//                ( <expressão logica> ) ? <se for Verdade>  : <se for Mentira>
 ```
 
 O código acima representa um uso simples do operador ternário e eu sei que você deve estar um pouco confuso com isso, mas eu explico:
 
-> Antes de mais nada, saiba que **todo número par tem o resto da divisão por 2 igual 0** , então, no exemplo acima, caso `( numero % 2 == 0 )` seja verdadeiro, o operador vai retornar `'p'` de par, casoa expressão seja falso, ele vai retornar `'i'` de impar, portanto, o C vai testar a expressão lógica entre `(` e `)` se essa expressão for verdadeira, o valor da operação vai ser o que está entre `?`, e aso contrário, o valor será o que está após `:`
+> Antes de mais nada, saiba que **todo número par tem o resto da divisão por 2 igual 0** , então, no exemplo acima, caso `( numero % 2 == 0 )` seja verdadeiro, o operador vai retornar `'p'` de par, caso a expressão seja falso, ele vai retornar `'i'` de ímpar, portanto, o C vai testar a expressão lógica entre `(` e `)` se essa expressão for verdadeira, o valor da operação vai ser o que está entre `?`, e caso contrário, o valor será o que está após `:`
 
 Outro exemplo do uso seria:
 
