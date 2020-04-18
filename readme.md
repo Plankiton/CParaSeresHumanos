@@ -490,6 +490,22 @@ float f =  i / 3; /*
 ```
 > Portanto, sempre use variáveis do mesmo tipo para operações matemáticas, caso sejam de tipos diferentes use a conversão de tipos.
 
+Para que o resultado seja atribuído da forma correta, você deve fazer a conversão de tipos ou usar o tipo certo no calculo:
+
+```c
+float f = 1.0 / 2.0;                     // usando o tipo certo (float)
+f = (float) 1 / (float) 2;             /* usando a conversão de tipos 
+                                                       também conhecida como
+                                                       "type cast"
+                                                  */
+                                                  
+int  n = 5, n1 = 2;
+
+f = n / n1;                                 // f = 2.0
+f = (float) n / (float) n1;          // f = 2.5
+```
+>
+
 ## Modificadores de tipo
 
 E mais uma vez falaremos de tipos primitivos, como havíamos visto, os tipos primitivos têm tamanhos diferentes na memória, e estes tamanhos podem ser expandidos ou reduzidos.
