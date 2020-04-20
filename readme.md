@@ -3864,6 +3864,52 @@ toupper  ('a'); // transforma em letra maiúscula
 
 É necessário que eu esclareça alguns pontos, caracteres como `` ou `ç` são grandes demais para caber em um `char`, caso precise desses caracteres unicode, use strings para representá-los.
 
+## conio.h
+
+```c
+#include <conio.h>
+```
+
+Esta é uma biblioteca exclusiva para sistemas baseados em [MS-DOS](https://pt.wikipedia.org/wiki/MS-DOS), como o windows, ou o [reactOS](https://pt.wikipedia.org/wiki/ReactOS), e serve para a entrada e saída de dados com o console.
+
+Dentre as funções as funções mais interessantes estão a função `getch`
+
+```c
+char c;
+
+printf("digite um caractere");
+c = getch();
+```
+
+> Ele não espera um "enter", ele apenas recebe o caractere e pronto.
+
+Outra forma legal de usar esta função é pra controlar a entrada do usuário, por exemplo, quero ler um texto eternamente e parar quando a pessoa clicar na tecla <kbd>esc</kbd>.
+
+```c
+#include <conio.h>
+#include <stdio.h>
+
+int main(){
+    puts("digite coisas aqui:");
+
+    char c, *str = malloc(1);
+    int i = 0;
+    while ((c = getch()) != 27){ /* enquanto o caractere lido
+                                    for diferente da
+                                    tecla <ESC>
+                                 */
+        putchar(c);
+        str = realloc(str, sizeof str + sizeof c);
+        str[i++] = c;
+    }
+
+    printf("\n%s\n", str);
+    free(str);
+    return 0;
+}
+```
+
+
 # Considerações finais
 
 Espero que este livro tenha ajudado você, este não é o fim definitivo, os seus estudos não devem acabar aqui, então tenha paciência e antes de ir embora vou da um bônus para você se animar e começar seus projetos em C.

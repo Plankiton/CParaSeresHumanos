@@ -1,18 +1,21 @@
-#include <string.h>
 #include <conio.h>
 #include <stdio.h>
 
 int main(){
-    char c, str[] = "";
+    puts("digite coisas aqui:");
 
-    while (1){
-        c = getch();
-        if (c == 27) break;
-
-        strcat(str, (char []){c, 0} );
+    char c, *str = malloc(1);
+    int i = 0;
+    while ((c = getch()) != 27){ /* enquanto o caractere lido
+                                    for diferente da
+                                    tecla <ESC>
+                                 */
+        putchar(c);
+        str = realloc(str, sizeof str + sizeof c);
+        str[i++] = c;
     }
 
-    printf(str)
-
+    printf("\n%s\n", str);
+    free(str);
     return 0;
 }
