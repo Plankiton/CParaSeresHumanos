@@ -61,19 +61,19 @@
         - [Desafio 6](#desafio-6)
         - [Desafio 7](#desafio-7)
 1. [Algumas funções e bibliotecas úteis](#algumas-funções-e-bibliotecas-úteis)
-    - [stdio.h](#stdio.h)
+    - [stdio.h](#stdioh)
         - [I/O em arquivos](#i/o-em-arquivos)
         - [Posicionamento em arquivos](#posicionamento-em-arquivos)
         - [Operações com arquivos](#operações-com-arquivos)
-    - [stdlib.h](#stdlib.h)
+    - [stdlib.h](#stdlibh)
         - [Conversões entre string e outros tipos](#conversões-entre-string-e-outros-tipos)
         - [Sistema](#sistema)
-    - [math.h](#math.h)
+    - [math.h](#mathh)
         - [Funções de arredondamento](#funções-de-arredondamento)
         - [Potencia e radiciação](#potencia-e-radiciação)
-    - [stdarg.h](#stdarg.h)
-    - [string.h](#string.h)
-    - [ctype.h](#ctype.h)
+    - [stdarg.h](#stdargh)
+    - [string.h](#stringh)
+    - [ctype.h](#ctypeh)
 1. [Considerações finais](#considerações-finais)
     - [Criando um projeto em C](#criando-um-projeto-em-c)
 
@@ -3847,7 +3847,7 @@ Esta biblioteca possui funções para reconhecimento de tipos de caractere (`cha
 ```c
 isnum    ('2'); // se é numerico
 isalpha  ('s'); // se é alfabético
-isblank ('\t'); // se é em branco
+isblank ('\t'); // se é vazio
 iscntrl ('\n'); // se é caractere especial
 isdigit  ('4'); // se é numero decimal
 isgraph  ('!'); // se tem representação gráfica
