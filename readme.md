@@ -98,6 +98,7 @@ Eu sou Yak's Vinicios Silva Souza, sou um entusiasta de tecnologia e por isso re
 - [RoboCopPortifólio](https://robocopgay.github.io) - robocopgay.github.io
 - [Instagram](https://instagram.com/_yaks.h) - @\_yaks.h
 - [LinkedIn](https://www.linkedin.com/in/yaks-vinicios-77528a19b/) - in/yaks-vinicios-77528a19b
+- [GitHub](https://github.com/RoboCopGay)
 
 # Sobre o livro
 
@@ -469,6 +470,16 @@ sizeof static struct  switch  typedef union unsigned volatile while
 
 Sendo assim, variáveis com nomes como `2letras`, `char`, `jo%ao` ou `peso da pedra` estão erradas, mas variáveis como `_2letras`, `Char`, `joao` ou `peso_da_pedra` estão certas, e tome muito cuidado com o uso de maiúsculas e minúsculas, pois o C as diferencia, portanto, `char` é uma palavra reservada, mas `Char` não é.
 
+Uma forma de atribuição do C que pode ser meio confuso pode ser dado pelo seguinte código:
+
+```c
+int c = 80;
+int i = (c = 30); // i vai valer 30
+c = c + (i = 20); // c vai valer 50
+```
+
+> Isso ocorre, porque o C atribui o `30` a variável `c` e retorna o valor para `i`.
+
 ### Conflito entre tipos
 
 Um problema (na minha opinião) do C é a forte tipagem, que significa que os tipos têm que ser respeitados a todo o custo, logo, se queremos que um dado seja transformado em outro, precisamos fazer conversões de tipos.
@@ -477,17 +488,18 @@ Um problema (na minha opinião) do C é a forte tipagem, que significa que os ti
 int Um = (int) 1.5; // apenas o 1 será atribuído
 ```
 
-Quando você atribui a uma variável o valor que pertence a outro tipo o C vai converter isso para o tipo da variável, mas isso não irá acontecer quando você fizer operações matemáticas, por isso é sempre bom converter para o tipo certo:
+Quando você atribui a uma variável um valor que pertence a outro tipo, o C vai converter isso para o tipo da variável:
 
 ```c
-int i = 1.5e-9;   // apenas o 1 será atribuído
+int i = 1.5; // i vai valer 1
 float f =  i / 3; /*
-                     o resultado dessa divisão seria 0.033...
+                     o resultado dessa divisão seria 0.3333...
                      Mas como os dois  números são inteiros o
                      resultado  é  0, e por  isso é  atribuído
                      o valor 0.0 à variável f
                   */
 ```
+
 > Portanto, sempre use variáveis do mesmo tipo para operações matemáticas, caso sejam de tipos diferentes use a conversão de tipos.
 
 Para que o resultado seja atribuído da forma correta, você deve fazer a conversão de tipos ou usar o tipo certo no calculo:
