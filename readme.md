@@ -3884,7 +3884,7 @@ toupper  ('a'); // transforma em letra maiúscula
 
 Esta é uma biblioteca exclusiva para sistemas baseados em [MS-DOS](https://pt.wikipedia.org/wiki/MS-DOS), como o windows, ou o [reactOS](https://pt.wikipedia.org/wiki/ReactOS), e serve para a entrada e saída de dados com o console.
 
-Dentre as funções mais interessantes estão a função `getch`, que basicamente espera um caractere.
+A função mais interessante é sem dúvidas a `getch`, que basicamente espera um caractere.
 
 ```c
 char c;
@@ -3920,6 +3920,9 @@ int main(){
     return 0;
 }
 ```
+
+Bom, basicamente é isso, todas as outras funções são apenas alternativas a já existentes como o `cgets` que funciona igual a `gets` do `stdio.h`, ou a `cprintf`... enfim.
+
 
 # Considerações finais
 
