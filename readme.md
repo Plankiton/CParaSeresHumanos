@@ -130,7 +130,7 @@ Só para se ter uma ideia do poder do C, vou listar alguns _softwares_ feitos ne
 
 1. [Blender](https://blender.org)                - Modelador 3D e engine de jogos.
 2. [Linux](https://kernel.org)                   - Núcleo das distribuições linux.
-3. [Gimp](httsp://gimp.org)                      - Editor de imagens.
+3. [Gimp](https://gimp.org)                      - Editor de imagens.
 4. [Darwin](https://github.com/apple/darwin-xnu) - Núcleo do Mac OS X
 5. [VLC](https://www.videolan.org/vlc/)          - Reprodutor de Vídeos
 
