@@ -107,7 +107,7 @@ Antes de começar, este livro é destinado a iniciantes no mundo da programaçã
 Por favor, se você encontrar qualquer erro ortográfico ou em relação aos conhecimentos apresentados, envie-me um email avisando, ou faça um pull-request no [repositório do livro](http://github.com/RoboCopGay/cparasereshumanos)
 
 - [apoia.se](https://apoia.se/cparasereshumanos) - cparasereshumanos (doe para o projeto)
-- [github](https://github.com/RoboCopGay/CParaSeresHumanos) - RoboCopGay/CParaSeresHumanos (contribua para o projeto)
+- [github](https://github.com/Plankiton/CParaSeresHumanos) - Plankiton/CParaSeresHumanos (contribua para o projeto)
 
 # Noções básicas
 
