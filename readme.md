@@ -1643,7 +1643,7 @@ int algarismos [] = { 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 0 };
 E também é possível acessar um item específico do array adicionando a posição entre `[` e `]`.
 
 ```c
-int algaridobro desmos [] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+int algarismos [] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
 
 int tres = algarismos[2]
 ```
