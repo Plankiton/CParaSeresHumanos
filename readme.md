@@ -93,12 +93,12 @@
 
 # Sobre o autor
 
-Eu sou Yak's Vinicios Silva Souza, sou um entusiasta de tecnologia e por isso resolvi expor um pouco do meu conhecimento neste livro, caso queira informações atualizadas sobre mim veja o meu [portifólio online](plankiton.github.io/projects).
+Eu sou Yak's Vinicios Silva Souza, sou um entusiasta de tecnologia e por isso resolvi expor um pouco do meu conhecimento neste livro.
 
-- [Blog](https://chumbucket.com.br) - chumbucket.com.br
+- [Blog](https://pl4nk1ton.medium.com) - pl4nk1ton.medium.com
 - [Instagram](https://instagram.com/plank1ton) - @plank1ton
 - [LinkedIn](https://www.linkedin.com/in/plankiton) - /in/plankiton
-- [GitHub](https://github.com/Plankiton)
+- [GitHub](https://github.com/Plankiton) - /Plankiton
 
 # Sobre o livro
 
