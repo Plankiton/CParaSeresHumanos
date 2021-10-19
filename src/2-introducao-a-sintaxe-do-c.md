@@ -55,9 +55,19 @@ A função `main` é essencial para o funcionamento de programas escritos em C, 
 
 Mas, caso você ainda não tenha entendido, eu vou explicar de uma maneira mais simples.
 
-> Imagine que Terezinha, uma cozinheira muito habilidosa, vai preparar um ovo frito. A primeira coisa que ela faz é pegar uma frigideira com óleo e colocar no fogo. Depois, ela vai quebrar o ovo dentro da frigideira e jogar sal. Depois de todos os passos feitos ela dá uma olhada para saber se o ovo queimou, ou se tudo ocorreu como desejado.
+<img
+   src="https://i.imgur.com/EwCdzI8.png"
+   style="border-radius: 10px; margin: 10px; max-height: 200px;"
+   alt="a frigideira da Terezinha"
+   align="right"
+/>
 
-Terezinha simboliza o sistema operacional executando um programa feito em C:  a frigideira é a função `main`, os ovos, o óleo, o sal e a fritura do ovo são todos os comandos executados pela função. 
+> Imagine que Terezinha, uma cozinheira muito habilidosa, vai preparar um ovo frito.
+>
+> A primeira coisa que ela faz é pegar uma frigideira com óleo e colocar no fogo. Depois, ela vai quebrar o ovo dentro da frigideira e jogar sal. Depois de todos os passos feitos ela dá uma olhada para saber se o ovo queimou, ou se tudo ocorreu como desejado.
+
+Terezinha simboliza o sistema operacional executando um programa feito em C. a frigideira é a função `main`, a fritura do ovo é executada pela frigideira.
+
 Terezinha sabe se o ovo está queimado ou não porque a frigideira dá um retorno (quando o ovo está mais escuro, ela sabe que queimou): esse é o papel do comando `return` da função `main`.
 
 > A partir daqui, você vai se deparar com diversos códigos soltos (para economizar espaço), mas quando for testá-los na sua máquina, coloque-os dentro da função `main`:
@@ -121,34 +131,36 @@ Comentários são "anotações ou esclarecimentos" escritas(os) no código para 
 
 ## Variáveis
 
-> Imagine um armário com diversos espaços para guardar coisas, alguns só podem guardar esferas, outros só podem pra guardar bonecas, outros só podem guardar cubos e cada espaço desses possui um nome.
->
+<img
+   style="border-radius: 10px; margin: 10px; max-height: 200px;"
+   src="https://i.imgur.com/4pIW8iB.png"
+   align="right"
+/>
+
+> Imagine um armário com diversos espaços com um nome para identificar, alguns só cabem esferas e outros só cabem cubos.
 > Toda vez que alguém quer um espaço no armário deve  pedir para o dono, mas o dono só reserva o espaço se pedir da maneira correta, que é:
 >
->`<tipo do espaço> <nome do espaço> com <coisa que queremos no espaço> dentro`
+>`<tipo do espaço> <nome do espaço> com <coisa> dentro`
 >
 > Exemplos:
 >
-> `esfera bola_de_futebol com `:soccer:` dentro`
+> `esfera bola_de_futebol com ⚽ dentro`
 >
-> `boneca gemeas         com `:dolls:` dentro`
->
-> `cubo   dado           com `:game_die:` dentro`
+> `cubo   dado           com 🎲 dentro`
 
 O armário é a memória do seu computador, os espaços são as variáveis e o nome em cada espaço é o nome da variável, que só consegue armazenar tipos específicos de dados, no exemplo são `esfera`, `cubo` ou `boneca`, e a situação descrita para a reserva de um espaço é a declaração:
 
 ```c
-// <tipo do espaço>  <nome do espaço>  com  <coisa que queremos no espaço> dentro
-   int               numero            =    80                                  ;
+// <tipo do espaço>  <nome do espaço>    <dado>
+   int               numero            =    80;
 ```
 
 No exemplo acima, reservei um espaço que só guarda números inteiros (`int`) com o nome `numero` e com o valor `80` dentro. E no C, existem 3 tipos primitivos, ou seja, 3 tipos de dados básicos, o `int`, o `float` e o `char`.
 
 ```c
-// <tipo do espaço>  <nome do espaço>  com  <coisa que queremos no espaço> dentro
-   int               numero            =    80                                  ;
-   char              caractere         =    'A'                                 ;
-   float             numero_real       =    99.9                                ;
+   int   numero      = 80;
+   char  caractere   = 'A';
+   float numero_real = 99.9;
 ```
 
 Variáveis do tipo `int` recebem números sem ponto, como `2`, `8` ou `234` enquanto as do tipo `float` recebem números com ponto como `2.5`, `8.3` ou `23.0`, já variáveis do tipo `char` recebem um caractere, **apenas um** , logo, se tentar colocar um `"hello"` ou até mesmo um `"h"`, ele vai retornar um erro, pois todo e qualquer caractere entre `"` é uma string enquanto um `char` é um único caractere entre `'`, não se preocupe com as strings, por enquanto...
@@ -268,16 +280,16 @@ float f =  i / 3; /*
 Para que o resultado seja atribuído da forma correta, você deve fazer a conversão de tipos ou usar o tipo certo no calculo:
 
 ```c
-float f = 1.0 / 2.0;                     // usando o tipo certo (float)
-f = (float) 1 / (float) 2;             /* usando a conversão de tipos 
-                                                       também conhecida como
-                                                       "type cast"
-                                                  */
-                                                  
+float f = 1.0 / 2.0;        // usando o tipo certo (float)
+f = (float) 1 / (float) 2;  /* usando a conversão de tipos 
+                                            também conhecida como
+                                            "type cast"
+                            */
+
 int  n = 5, n1 = 2;
 
-f = n / n1;                                 // f = 2.0
-f = (float) n / (float) n1;          // f = 2.5
+f = n / n1;                 // f = 2.0
+f = (float) n / (float) n1; // f = 2.5
 ```
 >
 

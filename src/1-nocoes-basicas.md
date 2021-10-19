@@ -2,17 +2,28 @@
 
 ## O que é "C"?
 
-C é uma linguagem de programação... _"mas o que é linguagem de programação?"_ ...eu sei que é quase impossível você ter chegado até este livro sem saber o que é linguagem de programação, mas, caso você não saiba, é "a forma de falar com o computador". Você escreve o que quer que ele faça em um arquivo e ele vai fazer, e o C é só uma forma de se fazer isso. Existe uma infinidade de linguagens por aí, mas eu estou aqui para lhes mostrar essa que é considerada por muitos uma das melhores linguagens de todos os tempos, e eu estou sendo inserido nesse "muitos".
+C é uma linguagem de programação, algo que usamos para "falar com o computador". Você escreve o que quer que ele faça em um arquivo e ele vai fazer, e o C é só uma forma de se fazer isso. Existe uma infinidade de linguagens por aí, mas eu estou aqui para lhes mostrar essa que é considerada por muitos uma das melhores linguagens de todos os tempos, e eu estou sendo inserido nesse "muitos".
+
+<img
+   align="right"
+   style="border-radius: 10px; margin: 10px; max-height: 150px;"
+   src="https://i.pinimg.com/564x/ab/55/d7/ab55d772ae879cc095b040a098ce8dd6.jpg"
+/>
+
+> O C simplesmente não ter nenhum simbolo (além de um C genérico) ou mascote pra gente poder tatuar na pele e dizer "eu amo C", então fica aí minha sugestão pra comunidade (e tem que ser um dinossauro):
+>
+> Lhes apresento o clancy
+> - Ilustrator: Cris Ryniak
 
 ## Como o C funciona?
 
-O C é uma linguagem compilada... _"mas o que é isso?"_
+O C é uma linguagem compilada...
 
-> Basicamente, significa que o c traduz o que você escreve em um arquivo para uma liguagem que só o computador entende.
+> Basicamente, significa que um programa traduz o que você escreve em um arquivo para uma liguagem que só o computador entende.
 
-...E é considerado por muitos uma linguagem de _médio nível_ (alguns o consideram uma linguagem de _baixo nível_), e com isso não estou referindo-me à qualidade do C, mas ao nível de proximidade com o hardware (a parte física do computador). Quanto mais próximo do hardware, mais baixo é o nível e essa característica do C o torna a linguagem mais indicada para fazer aplicações de sistema (programas que manipulam o hardware) e aplicações gráficas (jogos, editores de imagem...).
+E é considerado por muitos uma linguagem de _médio nível_ (alguns o consideram uma linguagem de _baixo nível_), e com isso não estou referindo-me à qualidade do C, mas ao nível de proximidade com o hardware (a parte física do computador). Quanto mais próximo do hardware, mais baixo é o nível e essa característica do C o torna a linguagem mais indicada para fazer aplicações de sistema (programas que manipulam o hardware) e aplicações gráficas (jogos, editores de imagem...).
 
-> Só para deixar claro o C é uma linguagem de alto nível, mas por ter tanta intimidade com o hardware, as pessoas começaram a considerá-lo em um nível mais baixo.
+> Só para deixar claro o C é uma linguagem de alto nível, o fato de usarmos simbolos e palavras humanas de uma forma simplificada é o que define baixo e alto nível, mas por ter tanta intimidade com o hardware, as pessoas começaram a considerá-lo em um nível mais baixo.
 
 Só para se ter uma ideia do poder do C, vou listar alguns _softwares_ feitos nessa linguagem:
 > Todos os softwares listados são **open source**, dessa forma vocês podem ter certeza de que foi mesmo feito em C, além de poderem editar o código, se quiserem...
@@ -23,9 +34,14 @@ Só para se ter uma ideia do poder do C, vou listar alguns _softwares_ feitos ne
 4. [Darwin](https://github.com/apple/darwin-xnu) - Núcleo do Mac OS X
 5. [VLC](https://www.videolan.org/vlc/)          - Reprodutor de Vídeos
 
-Existe uma infinidade de aplicativos feitos em C, mas como o foco aqui é ensinar C (e não citar aplicativos feitos em C), eu vou prosseguir...
-
 ## Qual é a história do C?
+
+<img
+   alt="Dennis ritchie and ken thompson 1973"
+   align="right"
+   style="border-radius: 10px; margin: 10px; max-height: 200px;"
+   src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ken_Thompson_and_Dennis_Ritchie--1973.jpg/500px-Ken_Thompson_and_Dennis_Ritchie--1973.jpg"
+/>
 
 Resumidamente, o C foi criado na década de 1970 por [Ken Thompson](https://pt.wikipedia.org/wiki/Ken_Thompson) e [Dennis Ritchie](https://pt.wikipedia.org/wiki/Dennis_Ritchie) para reprogramar o [UNIX](https://pt.wikipedia.org/wiki/Unix), que era escrito em [assembly](https://pt.wikipedia.org/wiki/Linguagem_assembly).
 
