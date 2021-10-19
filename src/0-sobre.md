@@ -1,6 +1,12 @@
-<img src="assets/Capa.png" style="width: 100%" alt="C para Seres humanos"/>
-
 # Sobre o autor
+
+<center>
+<img
+   alt="Yaks Souza's Photo (plankiton - pl4nk1ton@gmail.com)"
+   src="https://avatars.githubusercontent.com/u/39075126?v=4"
+   style="border-radius: 50%; margin: 10px; max-width: 300px;"
+/>
+</center>
 
 Eu sou Yak's Vinicios Silva Souza, sou um entusiasta de tecnologia e por isso resolvi expor um pouco do meu conhecimento neste livro.
 
@@ -10,6 +16,13 @@ Eu sou Yak's Vinicios Silva Souza, sou um entusiasta de tecnologia e por isso re
 - [GitHub](https://github.com/Plankiton) - /Plankiton
 
 # Sobre o livro
+
+<center>
+<img
+   src="https://raw.githubusercontent.com/Plankiton/CParaSeresHumanos/master/assets/icon.png"
+   style="border-radius: 50px;"
+/>
+</center>
 
 Antes de começar, este livro é destinado a iniciantes no mundo da programação, por isso todos os termos apresentados aqui estão sendo explicados da forma mais simples possível, mas os conhecimentos aqui apresentados irão atender qualquer iniciante em linguagem C (mesmo que você já saiba programar em outra linguagem).
 
