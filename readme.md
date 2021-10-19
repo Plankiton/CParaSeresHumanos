@@ -17,5 +17,3 @@ Por favor, se você encontrar qualquer erro ortográfico ou em relação aos con
 
 - [apoia.se](https://apoia.se/cparasereshumanos) - cparasereshumanos (doe para o projeto)
 - [github](https://github.com/Plankiton/CParaSeresHumanos) - Plankiton/CParaSeresHumanos (contribua para o projeto)
-
-# [Indice](./Livro/0.%20Indice.md)

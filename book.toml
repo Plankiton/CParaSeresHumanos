@@ -1,0 +1,6 @@
+[book]
+authors = ["Yaks Souza"]
+language = "pt"
+multilingual = false
+src = "src"
+title = "C Para Seres Humanos"
