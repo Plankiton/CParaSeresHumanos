@@ -12,7 +12,7 @@ copy-fonts = true
 no-section-label = false
 git-repository-url = "https://github.com/plankiton/CParaSeresHumanos"
 git-repository-icon = "fa-github"
-edit-url-template = "https://github.com/rust-lang/mdBook/edit/master/guide/{path}"
+edit-url-template = "https://github.com/plankiton/CParaSeresHumanos/master/{path}"
 site-url = "/CParaSeresHumanos"
 input-404 = "not-found.md"
 
