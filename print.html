@@ -1,0 +1,3385 @@
+<!DOCTYPE HTML>
+<html lang="pt" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>C Para Seres Humanos</title>
+                <meta name="robots" content="noindex" />
+                
+
+        <!-- Custom HTML head -->
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+                <link rel="icon" href="favicon.svg">
+                        <link rel="shortcut icon" href="favicon.png">
+                <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+                <link rel="stylesheet" href="css/print.css" media="print">
+        
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+                <link rel="stylesheet" href="fonts/fonts.css">
+        
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+            </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="0-sobre.html"><strong aria-hidden="true">1.</strong> Sobre</a></li><li class="chapter-item expanded "><a href="1-nocoes-basicas.html"><strong aria-hidden="true">2.</strong> Nocoes basicas</a></li><li class="chapter-item expanded "><a href="2-introducao-a-sintaxe-do-c.html"><strong aria-hidden="true">3.</strong> Introducao a sintaxe do C</a></li><li class="chapter-item expanded "><a href="3-conceitos-interessantes.html"><strong aria-hidden="true">4.</strong> Conceitos interessantes</a></li><li class="chapter-item expanded "><a href="4-entrada-e-saida-de-dados.html"><strong aria-hidden="true">5.</strong> Entrada e saida de dados</a></li><li class="chapter-item expanded "><a href="5-operadores.html"><strong aria-hidden="true">6.</strong> Operadores</a></li><li class="chapter-item expanded "><a href="6-arrays-e-strings.html"><strong aria-hidden="true">7.</strong> Arrays e Strings</a></li><li class="chapter-item expanded "><a href="7-escopo-e-condicionais.html"><strong aria-hidden="true">8.</strong> Escopo e Condicionais</a></li><li class="chapter-item expanded "><a href="8-estruturas-de-repeticao.html"><strong aria-hidden="true">9.</strong> Estruturas de repeticao</a></li><li class="chapter-item expanded "><a href="9-funcoes.html"><strong aria-hidden="true">10.</strong> Funcoes</a></li><li class="chapter-item expanded "><a href="9-ponteiros.html"><strong aria-hidden="true">11.</strong> Ponteiros</a></li><li class="chapter-item expanded "><a href="10-customizacao-de-tipos.html"><strong aria-hidden="true">12.</strong> Customizacao de tipos</a></li><li class="chapter-item expanded "><a href="11-hacks-e-extras.html"><strong aria-hidden="true">13.</strong> Hacks e Extras</a></li><li class="chapter-item expanded "><a href="13-hello-world-grafico.html"><strong aria-hidden="true">14.</strong> Hello World Grafico</a></li><li class="chapter-item expanded "><a href="14-bibliotecas-uteis.html"><strong aria-hidden="true">15.</strong> Bibliotecas uteis</a></li></ol>            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                                            </div>
+
+                    <h1 class="menu-title">C Para Seres Humanos</h1>
+
+                    <div class="right-buttons">
+                                                <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                                                                        <a href="https://github.com/plankiton/CParaSeresHumanos" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                                                
+                    </div>
+                </div>
+
+                                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="sobre-o-livro"><a class="header" href="#sobre-o-livro">Sobre o livro</a></h1>
+<center>
+<img
+   src="https://raw.githubusercontent.com/Plankiton/CParaSeresHumanos/master/assets/icon.png"
+   style="border-radius: 50px;"
+/>
+</center>
+<p>Antes de começar, este livro é destinado a iniciantes no mundo da programação, por isso todos os termos apresentados aqui estão sendo explicados da forma mais simples possível, mas os conhecimentos aqui apresentados irão atender qualquer iniciante em linguagem C (mesmo que você já saiba programar em outra linguagem).</p>
+<p>Por favor, se você encontrar qualquer erro ortográfico ou em relação aos conhecimentos apresentados, envie-me um email avisando, ou faça um pull-request no <a href="http://github.com/Plankiton/cparasereshumanos">repositório do livro</a></p>
+<ul>
+<li><a href="https://apoia.se/cparasereshumanos">apoia.se</a> - cparasereshumanos (doe para o projeto)</li>
+<li><a href="https://github.com/Plankiton/CParaSeresHumanos">github</a> - Plankiton/CParaSeresHumanos (contribua para o projeto)</li>
+</ul>
+<h1 id="sobre-o-autor"><a class="header" href="#sobre-o-autor">Sobre o autor</a></h1>
+<center>
+<img
+   alt="Yaks Souza's Photo (plankiton - pl4nk1ton@gmail.com)"
+   src="https://avatars.githubusercontent.com/u/39075126?v=4"
+   style="border-radius: 50%; margin: 10px; max-width: 300px;"
+/>
+</center>
+<p>Eu sou Yak’s Vinicios Silva Souza, sou um entusiasta de tecnologia e por isso resolvi expor um pouco do meu conhecimento neste livro.</p>
+<ul>
+<li><a href="https://pl4nk1ton.medium.com">Blog</a> - pl4nk1ton.medium.com</li>
+<li><a href="https://instagram.com/plank1ton">Instagram</a> - @plank1ton</li>
+<li><a href="https://www.linkedin.com/in/plankiton">LinkedIn</a> - /in/plankiton</li>
+<li><a href="https://github.com/Plankiton">GitHub</a> - /Plankiton</li>
+</ul>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="noções-básicas"><a class="header" href="#noções-básicas">Noções básicas</a></h1>
+<h2 id="o-que-é-c"><a class="header" href="#o-que-é-c">O que é “C”?</a></h2>
+<p>C é uma linguagem de programação, algo que usamos para “falar com o computador”. Você escreve o que quer que ele faça em um arquivo e ele vai fazer, e o C é só uma forma de se fazer isso. Existe uma infinidade de linguagens por aí, mas eu estou aqui para lhes mostrar essa que é considerada por muitos uma das melhores linguagens de todos os tempos, e eu estou sendo inserido nesse “muitos”.</p>
+<p><img
+   align="right"
+   style="border-radius: 10px; margin: 10px; max-height: 150px;"
+   src="https://i.pinimg.com/564x/ab/55/d7/ab55d772ae879cc095b040a098ce8dd6.jpg"
+/></p>
+<blockquote>
+<p>O C simplesmente não ter nenhum simbolo (além de um C genérico) ou mascote pra gente poder tatuar na pele e dizer “eu amo C”, então fica aí minha sugestão pra comunidade (e tem que ser um dinossauro):</p>
+<p>Lhes apresento o clancy</p>
+<ul>
+<li>Ilustrator: Cris Ryniak</li>
+</ul>
+</blockquote>
+<h2 id="como-o-c-funciona"><a class="header" href="#como-o-c-funciona">Como o C funciona?</a></h2>
+<p>O C é uma linguagem compilada...</p>
+<blockquote>
+<p>Basicamente, significa que um programa traduz o que você escreve em um arquivo para uma liguagem que só o computador entende.</p>
+</blockquote>
+<p>E é considerado por muitos uma linguagem de <em>médio nível</em> (alguns o consideram uma linguagem de <em>baixo nível</em>), e com isso não estou referindo-me à qualidade do C, mas ao nível de proximidade com o hardware (a parte física do computador). Quanto mais próximo do hardware, mais baixo é o nível e essa característica do C o torna a linguagem mais indicada para fazer aplicações de sistema (programas que manipulam o hardware) e aplicações gráficas (jogos, editores de imagem...).</p>
+<blockquote>
+<p>Só para deixar claro o C é uma linguagem de alto nível, o fato de usarmos simbolos e palavras humanas de uma forma simplificada é o que define baixo e alto nível, mas por ter tanta intimidade com o hardware, as pessoas começaram a considerá-lo em um nível mais baixo.</p>
+</blockquote>
+<p>Só para se ter uma ideia do poder do C, vou listar alguns <em>softwares</em> feitos nessa linguagem:</p>
+<blockquote>
+<p>Todos os softwares listados são <strong>open source</strong>, dessa forma vocês podem ter certeza de que foi mesmo feito em C, além de poderem editar o código, se quiserem...</p>
+</blockquote>
+<ol>
+<li><a href="https://blender.org">Blender</a>                - Modelador 3D e engine de jogos.</li>
+<li><a href="https://kernel.org">Linux</a>                   - Núcleo das distribuições linux.</li>
+<li><a href="httsp://gimp.org">Gimp</a>                      - Editor de imagens.</li>
+<li><a href="https://github.com/apple/darwin-xnu">Darwin</a> - Núcleo do Mac OS X</li>
+<li><a href="https://www.videolan.org/vlc/">VLC</a>          - Reprodutor de Vídeos</li>
+</ol>
+<h2 id="qual-é-a-história-do-c"><a class="header" href="#qual-é-a-história-do-c">Qual é a história do C?</a></h2>
+<p><img
+   alt="Dennis ritchie and ken thompson 1973"
+   align="right"
+   style="border-radius: 10px; margin: 10px; max-height: 200px;"
+   src="https://upload.wikimedia.org/wikipedia/commons/thumb/1/1b/Ken_Thompson_and_Dennis_Ritchie--1973.jpg/500px-Ken_Thompson_and_Dennis_Ritchie--1973.jpg"
+/></p>
+<p>Resumidamente, o C foi criado na década de 1970 por <a href="https://pt.wikipedia.org/wiki/Ken_Thompson">Ken Thompson</a> e <a href="https://pt.wikipedia.org/wiki/Dennis_Ritchie">Dennis Ritchie</a> para reprogramar o <a href="https://pt.wikipedia.org/wiki/Unix">UNIX</a>, que era escrito em <a href="https://pt.wikipedia.org/wiki/Linguagem_assembly">assembly</a>.</p>
+<p>O C é uma evolução da linguagem <a href="https://pt.wikipedia.org/wiki/B_(linguagem_de_programa%C3%A7%C3%A3o)">B</a> que foi influenciada pela linguagem <a href="https://pt.wikipedia.org/wiki/BCPL">BCPL</a>. No início, a linguagem C era despadronizada, isso significa que cada compilador de C usava uma <em>“versão”</em> diferente, então, em 1983 a <a href="https://pt.wikipedia.org/wiki/American_National_Standards_Institute">ANSI</a> resolveu padronizar o C para que ele funcionasse mais coerentemente em compiladores diferentes, e não foi só a ANSI que padronizou, a <a href="https://pt.wikipedia.org/wiki/ISO">ISO</a> também já fez isso.</p>
+<h2 id="como-se-instala-o-tal-compilador-c"><a class="header" href="#como-se-instala-o-tal-compilador-c">Como se instala o tal “compilador” C?</a></h2>
+<p>Neste capítulo vou demonstrar a instalação em alguns sistemas operacionais, mas todos os exemplos do livro foram testados em um sistema linux, então para garantir que tudo vai funcionar perfeitamente eu aconselho que seja lido e testado em um sistema linux (mesmo que seja uma máquina virtual).</p>
+<h3 id="gnu-c-collection"><a class="header" href="#gnu-c-collection">GNU C Collection</a></h3>
+<p>O <a href="https://pt.wikipedia.org/wiki/GNU_Compiler_Collection">gcc</a>, já vem com uma gama de ferramentas já inclusas, como o compilador C (<code>gcc</code>) e o compilador C++ (<code>g++</code>).</p>
+<p>Se você usa uma distribuição Linux ou BSD, provavelmente já está instalado, mas, caso não esteja (o que eu duvido muito), é só usar o gerenciador de pacotes para instalar.</p>
+<h4 id="debian"><a class="header" href="#debian">Debian</a></h4>
+<pre><code class="language-sh">sudo apt install gcc
+</code></pre>
+<h4 id="red-hat"><a class="header" href="#red-hat">Red Hat</a></h4>
+<pre><code class="language-sh">sudo dnf install gcc
+sudo yum install gcc
+</code></pre>
+<h4 id="arch-linux"><a class="header" href="#arch-linux">Arch Linux</a></h4>
+<pre><code class="language-sh">sudo pacman -S gcc
+</code></pre>
+<h4 id="mac-os-x"><a class="header" href="#mac-os-x">Mac OS X</a></h4>
+<p>Se você não tem <a href="https://brew.sh/index_pt-br">homebrew</a>, rode:</p>
+<pre><code class="language-sh">/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+</code></pre>
+<blockquote>
+<p>Instalando gcc:</p>
+</blockquote>
+<pre><code class="language-sh">brew install gcc
+</code></pre>
+<h4 id="windows"><a class="header" href="#windows">Windows</a></h4>
+<p>Se você não tem o <a href="https://chocolatey.org/">chocolatey</a>, rode no <strong><a href="https://pt.wikipedia.org/wiki/PowerShell">PowerShell</a> em modo administrador</strong>:</p>
+<pre><code class="language-PS1">Set-ExecutionPolicy Bypass -Scope Process -Force
+iex((New-Object System.Net.WebClient).DownloadString('https://chocolatey.org/install.ps1'))
+</code></pre>
+<blockquote>
+<p>Instalando gcc</p>
+</blockquote>
+<pre><code class="language-bat">choco install mingw -y
+</code></pre>
+<h3 id="tiny-c-compiler"><a class="header" href="#tiny-c-compiler">Tiny C Compiler</a></h3>
+<p>Uma outra opção de compilador muito interessante é o <a href="https://en.wikipedia.org/wiki/Tiny_C_Compiler">tcc</a> é um compilador independente com o intúito de gerar códigos pequenos, mas não é recomendado para aplicações grandes, mas para estudo é uma ótima opção.</p>
+<h4 id="debian-1"><a class="header" href="#debian-1">Debian</a></h4>
+<pre><code class="language-sh">sudo apt install tcc
+</code></pre>
+<h4 id="red-hat-1"><a class="header" href="#red-hat-1">Red Hat</a></h4>
+<pre><code class="language-sh">sudo dnf install tcc
+sudo yum install tcc
+</code></pre>
+<h4 id="arch-linux-1"><a class="header" href="#arch-linux-1">Arch Linux</a></h4>
+<pre><code class="language-sh">sudo pacman -S tcc
+</code></pre>
+<h4 id="mac-os-x-1"><a class="header" href="#mac-os-x-1">Mac OS X</a></h4>
+<pre><code class="language-sh">brew install tcc
+</code></pre>
+<h4 id="windows-1"><a class="header" href="#windows-1">Windows</a></h4>
+<pre><code class="language-sh">choco install tcc
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="introdução-à-sintaxe-do-c"><a class="header" href="#introdução-à-sintaxe-do-c">Introdução à sintaxe do C</a></h1>
+<h3 id="hello-mundo-em-c"><a class="header" href="#hello-mundo-em-c">Hello mundo em C</a></h3>
+<blockquote>
+<p>Hello_mundo.c</p>
+</blockquote>
+<pre><code class="language-c">#include &lt;stdio.h&gt;            // importação de biblioteca externa
+
+int main () {                 // declaração da função main
+   printf(&quot;Hello mundo!!\n&quot;); // função que escreve coisas na tela
+   return 0;                  // retorno da função
+}                             // fim da função
+</code></pre>
+<p>Compilando o arquivo</p>
+<blockquote>
+<p>linux/BSD/Mac OSX</p>
+</blockquote>
+<pre><code class="language-sh">gcc Hello_mundo.c -o hello
+</code></pre>
+<blockquote>
+<p>Windows</p>
+</blockquote>
+<pre><code class="language-bat">gcc Hello_mundo.c -o hello.exe
+</code></pre>
+<p>Todos os exemplos e desafios são compilados da mesma forma: <code>gcc &lt;arquivo.c&gt; -o &lt;nome do binário&gt;</code></p>
+<blockquote>
+<p>Caso o arquivo não compile com o <code>gcc</code> use o <code>g++</code></p>
+</blockquote>
+<p>Executando o arquivo (lembre-se de estar no mesmo diretório do arquivo compilado)</p>
+<blockquote>
+<p>linux/BSD/Mac OS X</p>
+</blockquote>
+<pre><code class="language-sh">./hello
+</code></pre>
+<blockquote>
+<p>Windows</p>
+</blockquote>
+<pre><code class="language-bat">hello.exe
+</code></pre>
+<blockquote>
+<p>Saída</p>
+</blockquote>
+<pre><code>Hello mundo!!
+</code></pre>
+<blockquote>
+</blockquote>
+<blockquote>
+<p>Todos os exemplos e desafios são executados da mesma forma mostrada acima, apenas troque o <code>hello</code> pelo nome do binário gerado.</p>
+</blockquote>
+<p>No programa apresentado, nós vimos a estrutura básica de todo programa em C, no qual temos a importação do módulo <code>stdio.h</code> (conjunto de funções para saída e entrada de dados), a função <code>main</code>(função que é chamada na execução do programa), e os comandos da função que serão executados (tudo o que está entre <code>{</code> e <code>}</code>), que no nosso caso é o <code>printf</code>(função de saída de dados que escreve texto na tela), e por fim o <code>return</code> que diz para o sistema operacional se ocorreu tudo como o planejado na execução da função <code>main</code>.</p>
+<blockquote>
+<p>Notem que todos os comandos dentro do bloco (tudo o que está entre <code>{</code> e <code>}</code>) da função <code>main</code> estão separados por <code>;</code>, caso você se esqueça desse caractere, o seu programa não será compilado.</p>
+</blockquote>
+<p>A função <code>main</code> é essencial para o funcionamento de programas escritos em C, pois ela é a função que é chamada na execução do programa.</p>
+<p>Mas, caso você ainda não tenha entendido, eu vou explicar de uma maneira mais simples.</p>
+<p><img
+   src="https://i.imgur.com/EwCdzI8.png"
+   style="border-radius: 10px; margin: 10px; max-height: 200px;"
+   alt="a frigideira da Terezinha"
+   align="right"
+/></p>
+<blockquote>
+<p>Imagine que Terezinha, uma cozinheira muito habilidosa, vai preparar um ovo frito.</p>
+<p>A primeira coisa que ela faz é pegar uma frigideira com óleo e colocar no fogo. Depois, ela vai quebrar o ovo dentro da frigideira e jogar sal. Depois de todos os passos feitos ela dá uma olhada para saber se o ovo queimou, ou se tudo ocorreu como desejado.</p>
+</blockquote>
+<p>Terezinha simboliza o sistema operacional executando um programa feito em C. a frigideira é a função <code>main</code>, a fritura do ovo é executada pela frigideira.</p>
+<p>Terezinha sabe se o ovo está queimado ou não porque a frigideira dá um retorno (quando o ovo está mais escuro, ela sabe que queimou): esse é o papel do comando <code>return</code> da função <code>main</code>.</p>
+<blockquote>
+<p>A partir daqui, você vai se deparar com diversos códigos soltos (para economizar espaço), mas quando for testá-los na sua máquina, coloque-os dentro da função <code>main</code>:</p>
+</blockquote>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main(){
+   &lt;comandos apresentados&gt;
+   return 0;
+}
+</code></pre>
+<p>O <code>;</code> é o que delimita o fim de um comando no C e ele ignora os espaços ou quebras de linha em excesso antes do <code>;</code>, logo, isso:</p>
+<pre><code class="language-c">           printf
+(
+&quot;Hello mundo!!\n&quot;
+         )
+;
+</code></pre>
+<p>É o mesmo que isso:</p>
+<pre><code class="language-c">printf(&quot;Hello mundo!!\n&quot;);
+</code></pre>
+<blockquote>
+<p>Então as regras para o uso do <code>;</code> são:</p>
+<ol>
+<li>Devem estar no final das linhas com comandos.</li>
+<li>Não devem estar em linhas que começarem com <code>#</code>.</li>
+<li>Não devem estar em linhas que terminam com chaves se essas chaves pertencem a blocos de código (pois existem outras estruturas que usam chaves).</li>
+</ol>
+</blockquote>
+<p>Mas mesmo sabendo disso tome cuidado com os espaços, pois em alguns casos muito específicos a falta deles pode confundir o compilador, por exemplo:</p>
+<pre><code class="language-c">int i = -2 - -3;
+</code></pre>
+<blockquote>
+<p>não se preocupe com o <code>int i =</code>, saiba apenas que <code>i</code> é uma variável, isso será explicado mais tarde...</p>
+</blockquote>
+<p>O <code>-3</code> é um número negativo, mas o <code>-</code> entre <code>-2</code> e <code>-3</code> é o sinal de subtração, se não houvesse espaço entre o <code>-</code> solto e os outros números, o programa acima não seria compilado pois o C não saberia o que você quer que ele faça.</p>
+<h2 id="comentários"><a class="header" href="#comentários">Comentários</a></h2>
+<p>Comentários são “anotações ou esclarecimentos” escritas(os) no código para descrever a função de algo e geralmente são úteis quando se  quer analisar algum código antigo seu, ou o código de outra pessoa. Os comentários sempre são ignorados pelo compilador, eles são apenas para auxiliar o programador.</p>
+<pre><code class="language-c">// comentários de uma única linha
+/*
+   comentários 
+   de 
+   multiplas 
+   linhas
+*/
+</code></pre>
+<p>É sempre aconselhável o uso de comentários, principalmente se você pretende fazer um projeto <em>open source</em> (como já dito, projetos de código aberto).</p>
+<h2 id="variáveis"><a class="header" href="#variáveis">Variáveis</a></h2>
+<p><img
+   style="border-radius: 10px; margin: 10px; max-height: 200px;"
+   src="https://i.imgur.com/4pIW8iB.png"
+   align="right"
+/></p>
+<blockquote>
+<p>Imagine um armário com diversos espaços com um nome para identificar, alguns só cabem esferas e outros só cabem cubos.
+Toda vez que alguém quer um espaço no armário deve  pedir para o dono, mas o dono só reserva o espaço se pedir da maneira correta, que é:</p>
+<p><code>&lt;tipo do espaço&gt; &lt;nome do espaço&gt; com &lt;coisa&gt; dentro</code></p>
+<p>Exemplos:</p>
+<p><code>esfera bola_de_futebol com ⚽ dentro</code></p>
+<p><code>cubo   dado           com 🎲 dentro</code></p>
+</blockquote>
+<p>O armário é a memória do seu computador, os espaços são as variáveis e o nome em cada espaço é o nome da variável, que só consegue armazenar tipos específicos de dados, no exemplo são <code>esfera</code>, <code>cubo</code> ou <code>boneca</code>, e a situação descrita para a reserva de um espaço é a declaração:</p>
+<pre><code class="language-c">// &lt;tipo do espaço&gt;  &lt;nome do espaço&gt;    &lt;dado&gt;
+   int               numero            =    80;
+</code></pre>
+<p>No exemplo acima, reservei um espaço que só guarda números inteiros (<code>int</code>) com o nome <code>numero</code> e com o valor <code>80</code> dentro. E no C, existem 3 tipos primitivos, ou seja, 3 tipos de dados básicos, o <code>int</code>, o <code>float</code> e o <code>char</code>.</p>
+<pre><code class="language-c">   int   numero      = 80;
+   char  caractere   = 'A';
+   float numero_real = 99.9;
+</code></pre>
+<p>Variáveis do tipo <code>int</code> recebem números sem ponto, como <code>2</code>, <code>8</code> ou <code>234</code> enquanto as do tipo <code>float</code> recebem números com ponto como <code>2.5</code>, <code>8.3</code> ou <code>23.0</code>, já variáveis do tipo <code>char</code> recebem um caractere, <strong>apenas um</strong> , logo, se tentar colocar um <code>&quot;hello&quot;</code> ou até mesmo um <code>&quot;h&quot;</code>, ele vai retornar um erro, pois todo e qualquer caractere entre <code>&quot;</code> é uma string enquanto um <code>char</code> é um único caractere entre <code>'</code>, não se preocupe com as strings, por enquanto...</p>
+<p>E se você deseja alterar o valor da variável, só precisa colocar o nome da variável recebendo o valor:</p>
+<pre><code class="language-c">int i = 5; // declaração da variável &quot;i&quot; valendo &quot;5&quot;
+
+i = 92;    // agora a variável vale 92
+</code></pre>
+<p>Esse exemplo acima serve para todos os tipos primitivos, mas lembre-se de colocar valores do tipo certo na variável. Se você declarou uma variável inteira, na hora de alterar o valor, tem que trocar por um inteiro.</p>
+<p>Além disso, também existe o tipo <code>double</code> que é descendente do tipo <code>float</code>, mas com mais capacidade de espaço... <em>“Mas como assim espaço? Números não são infinitos?”</em> ... Os números são infinitos sim, mas a memória ram do computador não é, e mesmo que fosse, seria um desperdício liberar um espaço infinito para uma única variável, então todas as variáveis dentro do C tem um espaço limitado.</p>
+<p>Cada variável ocupa uma certa quantidade de bytes na memória ram:</p>
+<pre><code class="language-c">/*
+um byte tem 8 bites e um bite só pode ser 0 ou 1, isso quer dizer que 
+sempre que o computador reserva 1 byte ele está reservando 8 espacinhos
+com zeros e ums.
+*/
+
+int inteiro = 0; /* -&gt; 4 bytes -&gt; você só consegue colocar 
+                       números de -2147483648 a 2147483647,
+                       pois se o número estiver fora desse
+                       intervalo ele teria mais de 4 bytes.
+                 */
+
+char caractere = 'A'; /* 1 byte -&gt; só aceita um caractere,
+                           porque um caractere ocupa um
+                           byte.
+                      */
+
+float real = 3.14; /* 4 bytes -&gt; só suporta valores entre 
+                        10E-38 e 10E38 (isso significa 10
+                        vezes 10 elevado a -38 a 38, o &quot;E&quot;
+                        substitui o &quot;vezes 10 elevado a&quot;
+                        para simplificar para o computador).
+                   */
+
+double real_2 = 10E49; /* 6 bytes -&gt; o double tem mais
+                              espaço que um float
+                              e por isso pode suportar
+                              números entre 10E-4932 e
+                              10E4932
+                           */
+</code></pre>
+<blockquote>
+<p>Essas quantidades demonstradas acima não são iguais em todas as arquiteturas (tipo de processador), isto quer dizer que se o seu computador é de 32 bits o tamanho das variáveis pode ser diferente de um de 64 bits, logo, para que você tenha certeza do tamanho delas (em bytes) é só usar o <code>sizeof</code>:</p>
+</blockquote>
+<pre><code class="language-c">int inteiro;
+int tmh_inteiro = sizeof inteiro; // tamanho da variável inteiro
+</code></pre>
+<blockquote>
+<p>Caso você não queira criar uma variável unicamente para pegar o seu tamanho é possível usar o <code>sizeof</code> para pegar o tamanho do tipo diretamente:</p>
+</blockquote>
+<pre><code class="language-c">int tmh_inteiro = sizeof (int); // tamanho da variável inteiro
+</code></pre>
+<blockquote>
+<p>Note que o tipo está entre parênteses, isso é obrigatório ou o C vai achar que você está se referindo a uma variável.</p>
+</blockquote>
+<p>E a galera que já conhece um pouco de programação deve estar se perguntando <em>“Mas e os booleanos? No C não existe verdadeiro e falso?”</em>  sim, mas no C o <code>int</code> faz esse papel, sendo que o <strong>0</strong> equivale a <strong>falso</strong> e o <strong>1</strong> equivale a <strong>verdadeiro</strong>.</p>
+<p>As variáveis em C (e acho que em todas as linguagens) têm algumas regras quanto à escolha do seu nome, estas regras são:</p>
+<ol>
+<li>Variáveis não podem iniciar com números;</li>
+<li>Variáveis não podem ter espaços (substitua os espaços por <code>_</code>);</li>
+<li>Variáveis só podem conter letras, números e travessões (evite usar letras com acento também);</li>
+<li>Variáveis não podem ser iguais à palavras reservadas.</li>
+</ol>
+<blockquote>
+<p>Palavras reservadas do C:</p>
+</blockquote>
+<pre><code class="language-c">auto break case char if const continue  default do double else enum
+extern float for goto if int long register return short signed void
+sizeof static struct  switch  typedef union unsigned volatile while
+</code></pre>
+<p>Sendo assim, variáveis com nomes como <code>2letras</code>, <code>char</code>, <code>jo%ao</code> ou <code>peso da pedra</code> estão erradas, mas variáveis como <code>_2letras</code>, <code>Char</code>, <code>joao</code> ou <code>peso_da_pedra</code> estão certas, e tome muito cuidado com o uso de maiúsculas e minúsculas, pois o C as diferencia, portanto, <code>char</code> é uma palavra reservada, mas <code>Char</code> não é.</p>
+<p>Uma forma de atribuição do C que pode ser meio confuso pode ser dado pelo seguinte código:</p>
+<pre><code class="language-c">int c = 80;
+int i = (c = 30); // i vai valer 30
+c = c + (i = 20); // c vai valer 50
+</code></pre>
+<blockquote>
+<p>Isso ocorre, porque o C atribui o <code>30</code> a variável <code>c</code> e retorna o valor para <code>i</code>.</p>
+</blockquote>
+<h3 id="conflito-entre-tipos"><a class="header" href="#conflito-entre-tipos">Conflito entre tipos</a></h3>
+<p>Um problema (na minha opinião) do C é a forte tipagem, que significa que os tipos têm que ser respeitados a todo o custo, logo, se queremos que um dado seja transformado em outro, precisamos fazer conversões de tipos.</p>
+<pre><code class="language-c">int Um = (int) 1.5; // apenas o 1 será atribuído
+</code></pre>
+<p>Quando você atribui a uma variável um valor que pertence a outro tipo, o C vai converter isso para o tipo da variável:</p>
+<pre><code class="language-c">int i = 1.5; // i vai valer 1
+float f =  i / 3; /*
+                     o resultado dessa divisão seria 0.3333...
+                     Mas como os dois  números são inteiros o
+                     resultado  é  0, e por  isso é  atribuído
+                     o valor 0.0 à variável f
+                  */
+</code></pre>
+<blockquote>
+<p>Portanto, sempre use variáveis do mesmo tipo para operações matemáticas, caso sejam de tipos diferentes use a conversão de tipos.</p>
+</blockquote>
+<p>Para que o resultado seja atribuído da forma correta, você deve fazer a conversão de tipos ou usar o tipo certo no calculo:</p>
+<pre><code class="language-c">float f = 1.0 / 2.0;        // usando o tipo certo (float)
+f = (float) 1 / (float) 2;  /* usando a conversão de tipos 
+                                            também conhecida como
+                                            &quot;type cast&quot;
+                            */
+
+int  n = 5, n1 = 2;
+
+f = n / n1;                 // f = 2.0
+f = (float) n / (float) n1; // f = 2.5
+</code></pre>
+<blockquote>
+</blockquote>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="conceitos-interessantes"><a class="header" href="#conceitos-interessantes">Conceitos interessantes</a></h1>
+<h2 id="modificadores-de-tipo"><a class="header" href="#modificadores-de-tipo">Modificadores de tipo</a></h2>
+<p>E mais uma vez falaremos de tipos primitivos, como havíamos visto, os tipos primitivos têm tamanhos diferentes na memória, e estes tamanhos podem ser expandidos ou reduzidos.</p>
+<h3 id="long"><a class="header" href="#long">Long</a></h3>
+<p>O <code>long</code> alonga (expande) a capacidade de variáveis do tipo <code>int</code>, <code>float</code> e <code>double</code>.</p>
+<blockquote>
+<p>Lembrando que os valores de tamanho variam de computador para computador.</p>
+</blockquote>
+<pre><code class="language-c">int inteiro = 0;              // 4 bytes
+long int l_inteiro = 0;       // 8 bytes
+
+double real = 10E49;          // 6 bytes
+long double l_real = 10e49;   // 8 bytes
+</code></pre>
+<p>E para alcançar o máximo de tamanho de uma variável para a sua arquitetura use o <code>long long int</code> ou simplesmente <code>long long</code>.</p>
+<h3 id="short"><a class="header" href="#short">Short</a></h3>
+<p>O <code>short</code> encurta a capacidade de variáveis do tipo <code>int</code>.</p>
+<pre><code class="language-c">int inteiro = 0;              // 4 bytes
+short int s_inteiro = 0;      // 2 bytes
+</code></pre>
+<h3 id="signed-e-unsigned"><a class="header" href="#signed-e-unsigned">Signed e unsigned</a></h3>
+<p><code>signed</code> e <code>unsigned</code> significam respectivamente “com sinal” e “sem sinal”.</p>
+<pre><code class="language-c">int c = 90;
+int i = +90;
+int j = -90;
+</code></pre>
+<p>Sempre que você declara um número, ele por padrão é <code>signed</code>, portanto suporta números negativos e positivos, e o <code>unsigned</code> só suporta números positivos.</p>
+<pre><code class="language-c">int inteiro = 0;               // intervalo: -2147483648 a 2147483647
+unsigned int us_inteiro = 0;    // intervalo: 0           a 4294967295
+</code></pre>
+<h2 id="entrada-e-saída-de-dados"><a class="header" href="#entrada-e-saída-de-dados">Entrada e saída de dados</a></h2>
+<p>Você já viu anteriormente uma forma de saída de dados: o <code>printf</code>:</p>
+<pre><code class="language-c">printf(&quot;Hello mundo!!\n&quot;);
+</code></pre>
+<blockquote>
+<p>Sem este <code>\n</code>, caso você escreva outra coisa os dois irão aparecer juntos.</p>
+</blockquote>
+<h3 id="caractere-de-scape---"><a class="header" href="#caractere-de-scape---">Caractere de scape ( “\” )</a></h3>
+<p>O caractere de scape, no C, é o <code>\</code> e ele dá “poderes” ao seu texto, pode ser usado em variáveis do tipo <code>char</code> e em strings, mas para ilustrá-lo eu irei representá-lo sempre dentro de um <code>printf</code>.</p>
+<h4 id="n"><a class="header" href="#n">\n</a></h4>
+<pre><code class="language-c">printf(&quot;\n1ª linha\n2ª linha\n3ª linha\n&quot;);   // \n: quebra de linha.
+</code></pre>
+<p>Esse <code>\n</code> é uma quebra de linha, ou seja, sempre que tiver um <code>\n</code> o <code>printf</code> vai pular uma linha e escrever o que estiver na frente.</p>
+<blockquote>
+<p>saída:</p>
+</blockquote>
+<pre><code>1ª linha
+2ª linha
+3ª linha
+</code></pre>
+<h4 id="t"><a class="header" href="#t">\t</a></h4>
+<pre><code class="language-c">printf(&quot;\tjoao&quot;); // \t: espaçamento ou tabulação (efeito da tecla &quot;tab&quot;).
+</code></pre>
+<p>Esse <code>\t</code> é uma tabulação, o que estiver a frente dele irá se deslocar para a direita (-&gt;).</p>
+<blockquote>
+<p>saída:</p>
+</blockquote>
+<pre><code>   joao
+</code></pre>
+<h4 id="b"><a class="header" href="#b">\b</a></h4>
+<pre><code class="language-c">printf(&quot;joao\b&quot;);  // \b: apaga um caractere da linha (efeito da tecla &quot;backspace&quot;).
+</code></pre>
+<p>Esse <code>\b</code> é um backspace, o caractere anterior a ele será apagado.</p>
+<blockquote>
+<p>saída:</p>
+</blockquote>
+<pre><code>joa
+</code></pre>
+<h4 id="r"><a class="header" href="#r">\r</a></h4>
+<pre><code class="language-c">printf(&quot;coisas mais coisas\r outras coisas&quot;); // \r: elimina tudo o que está antes dele na linha.
+</code></pre>
+<p>Esse <code>\r</code> vem de “remove”, todos os caracteres da mesma linha e anteriores a ele serão apagados.</p>
+<blockquote>
+<p>saída:</p>
+</blockquote>
+<pre><code> outras coisas
+</code></pre>
+<h4 id="v"><a class="header" href="#v">\v</a></h4>
+<pre><code class="language-c">printf(&quot;coisas\voutrascoisas\vjoao\v.&quot;); // \v: tabulação vertical.
+</code></pre>
+<p>O <code>\v</code> vai quebrar a linha assim como o <code>\n</code>, mas em vez de iniciar a nova no inicio da linha, ele inicia no “final” da anterior, formando uma “escadinha”.</p>
+<blockquote>
+<p>saída:</p>
+</blockquote>
+<pre><code>coisas
+      outrascoisas
+                  joao
+                      .
+</code></pre>
+<h4 id=""><a class="header" href="#">\”</a></h4>
+<pre><code class="language-c">printf(&quot;\&quot;joao\&quot; é um nome feio&quot;); // \&quot;: exibe as aspas duplas.
+</code></pre>
+<p>Exibe as aspas duplas ( <code>&quot;</code> ), pois se você escrever simplesmente <code>&quot;</code> o C vai achar que aquele é o fim da string.</p>
+<blockquote>
+<p>saída:</p>
+</blockquote>
+<pre><code class="language-c">&quot;joao&quot; é um nome feio
+</code></pre>
+<h4 id="-1"><a class="header" href="#-1">\‘</a></h4>
+<pre><code class="language-c">printf(&quot;it\'s estranho&quot;); // \': exibe as aspas simples ou apótrofos.
+</code></pre>
+<p>Exibe a aspa simples (que alguns chamam de apóstrofo).</p>
+<blockquote>
+<p>saída:</p>
+</blockquote>
+<pre><code>it's estranho
+</code></pre>
+<h4 id="-2"><a class="header" href="#-2">\\</a></h4>
+<pre><code class="language-c">printf(&quot;isso é uma contra-barra: \\&quot;);     // \\: exibe a contra-barra
+</code></pre>
+<blockquote>
+<p>saída:</p>
+</blockquote>
+<pre><code>isso é uma contra-barra: \
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="entrada-e-saída-de-dados-1"><a class="header" href="#entrada-e-saída-de-dados-1">Entrada e saída de dados</a></h1>
+<h3 id="printf"><a class="header" href="#printf">printf</a></h3>
+<p><em>“Mas e se eu quiser imprimir uma variável?”</em> ... é só usar a formatação de texto do <code>printf</code> ... <em>“Mas como se usa isso?”</em> ... para imprimir uma variável <code>int</code> é só escrever um <code>%i</code> ou <code>%d</code> dentro da string. Se for um <code>char</code>, escreva <code>%c</code> na string, se for <code>float</code>, escreva <code>%f</code>, se for uma notação científica (geralmente usada no tipo <code>double</code>), escreva <code>%E</code>( se estiver usando o “e” maiúsculo) e <code>%e</code> para o “e” minúsculo, após escrever a formatação desejada, é só listar as variáveis separando por vírgula ligo após a string... <em>“Eu não entendi nada do que tu disse!”</em> ...Relaxa... Olhe o exemplo e suas dúvidas em relação a isso irão desaparecer:</p>
+<pre><code class="language-c">int numero = 90;
+char caractere = 'A';
+float real = 9.23;
+double real_em_dobro_E = 9.4E13;
+double real_em_dobro_e = 9.4e13;
+
+printf(&quot;numero inteiro: %i&quot;, numero);
+printf(&quot;numero real: %f&quot;, real);
+printf(&quot;numero real notação cientifica com \&quot;E\&quot;: %E&quot;, real_em_dobro_E);
+printf(&quot;numero real notação cientifica com \&quot;e\&quot;: %e&quot;, real_em_dobro_e);
+printf(&quot;caractere: %c&quot;, caractere);
+</code></pre>
+<blockquote>
+<p>saída:</p>
+</blockquote>
+<pre><code>numero inteiro: 90
+numero real: 9.23
+numero real notação cientifica com &quot;E&quot;: 9.4E13
+numero real notação cientifica com &quot;e&quot;: 9.4e13
+caractere: A
+</code></pre>
+<h3 id="scanf"><a class="header" href="#scanf">scanf</a></h3>
+<p>O scanf é semelhante ao printf, mas serve para ler dados:</p>
+<pre><code class="language-c">int numero;
+
+scanf(&quot;%i&quot;, &amp;numero);
+</code></pre>
+<p>Tá, eu sei que você está se perguntando <em>“e esse</em> <code>&amp;</code> <em>serve pra que?”</em> Esse <code>&amp;</code> diz para o <code>scanf</code> colocar o valor no lugar da memória onde está o número. O <code>&amp;</code> simboliza um endereçamento de memória, o <code>scanf</code> coloca o valor direto no local da memória onde está a variável.</p>
+<p>E como você pode perceber o <code>%i</code> se refere a um número inteiro. Todos os tipos de variáveis são simbolizados pelos símbolos (<code>%i</code>, <code>%c</code>, <code>%f</code>...) do <code>printf</code>.</p>
+<p>Também é possível ler várias variáveis com um único comando:</p>
+<pre><code class="language-c">int numero;
+char caractere;
+float real;
+
+printf(&quot;digite um numero um caractere e um numero real: \n&quot;);
+scanf(&quot;%i %c %f&quot;, &amp;numero, &amp;caractere, &amp;real);
+
+printf(&quot;\nnumero inteiro: %i&quot;, numero);
+printf(&quot;numero real: %f&quot;, real);
+printf(&quot;caractere: %c&quot;, caractere);
+</code></pre>
+<blockquote>
+<p>Na hora de ler um <code>char</code>, às vezes o <code>scanf</code> buga, isso ocorre quando ele recebe lixo do teclado, você só precisa ler a variável duas vezes, isso geralmente ocorre com <code>char</code>, mas se acontecer com outro tipo, a resolução para o problema é a mesma:</p>
+</blockquote>
+<pre><code class="language-c">fflush(stdin); // esse comando vai limpar o lixo da memória
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>digite um numero, um caractere e um numero real:
+3458
+J
+5.8769
+&gt;
+numero inteiro: 3458
+numero real: 5.8769
+caractere: J
+</code></pre>
+<p>Esses não são os únicos métodos de entrada e saída de dados, mas veremos outros em outros capítulos, esses são o bastante para prosseguirmos nossos estudos.</p>
+<h3 id="formatos-do-printf-e-scanf"><a class="header" href="#formatos-do-printf-e-scanf">Formatos do printf e scanf</a></h3>
+<h4 id="s"><a class="header" href="#s">%s</a></h4>
+<p>Strings ou texto, exemplo:</p>
+<pre><code class="language-c">printf(&quot;string: '%s'\n&quot;, &quot;string&quot;);
+</code></pre>
+<h4 id="d-e-i"><a class="header" href="#d-e-i">%d e %i</a></h4>
+<p>Inteiros, exemplo:</p>
+<pre><code class="language-c">printf(&quot;int: %i\n&quot;, 90);
+</code></pre>
+<h4 id="f"><a class="header" href="#f">%f</a></h4>
+<p>Reais, exemplo:</p>
+<pre><code class="language-c">printf(&quot;float: %f\n&quot;, 9.3);
+</code></pre>
+<p>E como são números com <code>.</code> você pode formatar a saída deles, o <code>9.3</code> vai ser exibido como <code>9.300000</code>, mas eu quero que saia <code>9.3</code></p>
+<pre><code class="language-c">printf(&quot;float: %.1f\n&quot;, 9.3);
+</code></pre>
+<blockquote>
+<p>Notem que entre o <code>%</code> e o <code>f</code> existe um <code>.1</code>, isso quer dizer que só é para exibir <code>1</code> numero após a “vírgula”(que no C é um <code>.</code>).</p>
+</blockquote>
+<p>O protótipo é mais ou menos assim:</p>
+<pre><code class="language-c">printf(&quot;%.&lt;decimais&gt;f\n&quot;, &lt;numero&gt;);
+</code></pre>
+<h4 id="c"><a class="header" href="#c">%c</a></h4>
+<p>Caracteres, exemplo:</p>
+<pre><code class="language-c">printf(&quot;char: %c\n&quot;, 'A');
+</code></pre>
+<h4 id="o"><a class="header" href="#o">%o</a></h4>
+<p>Numeros octais, exemplo:</p>
+<pre><code class="language-c">printf(&quot;int: %o\n&quot;, 018);
+</code></pre>
+<blockquote>
+<p>Numeros octais iniciam com <code>0</code>, logo <code>012</code> é o mesmo que <code>10</code></p>
+</blockquote>
+<h4 id="u"><a class="header" href="#u">%u</a></h4>
+<p>Numeros sem sinal, exemplo:</p>
+<pre><code class="language-c">printf(&quot;int: %u\n&quot;, 18);
+</code></pre>
+<h4 id="x"><a class="header" href="#x">%x</a></h4>
+<p>Numeros hexadecimais, exemplo:</p>
+<pre><code class="language-c">printf(&quot;int: %x\n&quot;, 0xDB7B5);
+</code></pre>
+<blockquote>
+<p>Todo hexadecimal começa com <code>0x</code>.</p>
+</blockquote>
+<h4 id="l"><a class="header" href="#l">%l</a></h4>
+<p>Numeros longos (sempre acompanhado pelo tipo alongado), exemplo:</p>
+<pre><code class="language-c">// Reais longos
+printf(&quot;double: %lf\n&quot;, (double) 9.3);
+
+// Inteiros longos
+printf(&quot;long int: %li\n&quot;, 698);
+</code></pre>
+<h3 id="putchar-e-puts"><a class="header" href="#putchar-e-puts">Putchar e puts</a></h3>
+<p>Basicamente o “put” significa coloque, logo, <code>putchar</code> é coloque um <code>char</code>:</p>
+<pre><code class="language-c">char c = '\n';
+
+putchar ('j');
+putchar ('o');
+putchar ('ã');
+putchar ('o');
+putchar ( c );
+putchar ('!');
+putchar ( c );
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>joao
+!
+</code></pre>
+<p>E seguindo a mesma lógica, <code>puts</code> é coloque uma string ( o <code>s</code> é uma abreviação ).</p>
+<pre><code class="language-c">char * str = &quot;string coisada&quot;;
+
+puts ( &quot;joao&quot; );
+puts ( &quot;!&quot; );
+
+puts ( str );
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>joao
+!
+string coisada
+</code></pre>
+<blockquote>
+<p>Uma particularidade do <code>puts</code> é que ele adiciona um <code>\n</code> no fim da string.</p>
+</blockquote>
+<h3 id="getchar-e-gets"><a class="header" href="#getchar-e-gets">Getchar e gets</a></h3>
+<p>Assim como o <code>scanf</code>, o <code>getchar</code> e o <code>gets</code>, são funções para leitura de dados, mas que só servem para ler variáveis do tipo <code>char</code> e strings.</p>
+<p>É assim que se usa o <code>getchar</code>:</p>
+<pre><code class="language-c">char j;
+
+j = getchar();
+</code></pre>
+<p>E o <code>gets</code> é usado assim:</p>
+<pre><code class="language-c">char str [20];
+gets(str);
+</code></pre>
+<blockquote>
+<p>Mesmo o <code>gets</code> sendo uma função contraindicada pela comunidade, ela ainda funciona, então caso o gcc aponte erros pelo uso do <code>gets</code>, saiba que ela vai funcionar normalmente.</p>
+</blockquote>
+<h3 id="fprintf-e-fgets"><a class="header" href="#fprintf-e-fgets">Fprintf e fgets</a></h3>
+<p>O <code>f</code> antes do <code>printf</code> significa formatação, logo, um <code>fprintf</code> é um <code>printf</code> formatado, e essa formatação é basicamente um parâmetro a mais indicando o lugar onde você quer escrever a informação.</p>
+<pre><code class="language-c">fprintf(stdout, &quot;Hello mundo!!\n&quot;); // printf ( &quot;Hello mundo!!&quot; )
+</code></pre>
+<blockquote>
+<p>O <code>stdout</code> é um “stream” ( local para onde vai a string do <code>fprintf</code> ), e o <code>printf</code> é um <code>fprintf</code> com o <code>stdout</code> como “stream”, e o <code>stdout</code> é a saída padrão (a tela).</p>
+</blockquote>
+<p>Mas também é possível enviar a saída para outros streams, dentre eles nós temos o <code>stderr</code>, que é a saída padrão de erros:</p>
+<pre><code class="language-c">char coisa [30];
+
+puts(&quot;escreva de 1 a 10 caracteres: &quot;);
+scanf (&quot;%s&quot;, &amp;coisa );
+
+if (coisa [0] == '\0' ) {
+   fprintf ( stderr, &quot;ERROR: você não digitou nenhum caractere!&quot;);
+   return 1;
+}
+
+if (coisa [10] != '\0' ) {
+   fprintf ( stderr, &quot;ERROR: você digitou caracteres demais!&quot;);
+   return 1;
+}
+</code></pre>
+<blockquote>
+<p>No programa acima são pedidos caracteres de 1 a 10, então se o caractere da posição <code>0</code> corresponder ao fim de uma string (<code>'\0'</code>) quer dizer que 0 caracteres foram lidos, e se o 11º caractere (posição <code>10</code>) for o fim da string (<code>'\0'</code>) quer dizer que existem mais de 10 caracteres na string.</p>
+</blockquote>
+<p>Note que quando ocorreu um erro o valor retornado foi o <code>1</code>, indicando para o sistema operacional que aconteceu um erro.</p>
+<p>O <code>fgets</code> seria um <code>gets</code> formatado, e ele funciona da seguinte maneira:</p>
+<pre><code class="language-c">char str[10];
+
+fgets ( stdin, 10, str ); // gets (str)
+</code></pre>
+<blockquote>
+<p>O <code>stdin</code> é a entrada de dados padrão (o teclado).</p>
+</blockquote>
+<p><em>“Ué? Então por que eu deveria usar esse <code>fgets</code> aí se o <code>gets</code> é mais simples?”</em> ...Muito simples, lembra que o <code>gets</code> tem um problema, tanto que ele é contra-indicado pelo próprio compilador? Pois é, o <code>fgets</code> não tem esse problema, porque nele além de você indicar a string a ser lida e o “stream”, ele exige que você coloque o tamanho da string, assim evitando colocar dados no lugar errado.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="operadores"><a class="header" href="#operadores">Operadores</a></h1>
+<h3 id="aritméticos"><a class="header" href="#aritméticos">Aritméticos</a></h3>
+<p>Os operadores aritméticos são os operadores matemáticos e são expressos da seguinte maneira em C:</p>
+<pre><code class="language-c">n + N // Adição            -&gt; soma os dois números;
+n - N // Subtração         -&gt; subtrai os dois números;
+n * N // Multiplicação     -&gt; multiplica dois números;
+n / N // Divisão           -&gt; divide dois números;
+n % N // resto da divisão  -&gt; retorna o resto da divivão entre dois números.
+</code></pre>
+<blockquote>
+<p>para evitar erros sempre faça operações com números de tipos iguais.</p>
+</blockquote>
+<p>E nunca se esqueça que em expressões numéricas existe uma ordem de precedência, logo, <code>6+4/2</code> é <code>8</code> e não <code>5</code>, e isso acontece porque assim como na matemática é resolvida primeiro a divisão (<code>4/2</code>) e depois é somado <code>6</code> a esse valor.</p>
+<p>Ordem de precedência:</p>
+<ul>
+<li>parênteses (<code>( )</code>)</li>
+<li>multiplicação (<code>*</code>), divivão (<code>/</code>) e resto (<code>%</code>)</li>
+<li>adição (<code>+</code>) e subtração (<code>-</code>)</li>
+</ul>
+<pre><code class="language-c">6+4/2    //  -&gt;  8
+(6+4)/2  //  -&gt;  5
+</code></pre>
+<h3 id="atribuição"><a class="header" href="#atribuição">Atribuição</a></h3>
+<p>O operadores de atribuição são formas simplificadas de atribuir valores... <em>“Não entendi...”</em></p>
+<p>Isso é uma atribuição:</p>
+<pre><code class="language-c">numero = 89;
+</code></pre>
+<p>E caso eu queira que este número valia ele mesmo + 1 eu faço:</p>
+<pre><code class="language-c">numero = numero + 1;
+</code></pre>
+<p>Mas para poupar esforços o C também aceita:</p>
+<pre><code class="language-c">numero += 1;
+</code></pre>
+<p>E isso vale para qualquer operação:</p>
+<pre><code class="language-c">numero += 2; // numero = numero + 2
+numero -= 3; // numero = numero - 3
+numero *= 7; // numero = numero * 7
+numero /= 2; // numero = numero / 2
+</code></pre>
+<p>Além desses também existe os operadores de incremento e decremento:</p>
+<pre><code class="language-c">numero ++; // numero = numero + 1
+numero --; // numero = numero - 1
+</code></pre>
+<blockquote>
+<p>os vistos acima são denominados de pós incremento, pois a variável só recebe o valor depois de retorna-lo <em>“O que?”</em> ... Observe:</p>
+</blockquote>
+<pre><code class="language-c">int numero = 89;
+printf(&quot;%i\n&quot;, numero++ );
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>89
+</code></pre>
+<p><em>“Pera! mas ele não deveria ser 90?”</em> ... A variável <code>numero</code> só é incrementada depois de retornar o valor dela, isso quer dizer que ela só é incrementada depois dessa parte do programa, mas se você usar o pré-incremento:</p>
+<pre><code class="language-c">int numero = 89;
+printf(&quot;%i\n&quot;, ++numero );
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>90
+</code></pre>
+<pre><code class="language-c">numero ++; // pós-incremento
+numero --; // pós-decremento
+
+++ numero; // pré-incremento
+-- numero; // pré-decremento
+</code></pre>
+<h3 id="relacionais"><a class="header" href="#relacionais">Relacionais</a></h3>
+<p>Os operadores lógicos são todos aqueles que testam uma expressão relacional e dizem se ela é verdadeira ou falsa.</p>
+<blockquote>
+<p>lembrando que no C verdadeiro é 1 e falso é 0.</p>
+</blockquote>
+<pre><code class="language-c">n == N // igual            -&gt; testa se n é igual a N;
+n != N // diferente        -&gt; testa se n é diferente de N;
+
+n &lt;  N // menor que        -&gt; testa se n é menor que N;
+n &gt;  N // maior que        -&gt; testa se n é maior que N;
+
+n &lt;= N // menor ou igual   -&gt; testa se n é menor ou igual a N;
+n &gt;= N // maior ou igual   -&gt; testa se n é maior ou igual a N;
+</code></pre>
+<p>Exemplo simples:</p>
+<pre><code class="language-c">printf(&quot;%i\n&quot;, 1 &lt; 2);
+printf(&quot;%i\n&quot;, 1 &gt; 2);
+printf(&quot;%i\n&quot;, 1 != 2);
+printf(&quot;%i\n&quot;, 1 == 2);
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>1
+0
+1
+0
+</code></pre>
+<blockquote>
+<p>E lembrem-se que os tipos dos dados sendo testados tem que ser o mesmo.</p>
+</blockquote>
+<p>Eles serão usados por vocês nas estruturas condicionais, laços de repetição e com o <strong>operador ternário</strong>.</p>
+<h3 id="lógicos"><a class="header" href="#lógicos">Lógicos</a></h3>
+<p>Os operadores lógicos são usados para assimilar operações que retornam valores lógicos... <em>“Como assim?”</em> ... São usados para operações verdadeiras e falsas.</p>
+<blockquote>
+<p>João pede ao seu pai um fone de ouvido e um celular, mas o seu pai só dá o fone de ouvido, e ele fica insatisfeito pois ele queria as duas coisas.</p>
+</blockquote>
+<p>João só ficaria satisfeito ( verdadeiro ) se ele ganhasse o celular e o fone de ouvido, como ele só ganhou o fone ele ficou insatisfeito ( falso ).</p>
+<p>O operador usado no exemplo acima é o “and” ( <code>&amp;&amp;</code> ) que só é “verdadeiro” se as duas opções forem verdadeiras, exemplo:</p>
+<pre><code class="language-c">printf(&quot;%i &amp;&amp; %i = %i\n&quot;, 1 &lt; 5, 2 &gt; 0, 1 &lt; 5   &amp;&amp;   2 &gt; 0);
+printf(&quot;%i &amp;&amp; %i = %i\n&quot;, 1+80 &lt; 5, 2 &gt; 0, 1+80 &lt; 5   &amp;&amp;   2 &gt; 0);
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>1 &amp;&amp; 1 = 1
+0 &amp;&amp; 1 = 0
+</code></pre>
+<p>Os operadores lógicos são o <code>&amp;&amp;</code>, que equivale a “and”(”e”), já visto anteriormente, o <code>||</code>, que equivale a “or”(”ou”) e o <code>!</code>, que equivale a “not”(”não”).</p>
+<blockquote>
+<p>considere os uns e zeros abaixo apenas o resultado de alguma operação relacional...</p>
+</blockquote>
+<table><thead><tr><th></th><th><code>&amp;&amp;</code></th><th></th><th>resultado final</th></tr></thead><tbody>
+<tr><td><code>1</code></td><td><code>&amp;&amp;</code></td><td><code>1</code></td><td>1</td></tr>
+<tr><td><code>0</code></td><td><code>&amp;&amp;</code></td><td><code>1</code></td><td>0</td></tr>
+<tr><td><code>1</code></td><td><code>&amp;&amp;</code></td><td><code>0</code></td><td>0</td></tr>
+<tr><td><code>0</code></td><td><code>&amp;&amp;</code></td><td><code>0</code></td><td>0</td></tr>
+</tbody></table>
+<p>|             |<code>||</code>|             | resultado final |
+|-------------|----|-------------|-----------------|
+| <code>1</code>         |<code>||</code>| <code>1</code>         | 1               |
+| <code>0</code>         |<code>||</code>| <code>1</code>         | 1               |
+| <code>1</code>         |<code>||</code>| <code>0</code>         | 1               |
+| <code>0</code>         |<code>||</code>| <code>0</code>         | 0               |</p>
+<table><thead><tr><th><code>!</code></th><th></th><th>resultado final</th></tr></thead><tbody>
+<tr><td><code>!</code></td><td><code>1</code></td><td>0</td></tr>
+<tr><td><code>!</code></td><td><code>0</code></td><td>1</td></tr>
+</tbody></table>
+<p>Exemplo:</p>
+<pre><code class="language-c">printf(&quot;%i &amp;&amp; %i = %i\n&quot;, 1 &lt; 5, 2 &gt; 0, 1 &lt; 5   &amp;&amp;   2 &gt; 0);
+
+printf(&quot;%i || %i = %i\n&quot;, 1 &lt; 5, 2 &gt; 6, 1 &lt; 5   ||   2 &gt; 6);
+
+printf(&quot;!(%i &amp;&amp; %i) = %i\n&quot;, 1 &lt; 5, 2 &gt; 6, !(1 &lt; 5   &amp;&amp;   2 &gt; 6));
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>1 &amp;&amp; 1 = 1
+1 || 0 = 1
+!(1 &amp;&amp; 0) = 1
+</code></pre>
+<h3 id="ternário-ou-condicional"><a class="header" href="#ternário-ou-condicional">Ternário ou condicional</a></h3>
+<pre><code class="language-c">int  numero = 80;
+char imparOuPar = (  numero % 2 == 0  ) ? 'p'               : 'i'              ;
+//                ( &lt;expressão logica&gt; ) ? &lt;se for Verdade&gt;  : &lt;se for Mentira&gt;
+</code></pre>
+<p>O código acima representa um uso simples do operador ternário e eu sei que você deve estar um pouco confuso com isso, mas eu explico:</p>
+<blockquote>
+<p>Antes de mais nada, saiba que <strong>todo número par tem o resto da divisão por 2 igual 0</strong> , então, no exemplo acima, caso <code>( numero % 2 == 0 )</code> seja verdadeiro, o operador vai retornar <code>'p'</code> de par, caso a expressão seja falso, ele vai retornar <code>'i'</code> de ímpar, portanto, o C vai testar a expressão lógica entre <code>(</code> e <code>)</code> se essa expressão for verdadeira, o valor da operação vai ser o que está entre <code>?</code>, e caso contrário, o valor será o que está após <code>:</code></p>
+</blockquote>
+<p>Outro exemplo do uso seria:</p>
+<pre><code class="language-c">int nota = 6;
+char status = ( nota &gt;= 7 ) ? 'p' : 'r';
+
+printf(&quot;João %s de ano&quot;, (status=='p')? &quot;passou&quot; : &quot;reprovou&quot; );
+</code></pre>
+<p>No código acima, se a nota do João for maior ou igual a 7, o programa escreve <code>&quot;João passou de ano&quot;</code> na tela, se não, ele escreve <code>&quot;João reprovou de ano&quot;</code>.</p>
+<h2 id="chegou-a-hora-de-praticar"><a class="header" href="#chegou-a-hora-de-praticar">Chegou a hora de praticar!</a></h2>
+<p>Agora chegou a hora de praticar, e não pule essa parte, pois o seu aprendizado só é absoluto se você praticar, então, para potencializar o seu aprendizado em C e em qualquer linguagem de programação:</p>
+<blockquote>
+<p>Dicas:</p>
+<ol>
+<li>Se tiver dificuldade em algo na hora da resolução do exercício, primeiro volte ao assunto antes de consultar a resposta;</li>
+<li>Sempre escreva todo o código: não use o <code>ctrl+C</code> e <code>ctrl+V</code> enquanto ainda está aprendendo, pois quando você escreve,  está acostumando o seu cérebro com a sintaxe da linguagem;</li>
+<li>Sempre que você conseguir resolver o desafio, antes de pular para o próximo, tente resolvê-lo de novo de outra maneira;</li>
+<li>Caso não consiga resolver, veja a resposta e depois tente fazer de novo de outra maneira;</li>
+<li>Crie seus próprios desafios para dificultar os que estão aqui.</li>
+</ol>
+</blockquote>
+<p>Todos os desafios serão resolvidos e explicados linha a linha, exceto o último de cada rodada, pois esse você vai ter que resolver sozinho, obrigatoriamente, para tentar provar para si mesmo que aprendeu e se você não conseguir, leia de novo os conteúdos anteriores e tente novamente. Caso você passe para a próxima parte sem resolvê-lo,  terá dificuldades posteriores em outros assuntos.</p>
+<h3 id="desafio-1"><a class="header" href="#desafio-1">Desafio 1</a></h3>
+<p>Faça uma calculadora onde o usuário digite dois números (reais) e no final ele exiba todas as operações matemáticas com esses números:</p>
+<blockquote>
+<p>saída:</p>
+</blockquote>
+<pre><code>digite um número: 3
+digite outro número: 4
+
+3 + 4 = 5
+3 - 4 = 5
+3 * 4 = 12
+3 / 4 = 0.75
+
+A divisão inteira entre 3 e 4 é 0 e o resto dessa divisão é 3
+</code></pre>
+<h4 id="resposta"><a class="header" href="#resposta">Resposta</a></h4>
+<p>Antes de mais nada, nós temos que digitar nossa estrutura padrão:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+int main (){
+
+return 0;
+}
+</code></pre>
+<p>Depois, nós temos que pedir dois números para o usuário:</p>
+<pre><code class="language-c">printf(&quot;digite um número: &quot;);
+printf(&quot;digite outro número: &quot;);
+</code></pre>
+<p>Agora, iremos ler os dois números, mas antes, temos que criar as variáveis que vão guardar esses números:</p>
+<pre><code class="language-c">float numero, outro_numero; // dessa forma criamos várias variáveis do mesmo tipo de uma vez
+</code></pre>
+<p>Agora, nós podemos ler os números:</p>
+<pre><code class="language-c">printf(&quot;digite um número: &quot;);
+scanf(&quot;%f&quot;, &amp;numero);
+
+printf(&quot;digite outro número: &quot;);
+scanf(&quot;%f&quot;, &amp;numero);
+</code></pre>
+<p>Finalmente, iremos exibir os resultados:</p>
+<pre><code class="language-c">printf(&quot;\n&quot;);
+printf(&quot;%f + %f = %f\n&quot;, numero, outro_numero, numero + outro_numero);
+printf(&quot;%f - %f = %f\n&quot;, numero, outro_numero, numero - outro_numero);
+printf(&quot;%f * %f = %f\n&quot;, numero, outro_numero, numero * outro_numero);
+printf(&quot;%f / %f = %f\n&quot;, numero, outro_numero, (float) numero / (float) outro_numero);
+printf(&quot;\n&quot;);
+printf(&quot;A divisão inteira entre %f e %f é %i e o resto dessa divisão é %i\n&quot;, 
+   numero, outro_numero, numero / outro_numero, numero % outro_numero);
+
+</code></pre>
+<p>E o código final ficou assim:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+int main (){
+
+   // criando variáveis que serão usadas
+   int numero, outro_numero; // dessa forma criamos várias variáveis do mesmo tipo de uma vez
+
+   // lendo variáveis
+   printf(&quot;digite um número: &quot;);
+   scanf(&quot;%i&quot;, &amp;numero);
+
+   printf(&quot;digite outro número: &quot;);
+   scanf(&quot;%i&quot;, &amp;outro_numero);
+
+   // exibindo variáveis
+   printf(&quot;\n&quot;);
+   printf(&quot;%i + %i = %i\n&quot;, numero, outro_numero, numero + outro_numero);
+   printf(&quot;%i - %i = %i\n&quot;, numero, outro_numero, numero - outro_numero);
+   printf(&quot;%i * %i = %i\n&quot;, numero, outro_numero, numero * outro_numero);
+   printf(&quot;%i / %i = %.2f\n&quot;, numero, outro_numero, (float) numero / (float) outro_numero);
+   printf(&quot;\n&quot;);
+   printf(&quot;A divisão inteira entre %i e %i é %i e o resto dessa divisão é %i\n&quot;,
+   numero, outro_numero, numero / outro_numero, numero % outro_numero);
+
+return 0;
+}
+</code></pre>
+<h3 id="desafio-2"><a class="header" href="#desafio-2">Desafio 2</a></h3>
+<p>Faça uma calculadora na qual o programa peça dois números e depois uma operação (a escolha deve ser entre soma e subtração).</p>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>Digite um número inteiro: 8
+Digite outro número inteiro: 2
+Digite a operação [+/-]: +
+
+A soma entre 8 e 2 é 10
+
+</code></pre>
+<h4 id="resposta-1"><a class="header" href="#resposta-1">Resposta</a></h4>
+<p>A primeira coisa que devemos fazer é obviamente escrever a estrutura padrão:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main (){
+
+   return 0;
+}
+</code></pre>
+<p>Agora, temos que declarar as variáveis que irão guardar os dados:</p>
+<pre><code class="language-c">int numero, outro_numero;
+char operacao;
+</code></pre>
+<p>E temos que pedir os dados para o usuário:</p>
+<pre><code class="language-c">printf(&quot;Digite um número inteiro: &quot;);
+scanf(&quot;%i&quot;, &amp;numero);
+
+printf(&quot;Digite outro número inteiro: &quot;);
+scanf(&quot;%i&quot;, &amp;outro_numero);
+
+printf(&quot;Digite a operação [+/-]: &quot;);
+fflush(stdin);
+
+scanf(&quot;%c&quot;, &amp;operacao);
+</code></pre>
+<blockquote>
+<p>no meu caso ocorreu aquele bug do <code>scanf</code> que eu mencionei no capítulo de entrada e saída de dados, mas caso no seu não aconteça apague a linha com o <code>fflush</code>.</p>
+</blockquote>
+<p>Agora, iremos testar se a operação escolhida foi soma ou subtração e depois salvar o resultado em outra variável (<code>res</code>):</p>
+<pre><code class="language-c">int res = ( operacao == '+' ) ? numero + outro_numero : numero - outro_numero ;
+//   ...se operacao for +            some          senao   subtraia
+</code></pre>
+<p>E finalmente exibimos os resultados:</p>
+<pre><code class="language-c">printf ( &quot;a %s entre %i e %i é %i\n&quot;, 
+   ( operacao == '+' ) ? &quot;soma&quot; : &quot;subtração&quot;, 
+   numero,
+   outro_numero,
+   res
+);
+</code></pre>
+<p>O código final ficou assim:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int main (){
+
+   // declarando variáveis
+   int numero, outro_numero;
+   char operacao = '+';
+
+   // lendo variáveis
+   printf(&quot;Digite um número inteiro: &quot;);
+   scanf(&quot;%i&quot;, &amp;numero);
+
+   printf(&quot;Digite outro número inteiro: &quot;);
+   scanf(&quot;%i&quot;, &amp;outro_numero);
+
+   printf(&quot;Digite a operação [+/-]: &quot;);
+   // resolvendo bug do scanf
+   scanf(&quot;%c&quot;, &amp;operacao);
+   // lendo variável
+   scanf(&quot;%c&quot;, &amp;operacao);
+
+   // calculando resultado
+   int res = ( operacao == '+' ) ? numero + outro_numero : numero - outro_numero ;
+   //   ...se operacao for +            some          senao   subtraia
+
+   // exibindo resultado
+   printf ( &quot;a %s entre %i e %i é %i\n&quot;, 
+         ( operacao == '+' ) ? &quot;soma&quot; : &quot;subtração&quot;, 
+         numero, 
+         outro_numero, 
+         res 
+   );
+
+   return 0;
+}
+</code></pre>
+<h3 id="desafio-3"><a class="header" href="#desafio-3">Desafio 3</a></h3>
+<p>Faça um programa que leia 3 números e diga quantos deles são ímpares ou pares e quantos deles são divisíveis por 3 (se divididos por 3 o resto tem que ser 0).</p>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>Digite 3 números: 2 1 3
+2 são ímpares, 1 é par e 1 é divisível por 3
+</code></pre>
+<p>Você já deve ter percebido que este é complicado, mas calma... É só pensar bem, e uma dica, explore bem o ternário antes.</p>
+<h4 id="resposta-2"><a class="header" href="#resposta-2">Resposta</a></h4>
+<p>A primeira coisa que iremos fazer é declarar e ler os números ( depois de escrever a estrutura padrão é claro ) :</p>
+<pre><code class="language-c">int n1, n2, n3; // Essa é a forma de declarar várias variáveis ao mesmo tempo
+
+printf (&quot;Digite 3 números: &quot;);
+scanf (&quot;%i %i %i&quot;, &amp;n1, &amp;n2, &amp;n3);
+</code></pre>
+<p>Agora nós iremos declarar contadores para os ímpares, pares e divisíveis por 3 e iniciá-los com <code>0</code> (se não fizer isso suas variáveis vão receber lixos da memória):</p>
+<pre><code class="language-c">int impar = 0, par = 0, divPor3 = 0; // essa é a forma de inicializar várias variáveis ao mesmo tempo
+</code></pre>
+<p>Declarados os contadores, iremos testar os números pares e ímpares:</p>
+<pre><code class="language-c">// se o número for divisível por 2 incremente par senão incremente impar
+( n1 % 2 == 0 )? par ++: impar ++;
+( n2 % 2 == 0 )? par ++: impar ++;
+( n3 % 2 == 0 )? par ++: impar ++;
+</code></pre>
+<p>Agora testamos os divisíveis por 3:</p>
+<pre><code class="language-c">divPor3 = ( n1 % 3 == 0 )? divPor3 + 1: divPor3;
+divPor3 = ( n2 % 3 == 0 )? divPor3 + 1: divPor3;
+divPor3 = ( n3 % 3 == 0 )? divPor3 + 1: divPor3;
+</code></pre>
+<p>E por fim exibimos os valores:</p>
+<p>Aqui nós temos duas opções, exibimos os dados de forma preguiçosa:</p>
+<pre><code class="language-c">printf ( &quot;%i são ímpares\n&quot;, impar);
+printf ( &quot;%i são pares\n&quot;, par);
+printf ( &quot;%i são divíveis por 3\n&quot;, divPor3);
+</code></pre>
+<blockquote>
+<p>E nesse caso, quando o contador vale 0 ou 1, vai ficar “0 são <algo>“ ou “1 são <algo>“.</p>
+</blockquote>
+<p>Ou tentamos adaptar a resposta para que ela respeite os plurais e singulares e assim criando um programa mais inteligente:</p>
+<blockquote>
+<p>Ambos os códigos de exibição dos dados funcionarão da mesma forma, basicamente temos que exibir uma resposta assim:</p>
+</blockquote>
+<blockquote>
+<p><code>&lt;contador&gt; &lt;são (se plural)|| é (se singular)&gt; &lt;info que o contador se refere&gt;</code></p>
+</blockquote>
+<blockquote>
+<p>E caso o contador for <code>0</code> essa resposta tem que ser assim: <code>nenhum é &lt;info que o contador se refere&gt;</code></p>
+</blockquote>
+<blockquote>
+<p>mas para economizar linhas de código essas duas formas de frase teriam que ser uma só, logo, eu temos que montar um esqueleto assim:</p>
+</blockquote>
+<blockquote>
+<p><code>&lt;contador&gt;&lt;caractere auxiliar&gt;&lt;string indicando a quantidade&gt; &lt;info a que o contador se refere&gt;</code></p>
+</blockquote>
+<blockquote>
+<p>Então a string do <code>printf</code> ficou assim: <code>&quot;%i%c%s %s\n&quot;</code></p>
+<p>Agora que temos o “esqueleto” da resposta, temos que dar valores a esses campos e o primeiro é o contador ( <code>par</code>, <code>impar</code> e <code>divPor3</code> )</p>
+<p>O segundo é o caractere auxiliar e ele tem que apagar o contador caso ele for nulo (igual a <code>0</code>) com o caractere <code>\b</code>, caso contrário ele insere um espaço (’ ‘):</p>
+<p><code>( &lt;contador&gt; == 0 ) ? '\b' : ' ' </code></p>
+<p>O terceiro é a string indicando a quantidade, e nesse caso temos três opções, se o contador for 0 essa string tem que ser <code>&quot;nenhum é&quot;</code>, se o contador não for <code>0</code> ele testa se o contador é igual a 1, e caso for verdadeiro essa string vai valer <code>&quot;é&quot;</code> (indicando que é singular), senão ele obviamente é plural (contador maior que <code>1</code>) então essa string vai valer <code>&quot;são&quot;</code>:</p>
+<p><code>(&lt;contador&gt; == 0)? &quot;nenhum é&quot; : ( ( &lt;contador&gt; == 1 )? &quot;é&quot; : &quot;são&quot; )</code>.</p>
+<p>Por fim é só testar se é plural ou singular e colocar a informação a que o contador se refere no plural ou singular:</p>
+<p><code>(&lt;contador&gt; &gt; 1)? &lt;info no plural&gt; : &lt;info no singular&gt;</code></p>
+</blockquote>
+<blockquote>
+<p>O “esqueleto” final do printf ficou assim:</p>
+</blockquote>
+<pre><code class="language-c">printf ( &quot;%i%c%s %s&quot;,
+         &lt;contador&gt;,                                              // %i
+         (&lt;contador&gt; == 0)? '\b' : ' ',                           // %c
+         (&lt;contador&gt; == 0)? &quot;nenhum é&quot; :
+               ( ( &lt;contador&gt; == 1 )? &quot;é&quot; : &quot;são&quot; ),              // %s
+         (&lt;contador&gt; &gt; 1)? &lt;info no plural&gt; : &lt;info no singular&gt;  // %s
+);
+</code></pre>
+<p>E é assim que fica a exibição dos resultados seguindo o esqueleto acima:</p>
+<pre><code class="language-c">// Hora de exibir os resultados
+
+printf(
+   &quot;%i%c%s %s,&quot;, 
+
+   impar,
+   (impar == 0 )? '\b' : ' ',
+
+   (impar == 0 )?  &quot;nenhum é&quot; :
+      ( (impar == 1 )? &quot;é&quot; : &quot;são&quot; ) ,
+
+   (impar &gt; 1)? &quot;ímpares&quot;: &quot;ímpar&quot;
+);
+
+printf(
+   &quot; %i%c%s %s&quot;, 
+
+   par,
+   (par == 0 )? '\b' : ' ',
+   (par == 0 )? &quot;nenhum é&quot; :
+      ( (par == 1 )? &quot;é&quot; : &quot;são&quot; ),
+
+   (par &gt; 1)? &quot;pares&quot;: &quot;par&quot;
+);
+
+printf(
+   &quot; e %i%c%s %s\n&quot;, 
+
+   divPor3,
+   (divPor3 == 0 )? '\b' : ' ',
+
+   (divPor3 == 0 )? &quot;nenhum é&quot; :
+      ( (divPor3 == 1 )? &quot;é&quot; : &quot;são&quot; ),
+
+   (divPor3 &gt; 1)? &quot;divisíveis por 3&quot;: &quot;divisível por 3&quot;
+);
+</code></pre>
+<p>E o código final ficou assim:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+int main(int argc, char **argv){
+
+   // declaração e leitura de variáveis
+   int n1, n2, n3;
+
+   printf (&quot;Digite 3 números: &quot;);
+   scanf (&quot;%i %i %i&quot;, &amp;n1, &amp;n2, &amp;n3);
+
+   // declaração e inicialização dos contadores
+   int impar = 0, par = 0, divPor3 = 0;
+
+   // se o número for divisível por 2 incremente par senão incremente impar
+   ( n1 % 2 == 0 )? par ++: impar ++;
+   ( n2 % 2 == 0 )? par ++: impar ++;
+   ( n3 % 2 == 0 )? par ++: impar ++;
+
+   // se é divisível por 3 incremente senão não incremente
+   divPor3 = ( n1 % 3 == 0 )? divPor3 + 1: divPor3;
+   divPor3 = ( n2 % 3 == 0 )? divPor3 + 1: divPor3;
+   divPor3 = ( n3 % 3 == 0 )? divPor3 + 1: divPor3;
+
+   // Hora de exibir os resultados
+
+   printf(
+      &quot;%i%c%s %s&quot;, 
+
+      impar,
+      (impar == 0 )? '\b' : ' ',
+
+      (impar == 0 )?  &quot;nenhum é&quot; :
+         ( (impar == 1 )? &quot;é&quot; : &quot;são&quot; ) ,
+
+      (impar &gt; 1)? &quot;ímpares&quot;: &quot;ímpar&quot;
+   );
+
+   printf(
+      &quot;%i%c%s %s&quot;, 
+
+      par,
+      (par == 0 )? '\b' : ' ',
+      (par == 0 )? &quot;nenhum é&quot; :
+         ( (par == 1 )? &quot;é&quot; : &quot;são&quot; ),
+
+      (par &gt; 1)? &quot;pares&quot;: &quot;par&quot;
+   );
+
+   printf(
+      &quot; e %i%c%s %s\n&quot;, 
+
+      divPor3,
+      (divPor3 == 0 )? '\b' : ' ',
+
+      (divPor3 == 0 )? &quot;nenhum é&quot; :
+         ( (divPor3 == 1 )? &quot;é&quot; : &quot;são&quot; ),
+
+      (divPor3 &gt; 1)? &quot;divisíveis por 3&quot;: &quot;divisível por 3&quot;
+   );
+
+   return 0;
+}
+</code></pre>
+<h3 id="desafio-4"><a class="header" href="#desafio-4">Desafio 4</a></h3>
+<p>Faça um programa que leia 3 números e diga qual é o maior e qual é o menor, e se a pessoa digitar números iguais, ele tem que avisar “foram digitados números iguais”.</p>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>Digite 3 números:2
+3
+3
+
+O número 1 é o menor
+O número 3 é o maior
+
+foram digitados números iguais
+</code></pre>
+<p>Este você tem que fazer sozinho, todas as coisas necessárias para fazê-lo foram ensinadas. Boa sorte e se não conseguir fazer, releia os capítulos anteriores com muito cuidado, e depois tente de novo.</p>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="arrays-e-strings"><a class="header" href="#arrays-e-strings">Arrays e Strings</a></h1>
+<h2 id="arrays"><a class="header" href="#arrays">Arrays</a></h2>
+<p>Arrays são variáveis com vários espaços... <em>“Como assim?”</em> ... Lembra do armário das variáveis? No caso do array, em vez de reservar um espaço, você pede vários espaços de uma vez, tipo:</p>
+<blockquote>
+<p><code>cubo dado [] com </code> :game_die:<code>,</code>:game_die:<code>,</code>:game_die:<code> dentro</code></p>
+</blockquote>
+<pre><code class="language-c">int algarismos [] = { 1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 0 };
+</code></pre>
+<p>E também é possível acessar um item específico do array adicionando a posição entre <code>[</code> e <code>]</code>.</p>
+<pre><code class="language-c">int algarismos [] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+
+int tres = algarismos[2]
+</code></pre>
+<p>Agora, a variável <code>tres</code> está com o item <code>3</code>, <em>“Mas o 3 está da 3º posição!”</em> , eu entendo, esse é um erro que todo iniciante comete, a questão é que a contagem começa do <code>0</code>:</p>
+<pre><code class="language-c">//                    [0] [1] [2] [3] [4] [5] [6] [7] [8] [9]
+int algarismos [] = {  1 , 2 , 3 , 4 , 5 , 6 , 7 , 8 , 9 , 0};
+</code></pre>
+<p>E desta forma é possível modificar um valor do array:</p>
+<pre><code class="language-c">algarismos[9] = 9;
+</code></pre>
+<p>Mas para modificar o array inteiro é necessário modificar item por item, portanto, a seguinte forma não funcionará:</p>
+<pre><code class="language-c">int algarismos [] = { 1, 2, 3, 4, 5, 6, 7, 8, 9, 0};
+
+algarismos = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+</code></pre>
+<p>Os arrays não podem ser impressos ou atribuídos, isso significa que todos os itens tem de ser imprimidos um por um:</p>
+<pre><code class="language-c">a [] = { 0, 1, 2, 3, 4, 5, 6, 7, 8, 9};
+
+printf (
+   &quot;%i, %i, %i, %i, %i, %i, %i, %i, %i, %i\n&quot;,
+   a[1], a[2], a[3], a[4], a[5], a[6], a[7], a[8], a[9], a[0]
+);
+</code></pre>
+<p>E antes que alguém pergunte <em>“Só existe array inteiro?”</em>, não, você pode fazer arrays com qualquer tipo primitivo.</p>
+<p>Se você prestou atenção no capítulo sobre variáveis você deve conhecer o comando <code>sizeof</code>, que diz a quantidade de bytes de uma variável, se você usar com arrays também:</p>
+<pre><code class="language-c">int i [3];
+printf (&quot;o tamanho de &quot;i&quot; é %i&quot;, sizeof i);
+</code></pre>
+<p><em>“Mas e se eu quiser saber a quantidade de elementos do meu array?”</em> ... você só precisa dividir o tamanho do array pelo tamanho do tipo desse array... <em>“Como assim?”</em> ... O tamanho de uma variável <code>int</code> é o mesmo do tipo <code>int</code>, logo, o tamanho do tipo é o tamanho de uma variável com esse tipo...</p>
+<pre><code class="language-c">int i;
+int array_i [8];
+
+int tmh_i = sizeof i;           // tamanho de i
+int tmh_ari = sizeof array_i;   // tamanho de array_i
+
+int qnt_elem = tmh_ari / tmh_i; // quantidade de elementos
+</code></pre>
+<p>Ou, se você for preguiçoso igual eu:</p>
+<pre><code class="language-c">int array_i [8];
+
+int qnt_elem = sizeof array_i / sizeof array_i[0]; // quantidade de elementos
+</code></pre>
+<blockquote>
+<p>lembrem-se de que <code>array_i</code> é um array do tipo <code>int</code>, ou seja, tem elementos do tipo <code>int</code>, logo, se eu usar o tamanho de um desses elementos eu também vou ter acesso ou tamanho do tipo...</p>
+</blockquote>
+<h2 id="strings"><a class="header" href="#strings">Strings</a></h2>
+<p>Uma string é uma cadeia de caracteres ou um array de caracteres ou um “vetor” de caracteres.</p>
+<p><em>“Mas se é um array, por que eu preciso ler essa parte se você já explicou os arrays?”</em> ... Muito simples, as strings são arrays e possuem todas as características de arrays, mas elas têm algumas particularidades.</p>
+<pre><code class="language-c">char Char = 'A';          // isso é um caractere
+char String [] = &quot;coisa&quot;; // isso é uma cadeia de caracteres
+
+// essa é a maneira de tradicional de escrever a string
+char other_str [] = {'c', 'o', 'i', 's', 'a', '\0'};
+</code></pre>
+<blockquote>
+<p>tanto a variável <code>String</code> quanto a <code>other_str</code> são strings, mas, caso você use a segunda forma, não se esqueça do <code>\0</code> no fim, pois este caractere é o que delimita o fim de uma string.</p>
+</blockquote>
+<p>Caso não queira dar valor para a string, você deverá dizer qual o seu tamanho (assim como em qualquer outro tipo de array), exemplo:</p>
+<pre><code class="language-c">char String [10];
+</code></pre>
+<blockquote>
+<p>Caso você necessite usar a forma acima, lembre-se de colocar um numero a mais no comprimento da string, pois o último caractere é reservado para simbolizar o fim de uma string, por isso esta string só tem 9 caracteres válidos.</p>
+</blockquote>
+<p><em>“Tá, mas como eu dou um valor para ela?”</em> ... Você pode fazer isso de três maneiras.</p>
+<p>A primeira forma é a tradicional para dar valores a um array:</p>
+<pre><code class="language-c">char s [13];
+
+s[0] = 'c';
+s[1] = 'o';
+s[2] = 'i';
+s[3] = 's';
+s[4] = 'a';
+s[5] = 's';
+s[6] = '\0';
+</code></pre>
+<blockquote>
+<p>E só pra relembrar: NÃO SE ESQUEÇA DO <code>\0</code>... Tô parecendo até flashback de naruto com esse caractere ...</p>
+</blockquote>
+<p>Na segunda, você tem que importar a biblioteca <code>string.h</code> e depois usar a função <code>strcpy</code> para atribuir o valor, dessa maneira:</p>
+<pre><code class="language-c">#include &lt;string.h&gt;
+
+char str[13];
+strcpy(str, &quot;coisas&quot;);
+</code></pre>
+<blockquote>
+<p>O <code>include</code> acima pode ficar tanto dentro da função <code>main</code> quanto fora, só é importante colocar antes do uso da função <code>strcpy</code>.</p>
+</blockquote>
+<p>E a terceira, você vai ter que esperar pelo capítulo de ponteiros para entender, logo, use as mostradas acima por enquanto.</p>
+<p>Note que você não é obrigado a colocar a quantidade exata de caracteres na string, mas não coloque uma string maior que o tamanho tamanho estipulado.</p>
+<p><em>“Legal, mas se eu quiser ler uma string? Ou imprimir uma string?”</em> ... Muito simples, é só usar o <code>%s</code> no <code>scanf</code> e no <code>printf</code>, mas em relação ao <code>scanf</code> temos uma leve diferença:</p>
+<pre><code class="language-c">char str [20];
+scanf(&quot;%s&quot;, &amp;str);
+
+printf(&quot;a string lida foi: %s\n&quot;, str);
+</code></pre>
+<p>Uma coisa que eu sei que você ficou na dúvida no capítulo sobre variáveis foi o por que de <code>'A'</code> ser diferente de <code>&quot;A&quot;</code>.</p>
+<pre><code class="language-c">char Char = 'A';
+char String = &quot;A&quot;;
+</code></pre>
+<p>‘A’ é diferente de “A”, pois a string tem sempre um caractere nulo no fim:</p>
+<table><thead><tr><th></th><th>[0]</th><th>[1]</th></tr></thead><tbody>
+<tr><td>Char</td><td>‘A’</td><td></td></tr>
+<tr><td>String</td><td>‘A’</td><td>‘\0’</td></tr>
+</tbody></table>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="escopo-e-condicionais"><a class="header" href="#escopo-e-condicionais">Escopo e Condicionais</a></h1>
+<h2 id="os-blocos-e-o-escopo"><a class="header" href="#os-blocos-e-o-escopo">Os blocos e o escopo</a></h2>
+<p>Até agora eu apenas mencionei o que é um bloco lá no inicio do livro para explicar a função <code>main</code>, mas acho que aquilo não foi o suficiente para encerrar o assunto.</p>
+<p>A primeira característica de um bloco, que a propósito já foi abordada, é que ele é uma sequencia de comandos entre <code>{</code> e <code>}</code>, mas uma coisa que você não sabia é que ele pode ser usado sem a necessidade de uma estrutura:</p>
+<pre><code class="language-c">int numero;
+
+{
+   numero = 89;
+}
+
+numero += 67;
+</code></pre>
+<p><em>“mas que diferença isso fez para o programa?”</em> , neste caso acima nenhuma, mas os blocos podem ser úteis para a organização do código e também para o isolamento de variáveis:</p>
+<pre><code class="language-c">int n = 46;
+{
+   char a = n;
+   printf(&quot;char: %c\n&quot;, a);
+}
+printf(&quot;char: %c\n&quot;, a);
+</code></pre>
+<p>O programa a cima não irá compilar por que a variável <code>a</code> só existe dentro do bloco, logo, o segundo <code>printf</code> não vai conseguir imprimir a variável.</p>
+<p>Isso acontece por causa de uma coisa que chamamos de escopo, e o escopo determina o nível de acesso de uma variável no código, isso significa a variável <code>a</code> do código anterior só podia ser acessada dentro do bloco onde foi declarada, e é o que chamamos de variável local.</p>
+<pre><code class="language-c">int coisa = 0;
+
+int main () {
+
+   int outra_coisa = 90;
+
+   // bloco
+   {
+      int A = 100;
+   }
+   return 0;
+}
+</code></pre>
+<p>O escopo do código anterior seria assim:</p>
+<blockquote>
+<p>Trate o “X” como “pode acessar” o bloco dentro da função <code>main</code> é o “bloco” da tabela e tudo o que está fora da função <code>main</code> é a área “global”.</p>
+</blockquote>
+<table><thead><tr><th></th><th>bloco</th><th><code>main</code></th><th>global</th></tr></thead><tbody>
+<tr><td><code>coisa</code></td><td>X</td><td>X</td><td>X</td></tr>
+<tr><td><code>outra_coisa</code></td><td>X</td><td>X</td><td></td></tr>
+<tr><td><code>A</code></td><td>X</td><td></td><td></td></tr>
+</tbody></table>
+<blockquote>
+<p>A variável <code>coisa</code> é global porque está fora de todos os blocos possíveis, portanto pode ser acessada em qualquer bloco do programa, enquanto a variável <code>outra_coisa</code> é local da função <code>main</code>, logo, todo e qualquer bloco dentro do <code>main</code> pode ter acesso a ela, e a variável <code>A</code> só existe dentro do bloco isolado.</p>
+</blockquote>
+<pre><code class="language-c">int a = 78973;
+{
+   char a = 'a';
+   printf(&quot;char a : %c\n&quot;, a);
+}
+printf(&quot;int a : %i\n&quot;, a);
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>char a : a
+int a : 78973
+</code></pre>
+<blockquote>
+<p>O que aconteceu aqui foi que a variável <code>a</code> do tipo inteiro foi declarada fora do bloco, logo, ela existia também dentro do bloco, até que outra variável <code>a</code> foi declarada dentro do bloco também, e o valor do <code>a</code> de dentro do bloco não sob-escreve o <code>a</code> de fora do bloco porque ela só existe dentro do bloco, e quando o bloco acaba a variável <code>a</code> do tipo <code>char</code> deixa de existir e o <code>a</code> inteiro continua existindo...</p>
+</blockquote>
+<p>Eu sei que é um pouco confuso, mas isso acontece simplesmente por que as variáveis de escopos diferentes são declaradas áreas diferentes da memória.</p>
+<p>E nunca se esqueça que essas regras vistas neste capítulo serve para todo e qualquer bloco...</p>
+<h2 id="condicionais"><a class="header" href="#condicionais">Condicionais</a></h2>
+<p>Até agora nós fizemos códigos mais sequenciais, onde todos os comandos eram executados e a única forma de decisão que usamos foi o operador ternário.</p>
+<pre><code class="language-c">int n;
+
+printf(&quot;digite um número: &quot;);
+scanf(&quot;%i&quot;, &amp;n);
+
+// com o ternário
+printf(&quot;o número %i é %s &quot;, n, (  n % 2 == 0   ) ?     &quot;par&quot;    :  &quot;ímpar&quot;   );
+//                             (operação lógica) ? caso verdade : caso falso
+
+// com condicionais
+printf(&quot;o número %i é &quot;, n)
+if (n % 2 == 0) {         // se n for par
+   printf(&quot;par \n&quot;);      //   escreva &quot;par&quot;
+} else {                  // senão
+   printf(&quot;ímpar \n&quot;);    //   escreva &quot;ímpar&quot;
+}
+</code></pre>
+<p>Note que os condicionais são muito mais intuitivos, e por isso são mais fáceis de usar que o ternário... <em>“Ué? Então por que você mostrou o ternário primeiro?”</em> ...Porque eu precisava de uma estrutura que não exigisse um conhecimento sobre blocos e escopo e que tornasse o você mais preparado para esse assunto, pois se você entendeu o ternário você com certeza entendeu os condicionais.</p>
+<p><em>“Mas com o ternário ficou muito mais curto!”</em> ...Sim, mas e se sempre que o número for ímpar ele tenha também de pedir outro número ao usuário?...</p>
+<blockquote>
+<p>Não se questione sobre esta funcionalidade a mais, ela é só uma forma de dificultar um pouco o exemplo.</p>
+</blockquote>
+<pre><code class="language-c">// com ternário
+int n;
+
+printf(&quot;digite um número: &quot;);
+scanf(&quot;%i&quot;, &amp;n);
+
+   (  n % 2 == 0  )? printf(&quot;o número %i é par&quot;, n) : printf(&quot;digite outro número: &quot;);
+//   se n for par         diga que ele é par      senão        peça outro número
+
+int reserva = n;
+n = ( n % 2 == 0 ) ?   n       :      scanf(&quot;%i&quot;, &amp;reserva);
+//   se n for par    n é n   senão      leia outro número
+
+n = reserva;
+</code></pre>
+<blockquote>
+<p>antes que você se pergunte o por quê de eu ter criado a variável <code>reserva</code>, se o código estivesse assim:</p>
+</blockquote>
+<pre><code class="language-c">n = ( n % 2 == 0 ) ? n : scanf(&quot;%i&quot;, &amp;n);
+</code></pre>
+<blockquote>
+<p>O <code>scanf</code> iria ler o valor, colocar dentro do n, mas quando ele finalizasse esta instrução ele retornaria um <code>1</code> ou um <code>0</code> para informar se deu certo ou não, e esse feedback do <code>scanf</code> substituiria o valor lido por ele, e sempre que o número fosse ímpar o <code>n</code> seria <code>1</code> ou <code>0</code>, então a variável <code>reserva</code> serve de reserva para o valor de <code>n</code>.</p>
+</blockquote>
+<pre><code class="language-c">// com condicionais
+int n;
+
+printf(&quot;digite um número: &quot;);
+scanf(&quot;%i&quot;, &amp;n);
+
+if (n % 2 == 0) {                    // se n for par
+   printf(&quot;o número %i é par&quot;, n);   // diga que ele é par
+} else {                             // senão
+   printf(&quot;digite outro número: &quot;);  // peça outro número
+   scanf(&quot;%i&quot;, &amp;n);                  // e leia esse número
+}
+</code></pre>
+<p>Note que o código feito com condicionais ficou muito mais organizado e simples de entender, além de eliminar a necessidade da variável auxiliar <code>reserva</code>...</p>
+<p>Existem 3 formas de fazer um condicional no C:</p>
+<pre><code class="language-c">int condicao = (67 != 5);  /*
+                              e se você prestou atenção 
+                              no capítulo de operadores 
+                              sabe que o valor dessa 
+                              variável é 1.
+                           */
+int outra_condicao = (8 &gt; 2);
+
+// simples
+
+if ( condicao ) {
+   // comandos
+}
+
+// composto
+if ( condicao ) {
+   // comandos
+else {
+   // outros comandos
+}
+
+// aninhado
+if ( condicao ) {
+   // comandos
+else if ( outra_condicao ) {
+   // comandos
+} else {
+   // outros comandos
+}
+</code></pre>
+<blockquote>
+<p>Mas o bloco não é obrigatório para o uso do condicional, caso você queira um <code>if</code> mais compacto:</p>
+</blockquote>
+<pre><code class="language-c">if (condicao) /* comando */;
+</code></pre>
+<blockquote>
+<p>Caso você precise executar mais de um comando você vai ter que usar um bloco, mas você usar a forma acima em conjunto com as anteriores, logo, o seguinte código é válido:</p>
+</blockquote>
+<pre><code class="language-c">int i = 3847;
+
+if (i % 2 == 0) printf(&quot;O número é par!\n&quot;);
+
+else if ( ( (float) i / 3.0 == 0.0 ) &amp;&amp; ( i % 2 == 1 ) ) {
+   printf(&quot;O número é ímpar e divisível por 3!&quot;);
+   printf(&quot;\n&quot;);
+}
+
+else printf(&quot;O número é ímpar!&quot;);
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="estruturas-de-repetição"><a class="header" href="#estruturas-de-repetição">Estruturas de repetição</a></h1>
+<p>Estruturas de repetição são estruturas que permitem que você repita comandos, e isso te permite automatizar algumas coisas como atribuir valor a arrays ou fazer contagem...</p>
+<h2 id="while"><a class="header" href="#while">While</a></h2>
+<pre><code class="language-c">// exibindo uma contagem até 5
+
+// sem estruturas de repetição
+printf(&quot;%i\n&quot;, 1);
+printf(&quot;%i\n&quot;, 2);
+printf(&quot;%i\n&quot;, 3);
+printf(&quot;%i\n&quot;, 4);
+printf(&quot;%i\n&quot;, 5);
+
+// com uma estrutura de repetição
+int contador = 1;
+while (contador &lt;= 5){          // enquanto o contador for menor ou igual 5
+   printf(&quot;%i\n&quot;, contador);    //   escreva o contador
+   contador ++;                 //   e incremente o contador
+}
+</code></pre>
+<blockquote>
+<p>No caso acima temos duas formas de exibir uma contagem... <em>“Mas deu a mesma quantidade de linhas, então não vale a pena aprender esse negócio difícil aí, a primeira opção é mais simples!!”</em> ... E se ao invés de contar até 5 nós precisássemos contar até mil? Você ainda acha aceitável escrever isso sem usar uma estrutura de repetição ?</p>
+</blockquote>
+<p>A estrutura usada é o <code>while</code>, que significa “enquanto”, basicamente ele funciona assim:</p>
+<pre><code class="language-c">condicao = (2 != 3);
+while ( condicao ) {   // enquanto a condição for verdade execute
+   // comandos
+}
+</code></pre>
+<p>E se a condição for verdadeira o <code>while</code> vai executar os comandos do bloco, mas se ela for falsa ele vai sair do loop (estrutura de repetição).</p>
+<p>E assim como nos condicionais, se você precisar</p>
+<p>No caso da contagem foi necessário adicionar <code>1</code> ao contador, pois se a <code>condicao</code> sempre for verdadeira o programa vai entrar em um loop infinito, e foi isso que aconteceu com o nosso exemplo anterior, pois o <code>2</code> sempre será diferente do <code>3</code>.</p>
+<p>Mas isso não quer dizer que loops infinitos sejam sempre ruins,Digamos que agente queira que um programa leia dados, mas não sabemos a quantidade exata de vezes ler, então criamos um loop infinito e damos um “flag”(uma forma de interrupção do loop) a ele, no nosso exemplo flag será a resposta para a pergunta “Deseja continuar?”, caso a pessoa digite “n” loop será interrompido.</p>
+<p>Eu vou ilustrar a situação acima de duas maneiras usando o <code>while</code>.</p>
+<pre><code class="language-c">// usando o teste lógico do while
+{
+   char flag = 's';
+
+   while (flag == 's'){
+      printf(&quot;Deseja continuar? [s/N] &quot;);
+      scanf(&quot;%c&quot;, &amp;flag);
+   }
+}
+
+// usando o break
+{
+   char flag;
+
+   while (1) {
+      printf(&quot;Deseja continuar? [s/N] &quot;);
+      scanf(&quot;%c&quot;, &amp;flag);
+
+      if (flag != 's') break; // se a resposta for não interrompa
+   }
+}
+</code></pre>
+<blockquote>
+<p>O break é um comando que interrompe loops</p>
+</blockquote>
+<p>E assim como nos condicionais o <code>while</code> também tem uma forma compacta:</p>
+<pre><code class="language-c">int cont = 0;
+while (cont &lt;= 10) printf(&quot;%i\n&quot;, cont++);
+</code></pre>
+<h2 id="dowhile"><a class="header" href="#dowhile">Do..while</a></h2>
+<p>A estrutura popularmente conhecida como <code>do</code>..<code>while</code> é basicamente um <code>while</code> de cabeça para baixo.</p>
+<pre><code class="language-c">// exibindo uma contagem até 5
+int i = 1;
+
+// while
+
+while ( i &lt;= 5 )         // enquanto ( i menor ou igual a 5 )
+   printf ( &quot;%i\n&quot;, i++ );  //     escreva i
+
+// do..while
+do {                         // faça {
+   printf ( &quot;%i\n&quot;, i );     //    escreva i
+} while ( i&lt;=5 );            // } enquanto ( i menor ou igual a 5 )
+</code></pre>
+<p>O <code>do</code>..<code>while</code> funciona da mesma forma que o <code>while</code>, com uma única diferença, ele faz o teste lógico no final, logo, ele executa o que está no bloco e só depois testa a condição:</p>
+<pre><code class="language-c">int i = 90;
+
+do {
+   printf(&quot;%i\n&quot;, i);
+} while ( i &lt;= 10 );
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>90
+</code></pre>
+<p><em>“Ué? Por que ele imprimiu?”</em> , Porque ele faz o teste lógico ( <code>i &lt;= 10</code> ) no fim da execução do bloco, se este fosse um <code>while</code> comum o teste seria feito antes, e só executaria o bloco se este teste fosse verdadeiro.</p>
+<p><em>“Aah! Então é inútil usar este laço!!”</em> ... Sinto discordar, mas este laço foi criado para agilizar algumas tarefas, lembra do código com flag? Que vimos no capítulo anterior?</p>
+<pre><code class="language-c">char flag = 's';
+
+while (flag == 's'){
+   printf(&quot;Deseja continuar? [s/N] &quot;);
+   scanf(&quot;%c&quot;, &amp;flag);
+}
+</code></pre>
+<p>Para que o código acima funcione nós somos obrigados o valor <code>'s'</code> à variável <code>flag</code>, com o <code>do</code>..<code>while</code> isso não é necessário:</p>
+<pre><code class="language-c">char flag;
+
+do {
+   printf(&quot;Deseja continuar? [s/N] &quot;);
+   scanf(&quot;%c&quot;, &amp;flag);
+} while (flag == 's');
+</code></pre>
+<p>E o código com <code>while</code> e sem usar o teste lógico (o que usamos o <code>break</code> para sair do loop) é um <code>do</code>..<code>while</code> escrito manualmente!</p>
+<h2 id="for"><a class="header" href="#for">For</a></h2>
+<p>O <code>for</code> é uma forma mais automatizada de loop, ele é mais usado para contagem, mas também é possível usá-lo com flag.</p>
+<p>Em uma comparação direta com o <code>while</code>:</p>
+<pre><code class="language-c">// exibindo uma contagem até 5
+
+// while
+{
+   int i = 0;
+   while (i &lt;= 5) printf(&quot;%i\n&quot;, i++);
+}
+
+// for
+{
+   for ( int i = 0; i &lt;= 5; i++) printf(&quot;%i\n&quot;, i);
+}
+</code></pre>
+<p><em>“Caramba!! O que aconteceu aqui?”</em> ... Se você não estiver entendido o código acima eu irei mostrar da forma tradicional:</p>
+<pre><code class="language-c">// exibindo uma contagem até 5
+
+// while
+{
+   int i = 0;            // dando o valor 0 a i
+   while (i &lt;= 5) {      // enquanto i menor ou igual a 5
+      printf(&quot;%i\n&quot;, i); // escreva i
+      i ++;              // incremente i
+   }
+}
+
+// for
+{
+   for ( int i   =   0; i &lt;= 5;     i++      ) { 
+// para      i entre 0    e  5  incremente i
+      printf(&quot;%i\n&quot;, i); 
+   }
+}
+</code></pre>
+<p><em>“Ainda não entendi o <code>for</code>“</em> ... Note que temos três espaços entre os parenteses separados por <code>;</code>, no primeiro espaço você declara uma variável, no segundo você digita o teste lógico, e no terceiro você digita um incremento.</p>
+<p>Basicamente o <code>for</code> é uma gambiarra do <code>while</code>, ainda utilizando o exemplo anterior observe um for escrito no estilo se um <code>while</code>:</p>
+<pre><code class="language-c">int i = 0;
+
+for ( ; i &lt;= 5 ; ){
+   printf(&quot;%i\n&quot;, i);
+   i++;
+}
+</code></pre>
+<blockquote>
+<p>Os espaços entre <code>;</code> podem ficar em branco, mas convenhamos que é um tanto inútil usar um <code>for</code> desta maneira...</p>
+</blockquote>
+<p>E as formas diversas de usar o <code>for</code> são essas:</p>
+<pre><code class="language-c">// usar variável já existente
+int i;
+for (i = 1; i &lt;= 5; i++) printf(&quot;%i\n&quot;, i);
+
+// criando variável local exclusiva para o uso do for
+for ( int i = 1; i &lt;= 5; i++) printf(&quot;%i\n&quot;, i);
+
+// forma while
+int i = 1;
+for ( ; i &lt;= 5; ) printf(&quot;%i\n&quot;, i++);
+
+// forma de loop infinito com flag
+int i = 1;
+for (;;) {
+   printf (&quot;%i\n&quot;, i++);
+   if ( i == 5 ) break;
+}
+</code></pre>
+<p>Deu pra perceber que o <code>for</code> é bem eclético não é mesmo? Mas definitivamente a forma em que ele é mais útil é a tradicional:</p>
+<pre><code class="language-c">for ( int &lt;nome da variável&gt; = &lt;valor inicial&gt;; &lt;teste lógico&gt;; &lt;incremento&gt;) {
+   // comandos
+}
+
+// forma compacta
+for ( int &lt;nome da variável&gt; = &lt;valor inicial&gt;; &lt;teste lógico&gt;; &lt;incremento&gt;) /* comando */;
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="funções"><a class="header" href="#funções">Funções</a></h1>
+<p>A estrutura de uma função já foi explicada anteriormente de uma forma bastante resumida:</p>
+<pre><code class="language-c">int main(){
+   printf(&quot;Hello mundo!!&quot;);
+return 0;
+}
+</code></pre>
+<p>Basicamente uma função é uma rotina, que pode ser usada durante a execução de um código, um exemplo é a função <code>printf</code>, que nada mais é do que um conjunto de códigos que escrevem coisas na tela, uma rotina que é executada sempre que é chamada.</p>
+<p>A estrutura de uma função é simples:</p>
+<pre><code class="language-c">//  tipo do retorno  nome     parametros
+    int              soma ( int n1, int n2) {
+      return n1 + n2;
+   }
+
+   int main () {
+      printf(&quot;%i\n&quot;, soma( 34, 54));
+      return 0;
+   }
+</code></pre>
+<blockquote>
+<p>Claro que você pode declarar a quantidade de parâmetros que quiser.</p>
+</blockquote>
+<p>E se você não quiser retornar nenhum valor declare a função como <code>void</code>.</p>
+<p>Mas se você for criar uma função, certifique-se de que ela foi declarada antes da função <code>main</code>, e se mesmo assim você ainda queira que a sua função fique depois do <code>main</code>, você tem que antes declarar a função:</p>
+<pre><code class="language-c">void oi () ;
+
+int main () {
+   oi();
+   return 0;
+}
+
+void oi () {
+   printf(&quot;oi!!\n&quot;);
+}
+</code></pre>
+<p>E um extra sobre a função <code>main</code> é que é possível receber dados como parâmetros... <em>“Como assim?”</em> ... Digamos que queremos que o nosso programa escreva coisas na tela...</p>
+<blockquote>
+<p>Execução do nosso programa:</p>
+</blockquote>
+<pre><code class="language-sh">./escreva Hello mundo!!
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>Hello mundo!!
+</code></pre>
+<p>Os parâmetros <code>Hello</code> e <code>mundo!!</code> foram passados para a função <code>main</code> pela linha de comando, e para que agente possa receber e usar esses parâmetros você precisa declará-los a área de parâmetros do <code>main</code>.</p>
+<pre><code class="language-c">int main (int arg_counter, char * arg_variable []) {
+
+   for (int i = 1; i &lt;= arg_counter; i ++)
+      printf(&quot;%s &quot;, arg_variable[i]);
+
+   printf(&quot;\b\n&quot;);
+return 0;
+}
+</code></pre>
+<blockquote>
+<p>O <code>arg_counter</code> é a quantidade de argumentos recebidos, o <code>arg_variable</code> é um parâmetros com os argumentos, e esses parâmetros ou argumentos, são strings.</p>
+</blockquote>
+<blockquote>
+<p>No exemplo acima usamos <code>arg_counter</code> e <code>arg_variable</code> para o nome dos parâmetros, e você pode usar o que você quiser, mas a maioria das pessoas usam <code>argc</code> (<code>arg_counter</code>) e <code>argv</code> (<code>arg_variable</code>).</p>
+</blockquote>
+<p>Por fim, é sempre interessante saber como seria um ponteiro para uma função:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+
+int (* Soma) (int n1, int n2);
+
+int somador (int n, int n2){
+  return n + n2;
+}
+
+int main(){
+  Soma = somador;
+  printf(&quot;%i + %i = %i&quot;, 2, 3, Soma(2, 3));
+return 0;
+}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="ponteiros"><a class="header" href="#ponteiros">Ponteiros</a></h1>
+<p>Os ponteiros ou pointers no inglês, são variáveis que guardam endereços de memória.</p>
+<p>Lembra do <code>&amp;</code> antes da variável no <code>scanf</code>?</p>
+<pre><code class="language-c">int n;
+scanf(&quot;%i&quot;, &amp;n);
+</code></pre>
+<p>Este <code>&amp;</code> indica um endereço de memória da variável <code>n</code>, e para guardar este endereço em uma variável, é necessário que agente crie um ponteiro:</p>
+<pre><code class="language-c">int n = 9;
+int * ponteiro_n = &amp;n;
+</code></pre>
+<p>Este <code>*</code> antes do nome da variável diz para o C que esta variável vai guardar endereços de memória... <em>“Mas porque colocar um tipo se a variável vai guardar só endereços? Por acaso endereço tem tipo?</em> ... Não é bem assim, temos que dar um tipo ao ponteiro porque ele também tem tamanho, e para que consiga armazenar o endereço de uma variável ele tem que ter o mesmo tamanho.</p>
+<p><em>“Tá, mas ainda não entendi a utilidade desse negócio!”</em> , acho que essa mentalidade vai mudar assim que você descobrir que um array é um ponteiro que aloca vários espaços na memória.</p>
+<p>Existem algumas regras sobre o uso de ponteiros, por exemplo:</p>
+<pre><code class="language-c">int i = 90;
+
+int * p = &amp;i; // o ponteiro &quot;p&quot; agora aponta para a variável &quot;i&quot;
+
+printf(&quot;%i\n&quot;, *p);
+</code></pre>
+<blockquote>
+<p>Quando damos o endereço de memória de uma variável para um ponteiro, nós dizemos que esse ponteiro aponta para essa variável</p>
+</blockquote>
+<p>No exemplo acima, declaramos um ponteiro <code>p</code> apontando para <code>i</code>, agora nós podemos ter acesso ao valor de <code>i</code> apenas adicionando um <code>*</code> antes do <code>p</code>, e com isso conseguimos exibir o valor de <code>i</code> na tela com o <code>printf</code>.</p>
+<p>E usando esse <code>*</code> também podemos alterar o valor de <code>i</code>:</p>
+<pre><code class="language-c">int i = 90;
+
+int * p = &amp;i;
+*p = 89;
+</code></pre>
+<blockquote>
+<p>Só que nós estamos alterando o valor diretamente na memória, e uma prova disso é que se você incrementar o ponteiro <code>p</code>, terá acesso a outro endereço de memória.</p>
+</blockquote>
+<pre><code class="language-c">int i = 90;
+int * p = &amp;i;
+
+p ++;
+
+*p = 89;
+</code></pre>
+<p>Quando você executar o código acima irá ocorrer um erro de segmentação (quando o programa tenta acessar uma memória que não pertence a ele) ou se não ocorrer erro, quer dizer que ele acessou um espaço de memória desconhecido, e quando este ultimo ocorre o valor que está nesse espaço é um lixo do sistema ou o local onde está alocada outra variável.</p>
+<pre><code class="language-c">int a[] = { 2, 4, 5, 6};
+
+printf(&quot;%i\n&quot;, a[1]); // 4
+
+a ++;
+printf(&quot;%i\n&quot;, * a);  // 4
+</code></pre>
+<p>Como um array é um ponteiro, nós podemos usar o array como um ponteiro, <em>“Mas por que você incrementou o <code>a</code> antes de exibi-lo?”</em> , porque se eu usá-se o endereço original, o valor exibido seria o <code>2</code>, pois o endereço de memória sempre se refere ao primeiro valor.</p>
+<p>Mas o método que usei anteriormente não é muito adequado já que uma vez que você incremente o array ele estará apontando para outra posição e assim você tem que decrementar toda vez, o que não é prático, então, a forma mais indicada para isso seria:</p>
+<pre><code class="language-c">int a[] = { 2, 4, 5, 6};
+
+printf(&quot;%i\n&quot;, a[1]);     // 4
+
+printf(&quot;%i\n&quot;, *(a+1) );  // 4
+</code></pre>
+<blockquote>
+<p>Desta forma o valor de <code>a</code> não será alterado.</p>
+</blockquote>
+<p>Isso também serve para atribuir valor aos itens de um array.</p>
+<pre><code class="language-c">int a[] = { 2, 4, 5, 6};
+
+a[1] = 90;
+
+*(a+2) = 56
+</code></pre>
+<p>Notem que o índice ( o valor entre <code>[</code> e <code>]</code> ), é somado a <code>a</code>, isso acontece porque um array cria uma fila de espaços do mesmo tipo, uma do lado da outra, por isso <code>*(a+3)</code> é o mesmo que <code>a[3]</code>.</p>
+<h2 id="alocação-dinâmica-arrays-dinâmicos"><a class="header" href="#alocação-dinâmica-arrays-dinâmicos">Alocação dinâmica (arrays dinâmicos)</a></h2>
+<p>Em alguns casos, precisamos de mais espaço do que a variável comum para guardar dados, e para esses casos geralmente usamos arrays, mas e se durante a execução eu necessite de um array maior... <em>“É só criar um array maior e usar ele para a manipulação do novos dados!”</em> ... Isso pode até funcionar, mas não é recomendável, pois seria um desperdício de memória.</p>
+<p>Para resolver isso nós podemos alocar a quantidade de memória que queremos (em bytes) e usar um ponteiro com este endereço de memória, e se quisermos um espaço maior, é só realocar a memória deste ponteiro, assim nós poderemos aumentar e diminuir o tamanho do array.</p>
+<blockquote>
+<p>E como prometi no capítulo sobre strings... Esta é a terceira forma de atribuir uma string:</p>
+</blockquote>
+<pre><code class="language-c">char * str;
+str = &quot;string&quot;;
+</code></pre>
+<blockquote>
+<p>Isto só funciona com strings, arrays de outros tipos tem que ser atribuídos item a item.</p>
+</blockquote>
+<p>O próprio exemplo da atribuição de uma string é um exemplo de alocação dinâmica, mas ela é feita automaticamente:</p>
+<pre><code class="language-c">char * str;          // aqui temos um ponteiro vazio.
+str = &quot;coisa&quot;;       /* 
+                        aqui nós alocamos 6 bytes na memória para
+                        guardar { 'c', 'o', 'i', 's', 'a', '\0' }
+                     */
+
+printf(&quot;%s\n&quot;, str);
+
+str = &quot;outra coisa&quot;; /*
+                        aqui nós realocamos o espaço de 6 bytes
+                        para 12 bytes e assim podemos guardar 
+                        { 
+                           'o', 'u', 't', 'r', 'a', ' ',
+                           'c', 'o', 'i', 's', 'a'
+                        }
+                     */
+
+printf(&quot;%s\n&quot;, str);
+</code></pre>
+<p>Se fossemos fazer o código acima usando puramente ponteiros, nós faríamos assim:</p>
+<blockquote>
+<p>Lembrando que ao alocar espaços e referenciando com ponteiros, nós estamos criando arrays.</p>
+</blockquote>
+<p>Antes de mais nada você tem que incluir o <code>stdlib.h</code> no seu arquivo (para evitar erros, sempre faça qualquer <code>include</code> no inicio do arquivo)</p>
+<pre><code class="language-c">#include &lt;stdlib.h&gt;           // biblioteca necessária para usar as funções de alocação.
+</code></pre>
+<blockquote>
+<p>Para garantir inclua esta biblioteca em todos os exemplos a partir daqui.</p>
+</blockquote>
+<p>Agora sim, podemos continuar...</p>
+<pre><code class="language-c">
+char * str;                   // aqui temos um ponteiro vazio.
+
+str = malloc (6);             // aqui nós alocamos 6 bytes na memória.
+
+// guardando dados...
+*( str + 0 ) = 'c';   // str[0] = 'c';
+*( str + 1 ) = 'o';   // str[1] = 'o';
+*( str + 2 ) = 'i';   // str[2] = 'i';
+*( str + 3 ) = 's';   // str[3] = 's';
+*( str + 4 ) = 'a';   // str[4] = 'a';
+*( str + 5 ) = '\0';  // str[5] = '\0';
+
+printf( str );
+putchar('\n');
+
+str = realloc (str, 12);        // aqui nós realocamos o espaço de 6 bytes para 12 bytes
+
+// guardando dados...
+str = &quot;outra coisa&quot;;
+str[12] = '\0';
+
+printf(&quot;%s\n&quot;, str);
+
+free( str );           /*
+                           essa linha vai no fim do programa e serve
+                           para liberar a memória que nó alocamos,
+                           para não ocorrerem erros sempre temos
+                           que liberar a memória.
+                       */
+
+</code></pre>
+<blockquote>
+<p>Note que o ultimo printf está antes do <code>free</code>, pois se ele estiver depois, vai dar erro já que o espaço alocado anteriormente seria apagado.</p>
+</blockquote>
+<p>A saída de ambos os códigos é a mesma:</p>
+<pre><code>coisa
+outra coisa
+</code></pre>
+<p><em>“Ah então eu vou sempre usar a primeira forma, porque é mais fácil!”</em> , use, mas não se esqueça que a primeira forma só funciona com strings, para outros tipos de arrays você terá que usar a segunda forma.</p>
+<p>Só para fixar melhor veja como funcionariam o array dinâmico com o tipo <code>int</code>.</p>
+<pre><code class="language-c">
+// alocando a memória que o array terá
+int * array_dinamico = malloc ( sizeof (int) * 4); /*
+                                                aqui nós alocamos um espaço que caiba 4 inteiros,
+                                                pois o nosso array inicial terá 4 posições.
+                                              */
+
+array_dinamico [0] = 2;
+*( array_dinamico + 1) = 3;
+array_dinamico [2] = 23;
+array_dinamico [3] = 894;
+
+// realocando memória para que caibam 5 posições
+array_dinamico = realloc ( array_dinamico , sizeof (int) * 5);
+
+array_dinamico [0] = 2;
+*( array_dinamico + 1) = 3;
+array_dinamico [2] = 23;
+array_dinamico [3] = 894;
+*( array_dinamico + 4) = 34;
+</code></pre>
+<blockquote>
+<p>Lembre-se de alocar a quantidade certa de memória para o ponteiro, ao contrário dos arrays aqui você tem que saber a quantidade exata de bytes reservar, um macete muito útil é:</p>
+</blockquote>
+<pre><code class="language-c">&lt;tipo&gt; * &lt;variável&gt; = malloc ( sizeof (&lt;tipo&gt;) * &lt;quantidade de posições&gt;);
+</code></pre>
+<blockquote>
+<p>Desta forma a quantidade de bytes necessária será sempre respeitada.</p>
+</blockquote>
+<p>E de quebra vai aí uma dica extra sobre arrays dinâmicos, eles podem ser atribuídos diretamente, é só colocar um <code>(&lt;tipo&gt; [])</code> antes do array que você quer atribuir:</p>
+<blockquote>
+<p>Mas cuidado, arrays normais não aceitam isso, só use em arrays dinâmicos</p>
+</blockquote>
+<pre><code class="language-c">// Array normal
+int a[3] = {0, 1, 2};
+a = (int []){1, 2, 3};          // Não funciona!
+
+// Array dinâmico
+int * ad = {0, 1, 2};
+ad = (int []){1, 2, 3};         // Funciona!
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="customização-de-tipos"><a class="header" href="#customização-de-tipos">Customização de tipos</a></h1>
+<p>Até agora você só viu estruturas padrões do próprio C, e como usá-las, mas agora você vai aprender a criar as suas próprias...</p>
+<h2 id="structs-e-unions"><a class="header" href="#structs-e-unions">Structs e unions</a></h2>
+<p><code>struct</code> é o tipo de dado que cria uma estrutura própria, e é muito útil para criar “objetos” ou seja, criar variáveis com várias características...</p>
+<blockquote>
+<p>E a galera que já conhece um pouco mais deve estar se perguntando “Mas o C é orientado a objetos?” e desde já, não, o máximo que você pode fazer no C é criar um tipo com espaços para armazenar dados, mas não é possível criar objetos ou classes.</p>
+</blockquote>
+<pre><code class="language-c">
+struct pessoa {
+   char * nome;
+   int idade;
+   char sexo;
+   float peso;
+   float altura;
+}
+
+</code></pre>
+<p>Como podem ver no exemplo acima, nós criamos uma estrutura <code>pessoa</code> que pode receber um <code>nome</code>, uma <code>idade</code>, um <code>peso</code>, um <code>sexo</code> e uma <code>altura</code>, assim melhorando e muito nosso armazenamento de dados, <em>“Mas como eu posso acessá-los?”</em>, muito simples:</p>
+<pre><code class="language-c">struct pessoa joao;        // aqui nós criamos uma pessoa &quot;joao&quot;.
+joao.nome = &quot;Joao&quot;;        // aqui nós atribuímos &quot;Joao&quot; ao nome da pessoa.
+</code></pre>
+<p>E como você pôde notar agora existe um tipo <code>struct pessoa</code>, <em>“Mas, eu quero criar um tipo <code>pessoa</code>, é possível?”</em>, sim, é, e para isso você vai usar o <code>typedef</code>, e ele serve para apelidar um tipo.</p>
+<pre><code class="language-c">typedef int MyInt;
+
+MyInt inteiro;
+</code></pre>
+<p>Mas como nós queremos usá-lo com a nossa <code>struct</code>, temos 3 formas de usar:</p>
+<p>Criando o <code>struct</code> antes:</p>
+<pre><code class="language-c">struct p { char * name };
+typedef struct p pessoa;
+</code></pre>
+<p>Criando ao mesmo tempo:</p>
+<pre><code class="language-c">typedef struct p { char * name } pessoa;
+</code></pre>
+<p>Criando ao mesmo tempo com uma <code>struct</code> anônima:</p>
+<pre><code class="language-c">typedef struct { char * name } pessoa;
+</code></pre>
+<p>E o resultado das sentenças anteriores é:</p>
+<pre><code class="language-c">pessoa joao;
+joao.name = &quot;Joao&quot;;
+</code></pre>
+<blockquote>
+<p>E para evitar erros de escopo, sempre declare structs fora do <code>main</code>.</p>
+</blockquote>
+<p>Outra estrutura muito interessante é a <code>union</code>, ela é semelhante a <code>struct</code>, mas a <code>union</code> assume apenas uma variável... <em>“Como assim?”</em> ...observe:</p>
+<pre><code class="language-c">// struct
+{
+   struct p {
+      char * nome;
+      int idade;
+   };
+
+   // Uso
+
+   struct p joao;
+   joao.nome = &quot;Joao&quot;;
+   joao.idade = 12;
+}
+
+// union
+{
+   union p {
+      char * nome;
+      int idade;
+   };
+
+   // Uso
+
+   union p joao;
+   joao.nome = &quot;Joao&quot;;       // aqui você escolheu usar a variável nome
+   puts(joao.idade);         /* aqui aqui será imprimido &quot;Joao&quot;, já que
+                                joao.idade está unido com joao.nome
+                             */
+    // Ou
+    union p coisa;
+    coisa.idade = 14;
+    printf(&quot;%i\n&quot;, coisa.idade);
+}
+</code></pre>
+<p>Um macete legal na atribuíção de uma <code>struct</code> é usar um array para isso, é só colocar os valores na ordem de declaração da struct, <em>“Quê?”</em>:</p>
+<pre><code class="language-c">typedef struct {
+    char * nome;
+    int idade;
+    float peso;
+    float altura;
+} pessoa;
+
+//                      .nome, .idade, .peso, .altura
+pessoa joao = (pessoa){&quot;joao&quot;,     13,  40.3,    1.60};
+</code></pre>
+<p>Ou caso você não queira colocar na ordem é só específicar o atributo:</p>
+<pre><code class="language-C">pessoa maria = (pessoa){
+    .altura = 1.5
+    .idade = 12,
+    .nome = &quot;maria&quot;,
+    .peso = 39.4,
+};
+</code></pre>
+<p>E o mesmo vale para arrays de <code>struct</code>:</p>
+<pre><code class="language-c">pessoa * pessoas = (pessoa []){
+    (pessoa){ &quot;vanderlei&quot;, 25, 90, 1.80 },
+    joao,
+    (pessoa){
+        .peso = 70,
+        .altura = 1.90,
+        .idade = 42,
+        .nome = &quot;rita&quot;
+    },
+    maria
+};
+</code></pre>
+<h2 id="enum"><a class="header" href="#enum">Enum</a></h2>
+<p>O <code>enum</code> vem enumeração e nesse você deseje designar valores constantes para as suas estruturas.</p>
+<pre><code class="language-c">typedef enum {
+   true = 1,
+   false = 0,
+} bool;
+
+bool falso = false;
+</code></pre>
+<blockquote>
+<p>Só pode colocar inteiros em enums.</p>
+</blockquote>
+<p>E acima acabamos de criar o tipo booleano no C.</p>
+<p>Como só é possível colocar inteiros em enums, e por isso existe um macete legal para atribuir esses números:</p>
+<pre><code class="language-c">typedef enum {
+
+   zero = 0,        // zero é 0
+   um,              // um é zero + 1
+   dois,            // dois é um + 1
+   tres,            // tres é dois + 1
+
+   sete = 7,        // sete é 7
+   oito,            // oito é sete + 1
+   nove,            // nove é oito + 1
+
+   quatro = 4,      // quatro é 4
+   cinco,           // cinco é quatro + 1
+   seis             // seis é seis + 1
+
+} por_extenso;
+</code></pre>
+<pre><code class="language-c">por_extenso numero = dois;
+
+printf(&quot;%i\n&quot;, numero)
+printf(&quot;%i\n&quot;, dois)
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code class="language-c">2
+2
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hacks-e-extras"><a class="header" href="#hacks-e-extras">Hacks e Extras</a></h1>
+<h2 id="comandos-do-pré-processador"><a class="header" href="#comandos-do-pré-processador">Comandos do pré-processador</a></h2>
+<p>O pré-processador é a ferramenta que prepara o código para a compilação, por isso existem ele tem seus próprios comandos, e caso você queira curiar a versão preprocessada de um arquivo em C use o comando <code>gcc -E &lt;arquivo&gt; &gt; &lt;saida.c&gt;</code></p>
+<p>Basicamente todos os comandos do pré-processador começam com <code>#</code>, e um desses comandos é o próprio <code>#include</code>, que usamos para importar nossas bibliotecas, que além de importar bibliotecas padrões, você pode importar seus próprios arquivos.</p>
+<pre><code class="language-c">#include &quot;minhas_funcoes.c&quot;
+#include &quot;/home/robocopgay/biblioteca.c&quot;
+</code></pre>
+<blockquote>
+<p>Quando você usa as aspas duplas (<code>&quot;</code>) você pode passar o caminho para a sua biblioteca (caso ela esteja no mesmo diretório coloque apenas o nome do arquivo)</p>
+</blockquote>
+<p>Outra diretris interessante é o <code>#declare</code>, que serve para criar constantes e macros:</p>
+<pre><code>#define PI 3.14
+#define soma (n, n2) n + n2
+
+#define add_item ( array, item )\
+array = realloc( sizeof (array) + sizeof (item) );
+</code></pre>
+<blockquote>
+<p>Note que na ultima linha da ultima macro foi usado o <code>\</code> para indicar que a próxima linha pertence a ela.</p>
+</blockquote>
+<p>A vantagem aqui é que se precisa de uma constante, é mais útil usar o <code>#define</code> que criar uma variável, pois a variável tem que ocupar um espaço na memória, enquanto o pre-processador apenas substitue o lugar onde a macro ou constante é chamada pelo seu conteúdo.</p>
+<p>E a diretris <code>#undef</code> <em>“desdefine”</em> uma macro ou constante</p>
+<pre><code class="language-c">#define max 10
+
+int i = max*3;
+
+#undef max
+define max 30
+</code></pre>
+<p>E existe o <code>#if</code>, <code>#else</code>, <code>#elif</code> e o <code>#endif</code>, usados para condicional</p>
+<pre><code class="language-c">#define MIN_SIZE 2
+
+#if defined(MAX_SIZE)          // if -&gt; se
+    #define tamanho MAX_SIZE
+#elif MIN_SIZE &gt; 2             // else if -&gt; senão se
+    #define tamanho 2
+#else                          // else -&gt; senão
+    #define tamanho MIN_SIZE+1
+#endif                         // end -&gt; fim
+
+#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main (int argc, char ** argv){
+    printf(&quot;%i&quot;, tamanho);
+return 0;
+}
+</code></pre>
+<p>Além desses existem os atalhos específicos para o <code>#if defined(&lt;macro&gt;)</code> e o <code>#if !defined(&lt;macro&gt;)</code>:</p>
+<pre><code class="language-C">#define MAX_SIZE 35
+
+#ifdef MAX_SIZE
+    #define TAMANHO_MAXIMO MAX_SIZE
+#endif
+
+#ifndef MIN_SIZE
+    #define TAMANHO_MINIMO 0
+#endif
+</code></pre>
+<p>Outra coisa interessantíssima é criar strings a partir de código, <em>“Ué? não entendi...”</em>, muito simples... Quando usamos o operador <code>#</code> dentro de uma macro ele transforma o comando em string</p>
+<pre><code class="language-c">#define to_str(texto) #texto
+
+puts( to_str(Hello mundo!!) );
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>Hello mundo!!
+</code></pre>
+<p>Ou se quiser juntar duas informações use o <code>##</code></p>
+<pre><code class="language-c">#define to_str(texto) #texto
+#define str_function_template(func) str##func
+
+int l = str_function_template(len)(&quot;abacate&quot;);
+printf(&quot;\&quot;%s\&quot; tem %i letras.\n&quot;, &quot;abacate&quot;, l);
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>&quot;abacate&quot; tem 7 letras.
+</code></pre>
+<h2 id="chegou-a-hora-de-praticar-de-novo"><a class="header" href="#chegou-a-hora-de-praticar-de-novo">Chegou a hora de praticar de novo!</a></h2>
+<h3 id="desafio-5"><a class="header" href="#desafio-5">Desafio 5</a></h3>
+<p>Faça uma calculadora onde o usuário digite dois números (reais) e no final ele pergunte qual operação matemática fazer ( +, -, / ou * ) e no fim ele pergunte se a pessoa deseja calcular de novo.</p>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>Digite 2 números: 2 3
+Você quer somar (+), subtrair (-), multiplicar (*) ou dividir (/)?
+ +
+2 + 3 = 5
+
+Deseja calcular de novo? [S/n] n
+</code></pre>
+<h4 id="resposta-3"><a class="header" href="#resposta-3">Resposta</a></h4>
+<p>Primeiramente iremos declarar as variáveis necessárias:</p>
+<pre><code class="language-c">int n1, n2;    // números que iremos ler
+char operacao; // operação
+int res;       // resposta
+</code></pre>
+<p>E iremos ler os dados necessários:</p>
+<pre><code class="language-c">printf(&quot;Digite 2 números: &quot;);
+scanf(&quot;%i %i&quot;, &amp;n1, &amp;n2);
+
+printf(&quot;Você quer somar (+), subtrair (-), multiplicar (*) ou dividir (/)? &quot;);
+operacao = getchar();
+</code></pre>
+<p>Agora nós vamos efetuar os devidos cálculos:</p>
+<pre><code class="language-c">if (operacao == '+')
+   res = n1 + n2;
+
+else if (operacao == '-')
+   res = n1 - n2;
+
+else if (operação == '/')
+   res = n1 / n2;
+
+else res = n1 * n2;
+</code></pre>
+<p>E exibimos o resultado:</p>
+<pre><code class="language-c">printf(&quot;\n%i %c %i = %i\n&quot;, n1, operacao, n2, res);
+</code></pre>
+<p>E se você é atento notou que faltou perguntar se a pessoa que calcular de novo, mas antes de fazer esta pergunta nó temos que colocar o código que queremos repetir dentro de uma estrutura de repetição, mas não coloque a parte da declaração de variáveis:</p>
+<pre><code class="language-c">do {
+
+   printf(&quot;Digite 2 números: &quot;);
+   scanf(&quot;%i %i&quot;, &amp;n1, &amp;n2);
+
+   printf(&quot;Você quer somar (+), subtrair (-), multiplicar (*) ou dividir (/)? &quot;);
+   operacao = getchar();
+
+   if (operacao == '+')
+      res = n1 + n2;
+   else if (operacao == '-')
+      res = n1 - n2;
+   else if (operação == '/')
+      res = n1 / n2;
+   else res = n1 * n2;
+
+   printf(&quot;\n%i %c %i = %i\n&quot;, n1, operacao, n2, res);
+
+   printf(&quot;Deseja calcular de novo? [S/n] &quot;);
+
+   if ( getchar() == 'n' )
+      break;
+
+} while ( 1 );
+</code></pre>
+<blockquote>
+<p>Eu escolhi o <code>do..while</code> porque o código sempre vai ser executado pelo menos uma vez.</p>
+</blockquote>
+<p>E o código final ficou assim:</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main(int argc, char *argv[])
+{
+  int n1, n2;    // números que iremos ler
+  char operacao; // operação
+  int res;       // resposta
+
+  do {
+
+    // lendo dados
+    printf(&quot;Digite 2 números: &quot;);
+    scanf(&quot;%i %i&quot;, &amp;n1, &amp;n2);
+
+    printf(&quot;Você quer somar (+), subtrair (-), multiplicar (*) ou dividir (/)? &quot;);
+    scanf(&quot;%c %c&quot;, &amp;operacao, &amp;operacao);
+
+    // processando dados
+    if (operacao == '+')
+      res = n1 + n2;
+    else if (operacao == '-')
+      res = n1 - n2;
+    else if (operacao == '/')
+      res = n1 / n2;
+    else res = n1 * n2;
+
+    // exibindo dados
+    printf(&quot;\n%i %c %i = %i\n&quot;, n1, operacao, n2, res);
+
+    // reiniciando ou interrompendo programa
+    printf(&quot;Deseja calcular de novo? [S/n] &quot;);
+    getchar();
+    if ( getchar() == 'n' )
+      break;
+
+  } while ( 1 );
+  return 0;
+}
+</code></pre>
+<h3 id="desafio-6"><a class="header" href="#desafio-6">Desafio 6</a></h3>
+<p>Faça um programa que leia 5 números e retorne a soma entre os 3 menores divididos pelo maior.</p>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>digite 5 numeros: 10 36 88 89 43
+
+(10+36+43)/89 = 1.0
+</code></pre>
+<h4 id="resposta-4"><a class="header" href="#resposta-4">Resposta</a></h4>
+<p>Primeiramente precisamos ler os dados</p>
+<pre><code class="language-c">int n[5];
+printf(&quot;digite 5 numeros: &quot;);
+scanf(&quot;%i%i%i%i%i&quot;, &amp;n[0], &amp;n[1], &amp;n[2], &amp;n[3], &amp;n[4]);
+</code></pre>
+<p>Agora vamos pegar o maior número digitado (já que é mais simples que pegar os 3 menores).</p>
+<pre><code class="language-c">int maior = 0;
+for (int i=0; i&lt;5; i++){
+  maior = (n[i] &gt; n[maior])?i:maior;
+}
+</code></pre>
+<p>Agora a parte mais complidada, existem duas formas de fazer isso, a primeira é comparar manualmente e atribuir a variáveis.</p>
+<pre><code class="language-c">int menor1 = maior, menor2 = maior, menor3 = maior;
+maior = n[maior];
+</code></pre>
+<blockquote>
+<p>temos que dar o <code>maior</code> como valor, porque para comparar temos que ter certeza de que pode existir um valor menor, caso atribuamos o <code>0</code> a variável sempre vai ter o menor valor</p>
+</blockquote>
+<pre><code class="language-c">for (int i=0; i++; i&lt;5){
+  if (n[i] &lt; n[menor1])
+    menor1 = n[i];
+maior = n[maior]
+}
+
+for (int i=0; i++; i&lt;5){
+  if (n[i] &lt; n[menor2] &amp;&amp; i != menor1)
+    menor1 = n[i];
+}
+
+for (int i=0; i++; i&lt;5){
+  if (n[i] &lt; n[menor3] &amp;&amp; i != menor2 &amp;&amp; i != menor1)
+    menor1 = n[i];
+}
+</code></pre>
+<p>Essa forma com certeza funciona, mas existe uma forma mais inteligente de fazer:</p>
+<pre><code>maior = n[maior];
+int menores [] = {maior, maior, maior};
+for (int j=0; j&lt;3; j++){
+  for (int i=0; i&lt;5; i++){
+    if (n[i]&lt;menores[j]){
+
+      menores[j] = n[i];
+      n[i] = maior;
+
+    }
+  }
+}
+</code></pre>
+<p>E por fim vamos exibir os resultados:</p>
+<pre><code class="language-c">printf(&quot;(%i+%i+%i)/%i = %1.1f\n&quot;,
+    menores[0],
+    menores[1],
+    menores[2],
+    maior,
+    (float)(menores[0]+menores[1]+menores[2])/maior
+    );
+</code></pre>
+<blockquote>
+<p>Código final:</p>
+</blockquote>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+int main(int argc, char *argv[])
+{
+
+  // criando e lendo dados
+  int n[5];
+  printf(&quot;digite 5 numeros: &quot;);
+  scanf(&quot;%i%i%i%i%i&quot;, &amp;n[0], &amp;n[1], &amp;n[2], &amp;n[3], &amp;n[4]);
+
+  // pegando o maior valor
+  int maior = 0;
+  for (int i=0; i&lt;5; i++)
+    maior = (n[i] &gt; n[maior])?i:maior;
+
+  // pegando os menores valores
+  maior = n[maior];
+  int menores [] = {maior, maior, maior};
+  for (int j=0; j&lt;3; j++){
+    for (int i=0; i&lt;5; i++){
+
+      // caso o numero atual for menor que o menor
+      if (n[i]&lt;menores[j]){
+        menores[j] = n[i];
+
+        /* o numero atual é o menor de todos
+         * e por isso tem que deixar de ser,
+         * ou não haverá como pegar o segundo
+         * menor e muito menos o terceiro já
+         * que ele seria o menor.
+         */
+        n[i] = maior;
+      }
+
+    }
+
+  }
+
+  printf(&quot;(%i+%i+%i)/%i = %1.1f\n&quot;,
+      menores[0],
+      menores[1],
+      menores[2],
+      maior,
+      (float)(menores[0]+menores[1]+menores[2])/maior
+      );
+
+  return 0;
+}
+
+</code></pre>
+<h3 id="desafio-7"><a class="header" href="#desafio-7">Desafio 7</a></h3>
+<p>Faça um algoritmo que leia números inteiros indefinidamente e só pare quando o valor lido for maior que 1000, nos resultados devem ser informados o maior, o menor, e a media entre eles, além de dizer quais foram repetidos e se repetidos o número de vezes que foi repetido, além de todos os números primos da lista.</p>
+<pre><code>digitte números... (para parar digite um numero &gt;= 1000)
+9
+8
+4
+2
+9
+8
+11
+390
+23
+42
+13
+1000
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="hello-world-grafico"><a class="header" href="#hello-world-grafico">Hello World Grafico</a></h1>
+<p>Geralmente na internet em geral, a maioria dos projetos feitos em C usa uma ferramenta para automatizar a compilação, vou demonstar aqui com o <code>make</code>, mas alguns projetos usam outras ferramentas (geralmente todos tem um <code>README</code> para auxiliar na compilação).</p>
+<p>O “mini projeto” que vamos escrever é um “hello mundo” gráfico, usando gtk, eu preferi fazer um gráfico para exemplificar o uso de bibliotecas externas e para dar um gostinho da programação GUI para vocês...</p>
+<blockquote>
+<p>hello.h: header com os protótipos de funções</p>
+</blockquote>
+<pre><code class="language-c">#include &lt;gtk/gtk.h&gt;
+#include &lt;string.h&gt;
+
+// Lista de texto que vai aparecer na tela
+typedef struct lista lista;
+struct lista {
+    char *texto;
+    lista *prox;
+};
+
+// Função que troca o texto na interface
+void mudar_rotulo(GtkWidget *, char *);
+
+// Função que organiza a lista de textos
+void organize_lista(lista *, int tamanho);
+</code></pre>
+<p>Basicamente o header (ou cabeçalhio) acima serve para declarar as funções e estruturas da nossa biblioteca.</p>
+<blockquote>
+<p>hello.c: biblioteca com as funções usadas pelo programa</p>
+</blockquote>
+<pre><code class="language-c">#include &quot;hello.h&quot;
+
+void
+mudar_rotulo(GtkWidget * rotulo, char * texto){
+    g_print (&quot;hello: &quot;);
+    g_print (texto);
+    g_print (&quot;\n&quot;);
+
+    // Mudando o texto do &quot;rotulo&quot;
+    gtk_label_set_text(GTK_LABEL(rotulo), texto);
+}
+
+void
+organize_lista(lista * lista_de_textos, int len){
+    // Organizando o acesso aos posteriores
+    for (int i = 0; i&lt;len; i++){
+        lista_de_textos[i].prox = &amp;lista_de_textos[i+1];
+        lista_de_textos[i].prox = &amp;lista_de_textos[i+1];
+    }
+    lista_de_textos[len-1].prox = &amp;lista_de_textos[0];
+}
+</code></pre>
+<blockquote>
+<p>main.c: O nosso programa</p>
+</blockquote>
+<pre><code class="language-c">#include &quot;hello.h&quot;
+
+GtkWidget *janela;
+GtkWidget *conteiner;
+
+GtkWidget *botao;
+GtkWidget *rotulo;
+
+lista * lista_de_textos;
+
+void
+hello (void){
+    // Muando o texto do rotulo
+    mudar_rotulo(rotulo, lista_de_textos-&gt;texto);
+
+    // Mudando o texto atual para o proximo da lista
+    lista_de_textos = lista_de_textos-&gt;prox;
+}
+
+
+int
+main (int argc, char *argv[]){
+
+    // criando a lista de textos
+    lista_de_textos = (lista []){
+     {.texto = &quot;Hello mundo!!&quot;, NULL},              // 1
+     {.texto = &quot;Eu amo C!!&quot;, NULL},                 // 2
+     {.texto = &quot;C para seres humanos!&quot;, NULL},      // 3
+     {.texto = &quot;Outra coisa aleatória!&quot;, NULL},     // 4
+     {.texto = &quot;Acesse robocopgay.github.io&quot;, NULL} // 5
+    };
+    organize_lista(lista_de_textos, 5);
+
+    // inicializando configurações padrões da biblioteca
+    gtk_init (&amp;argc, &amp;argv);
+
+    // criando a janela principal
+    janela = gtk_window_new (GTK_WINDOW_TOPLEVEL);
+    // quando o usuário fechar a janela, ela será fechada
+    gtk_signal_connect (GTK_OBJECT (janela), &quot;destroy&quot;,
+            GTK_SIGNAL_FUNC (gtk_main_quit), NULL);
+
+    // criando um rótulo com o texto &quot;...&quot;
+    rotulo = gtk_label_new(&quot;...&quot;);
+    // criando um botão com o texto &quot;Clique em mim&quot;
+    botao = gtk_button_new_with_label (&quot;Clique em mim&quot;);
+
+    // criando um conteiner para guardar os componentes acima (rotulo, botao)
+    conteiner = gtk_vbox_new((gint *)5,(gint *)5);
+
+    // quando o usuário clicar no botão ele vai chamar a função hello
+    gtk_signal_connect (GTK_OBJECT (botao), &quot;clicked&quot;,
+            GTK_SIGNAL_FUNC (hello), NULL);
+
+    // adicionando componentes ao conteiner
+    gtk_container_add(GTK_BOX(conteiner), rotulo);
+    gtk_container_add(GTK_BOX(conteiner), botao);
+
+    // adicionando o conteiner à janela
+    gtk_container_add (GTK_CONTAINER (janela), conteiner);
+
+    // tornando os componentes visíveis
+    gtk_widget_show_all (janela);
+
+    // iniciando a execução do aplicativo gráfico
+    gtk_main();
+    return 0;
+}
+</code></pre>
+<p>Não se preocupe em entender a parte de interface gráfica, eu coloquei mais por que se você for compilar a aplicação acima com os comandos de sempre (<code>gcc main.c -o hello</code>), o programa acima não irá compilar, isso acontece porque o GTK+ (A biblioteca de interface gráfica utilizada pelo programa) é uma biblioteca externa, e não está disponível por padrão no seu computador.</p>
+<p>E para consertar esse problema, primeiro temos que baixar o GTK:</p>
+<blockquote>
+<p>E me desculpem galera de Windows, mas eu não sei como usar GTK no sistema de vocês, fiz diversas pesquisas a respeito e tentei instalar e usar, mas não consegui, então estão por conta própria para tentar compilar.</p>
+</blockquote>
+<h2 id="macosx"><a class="header" href="#macosx">MacOSX</a></h2>
+<pre><code class="language-sh">$ brew install gtk+
+</code></pre>
+<h2 id="debian-2"><a class="header" href="#debian-2">Debian</a></h2>
+<pre><code class="language-sh">$ sudo apt install libgtk-2-dev
+</code></pre>
+<h2 id="red-hat-2"><a class="header" href="#red-hat-2">Red Hat</a></h2>
+<pre><code class="language-sh">$ sudo dnf install gtk2-devel
+</code></pre>
+<h2 id="arch-linux-2"><a class="header" href="#arch-linux-2">Arch Linux</a></h2>
+<pre><code class="language-sh">$ sudo pacman -S gtk2
+</code></pre>
+<h2 id="compilando"><a class="header" href="#compilando">Compilando</a></h2>
+<p>E para compilar nós usaríamos:</p>
+<pre><code class="language-bash">$ gcc -o hello-gtk hello.c main.c $(pkg-config --libs --cflags gtk+-2.0)
+</code></pre>
+<p>Isso geraria um binario <code>hello-gtk</code>, e para automatizar isso:</p>
+<blockquote>
+<p>Makefile: arquivo de compilação</p>
+</blockquote>
+<pre><code class="language-Makefile">CC=gcc
+LIBS=$(pkg-config --libs gtk+-2.0)
+CFLAGS=$(pkg-config --cflags gtk+-2.0)
+
+all: hello-gtk
+
+hello-gtk:
+    @echo CC -o $@ hello.c main.c LIBS CFLAGS
+    ${CC} -o $@ hello.c main.c ${LIBS} ${CFLAGs}
+</code></pre>
+<p>E agora para compilar é só digitar <code>make</code> dentro do diretório do projeto.</p>
+<p>Outra coisa interessante do make é dar opções para ele como:</p>
+<pre><code>install:
+    @cp hello-gtk /usr/bin/ -v
+clean:
+    @rm hello-gtk
+opcao-aleatoria:
+    @echo opcao aleatoria
+</code></pre>
+<p>E é só adicionar a opção na execução do make:</p>
+<pre><code>$ make opcao-aleatoria
+opcao aleatoria
+</code></pre>
+<p>Outra solução é colocar algumas configurações em um arquivo separado, que geralmente é chamado de config.mk (mas isso é opcional):</p>
+<blockquote>
+<p>config.mk:</p>
+</blockquote>
+<pre><code class="language-Makefile">VERSION=&quot;0.1&quot;
+CC=gcc
+LIBS=$(pkg-config --libs gtk+-2.0)
+CFLAGS=$(pkg-config --cflags gtk+-2.0)
+</code></pre>
+<blockquote>
+<p>Makefile:</p>
+</blockquote>
+<pre><code class="language-Makefile">all:
+    ${CC} -o hello-${VERSION} hello.c main.c ${LIBS} ${CFLAGS}
+</code></pre>
+<div style="break-before: page; page-break-before: always;"></div><h1 id="bibliotecas-Úteis"><a class="header" href="#bibliotecas-Úteis">Bibliotecas Úteis</a></h1>
+<p>Até agora só usamos duas bibliotecas em nossos porgramas em C, e não vimos nem 10% dessas, então para deixar seu conhecimento mais completo aqui vamos mostrar algumas funções dessas duas bibliotecas, além de outras que também podem ser bem interessantes.</p>
+<h2 id="stdioh"><a class="header" href="#stdioh">stdio.h</a></h2>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+</code></pre>
+<p>Como já vimos as funções <code>scanf</code>, <code>printf</code>, <code>putchar</code>, <code>puts</code>, <code>getchar</code>, <code>gets</code>, <code>fprintf</code> e <code>fgets</code>, iremos ignorá-las.</p>
+<p>O <code>std</code> significa exclusivamente “standard” (”padrão” em português), <code>i</code> é de “input” (entrada) e o <code>o</code> de “output” (saída), portanto entrada e saída de dados padrão.</p>
+<h3 id="io-em-arquivos"><a class="header" href="#io-em-arquivos">I/O em arquivos</a></h3>
+<p>Como o <code>stdio</code> serve para entrada e saída de dados, óbviamente também é usada para manipulação de arquivos, usada tanto para ler (input), quanto para escrever (output) neles.</p>
+<p>Para ler um arquivo precisamos criar um ponteiro do tipo <code>FILE</code></p>
+<pre><code class="language-c">FILE * arquivo;
+</code></pre>
+<h4 id="leitura"><a class="header" href="#leitura">Leitura</a></h4>
+<blockquote>
+<p>crie um arquivo <code>j.txt</code> com “joao” escrito dentro</p>
+</blockquote>
+<p>Para abrir o arquivo <code>j.txt</code> no nosso programa, é só usar a função <code>fopen</code>.</p>
+<pre><code class="language-c">arquivo = fopen(&quot;j.txt&quot;, &quot;r&quot;);
+</code></pre>
+<blockquote>
+<p>O <code>&quot;r&quot;</code> no segundo parametro é o modo desse arquivo, nesse caso, abrimos um arquivo em modo leitura.</p>
+</blockquote>
+<p>Para ler e exibir o que foi lido é só usar o <code>fgetc</code>:</p>
+<pre><code class="language-c">char caractere = fgetc(arquivo);
+</code></pre>
+<blockquote>
+<p>O <code>fgetc</code> retorna um caractere de cada vez, e quando le o caractere, quando você for ler de novo ele lerá somente o próximo, exemplo:</p>
+</blockquote>
+<pre><code class="language-c">// suponha que o arquivo &quot;texto.txt&quot; tem &quot;abc&quot; escrito dentro
+FILE *f = fopen(&quot;texto.txt&quot;, &quot;r&quot;);
+char a, b, c;
+
+b = fgetc(f); // -&gt; &quot;a&quot;
+c = fgetc(f); // -&gt; &quot;b&quot;
+a = fgetc(f); // -&gt; &quot;c&quot;
+
+print(&quot;%c %c %c\n&quot;, a, b, c);
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>c a b
+</code></pre>
+<p>Lembre-se que o fim de um arquivo é demarcado por uma constante chamada de <code>EOF</code> (significa “end of file” ou “fim do arquivo”), logo, se voce usar um loop, para ler o tal arquivo, usem o <code>EOF</code> como “flag”</p>
+<blockquote>
+<p>“flag” é a condição de interrupção</p>
+</blockquote>
+<pre><code class="language-c">char caractere;
+do {
+  caractere = fgetc(arquivo); // -&gt; &lt;caractere&gt; = fgetc(&lt;arquivo&gt;)
+  putchar(caractere);
+} while (caractere != EOF);
+</code></pre>
+<p>E depois de terminar de usar, assim como você tem que liberar a memória com o <code>free</code> trabalhando com ponteiros, você tem que fechar o arquivo, ou ele vai ficar ocupando memória à toa</p>
+<pre><code class="language-c">fclose(arquivo);
+</code></pre>
+<p>E ficaria assim:</p>
+<pre><code class="language-c">FILE * arquivo;
+arquivo = fopen(&quot;j.txt&quot;, &quot;r&quot;);
+
+char caractere;
+do {
+  caractere = fgetc(arquivo);
+  putchar(caractere);
+} while (caractere != EOF);
+fclose(arquivo);
+</code></pre>
+<p>Na minha humilde opnião é muito melhor ler os dados caractere por caractere porque assim se tem mais controle dos dados, mas existem outras funções que auxiliam nisso.</p>
+<p>O <code>fscanf</code> lê dados do arquivo e joga na variável estipulada:</p>
+<pre><code class="language-c">FILE *arquivo = fopen(&quot;texto.txt&quot;, &quot;r&quot;);
+
+char * texto_do_arquivo = malloc(10);
+fscanf(arquivo, &quot;%s&quot;, texto_do_arquivo);
+
+printf (&quot;%s&quot;, texto_do_arquivo);
+
+fclose(arquivo);
+free(texto_do_arquivo);
+</code></pre>
+<blockquote>
+<p>Não usei a forma de array aqui porque aparentemente o <code>fscanf</code> crachou comigo, mas sinta-se a vontade para testar se isso acontece com você também...</p>
+</blockquote>
+<p>O <code>fscanf</code> vai ler até o primeiro espaço ou a primeira quebra de linha (<code>\n</code>).</p>
+<p>Também dá pra fazer com o já conhecido <code>fgets</code>:</p>
+<pre><code class="language-c">FILE *f = fopen(&quot;f.txt&quot;, &quot;r&quot;);
+
+char str [100];
+fgets (f, 100, str); // -&gt; fgets ( &lt;arquivo&gt;, &lt;tamanho da string&gt;, &lt;string&gt; )
+
+fclose(f);
+</code></pre>
+<p>E por fim com o <code>fread</code>, que é uma forma mais direta de ler os dados, mas para usar o <code>fread</code> você tem que saber o limite da leitura ( que no nosso caso é o fim do arquivo), e para descobrir isso, nós vamos usar duas funções chamadas <code>fseek</code> e <code>ftell</code>.</p>
+<pre><code class="language-c">fseek(arquivo, 0, SEEK_END); // mudando o &quot;cursor&quot; para o fim do arquivo
+size_t tamanho_arquivo = ftell(arquivo); // pegando a posição do cursor
+fseek(arquivo, 0, SEEK_SET); // colocando o cursor no inicio de novo
+</code></pre>
+<p>Feito isso é só ler usando o <code>fread</code></p>
+<pre><code class="language-c">fread(      texto,        sizeof (char),              tamanho_arquivo, arquivo );
+//   ( &lt;ponteiro&gt;, &lt;tmh do tipo do ptr&gt;, &lt;limite da leitura em bytes&gt;, &lt;arquivo&gt; )
+</code></pre>
+<p>E vai ficar assim:</p>
+<pre><code class="language-c">FILE *arquivo = fopen(&quot;f.txt&quot;, &quot;r&quot;);
+
+fseek(arquivo, 0, SEEK_END); // mudando o &quot;cursor&quot; para o fim do arquivo
+size_t tamanho_arquivo = ftell(arquivo); // pegando a posição do cursor
+fseek(arquivo, 0, SEEK_SET); // colocando o cursor no inicio de novo
+
+char * texto = malloc( tamanho_arquivo );
+
+fread( texto, sizeof (char), tamanho_arquivo, arquivo );
+
+free(texto);
+fclose(arquivo);
+</code></pre>
+<blockquote>
+<p>O conteúdo do arquivo vai ser escrito na variável <code>texto</code></p>
+</blockquote>
+<h4 id="escrita"><a class="header" href="#escrita">Escrita</a></h4>
+<p>Para abrir um arquivo em modo escrita ao invés de colocar o <code>r</code> no parametro do <code>fopen</code>, colocamos um <code>w</code>:</p>
+<pre><code class="language-c">FILE *arquivo = fopen(&quot;texto.txt&quot;, &quot;w&quot;);
+</code></pre>
+<blockquote>
+<p>Nesse caso, se o arquivo não existir, ele será criado, mas se existir um arquivo ele perderá todos os seus dados.</p>
+</blockquote>
+<p>Para escrever um <code>char</code> em um arquivo usamos a função <code>fputc</code></p>
+<pre><code class="language-c">fputc('a', arquivo); // -&gt; fputc( &lt;char&gt;, &lt;arquivo&gt; )
+</code></pre>
+<p>Para escrever uma string use o <code>fputs</code></p>
+<pre><code class="language-c">fputs(&quot;string com coisas&quot;, arquivo); // -&gt; fputs(&lt;string&gt;, &lt;arquivo&gt;)
+</code></pre>
+<p>Ou se quiser escrever um dados formatado use o já estudado <code>fprintf</code></p>
+<pre><code class="language-c">fprintf ( arquivo, &quot;%i &gt; %i = %s&quot;, 4, 3, (4 &gt; 3? &quot;True&quot;: &quot;False&quot;));
+</code></pre>
+<p>E por fim você pode usar o irmão do <code>fread</code>, o <code>fwrite</code>:</p>
+<pre><code class="language-c">char texto [] = &quot;texto aleatorio para colocar no arquivo&quot;;
+fwrite( texto, sizeof (char), sizeof(texto), arquivo );
+</code></pre>
+<p>Mas esses não são os únicos modos de abertura de um arquivo</p>
+<pre><code class="language-c">&quot;r&quot;  // -&gt; read: somente leitura
+&quot;w&quot;  // -&gt; write: somente escrita, mas apaga o conteúdo do arquivo antes de escrever
+&quot;a&quot;  // -&gt; append: somente escrita
+&quot;r+&quot; // -&gt; read/write: leitura e escrita
+&quot;w+&quot; // -&gt; read/write: leitura e escrita, mas apaga o conteúdo do arquivo antes de escrever
+&quot;a+&quot; // -&gt; read/append: leitura e escrita
+</code></pre>
+<blockquote>
+<p>Faça seus testes com cada um deles, para ver funcionando na prática</p>
+</blockquote>
+<p>Você já deve ter percebido que as mesmas funções que usamos em arquivos, são usadas na <code>stdout</code>, <code>stdin</code> e <code>stderr</code>, não é mesmo?
+Isuuso acontece, porque essas 3 variáveis são arquivos, e por esse motivo você pode usar todas as funções usadas em arquivos colocando elas no lugar, mas lembre-se, o <code>stdout</code> e o <code>stderr</code> estão em modo <code>&quot;w&quot;</code>, enquanto o <code>stdin</code> está em modo <code>&quot;r&quot;</code>, portanto, você só pode escrever no <code>stdout</code> e no <code>stderr</code>, e só pode ler o <code>stdin</code>. Divirta-se!</p>
+<h3 id="posicionamento-em-arquivos"><a class="header" href="#posicionamento-em-arquivos">Posicionamento em arquivos</a></h3>
+<p>Para “finalizar” este assunto, existem algumas funções que podem ser úteis na manipulação de arquivos, como o <code>fseek</code> (que já foi visto de maneira superficial)</p>
+<blockquote>
+<p>Não vamos finalizar totalmente porque ainda faltam algumas funções, que agente vai ver no capítulo de <code>stdarg.h</code></p>
+</blockquote>
+<pre><code class="language-c">FILE *j = fopen(&quot;j.txt&quot;, &quot;r&quot;);
+
+fseek( j, 0, SEEK_SET); // passa o cursor para o inicio do arquivo
+fseek( j, 0, SEEK_CUR); /* passa o cursor para a posição atual do ponteiro
+                           se ja tiver lido 3 caracteres, o cursor volta para
+                           o caractere 3
+                        */
+fseek( j, 0, SEEK_END);
+</code></pre>
+<p>Caso queira retornar para o inicio do arquivo, você pode usar a versão simplificada do <code>fseek</code> que se chama <code>rewind</code></p>
+<pre><code class="language-c">FILE * arquivo = open(&quot;j.txt&quot;, &quot;r&quot;);
+rewind( arquivo );
+</code></pre>
+<p>A função <code>ftell</code>, também já vista retorna a posição atual do cursor</p>
+<pre><code class="language-c">FILE *j = fopen(&quot;j.txt&quot;, &quot;r&quot;);
+
+char c;
+while ((c = fgetc(j)) != 'a')
+  putchar(c);
+
+printf(&quot;\n%li\n&quot;, ftell(j));
+</code></pre>
+<p>Mas caso você precise de mais controle nesse posicionamento é só usar as funções <code>fgetpos</code> e <code>fsetpos</code></p>
+<pre><code class="language-c">// j.txt -&gt; &quot;abcdefghijklmnop&quot;
+FILE * arquivo = fopen(&quot;j.txt&quot;, &quot;r+&quot;);
+
+fpos_t posicao; // tem que ser deste tipo para funcionar
+
+fgetpos(arquivo, &amp;posicao); // pegando a posição
+printf(&quot;posicao: %p\ncaractere: %c&quot;, &amp;posicao, fgetc(arquivo));
+fseek( arquivo, 0, SEEK_SET );
+
+fsetpos(arquivo, &amp;posicao + 4); // mudando posição para o 4 caractere
+fgetpos(arquivo, &amp;posicao);     // pegando a posição de novo
+
+getchar();
+
+printf(&quot;posicao: %p\ncaractere: %c\n&quot;, &amp;posicao, fgetc(arquivo));
+fclose ( arquivo );
+
+getchar();
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>posicao: 0x7ffddf294270
+caractere: a
+posicao: 0x7ffddf294270
+caractere: e
+</code></pre>
+<h3 id="operações-com-arquivos"><a class="header" href="#operações-com-arquivos">Operações com arquivos</a></h3>
+<p>Para apagar o arquivo é só usar a função <code>remove</code></p>
+<pre><code class="language-c">remove(&quot;j.txt&quot;);
+</code></pre>
+<p>E para renomear é só usar <code>rename</code></p>
+<pre><code class="language-c">rename(       &quot;j.txt&quot;,  &quot;joao.txt&quot;);
+//    ( &lt;nome antigo&gt;, &lt;nome novo&gt;)
+</code></pre>
+<p>A função <code>reopen</code> é muito útil para mudar o destino de arquivos, exemplo:</p>
+<pre><code class="language-c">freopen(&quot;j.txt&quot;, &quot;w&quot;, stdout);
+fprintf(&quot;joao é uma pessoa!!\n&quot;, stdout); // o resultado não será impresso na tela, mas no arquivo &quot;j.txt&quot;
+</code></pre>
+<p>Além de todas essas, lembra de quando imprimimos mensagens na saída de erro (<code>stderr</code>) com <code>fprintf</code>? na <code>stdio.h</code> existe uma que faz isso automaticamente; é o <code>perror</code></p>
+<pre><code class="language-c">perror(&quot;ferrou!!&quot;);
+</code></pre>
+<p>Para outras informações sobre a biblioteca veja a <a href="https://pt.wikibooks.org/wiki/Programar_em_C/Entrada_e_sa%C3%ADda_simples">referência</a> que está no <a href="https://pt.wikibooks.org">wikibooks</a> sobre ela.</p>
+<h2 id="stdlibh"><a class="header" href="#stdlibh">stdlib.h</a></h2>
+<pre><code class="language-c">#include &lt;stdlib.h&gt;
+</code></pre>
+<p>A <code>stdlib.h</code> é com certeza uma das bibliotecas mais importantes do C, portanto, merece ser dicecada aqui.</p>
+<p>E as funções que já vimos dela foram as de gerenciamento de memória (<code>malloc</code>, <code>free</code>, <code>realloc</code>), logo, não iremos revê-las.</p>
+<h3 id="conversões-entre-string-e-outros-tipos"><a class="header" href="#conversões-entre-string-e-outros-tipos">Conversões entre string e outros tipos</a></h3>
+<pre><code class="language-c">double     d = atof (&quot;8.9&quot;); // atof(&lt;valor&gt;): de string para double
+int        i = atoi (&quot;89&quot;);  // atoi(&lt;valor&gt;): de string para inteiro
+long       l = atol (&quot;999&quot;); // atol(&lt;valor&gt;): de string para long
+long long ll = atoll (&quot;99&quot;); // atoll(&lt;valor&gt;): de string para long long
+</code></pre>
+<h3 id="sistema"><a class="header" href="#sistema">Sistema</a></h3>
+<p>Caso queira abortar o programa, você pode usar a função <code>exit</code>, e assim como no <code>return</code> do main, você escolhe o valor que quer retornar para o SO</p>
+<pre><code class="language-c">int i;
+
+scanf(&quot;%i&quot;, &amp;i);
+if (i%2)
+  exit(0); // se for impar saia
+else
+  exit(1); // senao saia e retorne um erro
+</code></pre>
+<p>Outra função relacionada ao fechamento do programa é a função <code>atexit</code>, que registra funções que serão executadas quando o programa finalizar, sendo que estas funções não podem retornar valores e nem receber parametros.</p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+void tmp_file_remove (void){
+  remove(&quot;/tmp/at_exit_lock&quot;);
+}
+
+int main(){
+  FILE * tmp = fopen(&quot;/tmp/at_exit_lock&quot;, &quot;w&quot;);
+  atexit(tmp_file_remove);
+
+  // pausando a execução
+  puts(&quot;não click em enter ainda... olhe se há um arquivo \&quot;at_exit_lock\&quot; na pasta /tmp/&quot;);
+  getchar();
+
+  puts(&quot;agora veja se ainda está lá&quot;);
+  fclose (tmp);
+  return 0;
+}
+</code></pre>
+<p>Outra semelhante à <code>atexit</code> é a <code>at_quick_exit</code>, que vai ser executada quando o programa for interromido usando a função <code>quick_exit</code></p>
+<pre><code class="language-c">#include &lt;stdio.h&gt;
+#include &lt;stdlib.h&gt;
+
+void tmp_file_remove (void){
+  remove(&quot;/tmp/at_exit_lock&quot;);
+}
+
+int main(){
+  FILE * tmp = fopen(&quot;/tmp/at_exit_lock&quot;, &quot;w&quot;);
+  atexit(tmp_file_remove);
+
+  // pausando a execução
+  puts(&quot;não click em enter ainda... olhe se há um arquivo \&quot;at_exit_lock\&quot; na pasta /tmp/&quot;);
+  getchar();
+
+  fclose (tmp);
+  quick_exit(0);
+
+  // essa parte não vai executar
+  puts(&quot;agora veja se ainda está lá&quot;);
+  return 0;
+}
+</code></pre>
+<p>Outra variável de sistema muito útil é a <code>getenv</code>, que retorna o valor de uma variável de ambiente.</p>
+<pre><code class="language-c">char path = getenv(&quot;PATH&quot;); // caminhos para executáveis no linux ($PATH)
+</code></pre>
+<p>E as mais úteis de todas, com essas você vai conseguir executar comandos do sistema operacional</p>
+<pre><code class="language-c">system( &quot;echo hello mundo!&quot; ); // system( &lt;comando&gt; )
+</code></pre>
+<p>Mas a <code>system</code> executa e manda o resultado para a <code>stdout</code>, se você quiser acessar o valor de retorno, tem que usar a função <code>popen</code> (que retorna um <code>stream</code>, logo, você vai ter que tratá-la como um arquivo)</p>
+<blockquote>
+<p>A função popen não funciona no C99, se seu compilador usa C99, não irá compilar.</p>
+</blockquote>
+<pre><code class="language-c">FILE *response = popen(&quot;echo hello mundo!&quot;, &quot;r&quot;); // popen( &lt;comando&gt; )
+
+char comando [20];
+fgets(comando, 20, response);
+printf(&quot;o a resposta do comando usado foi:\n%s\n&quot;, comando);
+</code></pre>
+<p>Ainda faltam algumas funções mas essas são as mais importantes (contando com as de alocamanto de memória),  para outras informações sobre a biblioteca, consulte a <a href="https://pt.wikipedia.org/wiki/Stdlib.h">referência</a> feita por alguém na <a href="http://wikipedia.org/wiki/Stdlib.h">wikipedia</a>.</p>
+<h2 id="mathh"><a class="header" href="#mathh">math.h</a></h2>
+<pre><code class="language-c">#include &lt;math.h&gt;
+</code></pre>
+<p>Com certeza toda linguagem que se presa tem uma biblioteca de matemática, a <code>math.h</code> tem diversas funções para resolução de problemas matemáticos desde arredondamento até trigonométricos.</p>
+<h3 id="funções-de-arredondamento"><a class="header" href="#funções-de-arredondamento">Funções de arredondamento</a></h3>
+<p>Digamos que o valor de uma operação dê <code>1.7</code>, se quisermos arredondá-lo para cima usamos a função <code>ceil</code>:</p>
+<pre><code class="language-c">printf(&quot;%f\n&quot;, ceil(1.7));
+</code></pre>
+<p>Mas se quisermos arredondá-lo para um número menor usamos a função <code>floor</code>:</p>
+<pre><code class="language-c">printf(&quot;%f\n&quot;, floor(1.7));
+</code></pre>
+<p>E se quiser apenas cortar a parte decimal use o <code>trunc</code>:</p>
+<pre><code class="language-c">printf(&quot;%f\n&quot;, trunk(1.7));
+</code></pre>
+<p>Outra opção é arredondar para o número inteiro mais próximo, seja ele acima ou abaixo:</p>
+<pre><code class="language-c">printf(&quot;%f\n&quot;, round(1.7));
+</code></pre>
+<p>A função <code>round</code> tem algumas variações como o <code>lround</code> que arredonda para um <code>long int</code> e o <code>llround</code> que arredonda para um <code>long long int</code>.</p>
+<h3 id="potencia-e-radiciação"><a class="header" href="#potencia-e-radiciação">Potencia e radiciação</a></h3>
+<p>Para realizar uma potenciação é só usar a função <code>pow</code></p>
+<pre><code class="language-c">printf(&quot;40 ao quadrado é %.0f&quot;, pow(40, 2));
+</code></pre>
+<p>E caso queira fazer uma raiz quadrada é só usar a função <code>sqrt</code></p>
+<pre><code class="language-c">float n = pow(40, 2);
+printf(&quot;a raiz quadrada de %.0f é %.0f&quot;, n, sqrt(n) );
+</code></pre>
+<p>E raiz cúbica é <code>cbrt</code></p>
+<pre><code class="language-c">float n = pow(40, 3);
+printf(&quot;a raiz quadrada de %.0f é %.0f&quot;, n, cbrt(n) );
+</code></pre>
+<p>E caso você queira fazer uma raiz de índice <code>5</code>, <code>4</code> ou qualquer outro número, lemre-se que uma radiciação é apenas uma potencia elevada à um expoente “ao contrário”:</p>
+<blockquote>
+<p>2 normal é igual a 2/1, 2 ao contrário é igual a 1/2</p>
+</blockquote>
+<pre><code class="language-c">// vou usar o expoente 2 mas funciona com qualquer valor
+int numero = pow(5, 2);                  // 25
+int outro_numero = pow(numero, 1.0/2.0); // 5
+
+printf(&quot;5²  = %i\n√25 = %i\n&quot;, numero, outro_numero);
+</code></pre>
+<blockquote>
+<p>E não esqueça dos <code>.0</code> após o número se você não fizer isso o valor do expoente vai ser um inteiro e portanto, será <code>0</code>, lunca se esqueça de checar os tipos primitivos...</p>
+</blockquote>
+<p>E existe uma rotina exclusiva para cálculo de hipotenusa:</p>
+<pre><code class="language-c">int cateto_oposto = 8, cateto_adjacente = 6;
+int hipotenusa = hypot( cateto_oposto, cateto_adjacente );
+</code></pre>
+<p>A biblioteca de matemática tem diversas outras funções, logo, caso necessite fazer algoritmos matemáticos consulte a <a href="https://www.ufrgs.br/reamat/ComputacaoCientifica/livro/iapcel-a_biblioteca_mathh.html">referência da math.h</a> feita pela <a href="https://www.ufrgs.br">UFRGS</a></p>
+<h2 id="stdargh"><a class="header" href="#stdargh">stdarg.h</a></h2>
+<pre><code class="language-c">#include &lt;stdarg.h&gt;
+</code></pre>
+<p>A <code>stdarg.h</code> é uma biblioteca para tratamento de argumentos (ou parametros) de funções.</p>
+<p>Até aqui você deve está se perguntando, <em>“como fazer funções como o <code>printf</code> ou o <code>scanf</code> que recebem um número indeterminado de argumentos?”</em>, exatamente usando esta biblioteca, mas preste atenção para entender como você pode usá-la em seus algorítmos.</p>
+<p>Para essa biblioteca, vou explicar de uma maneira diferente, aqui nós vamos criar o <code>print</code>, que assim como o <code>printf</code>, irá esquever coisas na tela.</p>
+<blockquote>
+<p>Como vai ser a chamada do <code>print</code></p>
+</blockquote>
+<pre><code class="language-c">// print ( &lt;formato&gt;, &lt;dados&gt; );
+
+print( &quot;isfsf&quot;, 90, &quot; + &quot;, 8.3, &quot; = &quot;, 90.0 + 8.3 );
+
+// i -&gt; %i/%d/%li
+// s -&gt; %s
+// f -&gt; %f/%lf
+</code></pre>
+<p>Na declaração da função tem que ter pelo menos 1 argumento fixo, e no nosso caso é o <code>formato</code>, todos os outros argumentos serão substituídos por um <code>...</code></p>
+<pre><code class="language-c">void print( char * formato, ... );
+</code></pre>
+<p>Para acessar os dados no <code>...</code> nós primeiro temos que guardar eles em uma variável do tipo <code>va_list</code></p>
+<pre><code class="language-c">void print( char * formato, ... ){
+  va_list argumentos;
+}
+</code></pre>
+<p>Esse va_list é um ponteiro com todos os argumentos, mas para pegarmos os certos temos que dizer para ele de onde começar a pesquisar usando o <code>va_start</code></p>
+<pre><code class="language-c">void print( char * formato, ... ){
+  va_list argumentos;
+  va_start( argumentos, formato );
+}
+</code></pre>
+<p>Agora iremos checar quantos dados estamos esperando, e depois pegar-los com a função <code>va_arg</code></p>
+<blockquote>
+<p>Caso for usar valores em <code>char</code>, na hora de usar o <code>va_arg</code>, usem com <code>int</code>, ele não aceita <code>char</code> porque é muito pequeno.</p>
+</blockquote>
+<pre><code class="language-c">#include &lt;string.h&gt; // -&gt; strlen
+void print( char * formato, ... ){
+  va_list argumentos;
+  va_start( argumentos, formato );
+
+  int argc = strlen(formato); // pegando a qntd de caracteres da string
+
+  for (int i = 0; i&lt;argc; i ++){
+    if (formato[ i ] == 'i') // caso o dado esperado for um int
+      printf( &quot;%li&quot;, va_arg( argumentos,      long int ) );
+      //             va_arg( &lt;lista de args&gt;,   &lt;tipo&gt; ) );
+
+    if (formato[ i ] == 'f') // float
+      printf( &quot;%lf&quot;, va_arg( argumentos, double ) );
+
+    if (formato[ i ] == 's') // string
+      printf(va_arg( argumentos, char *));
+  }
+  putchar('\n');
+  va_end( argumentos ); // fechando os argumentos
+}
+</code></pre>
+<blockquote>
+<p>O <code>va_arg</code>, assim como o <code>fgetf</code>, retorna o dado e passa para o próximo automaticamente.</p>
+</blockquote>
+<p>E fim, essas são as únicas funções que existem nessa biblioteca. Mas como eu prometi no capítulo sobre <code>stdio.h</code> agora eu irei explicar sobre as funções que usam o <code>va_list</code> da <code>stdarg.h</code></p>
+<p>As funções do <code>stdio.h</code> que usam <code>va_list</code> fazem o mesmo que as outras, só que aceitam esse tipo de argumento, como o <code>vprintf</code></p>
+<pre><code class="language-c">void escreva_numeros ( int qntd, ... ){
+  va_list args;
+  va_start( args, qntd );
+
+  char * formato = malloc( qnt*3+1 );
+  for (int i=0; i&lt;qntd; i+=2){
+    formato[i] = '%';
+    formato[i+1] = 'i';
+    formato[i+2] = 'i';
+  }
+  formato[ qnt*3 ] = '\n';
+
+  vprintf(formato, args);
+
+  va_end( args );
+  free(formato);
+}
+</code></pre>
+<p>E funciona da mesma maneira com as funções <code>vscanf</code> (<code>scanf</code>), <code>vsscanf</code> (<code>sscanf</code>), <code>vfscanf</code> (<code>fscanf</code>) ...</p>
+<h2 id="stringh"><a class="header" href="#stringh">string.h</a></h2>
+<pre><code class="language-c">#include &lt;string.h&gt;
+</code></pre>
+<p>Esta é mais uma das bibliotecas que eu já falei, mas não me aprofundei, portanto irei ignorar as funções já mencionadas (<code>strlen</code>, <code>strcpy</code>).</p>
+<p>A primeira função interessante é a <code>strncpy</code>, que ao invés de copiar a string inteira, copia apenas um número de caracteres</p>
+<pre><code class="language-c">char str[10];
+strncpy(str, &quot;joao e maria&quot;, 4); // copia até o 4 caractere
+str[4] = '\0';                   // setando o fim da string
+
+puts(str);
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>joao
+</code></pre>
+<p>Outra que também é bacana é a <code>strcat</code>, que serve para concatenar strings</p>
+<pre><code class="language-c">char str[] = &quot;joao&quot;;
+strcat(str, &quot; e maria&quot;); // strcat( &lt;destino&gt;, &lt;destinatario&gt; );
+</code></pre>
+<p>E existe a variação <code>strncat</code>, que concatena até um certo número de caracteres</p>
+<pre><code class="language-c">char str[] = &quot;joao&quot;;
+strncat(str, &quot; e maria rosa&quot;, 8);
+</code></pre>
+<p>Uma função muito útil dessa biblioteca é a <code>strcmp</code> que compara duas strings</p>
+<pre><code class="language-c">char str [] = &quot;joao&quot;, str2 [] = &quot;maria&quot;;
+int res = strcmp( str, str2 ); // strcmp( &lt;str&gt;, &lt;str2&gt; )
+
+if ( res == 0 )
+  puts(&quot;as strings são iguais&quot;);
+else if ( res &lt; 0 )
+  puts(&quot;\&quot;%s\&quot; é menor que \&quot;%s\&quot;&quot;, str, str2);
+else if ( res &gt; 0 )
+  puts(&quot;\&quot;%s\&quot; é maior que \&quot;%s\&quot;&quot;, str, str2);
+</code></pre>
+<p>E também existe a <code>strncmp</code> que funciona da mesma forma que a anterior, mas compara só até um certo caractere.</p>
+<pre><code class="language-c">char str [] = &quot;joao&quot;, str2 [] = &quot;joao e maria&quot;;
+int res = strncmp( str, str2, 4 ); // strncmp( &lt;str&gt;, &lt;str2&gt;, &lt;numero&gt; )
+
+if (res == 0)
+  puts(&quot;os primeiros 4 caracteres da string 2 são iguais aos da string 1&quot;);
+</code></pre>
+<p>Outras opções são usar funções de pesquisa em strings, como o <code>strchr</code> que irá retornar um ponteiro para a primeira ocorrencia de um caractere</p>
+<pre><code class="language-c">char j[] = &quot;abcdefghijklmnop;joao\0&quot;;
+puts(strchr(j, 'g'));
+puts(strchr(j, ';')+1);
+
+char * f = strchr(j, ';');
+* f = '\0'; /* finalizando a string
+               na primeira ocorrencia
+               de &quot;;&quot; */
+
+puts(j);
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>ghijklmnop;joao
+joao
+abcdefghijklmnop
+</code></pre>
+<p>Outra bem bacana é a <code>strcspn</code> onde você passa uma certa lista de caracteres e ela irá retornar a primeira ocorrencia de qualquer caractere da lista</p>
+<pre><code class="language-c">char str[] = &quot;bcdefgh&quot;;
+printf(&quot;A vogal \&quot;%c\&quot; está na %iª posição de \&quot;%s\&quot;\n&quot;,
+    str[ strcspn(str, &quot;aeiou&quot;) ], strcspn(str, &quot;aeiou&quot;)+1, str);
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code>A vogal &quot;e&quot; está na 4ª posição de &quot;bcdefgh&quot;
+</code></pre>
+<p>Uma semelhante a <code>strchr</code> é a <code>strstr</code>, que retorna a string da primeira ocorrencia de um caractere até o seu fim</p>
+<pre><code class="language-c">char str[] = &quot;joao maria ronaldo&quot;;
+puts(strstr(str, &quot;maria&quot;));
+</code></pre>
+<h2 id="ctypeh"><a class="header" href="#ctypeh">ctype.h</a></h2>
+<pre><code class="language-c">#include &lt;ctype.h&gt;
+</code></pre>
+<p>Esta biblioteca possui funções para reconhecimento de tipos de caractere (<code>char</code>), e carrega diversas funções para esse reconhecimento.</p>
+<pre><code class="language-c">isnum    ('2'); // se é numerico
+isalpha  ('s'); // se é alfabético
+isblank ('\t'); // se é vazio
+iscntrl ('\n'); // se é caractere especial
+isdigit  ('4'); // se é numero decimal
+isgraph  ('!'); // se tem representação gráfica
+isprint  ('2'); // se dá para escrever na tela
+ispunct  ('.'); // se é pontuação
+isspace ('\v'); // se é um espaço branco
+isxdigit ('0'); // se é hexadecimal
+islower  ('a'); // se é letra minúscula
+isupper  ('A'); // se é letra maiúscula
+
+tolower  ('A'); // transforma em letra minúscula
+toupper  ('a'); // transforma em letra maiúscula
+</code></pre>
+<p>É necessário que eu esclareça alguns pontos, caracteres como <code></code> ou <code>ç</code> são grandes demais para caber em um <code>char</code>, caso precise desses caracteres unicode, use strings para representá-los.</p>
+<h2 id="conioh"><a class="header" href="#conioh">conio.h</a></h2>
+<pre><code class="language-c">#include &lt;conio.h&gt;
+</code></pre>
+<p>Esta é uma biblioteca exclusiva para sistemas baseados em <a href="https://pt.wikipedia.org/wiki/MS-DOS">MS-DOS</a>, como o windows, ou o <a href="https://pt.wikipedia.org/wiki/ReactOS">reactOS</a>, e serve para a entrada e saída de dados com o console.</p>
+<p>A função mais interessante é sem dúvidas a <code>getch</code>, que basicamente espera um caractere.</p>
+<pre><code class="language-c">char c;
+
+printf(&quot;digite um caractere&quot;);
+c = getch();
+</code></pre>
+<blockquote>
+<p>Ele não espera um “enter”, ele apenas recebe o caractere e pronto.</p>
+</blockquote>
+<p>Outra forma legal de usar esta função é pra controlar a entrada do usuário, por exemplo, quero ler um texto eternamente e parar quando a pessoa clicar na tecla <kbd>esc</kbd>.</p>
+<pre><code class="language-c">#include &lt;conio.h&gt;
+#include &lt;stdio.h&gt;
+
+int main(){
+    puts(&quot;digite coisas aqui:&quot;);
+
+    char c, *str = malloc(1);
+    int i = 0;
+    while ((c = getch()) != 27){ /* enquanto o caractere lido
+                                    for diferente da
+                                    tecla &lt;ESC&gt;
+                                 */
+        putchar(c);
+        str = realloc(str, sizeof str + sizeof c);
+        str[i++] = c;
+    }
+
+    printf(&quot;\n%s\n&quot;, str);
+    free(str);
+    return 0;
+}
+</code></pre>
+<p>Bom, basicamente é isso, todas as outras funções são apenas alternativas a já existentes como o <code>cgets</code> que funciona igual a <code>gets</code> do <code>stdio.h</code>, ou a <code>cprintf</code>... enfim.</p>
+<h1 id="considerações-finais"><a class="header" href="#considerações-finais">Considerações finais</a></h1>
+<p>Espero que este livro tenha ajudado você, este não é o fim definitivo, os seus estudos não devem acabar aqui, então tenha paciência e antes de ir embora vou da um bônus para você se animar e começar seus projetos em C.</p>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                        
+                        
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                
+                            </nav>
+
+        </div>
+
+        
+        
+        
+                <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+        
+                <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+                        <script type="text/javascript">
+        window.addEventListener('load', function() {
+            window.setTimeout(window.print, 100);
+        });
+        </script>
+                
+    </body>
+</html>

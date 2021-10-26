@@ -1,0 +1,355 @@
+<!DOCTYPE HTML>
+<html lang="pt" class="sidebar-visible no-js light">
+    <head>
+        <!-- Book generated using mdBook -->
+        <meta charset="UTF-8">
+        <title>Customizacao de tipos - C Para Seres Humanos</title>
+                
+
+        <!-- Custom HTML head -->
+        
+
+        <meta content="text/html; charset=utf-8" http-equiv="Content-Type">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="theme-color" content="#ffffff" />
+
+                <link rel="icon" href="favicon.svg">
+                        <link rel="shortcut icon" href="favicon.png">
+                <link rel="stylesheet" href="css/variables.css">
+        <link rel="stylesheet" href="css/general.css">
+        <link rel="stylesheet" href="css/chrome.css">
+                <link rel="stylesheet" href="css/print.css" media="print">
+        
+        <!-- Fonts -->
+        <link rel="stylesheet" href="FontAwesome/css/font-awesome.css">
+                <link rel="stylesheet" href="fonts/fonts.css">
+        
+        <!-- Highlight.js Stylesheets -->
+        <link rel="stylesheet" href="highlight.css">
+        <link rel="stylesheet" href="tomorrow-night.css">
+        <link rel="stylesheet" href="ayu-highlight.css">
+
+        <!-- Custom theme stylesheets -->
+        
+            </head>
+    <body>
+        <!-- Provide site root to javascript -->
+        <script type="text/javascript">
+            var path_to_root = "";
+            var default_theme = window.matchMedia("(prefers-color-scheme: dark)").matches ? "navy" : "light";
+        </script>
+
+        <!-- Work around some values being stored in localStorage wrapped in quotes -->
+        <script type="text/javascript">
+            try {
+                var theme = localStorage.getItem('mdbook-theme');
+                var sidebar = localStorage.getItem('mdbook-sidebar');
+
+                if (theme.startsWith('"') && theme.endsWith('"')) {
+                    localStorage.setItem('mdbook-theme', theme.slice(1, theme.length - 1));
+                }
+
+                if (sidebar.startsWith('"') && sidebar.endsWith('"')) {
+                    localStorage.setItem('mdbook-sidebar', sidebar.slice(1, sidebar.length - 1));
+                }
+            } catch (e) { }
+        </script>
+
+        <!-- Set the theme before any content is loaded, prevents flash -->
+        <script type="text/javascript">
+            var theme;
+            try { theme = localStorage.getItem('mdbook-theme'); } catch(e) { }
+            if (theme === null || theme === undefined) { theme = default_theme; }
+            var html = document.querySelector('html');
+            html.classList.remove('no-js')
+            html.classList.remove('light')
+            html.classList.add(theme);
+            html.classList.add('js');
+        </script>
+
+        <!-- Hide / unhide sidebar before it is displayed -->
+        <script type="text/javascript">
+            var html = document.querySelector('html');
+            var sidebar = 'hidden';
+            if (document.body.clientWidth >= 1080) {
+                try { sidebar = localStorage.getItem('mdbook-sidebar'); } catch(e) { }
+                sidebar = sidebar || 'visible';
+            }
+            html.classList.remove('sidebar-visible');
+            html.classList.add("sidebar-" + sidebar);
+        </script>
+
+        <nav id="sidebar" class="sidebar" aria-label="Table of contents">
+            <div class="sidebar-scrollbox">
+                <ol class="chapter"><li class="chapter-item expanded "><a href="0-sobre.html"><strong aria-hidden="true">1.</strong> Sobre</a></li><li class="chapter-item expanded "><a href="1-nocoes-basicas.html"><strong aria-hidden="true">2.</strong> Nocoes basicas</a></li><li class="chapter-item expanded "><a href="2-introducao-a-sintaxe-do-c.html"><strong aria-hidden="true">3.</strong> Introducao a sintaxe do C</a></li><li class="chapter-item expanded "><a href="3-conceitos-interessantes.html"><strong aria-hidden="true">4.</strong> Conceitos interessantes</a></li><li class="chapter-item expanded "><a href="4-entrada-e-saida-de-dados.html"><strong aria-hidden="true">5.</strong> Entrada e saida de dados</a></li><li class="chapter-item expanded "><a href="5-operadores.html"><strong aria-hidden="true">6.</strong> Operadores</a></li><li class="chapter-item expanded "><a href="6-arrays-e-strings.html"><strong aria-hidden="true">7.</strong> Arrays e Strings</a></li><li class="chapter-item expanded "><a href="7-escopo-e-condicionais.html"><strong aria-hidden="true">8.</strong> Escopo e Condicionais</a></li><li class="chapter-item expanded "><a href="8-estruturas-de-repeticao.html"><strong aria-hidden="true">9.</strong> Estruturas de repeticao</a></li><li class="chapter-item expanded "><a href="9-funcoes.html"><strong aria-hidden="true">10.</strong> Funcoes</a></li><li class="chapter-item expanded "><a href="9-ponteiros.html"><strong aria-hidden="true">11.</strong> Ponteiros</a></li><li class="chapter-item expanded "><a href="10-customizacao-de-tipos.html" class="active"><strong aria-hidden="true">12.</strong> Customizacao de tipos</a></li><li class="chapter-item expanded "><a href="11-hacks-e-extras.html"><strong aria-hidden="true">13.</strong> Hacks e Extras</a></li><li class="chapter-item expanded "><a href="13-hello-world-grafico.html"><strong aria-hidden="true">14.</strong> Hello World Grafico</a></li><li class="chapter-item expanded "><a href="14-bibliotecas-uteis.html"><strong aria-hidden="true">15.</strong> Bibliotecas uteis</a></li></ol>            </div>
+            <div id="sidebar-resize-handle" class="sidebar-resize-handle"></div>
+        </nav>
+
+        <div id="page-wrapper" class="page-wrapper">
+
+            <div class="page">
+                
+                <div id="menu-bar-hover-placeholder"></div>
+                <div id="menu-bar" class="menu-bar sticky bordered">
+                    <div class="left-buttons">
+                        <button id="sidebar-toggle" class="icon-button" type="button" title="Toggle Table of Contents" aria-label="Toggle Table of Contents" aria-controls="sidebar">
+                            <i class="fa fa-bars"></i>
+                        </button>
+                        <button id="theme-toggle" class="icon-button" type="button" title="Change theme" aria-label="Change theme" aria-haspopup="true" aria-expanded="false" aria-controls="theme-list">
+                            <i class="fa fa-paint-brush"></i>
+                        </button>
+                        <ul id="theme-list" class="theme-popup" aria-label="Themes" role="menu">
+                            <li role="none"><button role="menuitem" class="theme" id="light">Light (default)</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="rust">Rust</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="coal">Coal</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="navy">Navy</button></li>
+                            <li role="none"><button role="menuitem" class="theme" id="ayu">Ayu</button></li>
+                        </ul>
+                                                <button id="search-toggle" class="icon-button" type="button" title="Search. (Shortkey: s)" aria-label="Toggle Searchbar" aria-expanded="false" aria-keyshortcuts="S" aria-controls="searchbar">
+                            <i class="fa fa-search"></i>
+                        </button>
+                                            </div>
+
+                    <h1 class="menu-title">C Para Seres Humanos</h1>
+
+                    <div class="right-buttons">
+                                                <a href="print.html" title="Print this book" aria-label="Print this book">
+                            <i id="print-button" class="fa fa-print"></i>
+                        </a>
+                                                                        <a href="https://github.com/plankiton/CParaSeresHumanos" title="Git repository" aria-label="Git repository">
+                            <i id="git-repository-button" class="fa fa-github"></i>
+                        </a>
+                                                                        <a href="https://github.com/rust-lang/mdBook/edit/master/guide/src/10-customizacao-de-tipos.md" title="Suggest an edit" aria-label="Suggest an edit">
+                            <i id="git-edit-button" class="fa fa-edit"></i>
+                        </a>
+                        
+                    </div>
+                </div>
+
+                                <div id="search-wrapper" class="hidden">
+                    <form id="searchbar-outer" class="searchbar-outer">
+                        <input type="search" id="searchbar" name="searchbar" placeholder="Search this book ..." aria-controls="searchresults-outer" aria-describedby="searchresults-header">
+                    </form>
+                    <div id="searchresults-outer" class="searchresults-outer hidden">
+                        <div id="searchresults-header" class="searchresults-header"></div>
+                        <ul id="searchresults">
+                        </ul>
+                    </div>
+                </div>
+                
+                <!-- Apply ARIA attributes after the sidebar and the sidebar toggle button are added to the DOM -->
+                <script type="text/javascript">
+                    document.getElementById('sidebar-toggle').setAttribute('aria-expanded', sidebar === 'visible');
+                    document.getElementById('sidebar').setAttribute('aria-hidden', sidebar !== 'visible');
+                    Array.from(document.querySelectorAll('#sidebar a')).forEach(function(link) {
+                        link.setAttribute('tabIndex', sidebar === 'visible' ? 0 : -1);
+                    });
+                </script>
+
+                <div id="content" class="content">
+                    <main>
+                        <h1 id="customização-de-tipos"><a class="header" href="#customização-de-tipos">Customização de tipos</a></h1>
+<p>Até agora você só viu estruturas padrões do próprio C, e como usá-las, mas agora você vai aprender a criar as suas próprias...</p>
+<h2 id="structs-e-unions"><a class="header" href="#structs-e-unions">Structs e unions</a></h2>
+<p><code>struct</code> é o tipo de dado que cria uma estrutura própria, e é muito útil para criar “objetos” ou seja, criar variáveis com várias características...</p>
+<blockquote>
+<p>E a galera que já conhece um pouco mais deve estar se perguntando “Mas o C é orientado a objetos?” e desde já, não, o máximo que você pode fazer no C é criar um tipo com espaços para armazenar dados, mas não é possível criar objetos ou classes.</p>
+</blockquote>
+<pre><code class="language-c">
+struct pessoa {
+   char * nome;
+   int idade;
+   char sexo;
+   float peso;
+   float altura;
+}
+
+</code></pre>
+<p>Como podem ver no exemplo acima, nós criamos uma estrutura <code>pessoa</code> que pode receber um <code>nome</code>, uma <code>idade</code>, um <code>peso</code>, um <code>sexo</code> e uma <code>altura</code>, assim melhorando e muito nosso armazenamento de dados, <em>“Mas como eu posso acessá-los?”</em>, muito simples:</p>
+<pre><code class="language-c">struct pessoa joao;        // aqui nós criamos uma pessoa &quot;joao&quot;.
+joao.nome = &quot;Joao&quot;;        // aqui nós atribuímos &quot;Joao&quot; ao nome da pessoa.
+</code></pre>
+<p>E como você pôde notar agora existe um tipo <code>struct pessoa</code>, <em>“Mas, eu quero criar um tipo <code>pessoa</code>, é possível?”</em>, sim, é, e para isso você vai usar o <code>typedef</code>, e ele serve para apelidar um tipo.</p>
+<pre><code class="language-c">typedef int MyInt;
+
+MyInt inteiro;
+</code></pre>
+<p>Mas como nós queremos usá-lo com a nossa <code>struct</code>, temos 3 formas de usar:</p>
+<p>Criando o <code>struct</code> antes:</p>
+<pre><code class="language-c">struct p { char * name };
+typedef struct p pessoa;
+</code></pre>
+<p>Criando ao mesmo tempo:</p>
+<pre><code class="language-c">typedef struct p { char * name } pessoa;
+</code></pre>
+<p>Criando ao mesmo tempo com uma <code>struct</code> anônima:</p>
+<pre><code class="language-c">typedef struct { char * name } pessoa;
+</code></pre>
+<p>E o resultado das sentenças anteriores é:</p>
+<pre><code class="language-c">pessoa joao;
+joao.name = &quot;Joao&quot;;
+</code></pre>
+<blockquote>
+<p>E para evitar erros de escopo, sempre declare structs fora do <code>main</code>.</p>
+</blockquote>
+<p>Outra estrutura muito interessante é a <code>union</code>, ela é semelhante a <code>struct</code>, mas a <code>union</code> assume apenas uma variável... <em>“Como assim?”</em> ...observe:</p>
+<pre><code class="language-c">// struct
+{
+   struct p {
+      char * nome;
+      int idade;
+   };
+
+   // Uso
+
+   struct p joao;
+   joao.nome = &quot;Joao&quot;;
+   joao.idade = 12;
+}
+
+// union
+{
+   union p {
+      char * nome;
+      int idade;
+   };
+
+   // Uso
+
+   union p joao;
+   joao.nome = &quot;Joao&quot;;       // aqui você escolheu usar a variável nome
+   puts(joao.idade);         /* aqui aqui será imprimido &quot;Joao&quot;, já que
+                                joao.idade está unido com joao.nome
+                             */
+    // Ou
+    union p coisa;
+    coisa.idade = 14;
+    printf(&quot;%i\n&quot;, coisa.idade);
+}
+</code></pre>
+<p>Um macete legal na atribuíção de uma <code>struct</code> é usar um array para isso, é só colocar os valores na ordem de declaração da struct, <em>“Quê?”</em>:</p>
+<pre><code class="language-c">typedef struct {
+    char * nome;
+    int idade;
+    float peso;
+    float altura;
+} pessoa;
+
+//                      .nome, .idade, .peso, .altura
+pessoa joao = (pessoa){&quot;joao&quot;,     13,  40.3,    1.60};
+</code></pre>
+<p>Ou caso você não queira colocar na ordem é só específicar o atributo:</p>
+<pre><code class="language-C">pessoa maria = (pessoa){
+    .altura = 1.5
+    .idade = 12,
+    .nome = &quot;maria&quot;,
+    .peso = 39.4,
+};
+</code></pre>
+<p>E o mesmo vale para arrays de <code>struct</code>:</p>
+<pre><code class="language-c">pessoa * pessoas = (pessoa []){
+    (pessoa){ &quot;vanderlei&quot;, 25, 90, 1.80 },
+    joao,
+    (pessoa){
+        .peso = 70,
+        .altura = 1.90,
+        .idade = 42,
+        .nome = &quot;rita&quot;
+    },
+    maria
+};
+</code></pre>
+<h2 id="enum"><a class="header" href="#enum">Enum</a></h2>
+<p>O <code>enum</code> vem enumeração e nesse você deseje designar valores constantes para as suas estruturas.</p>
+<pre><code class="language-c">typedef enum {
+   true = 1,
+   false = 0,
+} bool;
+
+bool falso = false;
+</code></pre>
+<blockquote>
+<p>Só pode colocar inteiros em enums.</p>
+</blockquote>
+<p>E acima acabamos de criar o tipo booleano no C.</p>
+<p>Como só é possível colocar inteiros em enums, e por isso existe um macete legal para atribuir esses números:</p>
+<pre><code class="language-c">typedef enum {
+
+   zero = 0,        // zero é 0
+   um,              // um é zero + 1
+   dois,            // dois é um + 1
+   tres,            // tres é dois + 1
+
+   sete = 7,        // sete é 7
+   oito,            // oito é sete + 1
+   nove,            // nove é oito + 1
+
+   quatro = 4,      // quatro é 4
+   cinco,           // cinco é quatro + 1
+   seis             // seis é seis + 1
+
+} por_extenso;
+</code></pre>
+<pre><code class="language-c">por_extenso numero = dois;
+
+printf(&quot;%i\n&quot;, numero)
+printf(&quot;%i\n&quot;, dois)
+</code></pre>
+<blockquote>
+<p>Saída:</p>
+</blockquote>
+<pre><code class="language-c">2
+2
+</code></pre>
+
+                    </main>
+
+                    <nav class="nav-wrapper" aria-label="Page navigation">
+                        <!-- Mobile navigation buttons -->
+                                                    <a rel="prev" href="9-ponteiros.html" class="mobile-nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                                <i class="fa fa-angle-left"></i>
+                            </a>
+                        
+                                                    <a rel="next" href="11-hacks-e-extras.html" class="mobile-nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                                <i class="fa fa-angle-right"></i>
+                            </a>
+                        
+                        <div style="clear: both"></div>
+                    </nav>
+                </div>
+            </div>
+
+            <nav class="nav-wide-wrapper" aria-label="Page navigation">
+                                    <a rel="prev" href="9-ponteiros.html" class="nav-chapters previous" title="Previous chapter" aria-label="Previous chapter" aria-keyshortcuts="Left">
+                        <i class="fa fa-angle-left"></i>
+                    </a>
+                
+                                    <a rel="next" href="11-hacks-e-extras.html" class="nav-chapters next" title="Next chapter" aria-label="Next chapter" aria-keyshortcuts="Right">
+                        <i class="fa fa-angle-right"></i>
+                    </a>
+                            </nav>
+
+        </div>
+
+        
+        
+        
+                <script type="text/javascript">
+            window.playground_copyable = true;
+        </script>
+        
+        
+                <script src="elasticlunr.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="mark.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="searcher.js" type="text/javascript" charset="utf-8"></script>
+        
+        <script src="clipboard.min.js" type="text/javascript" charset="utf-8"></script>
+        <script src="highlight.js" type="text/javascript" charset="utf-8"></script>
+        <script src="book.js" type="text/javascript" charset="utf-8"></script>
+
+        <!-- Custom JS scripts -->
+        
+        
+    </body>
+</html>
