@@ -1,4 +1,5 @@
-# C Para Seres Humanos
+# C Para Seres Humanos 
+[![deploy](https://github.com/Plankiton/CParaSeresHumanos/actions/workflows/gh-pages.yml/badge.svg)](https://github.com/Plankiton/CParaSeresHumanos/actions/workflows/gh-pages.yml) 
 
 [![image](https://user-images.githubusercontent.com/39075126/210688632-0dc11300-a24b-4a57-91ab-aa3e67e4e29e.png)](https://plankiton.github.io/CParaSeresHumanos)
 
