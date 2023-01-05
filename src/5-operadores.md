@@ -161,6 +161,7 @@ printf("%i && %i = %i\n", 1+80 < 5, 2 > 0, 1+80 < 5   &&   2 > 0);
 Os operadores lógicos são o `&&`, que equivale a "and"("e"), já visto anteriormente, o `||`, que equivale a "or"("ou") e o `!`, que equivale a "not"("não").
 > considere os uns e zeros abaixo apenas o resultado de alguma operação relacional...
 
+
 |             |`&&`|             | resultado final |
 |-------------|----|-------------|-----------------|
 | `1`         |`&&`| `1`         | 1               |
@@ -168,12 +169,14 @@ Os operadores lógicos são o `&&`, que equivale a "and"("e"), já visto anterio
 | `1`         |`&&`| `0`         | 0               |
 | `0`         |`&&`| `0`         | 0               |
 
-|             |`||`|             | resultado final |
+
+|             |`\|\|`|             | resultado final |
 |-------------|----|-------------|-----------------|
-| `1`         |`||`| `1`         | 1               |
-| `0`         |`||`| `1`         | 1               |
-| `1`         |`||`| `0`         | 1               |
-| `0`         |`||`| `0`         | 0               |
+| `1`         |`\|\|`| `1`         | 1               |
+| `0`         |`\|\|`| `1`         | 1               |
+| `1`         |`\|\|`| `0`         | 1               |
+| `0`         |`\|\|`| `0`         | 0               |
+
 
 |`!`|             | resultado final |
 |---|-------------|-----------------|
