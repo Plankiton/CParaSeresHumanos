@@ -29,7 +29,7 @@ Eu sou Yak's Souza, sou um entusiasta de tecnologia e por isso resolvi expor um 
 Já trabalho com engenharia de software a quase 3 anos. Desde projetos pequenos com algumas dezenas de usuários até mesmo projetos em grandes corporações com mais de 58 mil usuários, tenho trabalhado principalmente com Back End utilizando Go, Python, C# (.Net Core) e C/C++.
 
 Caso esteja interessado em outros conteúdos meus:
-- [Blog](https://pl4nk1ton.medium.com) - pl4nk1ton.medium.com
+- [Plankiton's Blog](https://plankiton.com) - plankiton.com
 - [Instagram](https://instagram.com/plank1ton) - @plank1ton
 - [LinkedIn](https://www.linkedin.com/in/plankiton) - /in/plankiton
 - [GitHub](https://github.com/Plankiton) - /Plankiton
